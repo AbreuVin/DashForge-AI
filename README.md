@@ -1,92 +1,92 @@
 # DashForge AI
 
-Generate professional Power BI dashboards from natural language — no Power BI Desktop required.
+Gere dashboards profissionais no Power BI a partir de linguagem natural — sem precisar abrir o Power BI Desktop.
 
-DashForge AI is an AI-powered backend that converts plain-language requirements into ready-to-open `.pbip` files. It pairs a conversational requirements agent (built on Claude + Agno) with a deterministic PBIR code generation pipeline, ensuring correct output every time.
+DashForge AI é um backend com IA que converte requisitos em linguagem natural em arquivos `.pbip` prontos para abrir. Ele combina um agente conversacional de requisitos (construído com Claude + Agno) com um pipeline determinístico de geração de código PBIR, garantindo saída correta sempre.
 
 ---
 
-## What this repo contains
+## O que este repositório contém
 
-| Folder / File | Description |
+| Pasta / Arquivo | Descrição |
 |---|---|
-| `dashforge-ai/` | Python application — FastAPI backend + AI agent + PBIP generator |
-| `Databrick Gov/` | Reference dashboard: Brazilian Army procurement analysis (2019–2024) |
-| `CONTRATAÇÕES - DGT.pbip` | Reference dashboard: government contracting |
-| `Projeto para aprendizado/` | Learning project used as design reference ("Governança BI") |
-| `projeto.pbip` | Minimal PBIP template for bootstrapping new projects |
-| `pbir_research_and_learnings.md` | 4,000-line technical reference on the PBIR/TMDL file format |
-| `docs/` | Architecture decisions, implementation plan, task checklist |
+| `dashforge-ai/` | Aplicação Python — backend FastAPI + agente de IA + gerador de PBIP |
+| `Databrick Gov/` | Dashboard de referência: análise de licitações do Exército Brasileiro (2019–2024) |
+| `CONTRATAÇÕES - DGT.pbip` | Dashboard de referência: contratações governamentais |
+| `Projeto para aprendizado/` | Projeto de estudo usado como referência de design ("Governança BI") |
+| `projeto.pbip` | Template PBIP mínimo para iniciar novos projetos |
+| `pbir_research_and_learnings.md` | Referência técnica com 4.000 linhas sobre o formato PBIR/TMDL |
+| `docs/` | Decisões de arquitetura, plano de implementação, checklist de tarefas |
 
 ---
 
-## How it works
+## Como funciona
 
 ```
-User describes what they need
+Usuário descreve o que precisa
         ↓
 RequirementsAgent (Claude + Agno)
-  → asks one clarifying question at a time
-  → detects gaps and prevents bad design choices
-  → outputs a structured ProjectSpec (JSON)
+  → faz uma pergunta de cada vez
+  → detecta lacunas e evita decisões ruins de design
+  → gera um ProjectSpec estruturado (JSON)
         ↓
-PBIP Generation Pipeline
-  → reads Excel / CSV data
-  → writes TMDL (semantic model + DAX measures)
-  → writes Report JSON (visuals, pages, bindings)
-  → validates against PBIR schema 2.7.0
-  → packages the .pbip file
+Pipeline de Geração PBIP
+  → lê dados Excel / CSV
+  → escreve TMDL (modelo semântico + medidas DAX)
+  → escreve Report JSON (visuais, páginas, bindings)
+  → valida contra o schema PBIR 2.7.0
+  → empacota o arquivo .pbip
         ↓
-User opens the file in Power BI Desktop
+Usuário abre o arquivo no Power BI Desktop
 ```
 
 ---
 
-## Tech stack
+## Stack tecnológica
 
-| Layer | Technology |
+| Camada | Tecnologia |
 |---|---|
-| Language | Python 3.11+ |
-| API | FastAPI + Uvicorn (SSE for real-time streaming) |
-| AI | Claude API (Anthropic) + Agno agent framework |
-| Database | SQLite (dev) → PostgreSQL (prod) via SQLAlchemy + aiosqlite |
-| Data | Pandas, OpenPyXL |
-| Frontend (planned) | React + shadcn/ui + Tailwind CSS v4 |
-| Analytics | Prophet (time-series forecasting), STL decomposition |
-| Custom visuals | Deneb / Vega-Lite |
-| Testing | pytest, pytest-asyncio, httpx |
+| Linguagem | Python 3.11+ |
+| API | FastAPI + Uvicorn (SSE para streaming em tempo real) |
+| IA | Claude API (Anthropic) + framework Agno |
+| Banco de dados | SQLite (dev) → PostgreSQL (prod) via SQLAlchemy + aiosqlite |
+| Dados | Pandas, OpenPyXL |
+| Frontend (planejado) | React + shadcn/ui + Tailwind CSS v4 |
+| Análises | Prophet (previsão de séries temporais), decomposição STL |
+| Visuais customizados | Deneb / Vega-Lite |
+| Testes | pytest, pytest-asyncio, httpx |
 
 ---
 
-## Project status
+## Status do projeto
 
-- [x] Phase 0 — Project setup (pyproject.toml, config, folder structure)
-- [x] Research — 4,000-line PBIR/TMDL syntax reference validated against real dashboards
-- [x] Reference dashboards — Databrick Gov (37 visuals, 38 DAX measures, forecast)
-- [ ] Phase 1 — Build pipeline (tool modules: excel reader, TMDL writer, PBIR writer, validator, packager)
-- [ ] Phase 2 — Requirements agent (conversational spec gathering)
-- [ ] Phase 3 — REST API + SSE streaming
-- [ ] Phase 4 — React frontend
+- [x] Fase 0 — Configuração inicial (pyproject.toml, config, estrutura de pastas)
+- [x] Pesquisa — Referência PBIR/TMDL com 4.000 linhas validada contra dashboards reais
+- [x] Dashboards de referência — Databrick Gov (37 visuais, 38 medidas DAX, previsão)
+- [ ] Fase 1 — Pipeline de geração (módulos: leitor Excel, escritor TMDL, escritor PBIR, validador, empacotador)
+- [ ] Fase 2 — Agente de requisitos (coleta conversacional de especificações)
+- [ ] Fase 3 — API REST + streaming SSE
+- [ ] Fase 4 — Frontend React
 
 ---
 
-## Getting started
+## Como começar
 
-### Prerequisites
+### Pré-requisitos
 
 - Python 3.11+
-- An [Anthropic API key](https://console.anthropic.com/)
+- Uma [chave de API da Anthropic](https://console.anthropic.com/)
 
-### Install
+### Instalação
 
 ```bash
 git clone https://github.com/AbreuVin/DashForge-AI
 cd dashforge-ai/dashforge-ai
-cp .env.example .env          
+cp .env.example .env          # adicione sua ANTHROPIC_API_KEY
 pip install -e ".[dev]"
 ```
 
-### Run the API
+### Executar a API
 
 ```bash
 uvicorn src.api:app --reload
@@ -94,48 +94,48 @@ uvicorn src.api:app --reload
 
 ---
 
-## Reference dashboards
+## Dashboards de referência
 
-### Databrick Gov — Brazilian Army Procurement (2019–2024)
+### Databrick Gov — Licitações do Exército Brasileiro (2019–2024)
 
-Three-page analytical report covering ~6 years of procurement data:
+Relatório analítico com três páginas cobrindo ~6 anos de dados de licitações:
 
-- **Visão Geral** — KPIs, time series with linear regression forecast, category treemap, YoY comparison
-- **Por Categoria** — Category profiles, scatter analysis, rankings, stacked breakdown
-- **Por Fornecedor** — Pareto curve, supplier concentration (HHI-style), top-20 table
+- **Visão Geral** — KPIs, série temporal com previsão por regressão linear, treemap por categoria, comparativo YoY
+- **Por Categoria** — Perfis de categoria, análise de dispersão, rankings, distribuição empilhada
+- **Por Fornecedor** — Curva de Pareto, concentração de fornecedores (estilo HHI), tabela top-20
 
-Includes time-series analysis artifacts (ACF/PACF, STL decomposition) generated with Prophet before being embedded as static forecast values in DAX.
-
----
-
-## PBIR research reference
-
-[pbir_research_and_learnings.md](pbir_research_and_learnings.md) documents everything discovered while reverse-engineering the Power BI PBIP format:
-
-- PBIP directory layout and file roles
-- TMDL syntax for tables, measures, relationships, partitions
-- Report JSON schema 2.7.0 — patterns for 30+ chart types
-- Color format gotchas (hex literals must use single-quoted expressions)
-- DAX patterns: time intelligence, rankings, concentration metrics, rolling windows
-- Power Query / M data source configuration
-- Theme system and custom shadcn theme integration
-
-This file is the source of truth used by the code generation tools.
+Inclui artefatos de análise de séries temporais (ACF/PACF, decomposição STL) gerados com Prophet e incorporados como valores estáticos de previsão em DAX.
 
 ---
 
-## Key design decisions
+## Referência de pesquisa PBIR
 
-**One question at a time** — The requirements agent never dumps a form on the user. It asks a single question, waits, then proceeds. This mirrors how a senior analyst interviews a stakeholder.
+[pbir_research_and_learnings.md](pbir_research_and_learnings.md) documenta tudo que foi descoberto no processo de engenharia reversa do formato PBIP do Power BI:
 
-**ProjectSpec as source of truth** — All project metadata lives in a single versioned JSON document. Iterative changes only update the relevant section, avoiding full rebuilds.
+- Estrutura de diretórios do PBIP e papel de cada arquivo
+- Sintaxe TMDL para tabelas, medidas, relacionamentos e partições
+- Schema JSON de relatório 2.7.0 — padrões para mais de 30 tipos de gráfico
+- Armadilhas de formato de cor (literais hex precisam de expressões com aspas simples)
+- Padrões DAX: inteligência de tempo, rankings, métricas de concentração, janelas móveis
+- Configuração de fontes de dados em Power Query / M
+- Sistema de temas e integração com tema customizado shadcn
 
-**Research before generation** — Every visual pattern in the generator was first manually built and validated in Power BI Desktop, then formalized into code. No guessing at the schema.
-
-**Deterministic output** — The LLM handles requirements and decisions; the file writer is pure Python with no LLM calls. This guarantees syntactically valid PBIP output.
+Este arquivo é a fonte da verdade usada pelas ferramentas de geração de código.
 
 ---
 
-## License
+## Decisões de design
+
+**Uma pergunta por vez** — O agente de requisitos nunca despeja um formulário no usuário. Ele faz uma única pergunta, aguarda a resposta e então avança. Isso replica como um analista sênior entrevista um stakeholder.
+
+**ProjectSpec como fonte da verdade** — Todos os metadados do projeto vivem em um único documento JSON versionado. Alterações iterativas atualizam apenas a seção relevante, evitando reconstruções completas.
+
+**Pesquisa antes da geração** — Cada padrão visual do gerador foi primeiro construído e validado manualmente no Power BI Desktop, depois formalizado em código. Sem adivinhações sobre o schema.
+
+**Saída determinística** — O LLM cuida dos requisitos e decisões; o escritor de arquivos é Python puro, sem chamadas ao LLM. Isso garante saída PBIP sintaticamente válida sempre.
+
+---
+
+## Licença
 
 MIT
