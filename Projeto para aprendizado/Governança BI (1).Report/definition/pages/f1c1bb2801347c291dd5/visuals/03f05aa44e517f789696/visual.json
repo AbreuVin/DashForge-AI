@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "03f05aa44e517f789696",
+  "position": {
+    "x": 0.88093954791042262,
+    "y": 80.131818310818034,
+    "z": 1000,
+    "height": 546.53443113772448,
+    "width": 1565.3667664670659,
+    "tabOrder": 0
+  },
+  "visualGroup": {
+    "displayName": "Disponibilidade",
+    "groupMode": "ScaleMode"
+  },
+  "parentGroupName": "836dddc96c80f646226e"
+}

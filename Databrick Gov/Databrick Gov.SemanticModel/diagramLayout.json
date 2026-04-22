@@ -1,0 +1,87 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 568,
+            "y": 25
+          },
+          "nodeIndex": "licitacoes",
+          "nodeLineageTag": "67190d1f-11e6-4afc-8218-d882f89a7caa",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 334,
+            "y": -25
+          },
+          "nodeIndex": "licitacoes_2019_2024",
+          "nodeLineageTag": "7d327391-0ac1-4fb6-804f-5bb908124759",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 49
+          },
+          "nodeIndex": "mapa_descricao",
+          "nodeLineageTag": "87117167-284c-44ee-b7e8-8ec3caf15cd4",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 802,
+            "y": 25
+          },
+          "nodeIndex": "_Medidas",
+          "nodeLineageTag": "b5f8d3e2-94a6-4cab-ae17-8e4d2a39c156",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1086,
+            "y": 25
+          },
+          "nodeIndex": "Calendario",
+          "nodeLineageTag": "a4e7c2d1-83f5-4b9a-9e06-7d3c1f28b045",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Todas as tabelas",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas as tabelas",
+  "defaultDiagram": "Todas as tabelas"
+}

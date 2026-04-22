@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "7699f3dbcd2a12b8a0ba",
+  "position": {
+    "x": 1286,
+    "y": 81.716418148029646,
+    "z": 0,
+    "height": 546.53443113772448,
+    "width": 282.86676646706587,
+    "tabOrder": 2000
+  },
+  "visualGroup": {
+    "displayName": "Gauge Bar",
+    "groupMode": "ScaleMode"
+  },
+  "parentGroupName": "8f5a1afb166c61169daa"
+}

@@ -1,0 +1,221 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.1.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "CY24SU06",
+      "reportVersionAtImport": {
+        "visual": "1.8.91",
+        "report": "2.0.91",
+        "page": "1.3.91"
+      },
+      "type": "SharedResources"
+    },
+    "customTheme": {
+      "name": "TemaGoverna_aBI5193027847108278.json",
+      "reportVersionAtImport": {
+        "visual": "2.1.0",
+        "report": "2.1.0",
+        "page": "2.0.0"
+      },
+      "type": "RegisteredResources"
+    }
+  },
+  "objects": {
+    "section": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "true"
+              }
+            }
+          },
+          "visible": {
+            "expr": {
+              "Literal": {
+                "Value": "true"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "publicCustomVisuals": [
+    "dg5AAA90EFEFE747CB9357C4FC19B85A58"
+  ],
+  "resourcePackages": [
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "CY24SU06",
+          "path": "BaseThemes/CY24SU06.json",
+          "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "Acesse_o_Conte_do_Completo3254862406325497.png",
+          "path": "Acesse_o_Conte_do_Completo3254862406325497.png",
+          "type": "Image"
+        },
+        {
+          "name": "Banner-Topo_PBI_0002_Capacita_9097174677566293.png",
+          "path": "Banner-Topo_PBI_0002_Capacita_9097174677566293.png",
+          "type": "Image"
+        },
+        {
+          "name": "Banner-Topo_PBI_0003_Satisfa__8923312349283201.png",
+          "path": "Banner-Topo_PBI_0003_Satisfa__8923312349283201.png",
+          "type": "Image"
+        },
+        {
+          "name": "Banner-Topo_PBI_0005_iGovTIC-J6074940445082895.png",
+          "path": "Banner-Topo_PBI_0005_iGovTIC-J6074940445082895.png",
+          "type": "Image"
+        },
+        {
+          "name": "Banner-Topo_PBI_0006_marcas9737070318054057.png",
+          "path": "Banner-Topo_PBI_0006_marcas9737070318054057.png",
+          "type": "Image"
+        },
+        {
+          "name": "Banner-Topo_PBI_0007_BG_-_Edit008740117294754324.png",
+          "path": "Banner-Topo_PBI_0007_BG_-_Edit008740117294754324.png",
+          "type": "Image"
+        },
+        {
+          "name": "Banner-Topo_PBI_0007_BG_-_Edit2680334365920455.png",
+          "path": "Banner-Topo_PBI_0007_BG_-_Edit2680334365920455.png",
+          "type": "Image"
+        },
+        {
+          "name": "Banner-Topo_PBI_0007_BG_-_Edit5529860580371341.png",
+          "path": "Banner-Topo_PBI_0007_BG_-_Edit5529860580371341.png",
+          "type": "Image"
+        },
+        {
+          "name": "Banner-Topo_PBI_0007_BG_-_Edit8245596190190778.png",
+          "path": "Banner-Topo_PBI_0007_BG_-_Edit8245596190190778.png",
+          "type": "Image"
+        },
+        {
+          "name": "Capacita__es_de_Servidores7154925330736253.png",
+          "path": "Capacita__es_de_Servidores7154925330736253.png",
+          "type": "Image"
+        },
+        {
+          "name": "Capacita__es_de_Servidores_(Se3604056110175806.png",
+          "path": "Capacita__es_de_Servidores_(Se3604056110175806.png",
+          "type": "Image"
+        },
+        {
+          "name": "Disponibilidade_do_Sistema_Pje20600345287119948.png",
+          "path": "Disponibilidade_do_Sistema_Pje20600345287119948.png",
+          "type": "Image"
+        },
+        {
+          "name": "Icone_de_Filtro040104586026927125.png",
+          "path": "Icone_de_Filtro040104586026927125.png",
+          "type": "Image"
+        },
+        {
+          "name": "Icone_de_Filtro3399059425877853.png",
+          "path": "Icone_de_Filtro3399059425877853.png",
+          "type": "Image"
+        },
+        {
+          "name": "Icone_de_Filtro5385409102617889.png",
+          "path": "Icone_de_Filtro5385409102617889.png",
+          "type": "Image"
+        },
+        {
+          "name": "Icone_de_Filtro8978647914163694.png",
+          "path": "Icone_de_Filtro8978647914163694.png",
+          "type": "Image"
+        },
+        {
+          "name": "iGovTic-JUD671861986541846.png",
+          "path": "iGovTic-JUD671861986541846.png",
+          "type": "Image"
+        },
+        {
+          "name": "iGovTic-JUD9070854258900702.png",
+          "path": "iGovTic-JUD9070854258900702.png",
+          "type": "Image"
+        },
+        {
+          "name": "iGovTic-JUD_(Selecionado)3884644481094288.png",
+          "path": "iGovTic-JUD_(Selecionado)3884644481094288.png",
+          "type": "Image"
+        },
+        {
+          "name": "PJE_(1)004325236398867616.png",
+          "path": "PJE_(1)004325236398867616.png",
+          "type": "Image"
+        },
+        {
+          "name": "PJe_1_e_2_Grau4366535166614509.png",
+          "path": "PJe_1_e_2_Grau4366535166614509.png",
+          "type": "Image"
+        },
+        {
+          "name": "Satisfa__o_do_Service_Desk34493593166048886.png",
+          "path": "Satisfa__o_do_Service_Desk34493593166048886.png",
+          "type": "Image"
+        },
+        {
+          "name": "Satisfa__o_do_Service_Desk8144176314719399.png",
+          "path": "Satisfa__o_do_Service_Desk8144176314719399.png",
+          "type": "Image"
+        },
+        {
+          "name": "Satisfa__o_do_Service_Desk_(Se30199100960449665.png",
+          "path": "Satisfa__o_do_Service_Desk_(Se30199100960449665.png",
+          "type": "Image"
+        },
+        {
+          "name": "TemaGoverna_aBI5193027847108278.json",
+          "path": "TemaGoverna_aBI5193027847108278.json",
+          "type": "Image"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "AllowSummarized",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true,
+    "filterPaneHiddenInEditMode": true,
+    "useDefaultAggregateDisplayName": true
+  },
+  "slowDataSourceSettings": {
+    "isCrossHighlightingDisabled": false,
+    "isSlicerSelectionsButtonEnabled": false,
+    "isFilterSelectionsButtonEnabled": false,
+    "isFieldWellButtonEnabled": false,
+    "isApplyAllButtonEnabled": false
+  }
+}

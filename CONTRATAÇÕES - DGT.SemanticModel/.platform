@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "CONTRATAÇÕES - DGT"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "d383a5f9-8402-4eb2-9d37-6879a0e36e44"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Governança BI (1)"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "069c0f1c-cc6b-4c6f-8909-ebd2a4433417"
+  }
+}

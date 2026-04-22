@@ -1,0 +1,508 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "36e8c59051b100b70751",
+  "displayName": "EXECUÇÃO TOTAL",
+  "displayOption": "FitToPage",
+  "height": 1080,
+  "width": 1920,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "4b05104d11e342c17069",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Cadastro de Contratos"
+              }
+            },
+            "Property": "ID Contrato"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "c",
+              "Entity": "Cadastro de Contratos",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "c"
+                          }
+                        },
+                        "Property": "ID Contrato"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'PA ARQUIVOS - 101/24 - 2024-241 -'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'TOCCATO - 98/24 - 2024-373 -'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'SOLUTIS - 16/22-S - 2022-324 -'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'SOLUTIS - 16/22-S - 2023-325 -'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'SOLUTIS - 16/22-S - 2023-326 - Nº 16/23-AS'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'SOLUTIS - 16/22-S - 2024-327 - Nº 16/23-AS'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'SOLUTIS - 16/22-S - 2024-328 - 2º TA'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'SERPRO - 16/21-S - 2021-281 -'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'SERPRO - 16/21-S - 2022-282 -'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'SERPRO - 16/21-S - 2022-283 - 1º TA'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'SERPRO - 16/21-S - 2023-284 - 1º TA'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'SERPRO - 16/21-S - 2023-285 - 2º TA'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'SERPRO - 16/21-S - 2024-286 - 2º TA'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'SERPRO - 16/21-S - 2024-287 - 3º TA'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'RESOURCE - 39/20-S - 2020-267 -'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'RESOURCE - 39/20-S - 2021-268 -'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'RESOURCE - 39/20-S - 2021-269 - Nº 77/21-AS'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'RESOURCE - 39/20-S - 2022-270 - Nº 77/21-AS'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'RESOURCE - 39/20-S - 2022-271 - Nº 103/22-AS'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'RESOURCE - 39/20-S - 2023-272 - Nº 103/22-AS'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'RESOURCE - 39/20-S - 2023-273 - Nº 94/23-AS'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'RESOURCE - 39/20-S - 2024-274 - Nº 94/23-AS'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'RESOURCE - 39/20-S - 2024-275 - 4º TA'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'RESOURCE - 39/20-S - 2025-276 - 4º TA'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'RESOURCE - 95/24 - 2024-265 -'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'PRODEB - 46/21-S - 2021-253 -'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'PRODEB - 46/21-S - 2022-254 -'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'PRODEB - 46/21-S - 2022-255 - Nº 131/22-AS'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'PRODEB - 46/21-S - 2023-256 - Nº 131/22-AS'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'PRODEB - 46/21-S - 2023-257 - Nº 111/23-AS'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'PRODEB - 46/21-S - 2024-258 - Nº 111/23-AS'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'PRODEB - 46/21-S - 2024-259 - 3º TA'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'MFC SERVIÇOS - 06/22-S - 2022-186 -'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'MFC SERVIÇOS - 06/22-S - 2023-187 -'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'MFC SERVIÇOS - 06/22-S - 2023-188 - Nº 13/23-AS'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'MFC SERVIÇOS - 06/22-S - 2024-189 - Nº 13/23-AS'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'MFC SERVIÇOS - 06/22-S - 2024-190 - 2º TA'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'MFC SERVIÇOS - 06/22-S - 2025-191 - 2º TA'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'MFC SERVIÇOS - 06/22-S - 2025-192 - 3º TA'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'LANLINK - 89/24 - 2024-163 -'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'LANLINK - 89/24 - 2025-164 -'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'LANLINK - 89/24 - 2026-165 -'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'LANLINK - 89/24 - 2027-166 -'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'EXTREME DIGITAL - 01/24 - 2024-110 -'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'EXTREME DIGITAL - 01/24 - 2025-111 -'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'EXTREME DIGITAL - 01/24 - 2025-112 - 1º TA'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'CONTRATOS GOV - 17/23-S - 2023-88 -'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'CONTRATOS GOV - 17/23-S - 2024-89 -'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'CONTRATOS GOV - 17/23-S - 2024-90 - 2º TA'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'CONTRATOS GOV - 17/23-S - 2025-91 - 2º TA'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'CONTRATOS GOV - 17/23-S - 2025-92 - 3º TA'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'CONTRATOS GOV - 17/23-S - 2026-93 - 3º TA'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'EXTREME DIGITAL - 01/24 - 2026-113 - 1º TA'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'LANLINK - 89/24 - 2028-167 -'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'MFC SERVIÇOS - 06/22-S - 2026-193 - 3º TA'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'PRODEB - 46/21-S - 2025-260 - 3º TA'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'RESOURCE - 95/24 - 2025-266 -'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'SERPRO - 16/21-S - 2025-288 - 3º TA'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'SOLUTIS - 16/22-S - 2025-329 - 2º TA'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'TOCCATO - 98/24 - 2025-374 -'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'PA ARQUIVOS - 101/24 - 2025-242 -'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  },
+  "pageBinding": {
+    "name": "94cbbacf950a3a02edb7",
+    "type": "Default",
+    "parameters": [],
+    "acceptsFilterContext": "None"
+  },
+  "objects": {
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "181L"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode"
+}

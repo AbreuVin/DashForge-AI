@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "exec_drawer_grp",
+  "position": {
+    "x": 910,
+    "y": 10,
+    "z": 9000,
+    "height": 700,
+    "width": 350
+  },
+  "visualGroup": {
+    "displayName": "Gaveta Filtro Exec",
+    "groupMode": "ScaleMode"
+  },
+  "isHidden": true
+}

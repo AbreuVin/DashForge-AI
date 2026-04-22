@@ -1,0 +1,15 @@
+relationship 3fcc58d4-ab38-4c4f-94b6-55eaa26d660b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: '5 Satisfação Service Desk'.'Data da Resposta'
+	toColumn: LocalDateTable_1c54f80b-a3b8-4289-b169-19807a05ee31.Date
+
+relationship 9c8949aa-1c4a-4499-a360-debabfd6f967
+	joinOnDateBehavior: datePartOnly
+	fromColumn: '1 Disponibilidade de Sistemas'.'Data/Hora Início '
+	toColumn: LocalDateTable_cc25fa88-a5f9-4aac-aaf7-a42f84424eae.Date
+
+relationship f2627370-e80b-4d85-a65c-41f14a703eff
+	joinOnDateBehavior: datePartOnly
+	fromColumn: '1 Disponibilidade de Sistemas'.'Data/Hora Fim'
+	toColumn: LocalDateTable_35aad4cc-98f4-44ad-8f05-987087da51a0.Date
+

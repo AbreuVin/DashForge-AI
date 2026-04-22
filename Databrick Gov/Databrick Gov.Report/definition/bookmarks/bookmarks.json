@@ -1,0 +1,26 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmarksMetadata/1.0.0/schema.json",
+  "items": [
+    {
+      "name": "bm_abrir_gaveta"
+    },
+    {
+      "name": "34ca1d6b40e18ee13081"
+    },
+    {
+      "name": "2e3bb02d092c19b1805d"
+    },
+    {
+      "name": "29f5582da7800b8884e4"
+    },
+    {
+      "name": "52093d47200d8ba0bdc7"
+    },
+    {
+      "name": "cc33333d082444e34b97"
+    },
+    {
+      "name": "52c2128099000041bbb3"
+    }
+  ]
+}

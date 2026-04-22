@@ -1,0 +1,245 @@
+table '1 Disponibilidade de Sistemas'
+	lineageTag: d49239b6-c554-4280-960a-7fb37ed1c4dd
+
+	measure 'Total Minutos Indisponíveis' = SUM('1 Disponibilidade de Sistemas'[Tempo Indisponível(MIN)])
+		formatString: 0
+		lineageTag: d6a62a1c-6b6f-496d-a765-4b4d4d4ea8be
+
+	measure 'Disponibilidade %' = ```
+			
+			VAR MinutosIndisponiveisNoContexto = [Total Minutos Indisponíveis]
+			VAR DiasNoContexto = COUNTROWS('dCalendario')
+			VAR TotalMinutosNoContexto = DiasNoContexto * 1440
+			VAR TaxaIndisponibilidade = DIVIDE( MinutosIndisponiveisNoContexto, TotalMinutosNoContexto )
+			
+			RETURN
+			    IF(
+			        DiasNoContexto = 0,  -- 1ª Verificação: Não há dias no contexto?
+			        BLANK(),             -- Se sim, retorna BLANK() e omite o valor no gráfico.
+			        
+			        -- Se houver dias, faz a 2ª verificação:
+			        IF(
+			            ISBLANK(TaxaIndisponibilidade),
+			            1,               -- Se não houve indisponibilidade, retorna 100%.
+			            1 - TaxaIndisponibilidade -- Se houve, calcula a disponibilidade.
+			        )
+			    )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 841d7a85-8b80-4ede-9f14-7489cab51f10
+
+	measure 'Nº de Incidentes' = COUNTROWS('1 Disponibilidade de Sistemas')
+		formatString: 0
+		lineageTag: 2cbb2aac-7b23-4a80-ad76-bf51c7c511cd
+
+	measure 'Mostrar Ano no Gráfico' =
+			
+			IF(
+			    CALCULATE(
+			        COUNTROWS('1 Disponibilidade de Sistemas'),
+			        ALLEXCEPT('dCalendario', 'dCalendario'[Ano])
+			    ) > 0,
+			    1,
+			    BLANK()
+			)
+		formatString: 0
+		lineageTag: cd9b9620-a8e0-4dbf-a5ec-3752025d5729
+
+	measure ExibirItemNoEixo =
+			
+			VAR AnoDoEixo = MIN('dCalendario'[Ano])
+			VAR AnosVisiveis = VALUES('dCalendario'[Ano])
+			
+			RETURN
+			IF(
+			    AnoDoEixo IN AnosVisiveis,
+			    1
+			)
+		formatString: 0
+		lineageTag: 03a34866-a616-4257-af37-494200f6c0c1
+
+	measure 'Título Gráfico PJe' =
+			
+			IF (
+			    HASONEVALUE ( 'dCalendario'[Ano] ),
+			    "Disponibilidade PJe do Ano " & SELECTEDVALUE ( 'dCalendario'[Ano] ),
+			    "Disponibilidade PJe"
+			)
+		lineageTag: 15a26815-1a16-479d-bfe7-03e93cbf21f9
+
+	measure 'Título Gráfico iGovTIC' =
+			
+			IF (
+			    HASONEVALUE ( 'dCalendario'[Ano] ),
+			    "Disponibilidade PJe do Ano " & SELECTEDVALUE ( 'dCalendario'[Ano] ),
+			    "Disponibilidade PJe"
+			)
+		lineageTag: 5285218f-b09d-4715-ba4c-1f3d2fffdca5
+
+	measure Maximo = 1
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 43147695-216e-4900-8aea-2f81893e7a4c
+
+	measure Minimo = 0
+		formatString: 0%;-0%;0%
+		lineageTag: 439e2ec5-e87d-4ce5-9cba-112d7a2e8e21
+
+	measure targetstart = 0.9
+		formatString: 0%;-0%;0%
+		lineageTag: 77069c1f-6a00-49b5-9a68-29f619a354b5
+
+	measure targetend = 1
+		formatString: 0%;-0%;0%
+		lineageTag: d08ed5d3-699a-4b9f-b37a-07be64dc3558
+
+	measure 'Menor Disponibilidade %' =
+			
+			VAR TabelaResumo =
+			    SUMMARIZE (
+			        'dCalendario',
+			        'dCalendario'[Date],
+			        "@DisponibilidadeDiaria", [Disponibilidade %]
+			    )
+			RETURN
+			    MINX ( TabelaResumo, [@DisponibilidadeDiaria] )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: e48fa89e-1d5d-4e29-87f2-efbeba309b79
+
+	measure 'Maior Disponibilidade %' =
+			
+			MAXX(
+			    'dCalendario',
+			    [Disponibilidade %]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 14654ec4-f42d-4107-a863-78434a601e5f
+
+	measure mediastart = 0.7
+		formatString: 0%;-0%;0%
+		lineageTag: f6f2fc89-373c-42cd-be61-fc3b7ba4d656
+
+	measure mediaend = 0.9
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 3bbc885d-d1ec-486f-a69c-c0f375e902c1
+
+	measure Meta = 0.9
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 8fbdd314-679c-46a3-be7d-c05f53fda32f
+
+	measure Meta_legenda = "Meta: 90%"
+		lineageTag: fe2083c0-8867-46a4-80bb-72d09b1b71dc
+
+	measure Cálculo
+		lineageTag: bb0ad159-60ae-4552-a8a1-3704e5c0119b
+
+	measure 'Disponibilidade % (Até Hoje)' =
+			
+			CALCULATE(
+			    [Disponibilidade %],
+			    KEEPFILTERS('dCalendario'[Date] <= TODAY())
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 63d2c49b-f28a-4eae-ab83-c49e4c3ea2a5
+
+	measure 'Disponibilidade % (Até Hoje - Teste Simples)' =
+			
+			CALCULATE(
+			    [Disponibilidade %],
+			    'dCalendario'[Date] <= TODAY()
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 7b36bba3-7b13-4d54-94f6-7e1c6a4a4115
+
+	column 'Data Início'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 109be022-00cc-4c3f-bcc9-9e427f199667
+		summarizeBy: none
+		sourceColumn: Data Início
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Hora Início'
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: 0d645399-8b1e-498b-a87d-5151d19db293
+		summarizeBy: none
+		sourceColumn: Hora Início
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column 'Data Fim'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e8208a25-e632-40ca-abd8-a3e205944341
+		summarizeBy: none
+		sourceColumn: Data Fim
+
+		variation Variation
+			isDefault
+			relationship: 801cd015-1c9c-4569-8a60-2b179d51370f
+			defaultHierarchy: LocalDateTable_9596b543-6c4b-4e28-b58f-0cdcebc5e3ec.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Hora Fim'
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: bbb9721d-9996-4495-8219-3f8e275f5fad
+		summarizeBy: none
+		sourceColumn: Hora Fim
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column 'Tempo Indisponível'
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: 6e5e99d7-2c08-493b-8f75-008778a5313c
+		summarizeBy: none
+		sourceColumn: Tempo Indisponível
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column 'Tempo Indisponível(MIN)'
+		dataType: double
+		lineageTag: 0a7dd85e-4b33-4e4b-8a2c-d45ea596a747
+		summarizeBy: sum
+		sourceColumn: Tempo Indisponível(MIN)
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '1 Disponibilidade de Sistemas' = m
+		mode: import
+		source =
+				let
+				    Fonte = SharePoint.Tables("https://tjbacotec.sharepoint.com/sites/CGTIC", [Implementation="2.0", ViewMode="All"]),
+				    #"18a714d1-48e6-4bd6-8d6a-978aa8f738be" = Fonte{[Id="18a714d1-48e6-4bd6-8d6a-978aa8f738be"]}[Items],
+				    #"Colunas Removidas" = Table.RemoveColumns(#"18a714d1-48e6-4bd6-8d6a-978aa8f738be",{"Título", "Pressione Delete para excluir o ícone.", "ID de Ativo de Conformidade", "ID", "Tipo de Conteúdo", "Modificado", "Criado", "Criado por", "Modificado por", "Versão", "Anexos", "Editar", "Tipo", "Contagem de Itens Filhos", "Contagem de Elementos Filho da Pasta", "Configuração do rótulo", "Rótulo de retenção", "Rótulo de retenção Aplicado", "Rótulo aplicado por", "O item é um Registro", "Aplicativo Criado por", "Aplicativo Modificado por"}),
+				    #"Hora Analisada" = Table.TransformColumns(#"Colunas Removidas",{{"Tempo Indisponível", each Time.From(DateTimeZone.From(_)), type time}}),
+				    #"Dividir Coluna por Delimitador" = Table.SplitColumn(Table.TransformColumnTypes(#"Hora Analisada", {{"Data/Hora Início ", type text}}, "pt-BR"), "Data/Hora Início ", Splitter.SplitTextByDelimiter(" ", QuoteStyle.Csv), {"Data/Hora Início .1", "Data/Hora Início .2"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Dividir Coluna por Delimitador",{{"Data/Hora Início .1", type date}, {"Data/Hora Início .2", type time}}),
+				    #"Dividir Coluna por Delimitador1" = Table.SplitColumn(Table.TransformColumnTypes(#"Tipo Alterado", {{"Data/Hora Fim", type text}}, "pt-BR"), "Data/Hora Fim", Splitter.SplitTextByDelimiter(" ", QuoteStyle.Csv), {"Data/Hora Fim.1", "Data/Hora Fim.2"}),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Dividir Coluna por Delimitador1",{{"Data/Hora Fim.1", type date}, {"Data/Hora Fim.2", type time}}),
+				    #"Personalização Adicionada" = Table.AddColumn(#"Tipo Alterado1", "Personalizar", each (Time.Hour([Tempo Indisponível]) * 60) + Time.Minute([Tempo Indisponível])),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Personalização Adicionada",{{"Personalizar", "Tempo Indisponível(MIN)"}, {"Data/Hora Início .1", "Data Início"}, {"Data/Hora Início .2", "Hora Início"}, {"Data/Hora Fim.1", "Data Fim"}, {"Data/Hora Fim.2", "Hora Fim"}})
+				in
+				    #"Colunas Renomeadas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

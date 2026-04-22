@@ -1,0 +1,259 @@
+table SalesTeamData
+	lineageTag: c8d7f2a1-1e9d-435d-8c11-1a2b3c4d5e6f
+
+	measure TotalRevenue = SUM(SalesTeamData[Revenue])
+		formatString: R$ #,##0
+		lineageTag: b2c3d4e5-f6a7-8901-bcde-f12345678901
+
+	measure TotalTarget = SUM(SalesTeamData[Target])
+		formatString: R$ #,##0
+		lineageTag: c3d4e5f6-a7b8-9012-cdef-123456789012
+
+	measure PipelineTotal = SUM(SalesTeamData[Pipeline])
+		formatString: R$ #,##0
+		lineageTag: d4e5f6a7-b8c9-0123-defa-234567890123
+
+	measure WinRate =
+			DIVIDE(
+				COUNTROWS(FILTER(SalesTeamData, SalesTeamData[Status] = "Won")),
+				COUNTROWS(SalesTeamData),
+				0
+			) * 100
+		formatString: 0.0
+		lineageTag: e5f6a7b8-c9d0-5678-efab-a1b2c3d4e5f6
+
+	measure TeamQuota = DIVIDE(SUM(SalesTeamData[Revenue]), SUM(SalesTeamData[Target]), 0) * 100
+		formatString: 0.0
+		lineageTag: f6a7b8c9-d0e1-6789-fabc-a1b2c3d4e5f6
+
+	measure SageGaugeRevenue =
+			VAR _pct = DIVIDE(SUM(SalesTeamData[Revenue]), SUM(SalesTeamData[Target]), 0) * 100
+			VAR _val = SUM(SalesTeamData[Revenue])
+			VAR _r = 50
+			VAR _circ = 3.14159 * _r
+			VAR _dash = _circ * MIN(_pct, 100) / 100
+			RETURN
+			"<div style='font-family:Segoe UI,sans-serif; background:#F5F5EE; border:1px solid #D4D9C7; border-radius:16px; padding:min(12px,2vh) min(16px,2vw); width:100%; height:100vh; box-sizing:border-box; display:flex; flex-direction:column; align-items:center; justify-content:center;'>" &
+			"<div style='font-size:clamp(9px,2vw,11px); color:#6B7280; margin-bottom:4px; text-transform:uppercase; letter-spacing:1px;'>Revenue</div>" &
+			"<svg viewBox='0 0 120 70' style='width:min(100px,20vw);'>" &
+			"<path d='M 10 65 A 50 50 0 0 1 110 65' fill='none' stroke='#D4D9C7' stroke-width='10' stroke-linecap='round'/>" &
+			"<path d='M 10 65 A 50 50 0 0 1 110 65' fill='none' stroke='#606C38' stroke-width='10' stroke-linecap='round' stroke-dasharray='" & FORMAT(_circ, "0.0") & "' stroke-dashoffset='" & FORMAT(_circ - _dash, "0.0") & "'/>" &
+			"<text x='60' y='50' text-anchor='middle' font-size='14' font-weight='700' fill='#283618'>" & FORMAT(_pct, "0") & "%</text>" &
+			"<text x='60' y='64' text-anchor='middle' font-size='7' fill='#606C38'>▲ " & FORMAT(_pct - 80, "0.0") & "%</text>" &
+			"</svg>" &
+			"<div style='font-size:clamp(18px,4vw,28px); font-weight:700; color:#283618; margin-top:4px;'>R$ " & FORMAT(_val / 1000, "#,##0") & "K</div>" &
+			"</div>"
+		lineageTag: 11111111-2222-3333-4444-555555666601
+
+	measure SageGaugePipeline =
+			VAR _pct = DIVIDE(SUM(SalesTeamData[Pipeline]), 500000, 0) * 100
+			VAR _val = SUM(SalesTeamData[Pipeline])
+			VAR _r = 50
+			VAR _circ = 3.14159 * _r
+			VAR _dash = _circ * MIN(_pct, 100) / 100
+			RETURN
+			"<div style='font-family:Segoe UI,sans-serif; background:#F5F5EE; border:1px solid #D4D9C7; border-radius:16px; padding:min(12px,2vh) min(16px,2vw); width:100%; height:100vh; box-sizing:border-box; display:flex; flex-direction:column; align-items:center; justify-content:center;'>" &
+			"<div style='font-size:clamp(9px,2vw,11px); color:#6B7280; margin-bottom:4px; text-transform:uppercase; letter-spacing:1px;'>Pipeline</div>" &
+			"<svg viewBox='0 0 120 70' style='width:min(100px,20vw);'>" &
+			"<path d='M 10 65 A 50 50 0 0 1 110 65' fill='none' stroke='#D4D9C7' stroke-width='10' stroke-linecap='round'/>" &
+			"<path d='M 10 65 A 50 50 0 0 1 110 65' fill='none' stroke='#A3B18A' stroke-width='10' stroke-linecap='round' stroke-dasharray='" & FORMAT(_circ, "0.0") & "' stroke-dashoffset='" & FORMAT(_circ - _dash, "0.0") & "'/>" &
+			"<text x='60' y='50' text-anchor='middle' font-size='14' font-weight='700' fill='#283618'>" & FORMAT(_pct, "0") & "%</text>" &
+			"<text x='60' y='64' text-anchor='middle' font-size='7' fill='#A3B18A'>▲ 12%</text>" &
+			"</svg>" &
+			"<div style='font-size:clamp(18px,4vw,28px); font-weight:700; color:#283618; margin-top:4px;'>R$ " & FORMAT(_val / 1000, "#,##0") & "K</div>" &
+			"</div>"
+		lineageTag: 11111111-2222-3333-4444-555555666602
+
+	measure SageGaugeWinRate =
+			VAR _pct = [WinRate]
+			VAR _r = 50
+			VAR _circ = 3.14159 * _r
+			VAR _dash = _circ * MIN(_pct, 100) / 100
+			RETURN
+			"<div style='font-family:Segoe UI,sans-serif; background:#F5F5EE; border:1px solid #D4D9C7; border-radius:16px; padding:min(12px,2vh) min(16px,2vw); width:100%; height:100vh; box-sizing:border-box; display:flex; flex-direction:column; align-items:center; justify-content:center;'>" &
+			"<div style='font-size:clamp(9px,2vw,11px); color:#6B7280; margin-bottom:4px; text-transform:uppercase; letter-spacing:1px;'>Win Rate</div>" &
+			"<svg viewBox='0 0 120 70' style='width:min(100px,20vw);'>" &
+			"<path d='M 10 65 A 50 50 0 0 1 110 65' fill='none' stroke='#D4D9C7' stroke-width='10' stroke-linecap='round'/>" &
+			"<path d='M 10 65 A 50 50 0 0 1 110 65' fill='none' stroke='#606C38' stroke-width='10' stroke-linecap='round' stroke-dasharray='" & FORMAT(_circ, "0.0") & "' stroke-dashoffset='" & FORMAT(_circ - _dash, "0.0") & "'/>" &
+			"<text x='60' y='50' text-anchor='middle' font-size='14' font-weight='700' fill='#283618'>" & FORMAT(_pct, "0") & "%</text>" &
+			"<text x='60' y='64' text-anchor='middle' font-size='7' fill='#606C38'>▲ 5%</text>" &
+			"</svg>" &
+			"<div style='font-size:clamp(18px,4vw,28px); font-weight:700; color:#283618; margin-top:4px;'>" & FORMAT(_pct, "0.0") & "%</div>" &
+			"</div>"
+		lineageTag: 11111111-2222-3333-4444-555555666603
+
+	measure SageGaugeQuota =
+			VAR _pct = [TeamQuota]
+			VAR _r = 50
+			VAR _circ = 3.14159 * _r
+			VAR _dash = _circ * MIN(_pct, 100) / 100
+			RETURN
+			"<div style='font-family:Segoe UI,sans-serif; background:#F5F5EE; border:1px solid #D4D9C7; border-radius:16px; padding:min(12px,2vh) min(16px,2vw); width:100%; height:100vh; box-sizing:border-box; display:flex; flex-direction:column; align-items:center; justify-content:center;'>" &
+			"<div style='font-size:clamp(9px,2vw,11px); color:#6B7280; margin-bottom:4px; text-transform:uppercase; letter-spacing:1px;'>Team Quota</div>" &
+			"<svg viewBox='0 0 120 70' style='width:min(100px,20vw);'>" &
+			"<path d='M 10 65 A 50 50 0 0 1 110 65' fill='none' stroke='#D4D9C7' stroke-width='10' stroke-linecap='round'/>" &
+			"<path d='M 10 65 A 50 50 0 0 1 110 65' fill='none' stroke='#A3B18A' stroke-width='10' stroke-linecap='round' stroke-dasharray='" & FORMAT(_circ, "0.0") & "' stroke-dashoffset='" & FORMAT(_circ - _dash, "0.0") & "'/>" &
+			"<text x='60' y='50' text-anchor='middle' font-size='14' font-weight='700' fill='#283618'>" & FORMAT(_pct, "0") & "%</text>" &
+			"<text x='60' y='64' text-anchor='middle' font-size='7' fill='#A3B18A'>▲ 8%</text>" &
+			"</svg>" &
+			"<div style='font-size:clamp(18px,4vw,28px); font-weight:700; color:#283618; margin-top:4px;'>" & FORMAT(_pct, "0.0") & "%</div>" &
+			"</div>"
+		lineageTag: 11111111-2222-3333-4444-555555666604
+
+	measure SageTeamProgress =
+			VAR _t1 = CALCULATE(DIVIDE(SUM(SalesTeamData[Revenue]), SUM(SalesTeamData[Target]), 0) * 100, SalesTeamData[Team] = "Alpha")
+			VAR _t2 = CALCULATE(DIVIDE(SUM(SalesTeamData[Revenue]), SUM(SalesTeamData[Target]), 0) * 100, SalesTeamData[Team] = "Beta")
+			VAR _t3 = CALCULATE(DIVIDE(SUM(SalesTeamData[Revenue]), SUM(SalesTeamData[Target]), 0) * 100, SalesTeamData[Team] = "Gamma")
+			VAR _t4 = CALCULATE(DIVIDE(SUM(SalesTeamData[Revenue]), SUM(SalesTeamData[Target]), 0) * 100, SalesTeamData[Team] = "Delta")
+			VAR _t5 = CALCULATE(DIVIDE(SUM(SalesTeamData[Revenue]), SUM(SalesTeamData[Target]), 0) * 100, SalesTeamData[Team] = "Epsilon")
+			VAR _bar = "<div style='flex:1; background:#D4D9C7; border-radius:4px; height:8px;'><div style='height:100%; background:#606C38; border-radius:4px; width:"
+			RETURN
+			"<div style='font-family:Segoe UI,sans-serif; background:#F5F5EE; border:1px solid #D4D9C7; border-radius:16px; padding:min(16px,3vh) min(20px,3vw); width:100%; height:100vh; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center;'>" &
+			"<div style='font-size:clamp(12px,2.5vw,14px); font-weight:700; color:#283618; margin-bottom:12px;'>Team Performance</div>" &
+			"<div style='display:flex; align-items:center; gap:8px; margin:6px 0;'><span style='width:60px; font-size:11px; color:#283618;'>Alpha</span><span style='font-size:10px; color:#606C38;'>▲</span><span style='font-size:11px; color:#283618; width:35px;'>" & FORMAT(_t1, "0") & "%</span>" & _bar & FORMAT(MIN(_t1, 100), "0") & "%;'></div></div></div>" &
+			"<div style='display:flex; align-items:center; gap:8px; margin:6px 0;'><span style='width:60px; font-size:11px; color:#283618;'>Beta</span><span style='font-size:10px; color:#606C38;'>▲</span><span style='font-size:11px; color:#283618; width:35px;'>" & FORMAT(_t2, "0") & "%</span>" & _bar & FORMAT(MIN(_t2, 100), "0") & "%;'></div></div></div>" &
+			"<div style='display:flex; align-items:center; gap:8px; margin:6px 0;'><span style='width:60px; font-size:11px; color:#283618;'>Gamma</span><span style='font-size:10px; color:#A3B18A;'>▼</span><span style='font-size:11px; color:#283618; width:35px;'>" & FORMAT(_t3, "0") & "%</span>" & _bar & FORMAT(MIN(_t3, 100), "0") & "%;'></div></div></div>" &
+			"<div style='display:flex; align-items:center; gap:8px; margin:6px 0;'><span style='width:60px; font-size:11px; color:#283618;'>Delta</span><span style='font-size:10px; color:#606C38;'>▲</span><span style='font-size:11px; color:#283618; width:35px;'>" & FORMAT(_t4, "0") & "%</span>" & _bar & FORMAT(MIN(_t4, 100), "0") & "%;'></div></div></div>" &
+			"<div style='display:flex; align-items:center; gap:8px; margin:6px 0;'><span style='width:60px; font-size:11px; color:#283618;'>Epsilon</span><span style='font-size:10px; color:#BC4749;'>▼</span><span style='font-size:11px; color:#283618; width:35px;'>" & FORMAT(_t5, "0") & "%</span>" & _bar & FORMAT(MIN(_t5, 100), "0") & "%;'></div></div></div>" &
+			"</div>"
+		lineageTag: 11111111-2222-3333-4444-555555666605
+
+	measure SageWeeklyTargets =
+			"<div style='font-family:Segoe UI,sans-serif; background:#F5F5EE; border:1px solid #D4D9C7; border-radius:16px; padding:min(16px,3vh) min(20px,3vw); width:100%; height:100vh; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center;'>" &
+			"<div style='font-size:clamp(12px,2.5vw,14px); font-weight:700; color:#283618; margin-bottom:12px;'>Weekly Targets</div>" &
+			"<div style='display:flex; align-items:center; gap:8px; margin:5px 0;'><svg width='18' height='18' viewBox='0 0 24 24' fill='none'><circle cx='12' cy='12' r='10' fill='#606C38'/><polyline points='8 12 11 15 16 9' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/></svg><span style='font-size:12px; color:#283618;'>30 demos completed</span></div>" &
+			"<div style='display:flex; align-items:center; gap:8px; margin:5px 0;'><svg width='18' height='18' viewBox='0 0 24 24' fill='none'><circle cx='12' cy='12' r='10' fill='#606C38'/><polyline points='8 12 11 15 16 9' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/></svg><span style='font-size:12px; color:#283618;'>15 proposals sent</span></div>" &
+			"<div style='display:flex; align-items:center; gap:8px; margin:5px 0;'><svg width='18' height='18' viewBox='0 0 24 24' fill='none'><circle cx='12' cy='12' r='10' fill='#606C38'/><polyline points='8 12 11 15 16 9' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/></svg><span style='font-size:12px; color:#283618;'>12 deals closed</span></div>" &
+			"<div style='display:flex; align-items:center; gap:8px; margin:5px 0;'><svg width='18' height='18' viewBox='0 0 24 24' fill='none'><circle cx='12' cy='12' r='10' fill='#D4D9C7'/><line x1='8' y1='8' x2='16' y2='16' stroke='#6B7280' stroke-width='2.5' stroke-linecap='round'/><line x1='16' y1='8' x2='8' y2='16' stroke='#6B7280' stroke-width='2.5' stroke-linecap='round'/></svg><span style='font-size:12px; color:#6B7280;'>8 follow-up calls</span></div>" &
+			"</div>"
+		lineageTag: 11111111-2222-3333-4444-555555666606
+
+	measure SageBlockers =
+			"<div style='font-family:Segoe UI,sans-serif; background:#F5F5EE; border:1px solid #D4D9C7; border-radius:16px; padding:min(16px,3vh) min(20px,3vw); width:100%; height:100vh; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center;'>" &
+			"<div style='font-size:clamp(12px,2.5vw,14px); font-weight:700; color:#283618; margin-bottom:12px;'>Blockers</div>" &
+			"<div style='display:flex; align-items:center; gap:8px; margin:5px 0;'><svg width='18' height='18' viewBox='0 0 24 24' fill='none'><circle cx='12' cy='12' r='10' fill='#BC4749'/><line x1='8' y1='8' x2='16' y2='16' stroke='white' stroke-width='2.5' stroke-linecap='round'/><line x1='16' y1='8' x2='8' y2='16' stroke='white' stroke-width='2.5' stroke-linecap='round'/></svg><span style='font-size:12px; color:#283618;'>Legal review delays</span></div>" &
+			"<div style='display:flex; align-items:center; gap:8px; margin:5px 0;'><svg width='18' height='18' viewBox='0 0 24 24' fill='none'><circle cx='12' cy='12' r='10' fill='#BC4749'/><line x1='8' y1='8' x2='16' y2='16' stroke='white' stroke-width='2.5' stroke-linecap='round'/><line x1='16' y1='8' x2='8' y2='16' stroke='white' stroke-width='2.5' stroke-linecap='round'/></svg><span style='font-size:12px; color:#283618;'>Pricing approval pending</span></div>" &
+			"<div style='display:flex; align-items:center; gap:8px; margin:5px 0;'><svg width='18' height='18' viewBox='0 0 24 24' fill='none'><circle cx='12' cy='12' r='10' fill='#BC4749'/><line x1='8' y1='8' x2='16' y2='16' stroke='white' stroke-width='2.5' stroke-linecap='round'/><line x1='16' y1='8' x2='8' y2='16' stroke='white' stroke-width='2.5' stroke-linecap='round'/></svg><span style='font-size:12px; color:#283618;'>CRM migration issue</span></div>" &
+			"</div>"
+		lineageTag: 11111111-2222-3333-4444-555555666607
+
+	measure SagePeriodBadge =
+			"<div style='font-family:Segoe UI,sans-serif; width:100%; height:100vh; box-sizing:border-box; display:flex; align-items:center; padding:0 min(20px,3vw);'>" &
+			"<span style='background:#606C38; color:white; border-radius:20px; padding:6px 18px; font-size:clamp(11px,2vw,13px); font-weight:600; letter-spacing:1px;'>Q1 2026</span>" &
+			"<span style='font-size:clamp(16px,3.5vw,22px); font-weight:700; color:#283618; margin-left:20px;'>Sales Performance Dashboard</span>" &
+			"</div>"
+		lineageTag: 11111111-2222-3333-4444-555555666608
+
+	measure SageDrawerBg =
+			"
+			<div style='
+				background: linear-gradient(135deg, rgba(232, 237, 223, 0.95), rgba(245, 245, 238, 0.98));
+				backdrop-filter: blur(10px);
+				box-shadow: -5px 0 25px rgba(0,0,0,0.1);
+				border-left: 1px solid #D4D9C7;
+				width: 100%; height: 100%;
+				border-radius: 16px 0 0 16px;
+				padding: 24px;
+				box-sizing: border-box;
+				color: #283618;
+				font-family: ""Segoe UI"", Tahoma, sans-serif;
+			'>
+				<h2 style='margin: 0 0 24px 0; font-size: 20px; font-weight: 600; display: flex; align-items: center; gap: 8px;'>
+					<svg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polygon points='22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3'></polygon></svg>
+					Filters
+				</h2>
+			</div>
+			"
+		lineageTag: a0b1c2d3-e4f5-1111-2222-333344445555
+
+	measure SageBtnOpen =
+			"
+			<div style='
+				width: 100%; height: 100%;
+				background: #FFFFFF;
+				border: 1px solid #D4D9C7;
+				border-radius: 8px;
+				display: flex; justify-content: center; align-items: center;
+				color: #606C38;
+				cursor: pointer;
+				box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+			'>
+				<svg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polygon points='22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3'></polygon></svg>
+			</div>
+			"
+		lineageTag: b1c2d3e4-f5a6-2222-3333-444455556666
+
+	measure SageBtnClose =
+			"
+			<div style='
+				width: 100%; height: 100%;
+				background: transparent;
+				border: none;
+				display: flex; justify-content: center; align-items: center;
+				color: #BC4749;
+				cursor: pointer;
+			'>
+				<svg width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><line x1='18' y1='6' x2='6' y2='18'></line><line x1='6' y1='6' x2='18' y2='18'></line></svg>
+			</div>
+			"
+		lineageTag: c2d3e4f5-a6b7-3333-4444-555566667777
+
+	column Team
+		lineageTag: aa000001-0000-0000-0000-000000000001
+		isNameInferred
+		sourceColumn: [Team]
+
+	column Rep
+		lineageTag: aa000001-0000-0000-0000-000000000002
+		isNameInferred
+		sourceColumn: [Rep]
+
+	column Revenue
+		lineageTag: aa000001-0000-0000-0000-000000000003
+		isNameInferred
+		sourceColumn: [Revenue]
+
+	column Target
+		lineageTag: aa000001-0000-0000-0000-000000000004
+		isNameInferred
+		sourceColumn: [Target]
+
+	column Pipeline
+		lineageTag: aa000001-0000-0000-0000-000000000005
+		isNameInferred
+		sourceColumn: [Pipeline]
+
+	column Status
+		lineageTag: aa000001-0000-0000-0000-000000000006
+		isNameInferred
+		sourceColumn: [Status]
+
+	partition SalesTeamData = calculated
+		mode: import
+		source =
+				DATATABLE(
+					"Team", STRING,
+					"Rep", STRING,
+					"Revenue", DOUBLE,
+					"Target", DOUBLE,
+					"Pipeline", DOUBLE,
+					"Status", STRING,
+					{
+						{"Alpha", "Ana Silva", 45000, 50000, 62000, "Won"},
+						{"Alpha", "Bruno Costa", 38000, 45000, 55000, "Won"},
+						{"Alpha", "Carlos Lima", 22000, 40000, 48000, "Lost"},
+						{"Beta", "Diana Reis", 52000, 55000, 70000, "Won"},
+						{"Beta", "Eduardo Nunes", 41000, 50000, 45000, "Won"},
+						{"Beta", "Fernanda Souza", 18000, 45000, 38000, "Lost"},
+						{"Gamma", "Gabriel Rocha", 30000, 55000, 42000, "Lost"},
+						{"Gamma", "Helena Dias", 25000, 50000, 35000, "Lost"},
+						{"Gamma", "Igor Santos", 35000, 48000, 50000, "Won"},
+						{"Delta", "Julia Ferreira", 48000, 50000, 65000, "Won"},
+						{"Delta", "Kevin Moreira", 42000, 45000, 58000, "Won"},
+						{"Delta", "Laura Alves", 33000, 40000, 40000, "Won"},
+						{"Epsilon", "Miguel Cardoso", 20000, 55000, 30000, "Lost"},
+						{"Epsilon", "Natalia Ribeiro", 28000, 50000, 42000, "Won"},
+						{"Epsilon", "Oscar Pereira", 15000, 45000, 25000, "Lost"}
+					}
+				)
+

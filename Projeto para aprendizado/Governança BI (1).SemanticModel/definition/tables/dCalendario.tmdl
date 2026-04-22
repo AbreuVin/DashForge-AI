@@ -1,0 +1,185 @@
+table dCalendario
+	lineageTag: 0e1de6a0-efc4-425d-8496-0c82b6e1ebc9
+
+	column Date
+		formatString: General Date
+		lineageTag: 84c09694-02df-4b7e-97f4-69a0af5e733d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: 543a5539-cf4a-4793-8cfa-e19496dd230a
+			defaultHierarchy: LocalDateTable_82d3133c-771f-4a45-9366-3dd43482341c.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ano
+		formatString: 0
+		lineageTag: 08393b4f-70fc-4253-b241-437c2e56090f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Ano]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mês Num'
+		formatString: 0
+		lineageTag: 2fe2cd76-47bb-4677-af81-757bf2b4447a
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Mês Num]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome Mês'
+		lineageTag: dd43bb9d-a1ba-44cf-a6e8-11541a4998f1
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Nome Mês]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ano-Mês
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e7a5951d-0ccc-4666-938f-a5458a733ff5
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Ano-Mês]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Trimestre
+		lineageTag: b2ac85ac-54fd-4021-baef-c609e63b0a51
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Trimestre]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mês Abrev'
+		lineageTag: 1d19f19c-ef6e-4d63-b9cf-e9d0986e278a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Mês Abrev]
+		sortByColumn: 'Mês Num'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dia
+		formatString: 0
+		lineageTag: ca32a4a6-b093-4070-9d5c-0afcbc37e081
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Dia]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dia da Semana'
+		formatString: 0
+		lineageTag: 5b7d7a48-0f6f-4bd0-b595-e28849e60278
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Dia da Semana]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome Dia Semana'
+		lineageTag: db720cc6-a309-4127-9198-ec5f142ba430
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Nome Dia Semana]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dCalendario = calculated
+		mode: import
+		source = ```
+				
+				
+				VAR TabelaDisponibilidade =
+				    SELECTCOLUMNS (
+				        '1 Disponibilidade de Sistemas',
+				        "DataUnificada", '1 Disponibilidade de Sistemas'[Data Início]
+				    )
+				VAR TabelaCapacitacoes =
+				    SELECTCOLUMNS (
+				        FILTER('2 Capacitações', NOT ISBLANK('2 Capacitações'[ANO]) && '2 Capacitações'[ANO] > 0 && '2 Capacitações'[ANO] <= 9999),
+				        "DataUnificada", DATE ( '2 Capacitações'[ANO], 1, 1 )
+				    )
+				VAR TabelaContratacoes =
+				    SELECTCOLUMNS (
+				        FILTER('3 Contratações', NOT ISBLANK('3 Contratações'[ANO]) && '3 Contratações'[ANO] > 0 && '3 Contratações'[ANO] <= 9999),
+				        "DataUnificada", DATE ( '3 Contratações'[ANO], 1, 1 )
+				    )
+				VAR TabelaIGovTIC =
+				    SELECTCOLUMNS (
+				        FILTER('4 iGovTIC', NOT ISBLANK('4 iGovTIC'[ANO]) && '4 iGovTIC'[ANO] > 0 && '4 iGovTIC'[ANO] <= 9999),
+				        "DataUnificada", DATE ( '4 iGovTIC'[ANO], 1, 1 )
+				    )
+				VAR TabelaSatisfacao =
+				    SELECTCOLUMNS (
+				        '5 Satisfação Service Desk',
+				        "DataUnificada", '5 Satisfação Service Desk'[Data da Resposta]
+				    )
+				VAR TabelaCadastroContratos = 
+				    SELECTCOLUMNS(
+				        FILTER(
+				            'Cadastro de Contratos',
+				            NOT ISBLANK('Cadastro de Contratos'[Exercício (Ano)]) && 'Cadastro de Contratos'[Exercício (Ano)] > 0 && 'Cadastro de Contratos'[Exercício (Ano)] <= 9999
+				        ),
+				        "DataUnificada", DATE('Cadastro de Contratos'[Exercício (Ano)], 1, 1)
+				    )
+				VAR TabelaPagamentoMensal = 
+				    SELECTCOLUMNS(
+				        FILTER(
+				            'Pagamento Mensal Por Natureza',
+				            NOT ISBLANK('Pagamento Mensal Por Natureza'[Ano]) && 'Pagamento Mensal Por Natureza'[Ano] > 0 && 'Pagamento Mensal Por Natureza'[Ano] <= 9999
+				        ),
+				        "DataUnificada", DATE('Pagamento Mensal Por Natureza'[Ano], 1, 1) 
+				    )
+				VAR TabelaDotacao = 
+				    SELECTCOLUMNS(
+				        FILTER(
+				            'Dotação',
+				            NOT ISBLANK('Dotação'[Ano]) && 'Dotação'[Ano] > 0 && 'Dotação'[Ano] <= 9999
+				        ),
+				        "DataUnificada", DATE('Dotação'[Ano], 1, 1)
+				    )
+				VAR TodasAsDatas =
+				    UNION (
+				        TabelaDisponibilidade,
+				        TabelaCapacitacoes,
+				        TabelaContratacoes,
+				        TabelaIGovTIC,
+				        TabelaSatisfacao,
+				        TabelaCadastroContratos,
+				        TabelaPagamentoMensal,
+				        TabelaDotacao
+				    )
+				
+				VAR MinhaDataMinima = MINX( TodasAsDatas, [DataUnificada] )
+				VAR MinhaDataMaxima = MAXX( TodasAsDatas, [DataUnificada] )
+				
+				
+				RETURN
+				    ADDCOLUMNS (
+				        CALENDAR ( MinhaDataMinima, MinhaDataMaxima ),
+				        "Ano", YEAR ( [Date] ),
+				        "Trimestre", "T" & FORMAT ( [Date], "q" ),
+				        "Mês Num", MONTH ( [Date] ),
+				        "Nome Mês", FORMAT ( [Date], "mmmm" ),
+				        "Mês Abrev", FORMAT ( [Date], "mmm" ),
+				        "Ano-Mês", FORMAT ( [Date], "yyyy-mm" ),
+				        "Dia", DAY ( [Date] ),
+				        "Dia da Semana", WEEKDAY ( [Date], 2 ),
+				        "Nome Dia Semana", FORMAT ( [Date], "dddd" )
+				    )
+				```
+
+	annotation PBI_Id = f71a2e3d9cb346f591e1d79df44b7beb
+

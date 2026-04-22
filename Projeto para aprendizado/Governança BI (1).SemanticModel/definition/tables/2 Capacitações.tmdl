@@ -1,0 +1,72 @@
+table '2 Capacitações'
+	lineageTag: 62c292d6-05bc-4c27-abbf-1caf43e7c36a
+
+	measure 'Título Gráfico Capacitações' =
+			
+			IF (
+			    HASONEVALUE ( 'dCalendario'[Ano] ),
+			    "Previsto X Realizado do Ano " & SELECTEDVALUE ( 'dCalendario'[Ano] ),
+			    "Previsto X Realizado"
+			)
+		lineageTag: fa471f6c-fa7d-494d-83b3-0889d41ea774
+
+	column ANO
+		dataType: int64
+		formatString: 0
+		lineageTag: d8c2bff1-849f-4220-ba06-60b12fe6c52e
+		summarizeBy: sum
+		sourceColumn: ANO
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column PREVISTO
+		dataType: double
+		lineageTag: d6e810bb-502c-425b-b275-56e4fb178f8d
+		summarizeBy: sum
+		sourceColumn: PREVISTO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column REALIZADO
+		dataType: double
+		lineageTag: 487ee26f-79eb-4a73-bdde-a0e5de47691a
+		summarizeBy: sum
+		sourceColumn: REALIZADO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '% Executado' = '2 Capacitações'[REALIZADO] / '2 Capacitações'[PREVISTO]
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 577fe4d5-7a82-4e52-afc6-8e128c0d1c4b
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Chave' = DATE([ANO], 1, 1)
+		formatString: General Date
+		lineageTag: 28c5d364-9a18-46c0-84cf-aa5122f6f789
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '2 Capacitações' = m
+		mode: import
+		source =
+				let
+				    Fonte = SharePoint.Tables("https://tjbacotec.sharepoint.com/sites/CGTIC", [Implementation="2.0", ViewMode="All"]),
+				    #"b1d10ec0-08c0-4418-bea2-e5bf728a40d4" = Fonte{[Id="b1d10ec0-08c0-4418-bea2-e5bf728a40d4"]}[Items],
+				    #"Colunas Removidas" = Table.RemoveColumns(#"b1d10ec0-08c0-4418-bea2-e5bf728a40d4",{"Pressione Delete para excluir o ícone.", "ID de Ativo de Conformidade", "ID", "Tipo de Conteúdo", "Modificado", "Criado", "Criado por", "Modificado por", "Versão", "Anexos", "Editar", "Tipo", "Contagem de Itens Filhos", "Contagem de Elementos Filho da Pasta", "Configuração do rótulo", "Rótulo de retenção", "Rótulo de retenção Aplicado", "Rótulo aplicado por", "O item é um Registro", "Aplicativo Criado por", "Aplicativo Modificado por", "% Execução"}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Colunas Removidas",{{"ANO ", "ANO"}})
+				in
+				    #"Colunas Renomeadas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

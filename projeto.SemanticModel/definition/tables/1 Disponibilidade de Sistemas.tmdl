@@ -1,0 +1,54 @@
+table '1 Disponibilidade de Sistemas'
+	lineageTag: a0b1ba34-8e2e-4880-be58-e42035e9f1eb
+
+	column 'Data/Hora Início '
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7c70e406-8bea-468f-a3a2-d40a8cac50d5
+		summarizeBy: none
+		sourceColumn: "Data/Hora Início "
+
+		variation Variation
+			isDefault
+			relationship: 9c8949aa-1c4a-4499-a360-debabfd6f967
+			defaultHierarchy: LocalDateTable_cc25fa88-a5f9-4aac-aaf7-a42f84424eae.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data/Hora Fim'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b9d32558-c854-4ea1-990b-70b225e3b255
+		summarizeBy: none
+		sourceColumn: Data/Hora Fim
+
+		variation Variation
+			isDefault
+			relationship: f2627370-e80b-4d85-a65c-41f14a703eff
+			defaultHierarchy: LocalDateTable_35aad4cc-98f4-44ad-8f05-987087da51a0.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tempo Indisponível'
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: 672b040e-6577-4c98-8685-59dda2dbde28
+		summarizeBy: none
+		sourceColumn: Tempo Indisponível
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	partition '1 Disponibilidade de Sistemas' = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents("C:\Users\Vinícius Abreu\Downloads\1.Disponibilidade de Sistemas.csv"),[Delimiter=",", Columns=3, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Usar a Primeira Linha como Cabeçalho" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    #"Alterar Tipo" = Table.TransformColumnTypes(#"Usar a Primeira Linha como Cabeçalho",{{"Data/Hora Início ", type datetime}, {"Data/Hora Fim", type datetime}, {"Tempo Indisponível", type time}})
+				in
+				    #"Alterar Tipo"
+
+	annotation PBI_ResultType = Table
+

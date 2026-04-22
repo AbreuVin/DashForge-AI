@@ -1,0 +1,26 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.0.0/schema.json",
+  "displayName": "Exec Drawer Close",
+  "name": "exec_bm_close",
+  "options": {
+    "targetVisualNames": [
+      "exec_drawer_grp"
+    ],
+    "suppressData": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "executive_overview",
+    "sections": {
+      "executive_overview": {
+        "visualContainers": {},
+        "visualContainerGroups": {
+          "exec_drawer_grp": {
+            "isHidden": true
+          }
+        }
+      }
+    },
+    "objects": {}
+  }
+}

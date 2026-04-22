@@ -1,0 +1,25 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.0.0/schema.json",
+  "displayName": "Mgmt Drawer Open",
+  "name": "mgmt_drawer_open",
+  "options": {
+    "targetVisualNames": [
+      "mgmt_drawer_grp"
+    ],
+    "suppressData": true
+  },
+  "explorationState": {
+    "version": "1.0",
+    "activeSection": "management_dashboard",
+    "sections": {
+      "management_dashboard": {
+        "visualContainers": {},
+        "visualContainerGroups": {
+          "mgmt_drawer_grp": {
+            "isHidden": false
+          }
+        }
+      }
+    }
+  }
+}

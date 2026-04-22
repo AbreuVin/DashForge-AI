@@ -1,0 +1,26 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.0.0/schema.json",
+  "displayName": "Clone Drawer Open",
+  "name": "clone_bm_open",
+  "options": {
+    "targetVisualNames": [
+      "clone_drawer_grp"
+    ],
+    "suppressData": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "snowui_clone",
+    "sections": {
+      "snowui_clone": {
+        "visualContainers": {},
+        "visualContainerGroups": {
+          "clone_drawer_grp": {
+            "isHidden": false
+          }
+        }
+      }
+    },
+    "objects": {}
+  }
+}

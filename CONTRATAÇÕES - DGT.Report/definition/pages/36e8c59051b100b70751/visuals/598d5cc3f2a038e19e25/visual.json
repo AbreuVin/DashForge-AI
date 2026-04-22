@@ -1,0 +1,768 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "598d5cc3f2a038e19e25",
+  "position": {
+    "x": 6.4502244035589618,
+    "y": 209.63229311566627,
+    "z": 8000,
+    "height": 348.31211779218393,
+    "width": 1906.0413112516733,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cadastro de Contratos"
+                    }
+                  },
+                  "Property": "Unidade Demandante"
+                }
+              },
+              "queryRef": "Cadastro de Contratos.Unidade Demandante",
+              "nativeQueryRef": "Unidade Demandante"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cadastro de Contratos"
+                    }
+                  },
+                  "Property": "Nome da Empresa"
+                }
+              },
+              "queryRef": "Cadastro de Contratos.Nome da Empresa",
+              "nativeQueryRef": "Fornecedor",
+              "displayName": "Fornecedor",
+              "format": "G"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cadastro de Contratos"
+                    }
+                  },
+                  "Property": "Número do Contrato"
+                }
+              },
+              "queryRef": "Cadastro de Contratos.Número do Contrato",
+              "nativeQueryRef": "Contrato",
+              "displayName": "Contrato"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cadastro de Contratos"
+                    }
+                  },
+                  "Property": "Número do Aditivo"
+                }
+              },
+              "queryRef": "Cadastro de Contratos.Número do Aditivo",
+              "nativeQueryRef": "Aditivo",
+              "displayName": "Aditivo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cadastro de Contratos"
+                    }
+                  },
+                  "Property": "Data Início - Vigência"
+                }
+              },
+              "queryRef": "Cadastro de Contratos.Data Início - Vigência",
+              "nativeQueryRef": "Vigência (Início)",
+              "displayName": "Vigência (Início)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cadastro de Contratos"
+                    }
+                  },
+                  "Property": "Data Final - Vigência"
+                }
+              },
+              "queryRef": "Cadastro de Contratos.Data Final - Vigência",
+              "nativeQueryRef": "Vigência (Final)",
+              "displayName": "Vigência (Final)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cadastro de Contratos"
+                    }
+                  },
+                  "Property": "Valor Global"
+                }
+              },
+              "queryRef": "Sum(Cadastro de Contratos.Valor Global)",
+              "nativeQueryRef": "Valor Total do Contrato",
+              "displayName": "Valor Total do Contrato"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cadastro de Contratos"
+                    }
+                  },
+                  "Property": "Ano de Desembolso"
+                }
+              },
+              "queryRef": "Cadastro de Contratos.Ano de Desembolso",
+              "nativeQueryRef": "Ano de Desembolso"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Cadastro de Contratos"
+                        }
+                      },
+                      "Property": "Valor do Exercicio"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Cadastro de Contratos.Valor do Exercicio)",
+              "nativeQueryRef": "Previsto Exercicio",
+              "displayName": "Previsto Exercicio"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cadastro de Contratos"
+                    }
+                  },
+                  "Property": "Executado"
+                }
+              },
+              "queryRef": "Sum(Cadastro de Contratos.Executado)",
+              "nativeQueryRef": "Executado no Exercício",
+              "displayName": "Executado no Exercício"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cadastro de Contratos"
+                    }
+                  },
+                  "Property": "%EXEC Anual"
+                }
+              },
+              "queryRef": "Cadastro de Contratos.%EXEC Anual",
+              "nativeQueryRef": "%EXEC do Exercício",
+              "displayName": "%EXEC do Exercício"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cadastro de Contratos"
+                    }
+                  },
+                  "Property": "Saldo Acumulativo"
+                }
+              },
+              "queryRef": "Cadastro de Contratos.saldo correto",
+              "nativeQueryRef": "Saldo Total do Contrato",
+              "displayName": "Saldo Total do Contrato"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cadastro de Contratos"
+                    }
+                  },
+                  "Property": "Executado Acumulado"
+                }
+              },
+              "queryRef": "Cadastro de Contratos.Executado Acumulado",
+              "nativeQueryRef": "Executado Acumulado"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cadastro de Contratos"
+                    }
+                  },
+                  "Property": "%EXEC Acumulada"
+                }
+              },
+              "queryRef": "Cadastro de Contratos.%EXEC Acumulada",
+              "nativeQueryRef": "%EXEC Acumulada",
+              "displayName": "%EXEC TOTAL"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Cadastro de Contratos"
+                  }
+                },
+                "Property": "Nome da Empresa"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "175.63194160270234D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.Nome da Empresa"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "130.15540897410924D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.Número do Contrato"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "132.02688571911995D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(Cadastro de Contratos.Executado)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "121.99964564789846D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.Número do Aditivo"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "132.5664265222931D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.Unidade Demandante"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "117.13308168454745D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.Data Início - Vigência"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "109.885329647556D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.Data Final - Vigência"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "145.96548088345455D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(Cadastro de Contratos.Valor Global)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "56.014416839098224D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.Exercício (Ano).Variation.Hierarquia de datas.Ano"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "151.78773947519042D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.saldo correto"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "138.07451558164746D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.Ano de Desembolso"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "109.78353850650021D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.%EXEC Anual"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "87.24149000204287D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.%EXEC Acumulada"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "141.6266046426641D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(Cadastro de Contratos.Valor do Exercicio)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "168.1413013490449D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.Executado Acumulado"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "15D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.Nome da Empresa"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.Número do Contrato"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.Número do Aditivo"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.Data Início - Vigência"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.Data Final - Vigência"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(Cadastro de Contratos.Valor Global)"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.Unidade Demandante"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(Cadastro de Contratos.Executado)"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.saldo correto"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.Ano de Desembolso"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(Cadastro de Contratos.Valor do Exercicio)"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.%EXEC Anual"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.%EXEC Acumulada"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.Executado Acumulado"
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "gridVertical": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

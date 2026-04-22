@@ -1,0 +1,553 @@
+table 'Pagamento Mensal Por Natureza'
+	lineageTag: ebcf3520-68f6-42c0-8ee9-6bf567c77675
+
+	measure 'Executado dividido por Previsto' =
+			
+			DIVIDE(
+				SUM('Pagamento Mensal Por Natureza'[Executado]),
+				SUM('Pagamento Mensal Por Natureza'[Previsto])
+			)
+		formatString: #,0.00%;-#,0.00%;#,0.00%
+		lineageTag: eaf3d018-1722-4f90-8948-d1186a7b16fb
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "MathematicalDivision"
+				}
+
+		changedProperty = FormatString
+
+	measure exec/previst = ```
+			
+			DIVIDE(
+			    CALCULATE(SUM('Pagamento Mensal Por Natureza'[Executado])),
+			    CALCULATE(SUM('Pagamento Mensal Por Natureza'[Previsto]))
+			)
+			
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 5212bfcc-713b-4e2a-a658-8c099cebf098
+
+	measure MediaExecutado = ```
+			
+			CALCULATE(
+			    AVERAGE('Pagamento Mensal Por Natureza'[Executado]),
+			    ALL('Calendario')
+			)
+			
+			```
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: bbacb454-8e71-4ac1-b013-d32c3e9cd834
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure MesesComPagamento = ```
+			
+			CALCULATE(
+			    DISTINCTCOUNT('Pagamento Mensal Por Natureza'[Mês]),
+			    FILTER(
+			        ALL('Pagamento Mensal Por Natureza'),
+			        'Pagamento Mensal Por Natureza'[Executado] > 0
+			            && 'Pagamento Mensal Por Natureza'[Ano] IN VALUES('Calendario'[Ano])
+			    )
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 2d7dfdc9-2f4a-4c4d-9290-39be7b4117ba
+
+	measure 'Meses Sem Pagamento (Com Corte)' = ```
+			
+			VAR AnoAtual = MAX('Calendario'[Ano])
+			
+			-- Primeiro mês com lançamento de pagamento no ano
+			VAR PrimeiroMesComExecutadoNoAno =
+			    CALCULATE(
+			        MIN('Pagamento Mensal Por Natureza'[MesNumero]),
+			        FILTER(
+			            ALL('Pagamento Mensal Por Natureza'),
+			            'Pagamento Mensal Por Natureza'[Executado] > 0 &&
+			            'Pagamento Mensal Por Natureza'[Ano] = AnoAtual
+			        )
+			    )
+			
+			-- Verifica se teve qualquer lançamento no ano
+			VAR TemLancamentoNoAno = NOT ISBLANK(PrimeiroMesComExecutadoNoAno)
+			
+			-- Conta quantos meses do ano atual tiveram pagamento
+			VAR MesesComPagamento =
+			    CALCULATE(
+			        DISTINCTCOUNT('Pagamento Mensal Por Natureza'[MesNumero]),
+			        FILTER(
+			            'Pagamento Mensal Por Natureza',
+			            'Pagamento Mensal Por Natureza'[Ano] = AnoAtual &&
+			            'Pagamento Mensal Por Natureza'[Executado] > 0 &&
+			            'Pagamento Mensal Por Natureza'[MesNumero] >= PrimeiroMesComExecutadoNoAno
+			        )
+			    )
+			
+			-- Total de meses "válidos" no ano: do 1º mês com execução até dezembro
+			VAR MesesPossiveisNoAno =
+			    IF(TemLancamentoNoAno, 13 - PrimeiroMesComExecutadoNoAno, 0)
+			
+			RETURN
+			    MesesPossiveisNoAno - MesesComPagamento
+			
+			
+			```
+		formatString: 0
+		lineageTag: 21943dd1-30b1-4b41-be95-44356600f3ed
+
+	measure 'projeção pela média' = [MediaExecutado]*[Meses Sem Pagamento (Com Corte)]
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 35451284-febd-43ac-b502-b894d6b3972e
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure 'projeção soma' = [projeção pela média] + SUM('Pagamento Mensal Por Natureza'[Executado])
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 6852770e-c2d8-42b1-9a39-966ffad74948
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure 'Executado ou Média (Corrigida e Segura)' = ```
+			
+			VAR AnoAtual = MAX('Calendario'[Ano])
+			VAR MesAtual = MAX('Calendario'[MesNumero])
+			
+			-- Mês do primeiro lançamento no ano
+			VAR PrimeiroMesComExecutadoNoAno =
+			    CALCULATE(
+			        MIN('Pagamento Mensal Por Natureza'[MesNumero]),
+			        FILTER(
+			            ALL('Pagamento Mensal Por Natureza'),
+			            'Pagamento Mensal Por Natureza'[Executado] > 0 &&
+			            'Pagamento Mensal Por Natureza'[Ano] = AnoAtual
+			        )
+			    )
+			
+			-- Verifica se o ano teve lançamento
+			VAR TemLancamentoNoAno = NOT ISBLANK(PrimeiroMesComExecutadoNoAno)
+			
+			-- Executado no mês atual
+			VAR ExecutadoNoMes =
+			    CALCULATE(
+			        SUM('Pagamento Mensal Por Natureza'[Executado]),
+			        KEEPFILTERS('Calendario')
+			    )
+			
+			RETURN
+			    IF(
+			        NOT TemLancamentoNoAno,
+			        0,
+			        IF(
+			            MesAtual < PrimeiroMesComExecutadoNoAno,
+			            0,
+			            IF(
+			                NOT ISBLANK(ExecutadoNoMes),
+			                ExecutadoNoMes,
+			                [MediaExecutado]
+			            )
+			        )
+			    )
+			
+			
+			```
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: 38134906-2046-44f1-befb-5dcb27c00981
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure Executado_Ate_D2 = ```
+			
+			VAR MesAtual = MONTH(TODAY())
+			VAR AnoAtual = YEAR(TODAY())
+			VAR MesLimite = MesAtual - 2
+			
+			RETURN
+			CALCULATE(
+			    SUM('Pagamento Mensal Por Natureza'[Executado]),
+			    FILTER(
+			        ALL('Pagamento Mensal Por Natureza'[MesAno]),
+			        YEAR('Pagamento Mensal Por Natureza'[MesAno]) = AnoAtual &&
+			        MONTH('Pagamento Mensal Por Natureza'[MesAno]) <= MesLimite
+			    )
+			)
+			
+			
+			```
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: acdc2fb9-0c67-4488-8d84-f6e7a8d24404
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column 'Número do Contrato'
+		dataType: string
+		lineageTag: f5e30d13-86ff-4feb-945b-65f92860ed96
+		summarizeBy: none
+		sourceColumn: Número do Contrato
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mês
+		dataType: string
+		lineageTag: 17215205-7a92-4b61-bc7d-7a2b21342bb7
+		summarizeBy: none
+		sourceColumn: Mês
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ano
+		dataType: int64
+		formatString: 0
+		lineageTag: 7594858b-bda5-45c2-889f-9607669e6959
+		summarizeBy: sum
+		sourceColumn: Ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column Natureza
+		dataType: string
+		lineageTag: b2980df4-dc3d-494b-ac93-2435a40b9e01
+		summarizeBy: none
+		sourceColumn: Natureza
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nº PA de Pagamento'
+		dataType: string
+		lineageTag: 0f8cdeaa-98df-445e-98c7-d157991cf977
+		summarizeBy: none
+		sourceColumn: Nº PA de Pagamento
+
+		annotation SummarizationSetBy = Automatic
+
+	column Previsto
+		dataType: decimal
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: 282f16bf-684f-46ca-976f-2bb528b46e99
+		summarizeBy: sum
+		sourceColumn: Previsto
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column Executado
+		dataType: decimal
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: fe457cab-6992-4386-b710-5406de585b2c
+		summarizeBy: sum
+		sourceColumn: Executado
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column 'Valor não Executado'
+		dataType: int64
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: a169400a-f791-4f7e-9088-2d6568020850
+		summarizeBy: sum
+		sourceColumn: Valor não Executado
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column 'Percentual de Execução Mensal'
+		dataType: string
+		lineageTag: be116529-e67c-433d-89c2-fb051c54b964
+		summarizeBy: none
+		sourceColumn: Percentual de Execução Mensal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Anexos
+		dataType: string
+		lineageTag: cc2bec79-0473-4c8c-9300-edfe87e3ae74
+		summarizeBy: none
+		sourceColumn: Anexos
+
+		annotation SummarizationSetBy = Automatic
+
+	column Título
+		dataType: string
+		lineageTag: 1c8be660-6de1-4c37-8bc3-7bb4cc512b7a
+		summarizeBy: none
+		sourceColumn: Título
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pressione Delete para excluir o ícone.'
+		dataType: string
+		lineageTag: 1185c427-c564-4945-bee0-80d4f4172881
+		summarizeBy: none
+		sourceColumn: Pressione Delete para excluir o ícone.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID de Ativo de Conformidade'
+		dataType: string
+		lineageTag: f0612a48-618b-47b7-89ad-2b09bda05788
+		summarizeBy: none
+		sourceColumn: ID de Ativo de Conformidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: ec84f591-03e5-4488-9a81-91b5e0093988
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tipo de Conteúdo'
+		dataType: string
+		lineageTag: 9df2c0ba-bcbe-4b36-a265-c3ebdbe5c81f
+		summarizeBy: none
+		sourceColumn: Tipo de Conteúdo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Modificado
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4ac6d47a-c431-4f13-821d-83bd72113696
+		summarizeBy: none
+		sourceColumn: Modificado
+
+		variation Variation
+			isDefault
+			relationship: 6424f60f-1887-446f-8e6b-081ae5930d5b
+			defaultHierarchy: LocalDateTable_b9301404-86e4-4afe-81c4-0a6d6fee02b7.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Criado
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6c72eed1-3f74-47dd-a92b-ff440ab6053a
+		summarizeBy: none
+		sourceColumn: Criado
+
+		variation Variation
+			isDefault
+			relationship: f84f1592-f50d-4a87-9408-d1c925cac125
+			defaultHierarchy: LocalDateTable_f41cd58c-8436-4461-85c1-599fc9d0f17c.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Criado por'
+		dataType: string
+		lineageTag: b15affb7-ea05-49e2-a36c-9ba95d45cd44
+		summarizeBy: none
+		sourceColumn: Criado por
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Modificado por'
+		dataType: string
+		lineageTag: 589a9000-e77e-4d86-a972-928739eb690c
+		summarizeBy: none
+		sourceColumn: Modificado por
+
+		annotation SummarizationSetBy = Automatic
+
+	column Versão
+		dataType: string
+		lineageTag: 2f6744b2-b8d7-4858-b800-0138fd861926
+		summarizeBy: none
+		sourceColumn: Versão
+
+		annotation SummarizationSetBy = Automatic
+
+	column Editar
+		dataType: string
+		lineageTag: 45b62e50-73c5-4ce6-9041-c89258fb7fb3
+		summarizeBy: none
+		sourceColumn: Editar
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tipo
+		dataType: string
+		lineageTag: 81ddd7ce-02c8-4a16-add0-c63da417c9a9
+		summarizeBy: none
+		sourceColumn: Tipo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contagem de Itens Filhos'
+		dataType: string
+		lineageTag: 509b3ee4-2288-425a-8f9e-2c42b2c994a1
+		summarizeBy: none
+		sourceColumn: Contagem de Itens Filhos
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contagem de Elementos Filho da Pasta'
+		dataType: string
+		lineageTag: c862291e-2d43-4e49-8b20-f486fa6902d5
+		summarizeBy: none
+		sourceColumn: Contagem de Elementos Filho da Pasta
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Configuração do rótulo'
+		dataType: string
+		lineageTag: 9b158171-d2e0-4644-993d-5141cb1074c4
+		summarizeBy: none
+		sourceColumn: Configuração do rótulo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rótulo de retenção'
+		dataType: string
+		lineageTag: c37b59c7-dc73-4a73-88e3-aed64b5fdfac
+		summarizeBy: none
+		sourceColumn: Rótulo de retenção
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rótulo de retenção Aplicado'
+		dataType: string
+		lineageTag: 19c2ff84-2fac-40a2-a9e3-093941eb355d
+		summarizeBy: none
+		sourceColumn: Rótulo de retenção Aplicado
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rótulo aplicado por'
+		dataType: string
+		lineageTag: a254216e-08f7-46d6-aae8-06c69aa74c72
+		summarizeBy: none
+		sourceColumn: Rótulo aplicado por
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'O item é um Registro'
+		dataType: string
+		lineageTag: faadfb8f-008b-4356-b6e0-5e8bc57ceea5
+		summarizeBy: none
+		sourceColumn: O item é um Registro
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Aplicativo Criado por'
+		dataType: string
+		lineageTag: 6edb349c-3946-4f91-8a15-4585787a92fc
+		summarizeBy: none
+		sourceColumn: Aplicativo Criado por
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Aplicativo Modificado por'
+		dataType: string
+		lineageTag: 1f6efadb-467d-4d8a-8c0a-53dc9ea72ed6
+		summarizeBy: none
+		sourceColumn: Aplicativo Modificado por
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contrato.lookupValue'
+		dataType: string
+		lineageTag: ae8d2f44-5419-44be-ac97-236804e94f00
+		summarizeBy: none
+		sourceColumn: Contrato.lookupValue
+
+		annotation SummarizationSetBy = Automatic
+
+	column Data = ```
+			DATE(
+			    'Pagamento Mensal Por Natureza'[Ano],
+			    SWITCH(TRUE(),
+			        'Pagamento Mensal Por Natureza'[Mês] = "Janeiro", 1,
+			        'Pagamento Mensal Por Natureza'[Mês] = "Fevereiro", 2,
+			        'Pagamento Mensal Por Natureza'[Mês] = "Março", 3,
+			        'Pagamento Mensal Por Natureza'[Mês] = "Abril", 4,
+			        'Pagamento Mensal Por Natureza'[Mês] = "Maio", 5,
+			        'Pagamento Mensal Por Natureza'[Mês] = "Junho", 6,
+			        'Pagamento Mensal Por Natureza'[Mês] = "Julho", 7,
+			        'Pagamento Mensal Por Natureza'[Mês] = "Agosto", 8,
+			        'Pagamento Mensal Por Natureza'[Mês] = "Setembro", 9,
+			        'Pagamento Mensal Por Natureza'[Mês] = "Outubro", 10,
+			        'Pagamento Mensal Por Natureza'[Mês] = "Novembro", 11,
+			        'Pagamento Mensal Por Natureza'[Mês] = "Dezembro", 12,
+			        BLANK()
+			    ),
+			    1
+			)
+			
+			```
+		formatString: Short Date
+		lineageTag: ae5a7fac-70e7-45dd-9906-548947c1778b
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year = YEAR('Pagamento Mensal Por Natureza'[Data])
+		formatString: 0
+		lineageTag: 45bae8cf-ce84-402e-adb7-a5b98c83e693
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column MesAno = ```
+			FORMAT([Data], "YYYY-MM")
+			
+			```
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 295a74a7-5621-4d75-8ae1-4984e0fbbb2d
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 6042d6bb-2e67-438c-b1be-c1f0fe635962
+			defaultHierarchy: LocalDateTable_bfd0f99d-58b0-4dd5-afe8-29cef9ba5122.'Hierarquia de datas'
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column MesNumero = ```
+			MONTH([Data])
+			
+			```
+		formatString: 0
+		lineageTag: 12d0d50f-0d20-4a01-990f-b7e270beea23
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Pagamento Mensal Por Natureza' = m
+		mode: import
+		source =
+				let
+				    Fonte = SharePoint.Tables("https://tjbacotec.sharepoint.com/sites/ContrataeseOrcamento", [Implementation="2.0", ViewMode="All"]),
+				    #"acbc49a1-0f8e-4a39-b852-ea375e31a0b8" = Fonte{[Id="acbc49a1-0f8e-4a39-b852-ea375e31a0b8"]}[Items],
+				    #"Contrato Expandido" = Table.ExpandListColumn(#"acbc49a1-0f8e-4a39-b852-ea375e31a0b8", "Contrato"),
+				    #"Contrato Expandido1" = Table.ExpandRecordColumn(#"Contrato Expandido", "Contrato", {"lookupValue"}, {"Contrato.lookupValue"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Contrato Expandido1",{{"Ano", Int64.Type}, {"Valor não Executado", type number}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

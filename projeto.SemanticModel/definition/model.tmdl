@@ -1,0 +1,29 @@
+model Model
+	culture: pt-BR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-BR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+annotation PBI_QueryOrder = ["5 Satisfação Service Desk","1 Disponibilidade de Sistemas"]
+
+ref table SampleData
+ref table MonthlyMetrics
+ref table TrafficData
+ref table '5 Satisfação Service Desk'
+ref table DateTableTemplate_b50be09a-2392-4542-9c76-05ec3bfd7b96
+ref table LocalDateTable_1c54f80b-a3b8-4289-b169-19807a05ee31
+ref table '1 Disponibilidade de Sistemas'
+ref table LocalDateTable_cc25fa88-a5f9-4aac-aaf7-a42f84424eae
+ref table LocalDateTable_35aad4cc-98f4-44ad-8f05-987087da51a0
+ref table SalesTeamData
+ref table MasterClassData
+ref table Management_KPIs
+
+ref cultureInfo pt-BR
+

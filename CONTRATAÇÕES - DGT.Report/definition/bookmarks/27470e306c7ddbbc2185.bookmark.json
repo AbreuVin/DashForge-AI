@@ -1,0 +1,952 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
+  "displayName": "Fechar Janela de Filtros",
+  "name": "27470e306c7ddbbc2185",
+  "options": {
+    "targetVisualNames": [],
+    "suppressData": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "772a71dd0b04cb025b5c",
+    "sections": {
+      "772a71dd0b04cb025b5c": {
+        "visualContainers": {
+          "f4f52c3b37083c07ea5a": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "a65b89b5290674cd95a2": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "6c9a43865497d721e802": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "a72dd3b993a044950982": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "29210ac2c00a803e8da6",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Cadastro de Contratos"
+                        }
+                      },
+                      "Property": "% Execução Total"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Cadastro de Contratos"
+                        }
+                      },
+                      "Property": "% Execução Total"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "31f7659a742098e0987d": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "e278653135aa0a6d10e3",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Análise de Execução Orçamentária - 2024"
+                        }
+                      },
+                      "Property": "%exec parcial"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Análise de Execução Orçamentária - 2024"
+                        }
+                      },
+                      "Property": "%exec parcial"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "d935cccb0210b1501207": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "a0c8e985338112647ab6",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Cadastro de Contratos"
+                        }
+                      },
+                      "Property": "Saldo Total"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Cadastro de Contratos"
+                        }
+                      },
+                      "Property": "Saldo Total"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "18b5d5d8ee1aab170458": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "57437d53721002648270",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Cadastro de Contratos"
+                            }
+                          },
+                          "Property": "Executado"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Cadastro de Contratos"
+                            }
+                          },
+                          "Property": "Executado"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "02339dd77ce7e0b0bc71": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "24cdf09c37c44107106b",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Cadastro de Contratos"
+                        }
+                      },
+                      "Property": "Soma_previstoexerc"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Cadastro de Contratos"
+                        }
+                      },
+                      "Property": "Soma_previstoexerc"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "a0e203a2a4e6a37d3330": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "774ca330793bbb1d5291": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "87c1644bcac408b57654",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Cadastro de Contratos"
+                        }
+                      },
+                      "Property": "Nome da Empresa"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Cadastro de Contratos"
+                        }
+                      },
+                      "Property": "Nome da Empresa"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "793b2e3d9ae03206e1ea": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "25010e0214901d6b01e0",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Cadastro de Contratos"
+                        }
+                      },
+                      "Property": "Status_Contrato"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Cadastro de Contratos"
+                        }
+                      },
+                      "Property": "Status_Contrato"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "7bd875939009d29d0928": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "d625637b17cd5b8773a8",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Cadastro de Contratos"
+                        }
+                      },
+                      "Property": "Unidade Demandante"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Cadastro de Contratos"
+                        }
+                      },
+                      "Property": "Unidade Demandante"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "b67dd5291aa0481947d7": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "65e42bc8d16a685bc00d",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Cadastro de Contratos"
+                        }
+                      },
+                      "Property": "ID Contrato"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Cadastro de Contratos"
+                        }
+                      },
+                      "Property": "ID Contrato"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "96f70128752c3132c390": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "85c1899d5a08ce956075",
+                  "type": "Advanced",
+                  "expression": {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "PropertyVariationSource": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "Calendario"
+                                }
+                              },
+                              "Name": "Variation",
+                              "Property": "Date"
+                            }
+                          },
+                          "Hierarchy": "Hierarquia de datas"
+                        }
+                      },
+                      "Level": "Ano"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "PropertyVariationSource": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "Calendario"
+                                }
+                              },
+                              "Name": "Variation",
+                              "Property": "Date"
+                            }
+                          },
+                          "Hierarchy": "Hierarquia de datas"
+                        }
+                      },
+                      "Level": "Ano"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Values": [
+                  {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "PropertyVariationSource": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "Calendario"
+                                }
+                              },
+                              "Name": "Variation",
+                              "Property": "Date"
+                            }
+                          },
+                          "Hierarchy": "Hierarquia de datas"
+                        }
+                      },
+                      "Level": "Ano"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "a350c539e00c054115b7": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "7c069a03183b9e980608": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "ebf58e90643bb9c1cbb5",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Pagamento Mensal Por Natureza"
+                            }
+                          },
+                          "Property": "Executado"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "d4572ec27b6924ed7270",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Pagamento Mensal Por Natureza"
+                            }
+                          },
+                          "Property": "Previsto"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "887749dd03c14421d8b6",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendario"
+                        }
+                      },
+                      "Property": "Ano"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "0541cb450058e8d075a1",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendario"
+                        }
+                      },
+                      "Property": "Mes Abreviado"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "clusteredColumnChart",
+              "objects": {},
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendario"
+                        }
+                      },
+                      "Property": "Ano"
+                    }
+                  },
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendario"
+                        }
+                      },
+                      "Property": "Mes Abreviado"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "5c442a7ec741854753db": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "f71f9a56ee7aeeb652dc",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Cadastro de Contratos"
+                        }
+                      },
+                      "Property": "Nome da Empresa"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "accc3a284a51b792024e",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Cadastro de Contratos"
+                        }
+                      },
+                      "Property": "Número do Contrato"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "62cc0a34057906030dbc",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Cadastro de Contratos"
+                        }
+                      },
+                      "Property": "Número do Aditivo"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "129a9a683e1b2858a42c",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Cadastro de Contratos"
+                        }
+                      },
+                      "Property": "Data Início - Vigência"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "b51d84fbc09080990700",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Cadastro de Contratos"
+                        }
+                      },
+                      "Property": "Data Final - Vigência"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "2c7a2d6296740761c1bd",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Cadastro de Contratos"
+                        }
+                      },
+                      "Property": "Valor Global"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "c0268242d4ac09282058",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Cadastro de Contratos"
+                        }
+                      },
+                      "Property": "Unidade Demandante"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "40cfc4f76830110496bd",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Cadastro de Contratos"
+                        }
+                      },
+                      "Property": "Executado"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "1da79f877dc3c03cc59d",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Cadastro de Contratos"
+                        }
+                      },
+                      "Property": "Ano de Desembolso"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "7b562a6fc48b1d5a5538",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Cadastro de Contratos"
+                        }
+                      },
+                      "Property": "Saldo Acumulativo"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "ba21cd9bc651b7b39e30",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Cadastro de Contratos"
+                            }
+                          },
+                          "Property": "Valor do Exercicio"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "0576470d5d2617a504bb",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Cadastro de Contratos"
+                        }
+                      },
+                      "Property": "%EXEC Acumulada"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "6870b9a18a590ecd8006",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Cadastro de Contratos"
+                        }
+                      },
+                      "Property": "%EXEC Anual"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "fff1a17db977d6b055aa",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Cadastro de Contratos"
+                        }
+                      },
+                      "Property": "Executado Acumulado"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Cadastro de Contratos"
+                        }
+                      },
+                      "Property": "%EXEC Acumulada"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "visualContainerGroups": {
+          "8629a30fe8031c293869": {
+            "children": {
+              "bf93ba5e03b0100b075b": {
+                "isHidden": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

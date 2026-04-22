@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "clone_drawer_grp",
+  "position": {
+    "x": 855.929723955698,
+    "y": 15.812597215194618,
+    "z": 2000,
+    "height": 693.74891774891773,
+    "width": 344.65800865800867
+  },
+  "visualGroup": {
+    "displayName": "Janela Filtro",
+    "groupMode": "ScaleMode"
+  },
+  "isHidden": true
+}

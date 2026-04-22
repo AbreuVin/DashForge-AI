@@ -1,0 +1,92 @@
+table '4 iGovTIC'
+	lineageTag: 45203a05-46d7-4957-8da5-126d66d7f5c6
+
+	measure 'Título Resultado iGovTIC' =
+			
+			IF (
+			    HASONEVALUE ( 'dCalendario'[Ano] ),
+			    "Resultado do TJBA do Ano " & SELECTEDVALUE ( 'dCalendario'[Ano] ),
+			    "Resultados do TJBA"
+			)
+		lineageTag: a0551e93-1310-4c72-b90b-be667205515d
+
+	measure 'Título Posição iGovTIC' =
+			
+			IF (
+			    HASONEVALUE ( 'dCalendario'[Ano] ),
+			    "Posição do TJBA no Ranking dos Tribunais Estaduais do Ano " & SELECTEDVALUE ( 'dCalendario'[Ano] ),
+			    "Posição do TJBA no Ranking dos Tribunais Estaduais"
+			)
+		lineageTag: 7a6bc6aa-4913-470d-b82e-0521516cca7b
+
+	column ANO
+		dataType: int64
+		formatString: 0
+		lineageTag: d40170eb-53f1-4676-966f-eb8a4a08b04e
+		summarizeBy: sum
+		sourceColumn: ANO
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column VALOR
+		dataType: double
+		lineageTag: 89abdc57-22e4-44ed-99e0-fd9c078075f6
+		summarizeBy: sum
+		sourceColumn: VALOR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CATEGORIA
+		dataType: string
+		lineageTag: 1859d396-99fe-4b07-8cc5-326e837bba25
+		summarizeBy: none
+		sourceColumn: CATEGORIA
+
+		annotation SummarizationSetBy = Automatic
+
+	column POSIÇÃO
+		dataType: int64
+		formatString: 0
+		lineageTag: 65287904-6d2c-43a4-b842-e933670b3079
+		summarizeBy: sum
+		sourceColumn: POSIÇÃO
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MÉDIAS ESTADUAIS'
+		dataType: double
+		lineageTag: 579f5e35-6a3b-4d00-896c-e3071251a267
+		summarizeBy: sum
+		sourceColumn: MÉDIAS ESTADUAIS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Data Chave' = DATE([ANO], 1, 1)
+		formatString: General Date
+		lineageTag: 09a0eb0b-f8c5-4f1d-870c-ee975f05c783
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '4 iGovTIC' = m
+		mode: import
+		source =
+				let
+				    Fonte = SharePoint.Tables("https://tjbacotec.sharepoint.com/sites/CGTIC", [Implementation="2.0", ViewMode="All"]),
+				    #"8d3beeae-2a01-40e9-ba14-b0711bf944d4" = Fonte{[Id="8d3beeae-2a01-40e9-ba14-b0711bf944d4"]}[Items],
+				    #"Colunas Removidas" = Table.RemoveColumns(#"8d3beeae-2a01-40e9-ba14-b0711bf944d4",{"Pressione Delete para excluir o ícone.", "ID de Ativo de Conformidade", "ID", "Tipo de Conteúdo", "Modificado", "Criado", "Criado por", "Modificado por", "Versão", "Anexos", "Editar", "Tipo", "Contagem de Itens Filhos", "Contagem de Elementos Filho da Pasta", "Configuração do rótulo", "Rótulo de retenção", "Rótulo de retenção Aplicado", "Rótulo aplicado por", "O item é um Registro", "Aplicativo Criado por", "Aplicativo Modificado por"})
+				in
+				    #"Colunas Removidas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

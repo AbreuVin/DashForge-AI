@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Animation Showcase for Power BI</title>
+    <style>
+        body {
+            background: #0F0F1A;
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            color: #A78BFA;
+            font-size: 20px;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .section-label {
+            color: #6B7280;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 30px 0 15px;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .grid {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 900px;
+        }
+
+        /* ==========================================
+           CARD 1: Animated Gradient Border
+           ========================================== */
+        @keyframes borderRotate {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .gradient-border-card {
+            width: 400px;
+            padding: 2px;
+            border-radius: 20px;
+            background: linear-gradient(270deg, #6366F1, #06B6D4, #EC4899, #8B5CF6);
+            background-size: 300% 300%;
+            animation: borderRotate 4s ease infinite;
+        }
+
+        .gradient-border-card-inner {
+            background: #12121F;
+            border-radius: 18px;
+            padding: 28px;
+        }
+
+        /* ==========================================
+           CARD 2: Animated Progress Bars
+           ========================================== */
+        @keyframes fillBar {
+            from {
+                width: 0%;
+            }
+        }
+
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .anim-bar {
+            height: 6px;
+            border-radius: 3px;
+            animation: fillBar 1.5s ease-out forwards;
+        }
+
+        .anim-row {
+            animation: fadeSlideUp 0.5s ease-out both;
+        }
+
+        /* ==========================================
+           CARD 3: Pulsing Glow Number
+           ========================================== */
+        @keyframes glowPulse {
+
+            0%,
+            100% {
+                text-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+            }
+
+            50% {
+                text-shadow: 0 0 40px rgba(99, 102, 241, 0.8), 0 0 60px rgba(99, 102, 241, 0.4);
+            }
+        }
+
+        .glow-number {
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+
+        /* ==========================================
+           CARD 4: Breathing Background
+           ========================================== */
+        @keyframes breathe {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+                opacity: 0.8;
+            }
+
+            50% {
+                background-position: 100% 50%;
+                opacity: 1;
+            }
+        }
+
+        .breathing-card {
+            background: linear-gradient(135deg, #1a1a3e, #162447, #1a1a3e);
+            background-size: 200% 200%;
+            animation: breathe 6s ease-in-out infinite;
+        }
+
+        /* ==========================================
+           CARD 5: Animated Ring (SVG dash animation)
+           ========================================== */
+        @keyframes drawRing {
+            from {
+                stroke-dashoffset: 339.292;
+            }
+        }
+
+        .anim-ring {
+            animation: drawRing 2s ease-out forwards;
+        }
+
+        /* ==========================================
+           CARD 6: Shimmer / Skeleton Loading
+           ========================================== */
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        .shimmer-line {
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.04) 25%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.04) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 2s linear infinite;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>CSS Animation Showcase for Power BI</h1>
+
+    <div class="section-label">Animation Techniques</div>
+    <div class="grid">
+
+        <!-- CARD 1: Animated Gradient Border -->
+        <div class="gradient-border-card">
+            <div class="gradient-border-card-inner">
+                <p
+                    style="margin:0 0 8px; font-size:11px; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:1px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2"
+                        stroke-linecap="round" style="vertical-align:middle; margin-right:6px;">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                        <polyline points="17 6 23 6 23 12" />
+                    </svg>
+                    Performance Score
+                </p>
+                <div class="glow-number" style="font-size:48px; font-weight:700; color:#fff; margin-bottom:20px;">
+                    92.7<span style="font-size:20px; color:#8B5CF6;">%</span>
+                </div>
+                <!-- Animated progress bars -->
+                <div class="anim-row" style="margin-bottom:12px; animation-delay:0.2s;">
+                    <div
+                        style="display:flex; justify-content:space-between; font-size:11px; color:#9CA3AF; margin-bottom:4px;">
+                        <span>Velocidade</span><span style="color:#4ADE80;">95%</span>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.06); border-radius:3px; height:6px;">
+                        <div class="anim-bar" style="width:95%; background:linear-gradient(90deg,#4ADE80,#06B6D4);">
+                        </div>
+                    </div>
+                </div>
+                <div class="anim-row" style="margin-bottom:12px; animation-delay:0.4s;">
+                    <div
+                        style="display:flex; justify-content:space-between; font-size:11px; color:#9CA3AF; margin-bottom:4px;">
+                        <span>Acessibilidade</span><span style="color:#8B5CF6;">88%</span>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.06); border-radius:3px; height:6px;">
+                        <div class="anim-bar"
+                            style="width:88%; background:linear-gradient(90deg,#8B5CF6,#6366F1); animation-delay:0.3s;">
+                        </div>
+                    </div>
+                </div>
+                <div class="anim-row" style="animation-delay:0.6s;">
+                    <div
+                        style="display:flex; justify-content:space-between; font-size:11px; color:#9CA3AF; margin-bottom:4px;">
+                        <span>SEO</span><span style="color:#EC4899;">78%</span>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.06); border-radius:3px; height:6px;">
+                        <div class="anim-bar"
+                            style="width:78%; background:linear-gradient(90deg,#EC4899,#F472B6); animation-delay:0.6s;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARD 2: Breathing Background + Animated Ring -->
+        <div class="breathing-card"
+            style="width:400px; border-radius:20px; padding:28px; border:1px solid rgba(255,255,255,0.04);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+                <div>
+                    <p
+                        style="margin:0 0 8px; font-size:11px; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:1px;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="2"
+                            stroke-linecap="round" style="vertical-align:middle; margin-right:6px;">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>
+                        Tempo Real
+                    </p>
+                    <div class="glow-number" style="font-size:36px; font-weight:700;">
+                        R$ 847<span style="font-size:16px; color:#6B7280;">.250</span>
+                    </div>
+                </div>
+                <!-- Animated SVG Ring -->
+                <div style="width:80px; height:80px; position:relative;">
+                    <svg width="80" height="80" viewBox="0 0 120 120" style="transform:rotate(-90deg);">
+                        <defs>
+                            <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#6366F1;" />
+                                <stop offset="100%" style="stop-color:#06B6D4;" />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="60" cy="60" r="54" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="8" />
+                        <circle class="anim-ring" cx="60" cy="60" r="54" fill="none" stroke="url(#ringGrad)"
+                            stroke-width="8" stroke-linecap="round" stroke-dasharray="339.292"
+                            stroke-dashoffset="50.89" />
+                    </svg>
+                    <div
+                        style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:16px; font-weight:700;">
+                        85%</div>
+                </div>
+            </div>
+            <!-- Animated mini-bars -->
+            <div style="display:flex; align-items:flex-end; gap:2px; height:50px;">
+                <div
+                    style="flex:1; height:30%; background:#6366F1; border-radius:2px 2px 0 0; animation:fillBar 0.8s ease-out both; animation-delay:0.0s;">
+                </div>
+                <div
+                    style="flex:1; height:55%; background:#6366F1; border-radius:2px 2px 0 0; animation:fillBar 0.8s ease-out both; animation-delay:0.1s;">
+                </div>
+                <div
+                    style="flex:1; height:40%; background:#6366F1; border-radius:2px 2px 0 0; animation:fillBar 0.8s ease-out both; animation-delay:0.2s;">
+                </div>
+                <div
+                    style="flex:1; height:70%; background:#8B5CF6; border-radius:2px 2px 0 0; animation:fillBar 0.8s ease-out both; animation-delay:0.3s;">
+                </div>
+                <div
+                    style="flex:1; height:45%; background:#8B5CF6; border-radius:2px 2px 0 0; animation:fillBar 0.8s ease-out both; animation-delay:0.4s;">
+                </div>
+                <div
+                    style="flex:1; height:80%; background:#06B6D4; border-radius:2px 2px 0 0; animation:fillBar 0.8s ease-out both; animation-delay:0.5s;">
+                </div>
+                <div
+                    style="flex:1; height:60%; background:#06B6D4; border-radius:2px 2px 0 0; animation:fillBar 0.8s ease-out both; animation-delay:0.6s;">
+                </div>
+                <div
+                    style="flex:1; height:90%; background:#4ADE80; border-radius:2px 2px 0 0; animation:fillBar 0.8s ease-out both; animation-delay:0.7s;">
+                </div>
+                <div
+                    style="flex:1; height:75%; background:#4ADE80; border-radius:2px 2px 0 0; animation:fillBar 0.8s ease-out both; animation-delay:0.8s;">
+                </div>
+                <div
+                    style="flex:1; height:100%; background:#4ADE80; border-radius:2px 2px 0 0; animation:fillBar 0.8s ease-out both; animation-delay:0.9s;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-label" style="margin-top:40px;">Animation Building Blocks</div>
+    <div class="grid">
+
+        <!-- BLOCK: Rotating Gradient Border -->
+        <div style="text-align:center;">
+            <div class="gradient-border-card" style="width:200px; height:120px;">
+                <div class="gradient-border-card-inner"
+                    style="height:100%; display:flex; align-items:center; justify-content:center; font-size:13px; color:#9CA3AF;">
+                    Rotating<br>Gradient Border
+                </div>
+            </div>
+            <p style="font-size:10px; color:#6B7280; margin-top:8px;">@keyframes borderRotate</p>
+        </div>
+
+        <!-- BLOCK: Glow Pulse -->
+        <div style="text-align:center;">
+            <div
+                style="width:200px; height:120px; background:#12121F; border-radius:18px; border:1px solid #1E1E3A; display:flex; align-items:center; justify-content:center;">
+                <span class="glow-number" style="font-size:40px; font-weight:700; color:#6366F1;">94.5%</span>
+            </div>
+            <p style="font-size:10px; color:#6B7280; margin-top:8px;">@keyframes glowPulse</p>
+        </div>
+
+        <!-- BLOCK: Breathing BG -->
+        <div style="text-align:center;">
+            <div class="breathing-card"
+                style="width:200px; height:120px; border-radius:18px; border:1px solid rgba(255,255,255,0.04); display:flex; align-items:center; justify-content:center; font-size:13px; color:#9CA3AF;">
+                Breathing<br>Background
+            </div>
+            <p style="font-size:10px; color:#6B7280; margin-top:8px;">@keyframes breathe</p>
+        </div>
+
+        <!-- BLOCK: Shimmer -->
+        <div style="text-align:center;">
+            <div
+                style="width:200px; height:120px; background:#12121F; border-radius:18px; border:1px solid #1E1E3A; padding:20px; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; gap:8px;">
+                <div class="shimmer-line" style="height:12px; width:60%;"></div>
+                <div class="shimmer-line" style="height:24px; width:80%;"></div>
+                <div class="shimmer-line" style="height:8px; width:100%;"></div>
+            </div>
+            <p style="font-size:10px; color:#6B7280; margin-top:8px;">@keyframes shimmer</p>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+expression 'Erros em Cadastro de Contratos' =
+		let
+		Fonte = #"Cadastro de Contratos",
+		  #"Incompatibilidades de Tipo Detectadas" = let
+		    tableWithOnlyPrimitiveTypes = Table.SelectColumns(Fonte, Table.ColumnsOfType(Fonte, {type nullable number, type nullable text, type nullable logical, type nullable date, type nullable datetime, type nullable datetimezone, type nullable time, type nullable duration})),
+		    recordTypeFields = Type.RecordFields(Type.TableRow(Value.Type(tableWithOnlyPrimitiveTypes))),
+		    fieldNames = Record.FieldNames(recordTypeFields),
+		    fieldTypes = List.Transform(Record.ToList(recordTypeFields), each [Type]),
+		    pairs = List.Transform(List.Positions(fieldNames), (i) => {fieldNames{i}, (v) => if v = null or Value.Is(v, fieldTypes{i}) then v else error [Message = "O tipo do valor não corresponde ao tipo da coluna.", Detail = v], fieldTypes{i}})
+		in
+		    Table.TransformColumns(Fonte, pairs),
+		  #"Índice Adicionado" = Table.AddIndexColumn(#"Incompatibilidades de Tipo Detectadas", "Número da Linha" ,1),
+		  #"Erros Mantidos" = Table.SelectRowsWithErrors(#"Índice Adicionado", {"Nome da Empresa", "Status", "Número do Contrato", "Número do Aditivo", "Data Início - Vigência", "Data Final - Vigência", "Valor Global", "Unidade Demandante", "Objeto", "Número PA de Contratação", "ID Contrato", "Status Orçamento", "Ano de Desembolso", "Valor do Exercicio", "ID", "Modificado", "Criado", "Título", "Pressione Delete para excluir o ícone.", "ID de Ativo de Conformidade", "CNPJ", "Código do Credor", "Aditivo ou Contrato", "Valor Comprometido (Previsto)", "Idexcel", "Valor do Exercicio (REVISÃO - MAIO)", "Tipo de Conteúdo", "Criado por", "Modificado por", "Versão", "Anexos", "Editar", "Tipo", "Contagem de Itens Filhos", "Contagem de Elementos Filho da Pasta", "Configuração do rótulo", "Rótulo de retenção", "Rótulo de retenção Aplicado", "Rótulo aplicado por", "O item é um Registro", "Aplicativo Criado por", "Aplicativo Modificado por"}),
+		  #"Colunas Reordenadas" = Table.ReorderColumns(#"Erros Mantidos", {"Número da Linha", "Nome da Empresa", "Status", "Número do Contrato", "Número do Aditivo", "Data Início - Vigência", "Data Final - Vigência", "Valor Global", "Unidade Demandante", "Objeto", "Número PA de Contratação", "ID Contrato", "Status Orçamento", "Ano de Desembolso", "Valor do Exercicio", "ID", "Modificado", "Criado", "Título", "Pressione Delete para excluir o ícone.", "ID de Ativo de Conformidade", "CNPJ", "Código do Credor", "Aditivo ou Contrato", "Valor Comprometido (Previsto)", "Idexcel", "Valor do Exercicio (REVISÃO - MAIO)", "Tipo de Conteúdo", "Criado por", "Modificado por", "Versão", "Anexos", "Editar", "Tipo", "Contagem de Itens Filhos", "Contagem de Elementos Filho da Pasta", "Configuração do rótulo", "Rótulo de retenção", "Rótulo de retenção Aplicado", "Rótulo aplicado por", "O item é um Registro", "Aplicativo Criado por", "Aplicativo Modificado por"}),
+		    #"Erros Removidos" = Table.RemoveRowsWithErrors(#"Colunas Reordenadas", {"Número da Linha"})
+		in
+		  #"Erros Removidos"
+	lineageTag: 1bced256-623d-44f7-9d85-20103298d147
+	queryGroup: 'Erros na Consulta - 29/10/2025 15:01:42'
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

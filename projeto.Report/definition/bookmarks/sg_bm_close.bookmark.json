@@ -1,0 +1,23 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.0.0/schema.json",
+  "displayName": "Close Drawer",
+  "name": "sg_bm_close",
+  "options": {
+    "targetVisualNames": [],
+    "suppressData": true
+  },
+  "explorationState": {
+    "version": "1.0",
+    "activeSection": "sage_sales",
+    "sections": {
+      "sage_sales": {
+        "visualContainers": {},
+        "visualContainerGroups": {
+          "sg_drawer_group": {
+            "isHidden": true
+          }
+        }
+      }
+    }
+  }
+}

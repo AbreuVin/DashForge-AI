@@ -1,0 +1,142 @@
+table licitacoes_2019_2024
+	lineageTag: 7d327391-0ac1-4fb6-804f-5bb908124759
+
+	column codigoItemCompra
+		dataType: string
+		lineageTag: c1085e9c-264c-44f8-87ea-c9a248207890
+		summarizeBy: none
+		sourceColumn: codigoItemCompra
+
+		annotation SummarizationSetBy = Automatic
+
+	column descricao
+		dataType: string
+		lineageTag: e75df24c-280c-4e11-9230-fc6fc1a20e0a
+		summarizeBy: none
+		sourceColumn: descricao
+
+		annotation SummarizationSetBy = Automatic
+
+	column quantidade
+		dataType: int64
+		formatString: 0
+		lineageTag: c46d400a-2229-4400-b06d-bdf03d068d73
+		summarizeBy: sum
+		sourceColumn: quantidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column valor
+		dataType: decimal
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: 1548f803-0893-4b54-a17e-caa8941dd20e
+		summarizeBy: sum
+		sourceColumn: valor
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column cpfCnpjVencedor
+		dataType: string
+		lineageTag: 04b6f714-1854-412a-bf7b-e92904019c9c
+		summarizeBy: none
+		sourceColumn: cpfCnpjVencedor
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipoPessoa
+		dataType: string
+		lineageTag: b92b2fa1-2e65-4206-99ec-2f37425ac27d
+		summarizeBy: none
+		sourceColumn: tipoPessoa
+
+		annotation SummarizationSetBy = Automatic
+
+	column idVencedor
+		dataType: string
+		lineageTag: 75040207-6cb8-4fdc-a316-0a78d57eef53
+		summarizeBy: none
+		sourceColumn: idVencedor
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome
+		dataType: string
+		lineageTag: 3f5b9348-dfdf-4268-8a1f-48679690e666
+		summarizeBy: none
+		sourceColumn: nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column descComplementarItemCompra
+		dataType: string
+		lineageTag: 07cd9099-4a31-4467-aa96-e5b445adecfa
+		summarizeBy: none
+		sourceColumn: descComplementarItemCompra
+
+		annotation SummarizationSetBy = Automatic
+
+	column descUnidadeFornecimento
+		dataType: string
+		lineageTag: 316dc40a-5e4b-4046-9325-24cfbe72fa1b
+		summarizeBy: none
+		sourceColumn: descUnidadeFornecimento
+
+		annotation SummarizationSetBy = Automatic
+
+	column id
+		dataType: string
+		lineageTag: a834229d-f218-4193-82b4-80da43863859
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column mes/ano
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3e9a5744-b7c3-4376-9a6d-cc3ea17d622f
+		summarizeBy: none
+		sourceColumn: mes/ano
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column descricao_original
+		dataType: string
+		lineageTag: 6916928b-0d30-4f96-bcf8-b177ae2a7f8c
+		summarizeBy: none
+		sourceColumn: descricao_original
+
+		annotation SummarizationSetBy = Automatic
+
+	column categoria_ia
+		dataType: string
+		lineageTag: 32b5f935-8019-41fb-a78c-cb05a81fa5c4
+		summarizeBy: none
+		sourceColumn: categoria_ia
+
+		annotation SummarizationSetBy = Automatic
+
+	partition licitacoes_2019_2024 = m
+		mode: import
+		source =
+				let
+				    Fonte = DatabricksMultiCloud.Catalogs("dbc-e66db391-9973.cloud.databricks.com", "/sql/1.0/warehouses/8cc0fdf29eb97ee5", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation="2.0", MetricViewBiCompatibilityMode=null]),
+				    workspace_Database = Fonte{[Name="workspace",Kind="Database"]}[Data],
+				    default_Schema = workspace_Database{[Name="default",Kind="Schema"]}[Data],
+				    licitacoes_2019_2024_Table = default_Schema{[Name="licitacoes_2019_2024",Kind="Table"]}[Data],
+				    #"Colunas Removidas" = Table.RemoveColumns(licitacoes_2019_2024_Table,{"numero"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Colunas Removidas",{{"valor", Currency.Type}}),
+				    #"Colunas Removidas1" = Table.RemoveColumns(#"Tipo Alterado",{"confianca"}),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Colunas Removidas1",{{"mes/ano", type date}}),
+				    #"Linhas Filtradas" = Table.SelectRows(#"Tipo Alterado1", each true)
+				in
+				    #"Linhas Filtradas"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

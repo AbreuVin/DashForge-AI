@@ -1,0 +1,15 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {"name": "dataset"},
+  "mark": {"type": "bar", "cornerRadiusTopLeft": 6, "cornerRadiusTopRight": 6, "color": {"gradient": "linear", "stops": [{"offset": 0, "color": "#6366F1"}, {"offset": 1, "color": "#06B6D4"}]}},
+  "encoding": {
+    "x": {"field": "Categoria", "type": "nominal", "axis": {"labelColor": "#9CA3AF", "titleColor": "#6B7280", "gridColor": "rgba(255,255,255,0.04)"}},
+    "y": {"field": "TotalReceita", "type": "quantitative", "axis": {"labelColor": "#9CA3AF", "titleColor": "#6B7280", "gridColor": "rgba(255,255,255,0.04)", "format": ",.0f"}},
+    "tooltip": [
+      {"field": "Categoria", "type": "nominal", "title": "Categoria"},
+      {"field": "TotalReceita", "type": "quantitative", "title": "Receita", "format": ",.0f"}
+    ]
+  },
+  "background": "#0D0D1A",
+  "config": {"view": {"stroke": "transparent"}, "axis": {"domainColor": "#1E1E3A"}, "font": "Segoe UI"}
+}

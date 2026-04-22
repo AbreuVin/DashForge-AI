@@ -1,0 +1,165 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 338.95866232270845,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 67.319318000000067
+          },
+          "nodeIndex": "1 Disponibilidade de Sistemas",
+          "nodeLineageTag": "d49239b6-c554-4280-960a-7fb37ed1c4dd",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 922.98328100000083
+          },
+          "nodeIndex": "3 Contratações",
+          "nodeLineageTag": "114a7cfe-d9ab-4ccd-a9af-7b40ae5ecb33",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 294.07912600000031
+          },
+          "nodeIndex": "4 iGovTIC",
+          "nodeLineageTag": "45203a05-46d7-4957-8da5-126d66d7f5c6",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 518.66208000000051
+          },
+          "nodeIndex": "2 Capacitações",
+          "nodeLineageTag": "62c292d6-05bc-4c27-abbf-1caf43e7c36a",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 644.76477399999953,
+            "y": 0
+          },
+          "nodeIndex": "dCalendario",
+          "nodeLineageTag": "0e1de6a0-efc4-425d-8496-0c82b6e1ebc9",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 718.8528390000007
+          },
+          "nodeIndex": "5 Satisfação Service Desk",
+          "nodeLineageTag": "b0637c31-2f8e-4387-acad-f21c84bcc6a7",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 2.2023428555710325,
+            "y": 1135.570601000001
+          },
+          "nodeIndex": "6 Orçamento SETIM",
+          "nodeLineageTag": "d5338364-7707-412a-b9fb-27d8c7377291",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1439.4885538555723,
+            "y": 16.512828999999904
+          },
+          "nodeIndex": "7 Meta Mensal Disponibilidade PJe",
+          "nodeLineageTag": "2050f9a5-c0f0-4be4-8f8b-16a2e777be8c",
+          "size": {
+            "height": 145,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1452.439720855572,
+            "y": 207.27263700000017
+          },
+          "nodeIndex": "Cadastro de Contratos",
+          "nodeLineageTag": "b62c579f-e736-4857-8fee-fc22ad4e76ef",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1447.6752778555722,
+            "y": 425.74342000000036
+          },
+          "nodeIndex": "Dotação",
+          "nodeLineageTag": "e6192f68-e88d-4feb-8ca2-96b863652b9b",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1448.2255178555718,
+            "y": 583.64542300000062
+          },
+          "nodeIndex": "Pagamento Mensal Por Natureza",
+          "nodeLineageTag": "68c5ef0b-fdf2-4414-91d7-d64c9e539f2e",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Todas as tabelas",
+      "zoomValue": 56.447393005377691,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas as tabelas",
+  "defaultDiagram": "Todas as tabelas"
+}

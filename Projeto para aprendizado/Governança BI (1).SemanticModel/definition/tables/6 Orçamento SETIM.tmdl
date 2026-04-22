@@ -1,0 +1,76 @@
+table '6 Orçamento SETIM'
+	lineageTag: d5338364-7707-412a-b9fb-27d8c7377291
+
+	measure 'Título Gráfico Orçamento' =
+			
+			IF (
+			    HASONEVALUE ( 'dCalendario'[Ano] ),
+			    "Previsto X Executado do Ano " & SELECTEDVALUE ( 'dCalendario'[Ano] ) & "(Valores em R$ Milhões)",
+			    "Previsto X Executado (Valores em R$ Milhões)"
+			)
+		lineageTag: 88f2db1e-cf9b-49b1-b484-0c6b9c4ad317
+
+	column ANO
+		dataType: int64
+		formatString: 0
+		lineageTag: b182dafe-1e5a-4c68-92a6-9a4ba46fb0a9
+		summarizeBy: sum
+		sourceColumn: ANO
+
+		annotation SummarizationSetBy = Automatic
+
+	column Previsto
+		dataType: int64
+		lineageTag: 6cd150b3-c4aa-461e-a566-e3430085f9d3
+		summarizeBy: sum
+		sourceColumn: Previsto
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Realizado
+		dataType: int64
+		lineageTag: 7db3d28f-cae7-40fc-92ae-d3bef4f56387
+		summarizeBy: sum
+		sourceColumn: Realizado
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '% Execução'
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 47b24d80-5f90-4a02-836f-7dd9ae1c7c11
+		summarizeBy: sum
+		sourceColumn: % Execução
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Chave' = DATE([ANO], 1, 1)
+		formatString: General Date
+		lineageTag: 4c2afa1c-441a-4c92-9a21-655745473c64
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '6 Orçamento SETIM' = m
+		mode: import
+		source =
+				let
+				    Fonte = SharePoint.Tables("https://tjbacotec.sharepoint.com/sites/CGTIC", [Implementation="2.0", ViewMode="All"]),
+				    #"edd87449-823a-44dd-b8a4-265bb146cf9c" = Fonte{[Id="edd87449-823a-44dd-b8a4-265bb146cf9c"]}[Items],
+				    #"Colunas Removidas" = Table.RemoveColumns(#"edd87449-823a-44dd-b8a4-265bb146cf9c",{"Título", "Pressione Delete para excluir o ícone.", "ID de Ativo de Conformidade", "ID", "Tipo de Conteúdo", "Modificado", "Criado", "Criado por", "Modificado por", "Versão", "Anexos", "Editar", "Tipo", "Contagem de Itens Filhos", "Contagem de Elementos Filho da Pasta", "Configuração do rótulo", "Rótulo de retenção", "Rótulo de retenção Aplicado", "Rótulo aplicado por", "O item é um Registro", "Aplicativo Criado por", "Aplicativo Modificado por"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Colunas Removidas",{{"ANO", Int64.Type}, {"Previsto", type number}, {"Realizado", type number}, {"% Execução", Percentage.Type}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

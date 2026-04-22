@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "2395f21b177b6318e49c",
+  "position": {
+    "x": 1209.073593073593,
+    "y": 17.731601731601732,
+    "z": 3000,
+    "height": 682.66666666666663,
+    "width": 63.168831168831275,
+    "tabOrder": 6004
+  },
+  "visualGroup": {
+    "displayName": "Gaveta Botão",
+    "groupMode": "ScaleMode"
+  }
+}

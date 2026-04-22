@@ -1,0 +1,195 @@
+table Management_KPIs
+	lineageTag: 0a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d
+
+	measure 'Total Budget Allocated' = SUM('Management_KPIs'[Budget_Allocated])
+		formatString: "R$"\ #,0;-"R$"\ #,0;"R$"\ #,0
+		lineageTag: 1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d
+
+	measure 'Total Budget Spent' = SUM('Management_KPIs'[Budget_Spent])
+		formatString: "R$"\ #,0;-"R$"\ #,0;"R$"\ #,0
+		lineageTag: 2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e
+
+	measure '% Budget Burned' = DIVIDE([Total Budget Spent], [Total Budget Allocated], 0)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f
+
+	measure 'Total Projects' = COUNTROWS('Management_KPIs')
+		formatString: 0
+		lineageTag: 4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a
+
+	measure 'Projects At Risk' = CALCULATE([Total Projects], 'Management_KPIs'[Status] = "At Risk")
+		formatString: 0
+		lineageTag: 5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b
+
+	measure '% Projects At Risk' = DIVIDE([Projects At Risk], [Total Projects], 0)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c
+
+	measure 'Avg Team Satisfaction' = AVERAGE('Management_KPIs'[TeamSatisfactionScore])
+		formatString: 0.00
+		lineageTag: 7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d
+
+	measure 'Dynamic Title - Dept Health' =
+			IF(
+				HASONEVALUE('Management_KPIs'[Department]),
+				"Portfolio Health: " & SELECTEDVALUE('Management_KPIs'[Department]),
+				"Portfolio Health: All Departments"
+			)
+		lineageTag: 8b9c0d1e-2f3a-4b5c-6d7e-8f9a0b1c2d3e
+
+	measure 'Markdown Context Text' =
+			"<div style='font-family: ""Segoe UI"", sans-serif; font-size: 18px; color: #FFFFFF; font-weight: 500; text-align: left; background: transparent; padding: 10px 20px;'>Currently viewing metrics for <span style='color: #4ADE80;'>" &
+			IF(HASONEVALUE('Management_KPIs'[Department]), SELECTEDVALUE('Management_KPIs'[Department]), "All Departments") &
+			"</span>. Status filter applied: <span style='color: #60A5FA;'>" &
+			IF(HASONEVALUE('Management_KPIs'[Status]), SELECTEDVALUE('Management_KPIs'[Status]), "Everything") & "</span>.</div>"
+		lineageTag: 9c0d1e2f-3a4b-5c6d-7e8f-9a0b1c2d3e4f
+
+	measure 'HtmlKpi Projects At Risk' = "<div style='font-family: Segoe UI, sans-serif; color: #a1a1aa; font-size: 16px; margin-bottom: 5px;'>Projects At Risk</div><div style='font-family: Segoe UI, sans-serif; font-size: 32px; font-weight: bold; color: " & IF([% Projects At Risk] > 0.1, "#ef4444", "#22c55e") & "'>" & FORMAT([% Projects At Risk], "0.0%") & "</div>"
+		lineageTag: a1b2c3d4-e5f6-a7b8-c9d0-e1f2a3b4c5d6
+
+	measure ExecKpiProjetos =
+			VAR _total = [Total Projects]
+			VAR _risk = [Projects At Risk]
+			VAR _safe = _total - _risk
+			RETURN
+			"<style>@keyframes gp{0%,100%{box-shadow:0 0 8px rgba(245,158,11,.2)}50%{box-shadow:0 0 16px rgba(245,158,11,.5)}}.gw{animation:gp 2s ease-in-out infinite}</style>" &
+			"<div style='width:100%;height:100vh;box-sizing:border-box;font-family:Segoe UI,sans-serif;background:#14142B;border-radius:16px;border:1px solid rgba(245,158,11,.15);padding:clamp(12px,3vh,20px);display:flex;flex-direction:column;justify-content:center;'>" &
+			"<div style='display:flex;align-items:center;gap:6px;margin-bottom:8px;'>" &
+			"<div class='gw' style='width:28px;height:28px;border-radius:8px;background:rgba(245,158,11,.15);display:flex;align-items:center;justify-content:center;'>" &
+			"<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='#F59E0B' stroke-width='2'><path d='M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z'/><line x1='12' y1='9' x2='12' y2='13'/><line x1='12' y1='17' x2='12.01' y2='17'/></svg></div>" &
+			"<span style='font-size:min(10px,2.2vw);text-transform:uppercase;letter-spacing:1px;color:#6B7280;'>Projetos</span></div>" &
+			"<div style='display:flex;align-items:baseline;gap:8px;margin-bottom:8px;'>" &
+			"<span style='font-size:min(26px,5.5vw);font-weight:700;color:#F59E0B;'>" & FORMAT(_risk, "0") & "</span>" &
+			"<span style='font-size:min(14px,3vw);color:#6B7280;'>/ " & FORMAT(_total, "0") & " em risco</span></div>" &
+			"<div style='display:flex;gap:8px;'>" &
+			"<div style='flex:1;padding:6px;border-radius:8px;background:rgba(74,222,128,.08);text-align:center;'><div style='font-size:min(16px,3.5vw);font-weight:600;color:#4ADE80;'>" & FORMAT(_safe, "0") & "</div><div style='font-size:min(9px,2vw);color:#6B7280;'>Saudável</div></div>" &
+			"<div style='flex:1;padding:6px;border-radius:8px;background:rgba(248,113,113,.08);text-align:center;'><div style='font-size:min(16px,3.5vw);font-weight:600;color:#F87171;'>" & FORMAT(_risk, "0") & "</div><div style='font-size:min(9px,2vw);color:#6B7280;'>Em Risco</div></div></div></div>"
+		lineageTag: e1000004-exec-4004-a004-000000000004
+
+	measure ExecProjectHealth =
+			VAR _rows =
+				CONCATENATEX(
+					Management_KPIs,
+					"<tr style='border-bottom:1px solid rgba(255,255,255,.04);'>" &
+					"<td style='padding:8px 6px;font-size:min(11px,2.4vw);color:#fff;'>" & Management_KPIs[ProjectName] & "</td>" &
+					"<td style='padding:8px 6px;font-size:min(10px,2.2vw);color:#9CA3AF;'>" & Management_KPIs[Department] & "</td>" &
+					"<td style='padding:8px 6px;text-align:center;'><span style='padding:2px 8px;border-radius:4px;font-size:min(9px,2vw);font-weight:600;" &
+					SWITCH(
+						Management_KPIs[Status],
+						"On Track", "background:rgba(74,222,128,.12);color:#4ADE80;'>On Track",
+						"At Risk", "background:rgba(248,113,113,.12);color:#F87171;'>At Risk",
+						"Completed", "background:rgba(99,102,241,.12);color:#818CF8;'>Completed",
+						"Delayed", "background:rgba(245,158,11,.12);color:#F59E0B;'>Delayed",
+						"background:rgba(156,163,175,.12);color:#9CA3AF;'>" & Management_KPIs[Status]
+					) & "</span></td>" &
+					"<td style='padding:8px 6px;text-align:right;font-size:min(11px,2.4vw);color:#fff;'>" & FORMAT(DIVIDE(Management_KPIs[Budget_Spent], Management_KPIs[Budget_Allocated], 0) * 100, "0") & "%</td></tr>",
+					"",
+					Management_KPIs[ProjectName], ASC
+				)
+			RETURN
+			"<div style='width:100%;height:100vh;box-sizing:border-box;font-family:Segoe UI,sans-serif;background:#14142B;border-radius:16px;border:1px solid rgba(255,255,255,.06);padding:clamp(12px,3vh,16px);overflow-y:auto;'>" &
+			"<div style='display:flex;align-items:center;gap:8px;margin-bottom:12px;'>" &
+			"<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='#818CF8' stroke-width='2'><rect x='2' y='7' width='20' height='14' rx='2' ry='2'/><path d='M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16'/></svg>" &
+			"<span style='font-size:min(13px,2.8vw);font-weight:600;color:#fff;'>Portfólio de Projetos</span></div>" &
+			"<table style='width:100%;border-collapse:collapse;'>" &
+			"<thead><tr style='border-bottom:1px solid rgba(255,255,255,.08);'>" &
+			"<th style='padding:6px;text-align:left;font-size:min(9px,2vw);text-transform:uppercase;letter-spacing:1px;color:#6B7280;font-weight:600;'>Projeto</th>" &
+			"<th style='padding:6px;text-align:left;font-size:min(9px,2vw);text-transform:uppercase;letter-spacing:1px;color:#6B7280;font-weight:600;'>Depto</th>" &
+			"<th style='padding:6px;text-align:center;font-size:min(9px,2vw);text-transform:uppercase;letter-spacing:1px;color:#6B7280;font-weight:600;'>Status</th>" &
+			"<th style='padding:6px;text-align:right;font-size:min(9px,2vw);text-transform:uppercase;letter-spacing:1px;color:#6B7280;font-weight:600;'>Budget</th></tr></thead>" &
+			"<tbody>" & _rows & "</tbody></table></div>"
+		lineageTag: e1000005-exec-4005-a005-000000000005
+
+	column ProjectName
+		dataType: string
+		lineageTag: a0b1c2d3-e4f5-a6b7-c8d9-e0f1a2b3c4d5
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [ProjectName]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Department
+		dataType: string
+		lineageTag: b1c2d3e4-f5a6-b7c8-d9e0-f1a2b3c4d5e6
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Department]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: c2d3e4f5-a6b7-c8d9-e0f1-a2b3c4d5e6f7
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Budget_Allocated
+		dataType: double
+		formatString: "R$"\ #,0;-"R$"\ #,0;"R$"\ #,0
+		lineageTag: d3e4f5a6-b7c8-d9e0-f1a2-b3c4d5e6f7a8
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Budget_Allocated]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column Budget_Spent
+		dataType: double
+		formatString: "R$"\ #,0;-"R$"\ #,0;"R$"\ #,0
+		lineageTag: e4f5a6b7-c8d9-e0f1-a2b3-c4d5e6f7a8b9
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Budget_Spent]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column TeamSatisfactionScore
+		dataType: int64
+		formatString: 0
+		lineageTag: f5a6b7c8-d9e0-f1a2-b3c4-d5e6f7a8b9c0
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [TeamSatisfactionScore]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Uptime
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 06b7c8d9-e0f1-a2b3-c4d5-e6f7a8b9c0d1
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Uptime]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Management_KPIs = calculated
+		mode: import
+		source =
+				DATATABLE (
+				    "ProjectName", STRING,
+				    "Department", STRING,
+				    "Status", STRING,
+				    "Budget_Allocated", DOUBLE,
+				    "Budget_Spent", DOUBLE,
+				    "TeamSatisfactionScore", INTEGER,
+				    "Uptime", DOUBLE,
+				    {
+				        { "Alpha Rewrite", "Engineering", "On Track", 1500000, 1200000, 4, 0.999 },
+				        { "Cloud Migration", "Infrastructure", "At Risk", 3000000, 2800000, 2, 0.950 },
+				        { "Security Audit", "Cybersecurity", "Completed", 500000, 450000, 5, 1.000 },
+				        { "ERP Upgrade", "IT Operations", "Delayed", 2500000, 2600000, 3, 0.985 },
+				        { "Data Lake V2", "Data Science", "On Track", 1800000, 900000, 4, 0.995 }
+				    }
+				)
+
+	annotation PBI_Id = 7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d
+

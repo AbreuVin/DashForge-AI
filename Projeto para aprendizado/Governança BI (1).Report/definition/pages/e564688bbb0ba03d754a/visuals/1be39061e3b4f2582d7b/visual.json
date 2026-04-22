@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "1be39061e3b4f2582d7b",
+  "position": {
+    "x": 0.88093954630651972,
+    "y": 77.493196690599035,
+    "z": 2000,
+    "height": 546.53443113772448,
+    "width": 1565.3667664670659,
+    "tabOrder": 0
+  },
+  "visualGroup": {
+    "displayName": "Previsto X Realizado",
+    "groupMode": "ScaleMode"
+  },
+  "parentGroupName": "8609b481d3ec53edd988"
+}

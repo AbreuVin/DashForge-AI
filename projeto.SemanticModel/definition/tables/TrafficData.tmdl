@@ -1,0 +1,41 @@
+table TrafficData
+	lineageTag: cc111111-1111-1111-1111-111111111111
+
+	column Source
+		lineageTag: cc222222-2222-2222-2222-222222222222
+		isNameInferred
+		sourceColumn: [Source]
+
+	column Category
+		lineageTag: cc333333-3333-3333-3333-333333333333
+		isNameInferred
+		sourceColumn: [Category]
+
+	column Value
+		lineageTag: cc444444-4444-4444-4444-444444444444
+		isNameInferred
+		sourceColumn: [Value]
+
+	partition TrafficData = calculated
+		mode: import
+		source =
+				DATATABLE(
+					"Source", STRING,
+					"Category", STRING,
+					"Value", DOUBLE,
+					{
+						{"Linux", "Device", 15400},
+						{"Mac", "Device", 18200},
+						{"iOS", "Device", 12800},
+						{"Windows", "Device", 24300},
+						{"Android", "Device", 28500},
+						{"Other", "Device", 9800},
+						{"US", "Location", 52100},
+						{"Canada", "Location", 22800},
+						{"Mexico", "Location", 13900},
+						{"China", "Location", 8200},
+						{"Japan", "Location", 6500},
+						{"Australia", "Location", 5400}
+					}
+				)
+

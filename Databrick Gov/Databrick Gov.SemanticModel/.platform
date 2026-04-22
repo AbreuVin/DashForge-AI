@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Databrick Gov"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "ea3e93e1-bb0a-4044-ad23-72b3f4882201"
+  }
+}

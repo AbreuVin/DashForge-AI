@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Power BI HTML Card Showcase</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #0F0F1A;
+      color: #fff;
+      padding: 40px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 24px;
+      color: #8B8BA7;
+      margin-bottom: 12px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #4A4A6A;
+      font-size: 13px;
+      margin-bottom: 48px;
+    }
+
+    .section-title {
+      font-size: 14px;
+      color: #6C6C8A;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin: 48px 0 24px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #1A1A2E;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    /* ═══════════════════════════════════════════
+       CARD 1: Glassmorphism Revenue Card
+       ═══════════════════════════════════════════ */
+    .card-glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-glass::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .card-glass .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 12px;
+    }
+
+    .card-glass .value {
+      font-size: 36px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #6366F1, #A78BFA);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+    }
+
+    .card-glass .trend {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: #4ADE80;
+    }
+
+    .card-glass .trend .arrow {
+      display: inline-flex;
+      padding: 2px 6px;
+      background: rgba(74, 222, 128, 0.1);
+      border-radius: 4px;
+      font-size: 11px;
+    }
+
+    /* ═══════════════════════════════════════════
+       CARD 2: Neon Glow KPI Card
+       ═══════════════════════════════════════════ */
+    .card-neon {
+      background: #12121F;
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid #1E1E3A;
+      position: relative;
+    }
+
+    .card-neon::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 16px;
+      right: 16px;
+      height: 2px;
+      background: linear-gradient(90deg, #06B6D4, #8B5CF6, #EC4899);
+      border-radius: 2px;
+    }
+
+    .card-neon .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .card-neon .icon-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .card-neon .icon-circle.cyan {
+      background: rgba(6, 182, 212, 0.15);
+      box-shadow: 0 0 20px rgba(6, 182, 212, 0.1);
+    }
+
+    .card-neon .badge {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(74, 222, 128, 0.1);
+      color: #4ADE80;
+      font-weight: 500;
+    }
+
+    .card-neon .value {
+      font-size: 32px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .card-neon .sublabel {
+      font-size: 12px;
+      color: #6B7280;
+    }
+
+    /* ═══════════════════════════════════════════
+       CARD 3: Gradient Progress Card
+       ═══════════════════════════════════════════ */
+    .card-progress {
+      background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
+      border-radius: 20px;
+      padding: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .card-progress .top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .card-progress .label {
+      font-size: 13px;
+      color: #9CA3AF;
+      margin-bottom: 8px;
+    }
+
+    .card-progress .value {
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .card-progress .percentage {
+      font-size: 24px;
+      font-weight: 600;
+      color: #8B5CF6;
+    }
+
+    .card-progress .bar-container {
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 6px;
+      height: 8px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .card-progress .bar-fill {
+      height: 100%;
+      border-radius: 6px;
+      background: linear-gradient(90deg, #8B5CF6, #6366F1, #06B6D4);
+      transition: width 1s ease;
+    }
+
+    .card-progress .meta-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #6B7280;
+    }
+
+    /* ═══════════════════════════════════════════
+       CARD 4: Mini Sparkline Card
+       ═══════════════════════════════════════════ */
+    .card-spark {
+      background: #12121F;
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid #1E1E3A;
+    }
+
+    .card-spark .label {
+      font-size: 12px;
+      color: #6B7280;
+      margin-bottom: 6px;
+    }
+
+    .card-spark .value-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 16px;
+    }
+
+    .card-spark .value {
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .card-spark .change {
+      font-size: 13px;
+      color: #4ADE80;
+      font-weight: 500;
+    }
+
+    .card-spark .change.negative { color: #F87171; }
+
+    .sparkline {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 40px;
+    }
+
+    .sparkline .bar {
+      flex: 1;
+      background: linear-gradient(to top, rgba(99, 102, 241, 0.3), rgba(99, 102, 241, 0.8));
+      border-radius: 3px 3px 0 0;
+      min-width: 6px;
+    }
+
+    /* ═══════════════════════════════════════════
+       CARD 5: Status/Health Card
+       ═══════════════════════════════════════════ */
+    .card-status {
+      background: #12121F;
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid #1E1E3A;
+    }
+
+    .card-status .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .card-status .title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+      animation: pulse 2s infinite;
+    }
+
+    .status-dot.green { background: #4ADE80; box-shadow: 0 0 12px rgba(74, 222, 128, 0.4); }
+    .status-dot.red { background: #F87171; box-shadow: 0 0 12px rgba(248, 113, 113, 0.4); }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.8); }
+    }
+
+    .card-status .metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .card-status .metric .metric-label {
+      font-size: 11px;
+      color: #6B7280;
+      margin-bottom: 4px;
+    }
+
+    .card-status .metric .metric-value {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    /* ═══════════════════════════════════════════
+       CARD 6: Circular Gauge Card
+       ═══════════════════════════════════════════ */
+    .card-gauge {
+      background: linear-gradient(145deg, #12121F, #1a1a2e);
+      border-radius: 20px;
+      padding: 28px;
+      border: 1px solid #1E1E3A;
+      text-align: center;
+    }
+
+    .card-gauge .label {
+      font-size: 12px;
+      color: #6B7280;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    .gauge-ring {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 16px;
+      position: relative;
+    }
+
+    .gauge-ring svg {
+      transform: rotate(-90deg);
+    }
+
+    .gauge-ring .bg {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.06);
+      stroke-width: 8;
+    }
+
+    .gauge-ring .progress {
+      fill: none;
+      stroke: url(#gaugeGradient);
+      stroke-width: 8;
+      stroke-linecap: round;
+      stroke-dasharray: 339.292;
+      stroke-dashoffset: 50;
+    }
+
+    .gauge-ring .center-value {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .card-gauge .subtitle {
+      font-size: 13px;
+      color: #9CA3AF;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Power BI HTML Card Showcase</h1>
+  <p class="subtitle">Designs for HTML Content visual — Copy HTML to DAX measures</p>
+
+  <!-- ROW 1: KPI Cards -->
+  <div class="section-title">KPI Cards</div>
+  <div class="grid">
+
+    <!-- CARD 1: Glassmorphism -->
+    <div class="card-glass">
+      <div class="label">Receita Mensal</div>
+      <div class="value">R$ 1.250.000</div>
+      <div class="trend">
+        <span class="arrow">▲ 12.5%</span>
+        vs. mês anterior
+      </div>
+    </div>
+
+    <!-- CARD 2: Neon Glow -->
+    <div class="card-neon">
+      <div class="header">
+        <div class="icon-circle cyan">👥</div>
+        <span class="badge">+18.2%</span>
+      </div>
+      <div class="value">8.432</div>
+      <div class="sublabel">Usuários Ativos</div>
+    </div>
+
+    <!-- CARD 3: Progress -->
+    <div class="card-progress">
+      <div class="top-row">
+        <div>
+          <div class="label">Meta de Vendas</div>
+          <div class="value">R$ 850.000</div>
+        </div>
+        <div class="percentage">85%</div>
+      </div>
+      <div class="bar-container">
+        <div class="bar-fill" style="width: 85%;"></div>
+      </div>
+      <div class="meta-row">
+        <span>R$ 850k de R$ 1M</span>
+        <span>Faltam R$ 150k</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ROW 2: Data Cards -->
+  <div class="section-title">Data Visualization Cards</div>
+  <div class="grid">
+
+    <!-- CARD 4: Sparkline -->
+    <div class="card-spark">
+      <div class="label">Vendas Semanais</div>
+      <div class="value-row">
+        <div class="value">R$ 42.500</div>
+        <div class="change">+8.3%</div>
+      </div>
+      <div class="sparkline">
+        <div class="bar" style="height: 45%;"></div>
+        <div class="bar" style="height: 60%;"></div>
+        <div class="bar" style="height: 35%;"></div>
+        <div class="bar" style="height: 75%;"></div>
+        <div class="bar" style="height: 55%;"></div>
+        <div class="bar" style="height: 90%;"></div>
+        <div class="bar" style="height: 70%;"></div>
+        <div class="bar" style="height: 85%;"></div>
+        <div class="bar" style="height: 65%;"></div>
+        <div class="bar" style="height: 95%;"></div>
+        <div class="bar" style="height: 80%;"></div>
+        <div class="bar" style="height: 100%;"></div>
+      </div>
+    </div>
+
+    <!-- CARD 5: Status -->
+    <div class="card-status">
+      <div class="header">
+        <div class="title">Saúde do Sistema</div>
+        <div class="status-dot green"></div>
+      </div>
+      <div class="metrics">
+        <div class="metric">
+          <div class="metric-label">Uptime</div>
+          <div class="metric-value" style="color: #4ADE80;">99.9%</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Latência</div>
+          <div class="metric-value" style="color: #06B6D4;">42ms</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Erros/min</div>
+          <div class="metric-value" style="color: #F87171;">0.3</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Req/seg</div>
+          <div class="metric-value" style="color: #8B5CF6;">1.2k</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 6: Gauge -->
+    <div class="card-gauge">
+      <div class="label">Satisfação do Cliente</div>
+      <div class="gauge-ring">
+        <svg width="120" height="120" viewBox="0 0 120 120">
+          <defs>
+            <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color: #6366F1;" />
+              <stop offset="100%" style="stop-color: #06B6D4;" />
+            </linearGradient>
+          </defs>
+          <circle class="bg" cx="60" cy="60" r="54" />
+          <circle class="progress" cx="60" cy="60" r="54" />
+        </svg>
+        <div class="center-value">94.5%</div>
+      </div>
+      <div class="subtitle">Meta: 90% ✓</div>
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,1213 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "5c442a7ec741854753db",
+  "position": {
+    "x": 407.27272727272725,
+    "y": 128,
+    "z": 3000,
+    "height": 357.40259740259739,
+    "width": 1383.0649350649351
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cadastro de Contratos"
+                    }
+                  },
+                  "Property": "Unidade Demandante"
+                }
+              },
+              "queryRef": "Cadastro de Contratos.Unidade Demandante",
+              "nativeQueryRef": "Unidade Demandante"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cadastro de Contratos"
+                    }
+                  },
+                  "Property": "Nome da Empresa"
+                }
+              },
+              "queryRef": "Cadastro de Contratos.Nome da Empresa",
+              "nativeQueryRef": "Fornecedor",
+              "displayName": "Fornecedor",
+              "format": "G"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cadastro de Contratos"
+                    }
+                  },
+                  "Property": "Número do Contrato"
+                }
+              },
+              "queryRef": "Cadastro de Contratos.Número do Contrato",
+              "nativeQueryRef": "Contrato",
+              "displayName": "Contrato"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cadastro de Contratos"
+                    }
+                  },
+                  "Property": "Número do Aditivo"
+                }
+              },
+              "queryRef": "Cadastro de Contratos.Número do Aditivo",
+              "nativeQueryRef": "Aditivo",
+              "displayName": "Aditivo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cadastro de Contratos"
+                    }
+                  },
+                  "Property": "Data Início - Vigência"
+                }
+              },
+              "queryRef": "Cadastro de Contratos.Data Início - Vigência",
+              "nativeQueryRef": "Vigência (Início)",
+              "displayName": "Vigência (Início)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cadastro de Contratos"
+                    }
+                  },
+                  "Property": "Data Final - Vigência"
+                }
+              },
+              "queryRef": "Cadastro de Contratos.Data Final - Vigência",
+              "nativeQueryRef": "Vigência (Final)",
+              "displayName": "Vigência (Final)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cadastro de Contratos"
+                    }
+                  },
+                  "Property": "Valor Global"
+                }
+              },
+              "queryRef": "Sum(Cadastro de Contratos.Valor Global)",
+              "nativeQueryRef": "Valor Total do Contrato",
+              "displayName": "Valor Total do Contrato"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cadastro de Contratos"
+                    }
+                  },
+                  "Property": "Ano de Desembolso"
+                }
+              },
+              "queryRef": "Cadastro de Contratos.Ano de Desembolso",
+              "nativeQueryRef": "Ano de Desembolso"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Cadastro de Contratos"
+                        }
+                      },
+                      "Property": "Valor do Exercicio"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Cadastro de Contratos.Valor do Exercicio)",
+              "nativeQueryRef": "Previsto Exercicio",
+              "displayName": "Previsto Exercicio"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cadastro de Contratos"
+                    }
+                  },
+                  "Property": "Executado"
+                }
+              },
+              "queryRef": "Sum(Cadastro de Contratos.Executado)",
+              "nativeQueryRef": "Executado no Exercício",
+              "displayName": "Executado no Exercício"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cadastro de Contratos"
+                    }
+                  },
+                  "Property": "%EXEC Anual"
+                }
+              },
+              "queryRef": "Cadastro de Contratos.%EXEC Anual",
+              "nativeQueryRef": "%EXEC do Exercício",
+              "displayName": "%EXEC do Exercício"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cadastro de Contratos"
+                    }
+                  },
+                  "Property": "Saldo Acumulativo"
+                }
+              },
+              "queryRef": "Cadastro de Contratos.saldo correto",
+              "nativeQueryRef": "Saldo Total do Contrato",
+              "displayName": "Saldo Total do Contrato"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cadastro de Contratos"
+                    }
+                  },
+                  "Property": "Executado Acumulado"
+                }
+              },
+              "queryRef": "Cadastro de Contratos.Executado Acumulado",
+              "nativeQueryRef": "Executado Acumulado"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cadastro de Contratos"
+                    }
+                  },
+                  "Property": "%EXEC Acumulada"
+                }
+              },
+              "queryRef": "Cadastro de Contratos.%EXEC Acumulada",
+              "nativeQueryRef": "%EXEC Acumulada",
+              "displayName": "%EXEC TOTAL"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Cadastro de Contratos"
+                  }
+                },
+                "Property": "%EXEC Acumulada"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "158.64991484245877D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Contratações SETIM.Título"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "127.4379593963597D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Contratações SETIM.Processo"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "105.383580322322D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Contratações SETIM.Publicação do contrato/ata"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "153.94546825984656D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Contratações SETIM.Status"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "84.63728638011392D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Contratações SETIM.Conclusão do ETP/TR"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "113.40330778276649D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Contratações SETIM.Instrumento a ser gerado"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "111.35607610825298D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Contratações SETIM.Forma de contratação"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "90.76157223518196D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.Ano de Desembolso"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "110.26945932307234D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(Cadastro de Contratos.Valor Global)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "104.30236554175954D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.Unidade Demandante"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "110.87068228852804D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(Cadastro de Contratos.Valor do Exercicio)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "102.86608254729623D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(Cadastro de Contratos.Executado)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "75.99258956250678D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.%EXEC Anual"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "123.16540880498425D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.saldo correto"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "115.48784986724698D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.Executado Acumulado"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "92.80268279705415D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.%EXEC Acumulada"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "101.20276410485832D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.Nome da Empresa"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "88.54718382626825D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.Data Início - Vigência"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "79.19583210444974D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.Data Final - Vigência"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "90.57976358499246D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.Número do Aditivo"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'wf_standard-font, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0097B2'"
+                    }
+                  }
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Contratações SETIM.Título"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Contratações SETIM.Processo"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Contratações SETIM.Demandante"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Contratações SETIM.Forma de contratação"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Contratações SETIM.Instrumento a ser gerado"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Contratações SETIM.Conclusão do ETP/TR"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Contratações SETIM.Publicação do contrato/ata"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Contratações SETIM.Status"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.Unidade Demandante"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.Nome da Empresa"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.Número do Contrato"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.Número do Aditivo"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.Data Início - Vigência"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.Data Final - Vigência"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(Cadastro de Contratos.Valor Global)"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.Ano de Desembolso"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(Cadastro de Contratos.Valor do Exercicio)"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(Cadastro de Contratos.Executado)"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.%EXEC Anual"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.saldo correto"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.Executado Acumulado"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Cadastro de Contratos.%EXEC Acumulada"
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0097B2'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "heading": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Heading3'"
+                }
+              }
+            },
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#499195'"
+                    }
+                  }
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "15D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "italic": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "divider": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "spacing": [
+        {
+          "properties": {
+            "customizeSpacing": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "5D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#499195'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Default'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "8629a30fe8031c293869"
+}

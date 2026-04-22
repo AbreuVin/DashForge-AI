@@ -1,0 +1,56 @@
+table '5 Satisfação Service Desk'
+	lineageTag: 0a1ca4e1-a659-4bfd-b7fd-025bc74167a7
+
+	column 'Data da Resposta'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 607eef00-8e5f-4dd5-bf8b-53f6af61c36d
+		summarizeBy: none
+		sourceColumn: Data da Resposta
+
+		variation Variation
+			isDefault
+			relationship: 3fcc58d4-ab38-4c4f-94b6-55eaa26d660b
+			defaultHierarchy: LocalDateTable_1c54f80b-a3b8-4289-b169-19807a05ee31.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Pergunta
+		dataType: string
+		lineageTag: e891087d-6248-41f5-a8ca-0ba1598e8c89
+		summarizeBy: none
+		sourceColumn: Pergunta
+
+		annotation SummarizationSetBy = Automatic
+
+	column Resposta
+		dataType: string
+		lineageTag: 38699f87-02fb-4dd1-a52d-bb8e61b3f7f8
+		summarizeBy: none
+		sourceColumn: Resposta
+
+		annotation SummarizationSetBy = Automatic
+
+	column N°
+		dataType: int64
+		formatString: 0
+		lineageTag: 1c3ecff6-b373-40fe-9ed4-33b566c13552
+		summarizeBy: sum
+		sourceColumn: N°
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '5 Satisfação Service Desk' = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents("C:\Users\Vinícius Abreu\Downloads\5.Satisfação Service Desk.csv"),[Delimiter=",", Columns=4, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Usar a Primeira Linha como Cabeçalho" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    #"Alterar Tipo" = Table.TransformColumnTypes(#"Usar a Primeira Linha como Cabeçalho",{{"Data da Resposta", type date}, {"Pergunta", type text}, {"Resposta", type text}, {"N°", Int64.Type}})
+				in
+				    #"Alterar Tipo"
+
+	annotation PBI_ResultType = Table
+

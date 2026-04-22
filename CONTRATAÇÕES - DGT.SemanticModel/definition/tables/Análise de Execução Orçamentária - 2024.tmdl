@@ -1,0 +1,325 @@
+table 'Análise de Execução Orçamentária - 2024'
+	lineageTag: bc0d434c-85bd-4ac8-b987-0b789f255ae1
+
+	measure 'Valor % de diferença de Dotação' =
+			
+			VAR __BASELINE_VALUE = SUM('Dotação'[Dotação])
+			VAR __VALUE_TO_COMPARE = SUM('Valor Comprometido'[Valor])
+			RETURN
+				IF(
+					NOT ISBLANK(__VALUE_TO_COMPARE),
+					DIVIDE(__VALUE_TO_COMPARE - __BASELINE_VALUE, __BASELINE_VALUE)
+				)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 871c561a-497a-4714-81a0-61a5689bd15e
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "MathematicalPercentageDifference"
+				}
+
+		changedProperty = FormatString
+
+	measure 'Dotação dividido por Valor' =
+			
+			DIVIDE(SUM('Dotação'[Dotação]), SUM('Valor Comprometido'[Valor]))
+		formatString: #,0.00%;-#,0.00%;#,0.00%
+		lineageTag: ba2708cb-0c98-4b49-bc60-b87b0bc3cb2f
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "MathematicalDivision"
+				}
+
+		changedProperty = FormatString
+
+	measure 'Dotação dividido por Valor 2' =
+			
+			DIVIDE(SUM('Dotação'[Dotação]), SUM('Valor Comprometido'[Valor]))
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: b3c2502b-93b4-4781-964f-b7b79d4b7d99
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "MathematicalDivision"
+				}
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure 'Dotação dividido por Valor 3' =
+			
+			DIVIDE(SUM('Dotação'[Dotação]), SUM('Valor Comprometido'[Valor]))
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: 877c482a-a0c7-43b9-b6ef-205859f55bd4
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "MathematicalDivision"
+				}
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure Razão = ```
+			
+			SUM('Valor Comprometido'[Valor]) /
+			CALCULATE(
+			    SUM('Dotação'[Dotação]),
+			    'Dotação'[Ano] = "2025"
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 2b26a35d-d3c2-473f-a13a-bdfb57bf86a7
+
+	measure '%exec parcial' = [Executado_Ate_D2]/[previsto_exercicio_mespag]
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: c1514f85-62b5-4565-a869-b6f1c847b30c
+
+	column 'Execução Atual Planilha'
+		dataType: decimal
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: 34d550c1-7b41-4dbc-b970-0ec7b4edf201
+		summarizeBy: sum
+		sourceColumn: Execução Atual Planilha
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column 'Execução Atual Fiplan'
+		dataType: decimal
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: be693e0e-981b-49a2-bf15-19b00fe0e82f
+		summarizeBy: sum
+		sourceColumn: Execução Atual Fiplan
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column '% Planilha'
+		dataType: string
+		lineageTag: dd7a3201-7def-40fe-94a6-5d9e4b6908b1
+		summarizeBy: none
+		sourceColumn: % Planilha
+
+		annotation SummarizationSetBy = Automatic
+
+	column '% Fiplan'
+		dataType: string
+		lineageTag: a98f613c-edf1-412d-ba12-ee7d776bd568
+		summarizeBy: none
+		sourceColumn: % Fiplan
+
+		annotation SummarizationSetBy = Automatic
+
+	column Título
+		dataType: string
+		lineageTag: 02945eb6-b87c-481c-970c-286a63795fd2
+		summarizeBy: none
+		sourceColumn: Título
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pressione Delete para excluir o ícone.'
+		dataType: string
+		lineageTag: bd03dd0d-36a1-429b-a914-1d8f97ae7a58
+		summarizeBy: none
+		sourceColumn: Pressione Delete para excluir o ícone.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID de Ativo de Conformidade'
+		dataType: string
+		lineageTag: da0436b8-eee9-4ce3-90b2-b814da061669
+		summarizeBy: none
+		sourceColumn: ID de Ativo de Conformidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 5bd279ca-5511-46ae-96c8-346b7de46dc6
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tipo de Conteúdo'
+		dataType: string
+		lineageTag: 29040874-7af3-4d68-aaa2-4d4cdf108978
+		summarizeBy: none
+		sourceColumn: Tipo de Conteúdo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Modificado
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4caacdf7-aef9-4311-a40b-0743ad8f8ecd
+		summarizeBy: none
+		sourceColumn: Modificado
+
+		variation Variation
+			isDefault
+			relationship: 1294fa8f-e8ab-416b-b1f6-3014e8da9e81
+			defaultHierarchy: LocalDateTable_9e1bf872-67dd-40a1-987b-6250659972a9.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Criado
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f0ab4434-357a-4939-a4e8-d88c42e29979
+		summarizeBy: none
+		sourceColumn: Criado
+
+		variation Variation
+			isDefault
+			relationship: 56f48c74-b2ef-43fd-bdff-da0aea3b2696
+			defaultHierarchy: LocalDateTable_b1dff0bf-6387-447b-a3ad-b9fbb7454c2f.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Criado por'
+		dataType: string
+		lineageTag: 069f7fd2-05e7-43c3-849b-772bef98af48
+		summarizeBy: none
+		sourceColumn: Criado por
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Modificado por'
+		dataType: string
+		lineageTag: 5f2008c9-3da6-44af-adcd-89c8b72d3154
+		summarizeBy: none
+		sourceColumn: Modificado por
+
+		annotation SummarizationSetBy = Automatic
+
+	column Versão
+		dataType: string
+		lineageTag: 00b9c0d4-87ac-4f03-a37e-e441b112306c
+		summarizeBy: none
+		sourceColumn: Versão
+
+		annotation SummarizationSetBy = Automatic
+
+	column Anexos
+		dataType: string
+		lineageTag: 9eb26aa2-8db6-49cf-bbc3-b4acb7ffee89
+		summarizeBy: none
+		sourceColumn: Anexos
+
+		annotation SummarizationSetBy = Automatic
+
+	column Editar
+		dataType: string
+		lineageTag: ac6614fe-13cb-4804-96a3-b18568385d3f
+		summarizeBy: none
+		sourceColumn: Editar
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tipo
+		dataType: string
+		lineageTag: 628d83c0-9b28-4d5f-8e5e-d6f4988a5432
+		summarizeBy: none
+		sourceColumn: Tipo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contagem de Itens Filhos'
+		dataType: string
+		lineageTag: e4eab443-9536-4317-9b43-553f7ccbcd6e
+		summarizeBy: none
+		sourceColumn: Contagem de Itens Filhos
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contagem de Elementos Filho da Pasta'
+		dataType: string
+		lineageTag: 9fdf3536-a9f7-430c-af12-515268fe78fc
+		summarizeBy: none
+		sourceColumn: Contagem de Elementos Filho da Pasta
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Configuração do rótulo'
+		dataType: string
+		lineageTag: 41c2a6b0-fe73-4dfc-944a-7413653a1154
+		summarizeBy: none
+		sourceColumn: Configuração do rótulo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rótulo de retenção'
+		dataType: string
+		lineageTag: 9d241a83-073f-4ddf-8237-4b321ec19ff1
+		summarizeBy: none
+		sourceColumn: Rótulo de retenção
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rótulo de retenção Aplicado'
+		dataType: string
+		lineageTag: a23b26be-c570-4589-ba34-cdff77b5559e
+		summarizeBy: none
+		sourceColumn: Rótulo de retenção Aplicado
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rótulo aplicado por'
+		dataType: string
+		lineageTag: f2ed5fc9-d860-4eef-85ae-661e7a28ca04
+		summarizeBy: none
+		sourceColumn: Rótulo aplicado por
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'O item é um Registro'
+		dataType: string
+		lineageTag: c745532e-0fd2-4557-abf1-6c30513b3bbe
+		summarizeBy: none
+		sourceColumn: O item é um Registro
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Aplicativo Criado por'
+		dataType: string
+		lineageTag: 92098e98-c568-4f41-835a-4cde0512bac1
+		summarizeBy: none
+		sourceColumn: Aplicativo Criado por
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Aplicativo Modificado por'
+		dataType: string
+		lineageTag: 8b73b55a-9084-4a0f-b581-b2889048ca61
+		summarizeBy: none
+		sourceColumn: Aplicativo Modificado por
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Análise de Execução Orçamentária - 2024' = m
+		mode: import
+		source =
+				let
+				    Fonte = SharePoint.Tables("https://tjbacotec.sharepoint.com/sites/ContrataeseOrcamento", [Implementation="2.0", ViewMode="All"]),
+				    #"589b253d-53de-42dd-ba1b-a79a0e9bf691" = Fonte{[Id="589b253d-53de-42dd-ba1b-a79a0e9bf691"]}[Items]
+				in
+				    #"589b253d-53de-42dd-ba1b-a79a0e9bf691"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

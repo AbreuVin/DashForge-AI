@@ -1,0 +1,14 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.0.0/schema.json",
+  "pageOrder": [
+    "executive_overview",
+    "snowui_clone",
+    "master_class",
+    "sage_sales",
+    "analytics_light",
+    "snowui_dashboard",
+    "dashboard01",
+    "html_showcase"
+  ],
+  "activePageName": "executive_overview"
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.0.0/schema.json",
+  "displayName": "Open MC Drawer",
+  "name": "mc_bm_open",
+  "options": {
+    "targetVisualNames": [],
+    "suppressData": true
+  },
+  "explorationState": {
+    "version": "1.0",
+    "activeSection": "master_class",
+    "sections": {
+      "master_class": {
+        "visualContainers": {},
+        "visualContainerGroups": {
+          "mc_drawer_group": {
+            "isHidden": false
+          }
+        }
+      }
+    }
+  }
+}

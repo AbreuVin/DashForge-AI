@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "bf93ba5e03b0100b075b",
+  "position": {
+    "x": 139.63636363636363,
+    "y": 116.36363636363636,
+    "z": 6000,
+    "height": 879.37662337662334,
+    "width": 472.10389610389609
+  },
+  "visualGroup": {
+    "displayName": "Janela Filtros",
+    "groupMode": "ScaleMode"
+  },
+  "parentGroupName": "8629a30fe8031c293869",
+  "isHidden": true
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "clone_main_grp",
+  "position": {
+    "x": 30,
+    "y": 150,
+    "z": 1000,
+    "height": 490,
+    "width": 1007.3766233766235,
+    "tabOrder": 6004
+  },
+  "visualGroup": {
+    "displayName": "Body",
+    "groupMode": "ScaleMode"
+  }
+}

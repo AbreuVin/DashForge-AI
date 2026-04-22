@@ -1,0 +1,330 @@
+table 'Valor Comprometido'
+	lineageTag: fc6f513a-5576-4769-a89d-460a2ca4fc00
+
+	measure 'Declaração do Ordenador_Valor' = ```
+			
+			CALCULATE(
+			    SUM('Valor Comprometido'[Valor]),
+			    'Valor Comprometido'[Declaração do Ordenador] = "Sim"
+			)
+			
+			```
+		formatString: 0
+		lineageTag: b9d40813-1ec7-4e03-9bf3-dd93eadf6c4a
+
+	measure 'Razão Dotação2' = ```
+			
+			VAR SimDOD = 
+			CALCULATE(
+			    SUM('Valor Comprometido'[Valor]),
+			    'Valor Comprometido'[Declaração do Ordenador] = "Sim"
+			)
+			VAR NaoDOD = 
+			CALCULATE(
+			    SUM('Valor Comprometido'[Valor]),
+			    'Valor Comprometido'[Declaração do Ordenador] = "Não"
+			)
+			RETURN
+			    DIVIDE(SimDOD, NaoDOD, 0)
+			
+			```
+		lineageTag: 564cb6e0-38d5-4bff-b436-26b8374de724
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Valor
+		dataType: decimal
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: 0a70a055-c4ab-47ea-86e8-812a66400084
+		summarizeBy: sum
+		sourceColumn: Valor
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column Ano
+		dataType: string
+		lineageTag: c940b7c9-eaed-4c6c-b1ec-24e6591cba27
+		summarizeBy: none
+		sourceColumn: Ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column Título
+		dataType: string
+		lineageTag: 6459443a-1d6d-484e-929f-19071553231e
+		summarizeBy: none
+		sourceColumn: Título
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pressione Delete para excluir o ícone.'
+		dataType: string
+		lineageTag: cd7853a7-1934-4a11-befe-c1267326876f
+		summarizeBy: none
+		sourceColumn: Pressione Delete para excluir o ícone.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID de Ativo de Conformidade'
+		dataType: string
+		lineageTag: f5e98468-bfa7-419f-b6e1-cf8cfe75b92e
+		summarizeBy: none
+		sourceColumn: ID de Ativo de Conformidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: fcbbb6e3-99e6-4fc4-84ec-e72f45e91599
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tipo de Conteúdo'
+		dataType: string
+		lineageTag: c3be884a-4ba8-4d5f-804f-7bb8af7f542e
+		summarizeBy: none
+		sourceColumn: Tipo de Conteúdo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Modificado
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 94da0eee-8e1a-42da-b686-7ba69f6c5bf4
+		summarizeBy: none
+		sourceColumn: Modificado
+
+		variation Variation
+			isDefault
+			relationship: e80397d7-adb8-447f-9043-aac9300de754
+			defaultHierarchy: LocalDateTable_4edef521-b092-40cc-aa33-20f54588d7d7.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Criado
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ef8261c7-5f91-48f7-9d8b-f5527dc8d017
+		summarizeBy: none
+		sourceColumn: Criado
+
+		variation Variation
+			isDefault
+			relationship: f8def489-5450-4948-acdc-3546d2353432
+			defaultHierarchy: LocalDateTable_9039ca1f-2c48-41fe-a779-30fe8a4586dc.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Criado por'
+		dataType: string
+		lineageTag: 76446898-e844-4aa4-98e6-b557f8131ea5
+		summarizeBy: none
+		sourceColumn: Criado por
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Modificado por'
+		dataType: string
+		lineageTag: 8961dbcf-6e7c-40aa-b67d-df977d18c57f
+		summarizeBy: none
+		sourceColumn: Modificado por
+
+		annotation SummarizationSetBy = Automatic
+
+	column Versão
+		dataType: string
+		lineageTag: 190b263a-98f7-410a-ae4c-7fb8c679726c
+		summarizeBy: none
+		sourceColumn: Versão
+
+		annotation SummarizationSetBy = Automatic
+
+	column Anexos
+		dataType: string
+		lineageTag: aa5546ef-8378-44a9-899e-9fbf1046ad0e
+		summarizeBy: none
+		sourceColumn: Anexos
+
+		annotation SummarizationSetBy = Automatic
+
+	column Editar
+		dataType: string
+		lineageTag: ff40e293-8254-408a-a370-9f36f92eaebb
+		summarizeBy: none
+		sourceColumn: Editar
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tipo
+		dataType: string
+		lineageTag: 24787403-0dd4-428c-8225-c86cf3fc6b76
+		summarizeBy: none
+		sourceColumn: Tipo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contagem de Itens Filhos'
+		dataType: string
+		lineageTag: 15ed9f7e-43f3-45b3-b8f2-d8c458587812
+		summarizeBy: none
+		sourceColumn: Contagem de Itens Filhos
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contagem de Elementos Filho da Pasta'
+		dataType: string
+		lineageTag: 9ffd7c1a-3f33-42ee-b6ac-9574d499ca35
+		summarizeBy: none
+		sourceColumn: Contagem de Elementos Filho da Pasta
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Configuração do rótulo'
+		dataType: string
+		lineageTag: 7cbbcd6f-fd0b-4036-ad84-5b630cb8c921
+		summarizeBy: none
+		sourceColumn: Configuração do rótulo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rótulo de retenção'
+		dataType: string
+		lineageTag: feec658e-4907-40d9-a2e9-4d318739fa3a
+		summarizeBy: none
+		sourceColumn: Rótulo de retenção
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rótulo de retenção Aplicado'
+		dataType: string
+		lineageTag: f0edf185-fc75-4c4c-a266-d382e2dc59fc
+		summarizeBy: none
+		sourceColumn: Rótulo de retenção Aplicado
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rótulo aplicado por'
+		dataType: string
+		lineageTag: 77118579-2e90-45d5-abe2-548be6ae96b2
+		summarizeBy: none
+		sourceColumn: Rótulo aplicado por
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'O item é um Registro'
+		dataType: string
+		lineageTag: 6f0fc433-3dfa-482e-a2e6-c7e9d493b147
+		summarizeBy: none
+		sourceColumn: O item é um Registro
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Aplicativo Criado por'
+		dataType: string
+		lineageTag: a0c07172-c08e-401e-9493-3c2c9fadd997
+		summarizeBy: none
+		sourceColumn: Aplicativo Criado por
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Aplicativo Modificado por'
+		dataType: string
+		lineageTag: b0239bf4-ab5a-4c2d-ba53-7c81f8307128
+		summarizeBy: none
+		sourceColumn: Aplicativo Modificado por
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contrato_.lookupValue'
+		dataType: string
+		lineageTag: 49969b4b-4087-49d0-883c-03f7bd7cae41
+		summarizeBy: none
+		sourceColumn: Contrato_.lookupValue
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID projeto.lookupValue'
+		dataType: string
+		lineageTag: adfe6bd3-987d-4549-afcc-43f9484ab919
+		summarizeBy: none
+		sourceColumn: ID projeto.lookupValue
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Declaração do Ordenador'
+		dataType: string
+		lineageTag: a1bc3546-729a-4569-8a3a-032eb91a9536
+		summarizeBy: none
+		sourceColumn: Declaração do Ordenador
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Percentual ADM'
+		dataType: double
+		lineageTag: a3a621f3-f20f-4124-a2a3-5d0e370fdcba
+		summarizeBy: sum
+		sourceColumn: Percentual ADM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Percentual Primeiro Grau'
+		dataType: double
+		lineageTag: 9dd48293-57b6-4c7c-a10a-91c9480fedea
+		summarizeBy: sum
+		sourceColumn: Percentual Primeiro Grau
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Percentual Segundo Grau'
+		dataType: double
+		lineageTag: 7bfe3c6e-860d-4463-9cfc-41b02ef38891
+		summarizeBy: sum
+		sourceColumn: Percentual Segundo Grau
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column valor2 = [Valor]
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: ad6badb3-1247-4d0a-8ea2-17bf34c60162
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column ID2 = CONCATENATE('Valor Comprometido'[Contrato_.lookupValue], 'Valor Comprometido'[ID projeto.lookupValue])
+		lineageTag: 68facffa-7c3b-4fec-a0fb-db336c604fde
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Valor Comprometido' = m
+		mode: import
+		source =
+				let
+				    Fonte = SharePoint.Tables("https://tjbacotec.sharepoint.com/sites/ContrataeseOrcamento", [Implementation="2.0", ViewMode="All"]),
+				    #"5c1df546-036b-4628-9830-d39afacb5dc8" = Fonte{[Id="5c1df546-036b-4628-9830-d39afacb5dc8"]}[Items],
+				    #"Contrato_ Expandido" = Table.ExpandListColumn(#"5c1df546-036b-4628-9830-d39afacb5dc8", "Contrato_"),
+				    #"Contrato_ Expandido1" = Table.ExpandRecordColumn(#"Contrato_ Expandido", "Contrato_", {"lookupValue"}, {"Contrato_.lookupValue"}),
+				    #"ID projeto Expandido" = Table.ExpandListColumn(#"Contrato_ Expandido1", "ID projeto"),
+				    #"ID projeto Expandido1" = Table.ExpandRecordColumn(#"ID projeto Expandido", "ID projeto", {"lookupValue"}, {"ID projeto.lookupValue"})
+				in
+				    #"ID projeto Expandido1"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

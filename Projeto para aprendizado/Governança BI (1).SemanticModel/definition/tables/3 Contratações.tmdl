@@ -1,0 +1,73 @@
+table '3 Contratações'
+	lineageTag: 114a7cfe-d9ab-4ccd-a9af-7b40ae5ecb33
+
+	measure 'Título Gráfico Contratações' =
+			
+			IF (
+			    HASONEVALUE ( 'dCalendario'[Ano] ),
+			    "Global X Exercício do Ano " & SELECTEDVALUE ( 'dCalendario'[Ano]) & " (Valores em R$ Milhões)",
+			    "Global X Exercício (Valores em R$ Milhões)"
+			)
+		lineageTag: 737dc3de-5173-4288-86ec-66e0fba9b564
+
+	column ANO
+		dataType: int64
+		formatString: 0
+		lineageTag: f1b99056-55ca-4d7a-83bd-250e4cce6674
+		summarizeBy: sum
+		sourceColumn: ANO
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column PREVISTO
+		dataType: int64
+		lineageTag: 90a89e63-ca10-4b63-9258-0504277eb4db
+		summarizeBy: sum
+		sourceColumn: PREVISTO
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column REALIZADO
+		dataType: double
+		lineageTag: aa5e0c4b-5f02-4c47-afb7-22bce21e7670
+		summarizeBy: sum
+		sourceColumn: REALIZADO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '% Execução' = '3 Contratações'[REALIZADO] / '3 Contratações'[PREVISTO]
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 8ca99576-e049-474d-a8cc-1a4106f6b073
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Chave' = DATE([ANO], 1, 1)
+		formatString: General Date
+		lineageTag: fb1c7619-9d06-4461-b6ee-e68f69b3deeb
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '3 Contratações' = m
+		mode: import
+		source =
+				let
+				    Fonte = SharePoint.Tables("https://tjbacotec.sharepoint.com/sites/CGTIC", [Implementation="2.0", ViewMode="All"]),
+				    #"acbdcec6-66ca-4300-8d2a-3d280c260325" = Fonte{[Id="acbdcec6-66ca-4300-8d2a-3d280c260325"]}[Items],
+				    #"Colunas Removidas" = Table.RemoveColumns(#"acbdcec6-66ca-4300-8d2a-3d280c260325",{"Pressione Delete para excluir o ícone.", "ID de Ativo de Conformidade", "ID", "Tipo de Conteúdo", "Modificado", "Criado", "Criado por", "Modificado por", "Versão", "Anexos", "Editar", "Tipo", "Contagem de Itens Filhos", "Contagem de Elementos Filho da Pasta", "Configuração do rótulo", "Rótulo de retenção", "Rótulo de retenção Aplicado", "Rótulo aplicado por", "O item é um Registro", "Aplicativo Criado por", "Aplicativo Modificado por", "PERCENTUAL EXEC"})
+				in
+				    #"Colunas Removidas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
