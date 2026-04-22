@@ -1,6 +1,6 @@
 # DashForge AI
 
-Generate professional Power BI dashboards from natural language — no Power BI Desktop required.
+App that Generate professional Power BI dashboards from natural language — no Power BI Desktop required.
 
 DashForge AI is an AI-powered backend that converts plain-language requirements into ready-to-open `.pbip` files. It pairs a conversational requirements agent (built on Claude + Agno) with a deterministic PBIR code generation pipeline, ensuring correct output every time.
 
