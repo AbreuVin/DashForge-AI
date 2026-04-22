@@ -1,3 +1,10 @@
 **/.pbi/localSettings.json
 **/.pbi/cache.abf
 **/.env
+
+# Dashboards com dados sensíveis (não publicar)
+CONTRATAÇÕES - DGT.Report/
+CONTRATAÇÕES - DGT.SemanticModel/
+CONTRATAÇÕES - DGT.pbip
+Databrick Gov/
+Projeto para aprendizado/
