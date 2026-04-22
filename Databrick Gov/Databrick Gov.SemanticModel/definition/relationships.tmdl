@@ -1,8 +1,0 @@
-relationship AutoDetected_4a34c242-fd7c-466a-a766-cae1ca85c256
-	fromColumn: licitacoes_2019_2024.descricao_original
-	toColumn: mapa_descricao.descricao_original
-
-relationship 9336eb24-7284-4499-8cf5-62cbf8f99a53
-	fromColumn: licitacoes_2019_2024.mes/ano
-	toColumn: Calendario.Date
-
