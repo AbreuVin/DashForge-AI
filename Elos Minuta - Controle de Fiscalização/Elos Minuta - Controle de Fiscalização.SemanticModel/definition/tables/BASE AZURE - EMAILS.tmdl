@@ -1,0 +1,484 @@
+table 'BASE AZURE - EMAILS'
+	lineageTag: 1a0db7bf-5acb-42f6-8d6c-8078f48f2d23
+
+	column userPrincipalName
+		dataType: string
+		lineageTag: e646bb3e-60c8-4328-99c4-9bd033258a7d
+		summarizeBy: none
+		sourceColumn: userPrincipalName
+
+		annotation SummarizationSetBy = Automatic
+
+	column displayName
+		dataType: string
+		lineageTag: 22a5219d-35e4-44a4-b3f5-d8c3d5887fac
+		summarizeBy: none
+		sourceColumn: displayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'VIEW CODES - ESTAGIÁRIOS.EMAIL'
+		dataType: string
+		lineageTag: 1a516bd6-885b-4f6f-8a74-409ea61b4e8c
+		summarizeBy: none
+		sourceColumn: VIEW CODES - ESTAGIÁRIOS.EMAIL
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'VIEW CODES - ESTAGIÁRIOS.NOME'
+		dataType: string
+		lineageTag: d5d26ed7-26db-460b-9b4b-ac77de786dc6
+		summarizeBy: none
+		sourceColumn: VIEW CODES - ESTAGIÁRIOS.NOME
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'VIEW CODES - ESTAGIÁRIOS.MATRICULA'
+		dataType: int64
+		formatString: 0
+		lineageTag: 0bb033d8-6ea0-4cb2-a77e-d91a3b0cbdee
+		summarizeBy: sum
+		sourceColumn: VIEW CODES - ESTAGIÁRIOS.MATRICULA
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'VIEW CODES - ESTAGIÁRIOS.CPF'
+		dataType: int64
+		formatString: 0
+		lineageTag: 10776b0d-ebec-4d36-8d36-9a884f703341
+		summarizeBy: none
+		sourceColumn: VIEW CODES - ESTAGIÁRIOS.CPF
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'VIEW CODES - ESTAGIÁRIOS.NIVEL_ESCOLARIDADE'
+		dataType: string
+		lineageTag: 73a013b2-7fbd-4efa-8e12-c408e3c43c9d
+		summarizeBy: none
+		sourceColumn: VIEW CODES - ESTAGIÁRIOS.NIVEL_ESCOLARIDADE
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'VIEW CODES - ESTAGIÁRIOS.COMARCA'
+		dataType: string
+		lineageTag: f27b5b20-3552-4393-acd7-562b31ac4bdc
+		summarizeBy: none
+		sourceColumn: VIEW CODES - ESTAGIÁRIOS.COMARCA
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'VIEW CODES - ESTAGIÁRIOS.LOTACAO'
+		dataType: string
+		lineageTag: abe6c396-e721-4284-8efd-9f59ec6db13e
+		summarizeBy: none
+		sourceColumn: VIEW CODES - ESTAGIÁRIOS.LOTACAO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'VIEW CODES - ESTAGIÁRIOS.DESC_CURSO'
+		dataType: string
+		lineageTag: 07744123-86c8-49ac-9c4e-7991c1b9e02d
+		summarizeBy: none
+		sourceColumn: VIEW CODES - ESTAGIÁRIOS.DESC_CURSO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'VIEW CODES - ESTAGIÁRIOS.DATA_INICIO_ESTAGIO'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9457b856-9c20-48eb-9c4e-e948b8e8f997
+		summarizeBy: none
+		sourceColumn: VIEW CODES - ESTAGIÁRIOS.DATA_INICIO_ESTAGIO
+
+		variation Variation
+			isDefault
+			relationship: d8849fa9-e5d9-4b85-88a5-0ef804835acc
+			defaultHierarchy: LocalDateTable_741e96e4-53db-4e1f-a327-fc81a333c170.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'VIEW CODES - ESTAGIÁRIOS.DATA_FIM_ESTAGIO'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 827cd0c9-e3e6-4555-a3fe-e2e0706f4ae1
+		summarizeBy: none
+		sourceColumn: VIEW CODES - ESTAGIÁRIOS.DATA_FIM_ESTAGIO
+
+		variation Variation
+			isDefault
+			relationship: 0b359e18-c7d1-4a56-827c-5724a389556c
+			defaultHierarchy: LocalDateTable_d8328024-3b74-4490-9416-6c56f948038f.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'VIEW SEGESP -  SERVIDORES.MATRICULA'
+		dataType: int64
+		formatString: 0
+		lineageTag: 91fdce01-c156-4767-855d-e63811304d61
+		summarizeBy: sum
+		sourceColumn: VIEW SEGESP -  SERVIDORES.MATRICULA
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'VIEW SEGESP -  SERVIDORES.TIPO_MATRICULA'
+		dataType: int64
+		formatString: 0
+		lineageTag: a111c67b-9469-4440-9698-d5e5eedb57c8
+		summarizeBy: sum
+		sourceColumn: VIEW SEGESP -  SERVIDORES.TIPO_MATRICULA
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'VIEW SEGESP -  SERVIDORES.CPF'
+		dataType: int64
+		formatString: 0
+		lineageTag: e604fc55-d79d-4188-8ebb-da4142130101
+		summarizeBy: sum
+		sourceColumn: VIEW SEGESP -  SERVIDORES.CPF
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'VIEW SEGESP -  SERVIDORES.ID_UNIDADE'
+		dataType: int64
+		formatString: 0
+		lineageTag: 94f18e54-fb11-4d49-86ab-9c245b5cf1e7
+		summarizeBy: sum
+		sourceColumn: VIEW SEGESP -  SERVIDORES.ID_UNIDADE
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'VIEW SEGESP -  SERVIDORES.EMAIL_INSTITUCIONAL'
+		dataType: string
+		lineageTag: 46b187a1-6b0e-4652-8034-b05f921185a9
+		summarizeBy: none
+		sourceColumn: VIEW SEGESP -  SERVIDORES.EMAIL_INSTITUCIONAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'VIEW SEGESP -  SERVIDORES.ID_TJBASEG'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1240245e-02e6-4749-9bfb-89cf74ae6936
+		summarizeBy: sum
+		sourceColumn: VIEW SEGESP -  SERVIDORES.ID_TJBASEG
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'VIEW SEGESP -  SERVIDORES.STATUS'
+		dataType: string
+		lineageTag: 3bf25fb3-bf2a-4b20-a115-5456c4eba003
+		summarizeBy: none
+		sourceColumn: VIEW SEGESP -  SERVIDORES.STATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'VIEW SEGESP -  SERVIDORES.TIPO_SERVIDOR'
+		dataType: string
+		lineageTag: d9a97085-60b8-40e5-9cad-c034515a6832
+		summarizeBy: none
+		sourceColumn: VIEW SEGESP -  SERVIDORES.TIPO_SERVIDOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'VIEW SEGESP -  SERVIDORES.CODG_CARGO_ATUAL'
+		dataType: string
+		lineageTag: 8df31287-de16-4bb5-921d-6c2ce7bb533a
+		summarizeBy: none
+		sourceColumn: VIEW SEGESP -  SERVIDORES.CODG_CARGO_ATUAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'VIEW SEGESP -  SERVIDORES.DESC_CARGO_ATUAL'
+		dataType: string
+		lineageTag: fb3be27c-586b-40c6-aac6-96aedf82d793
+		summarizeBy: none
+		sourceColumn: VIEW SEGESP -  SERVIDORES.DESC_CARGO_ATUAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'VIEW SEGESP -  SERVIDORES.NOME'
+		dataType: string
+		lineageTag: 9866d91a-14b4-436f-a98a-ff12d4259fb7
+		summarizeBy: none
+		sourceColumn: VIEW SEGESP -  SERVIDORES.NOME
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'VIEW SEGESP -  SERVIDORES.UNIDADE'
+		dataType: string
+		lineageTag: 8ebe134e-4213-40f7-bbee-ebec7a26f4ce
+		summarizeBy: none
+		sourceColumn: VIEW SEGESP -  SERVIDORES.UNIDADE
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'VIEW SEGESP -  SERVIDORES.ID_COMARCA'
+		dataType: int64
+		formatString: 0
+		lineageTag: 3d170c8a-4406-4707-993b-078005a546c4
+		summarizeBy: sum
+		sourceColumn: VIEW SEGESP -  SERVIDORES.ID_COMARCA
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'VIEW SEGESP -  SERVIDORES.COMARCA'
+		dataType: string
+		lineageTag: 9ee3b7ff-b86a-4772-aa81-8cd9d19c34e4
+		summarizeBy: none
+		sourceColumn: VIEW SEGESP -  SERVIDORES.COMARCA
+
+		annotation SummarizationSetBy = Automatic
+
+	column Perfil
+		dataType: string
+		lineageTag: 269576d1-a6b6-4be3-8515-b7ee38eaf3e5
+		summarizeBy: none
+		sourceColumn: Perfil
+
+		annotation SummarizationSetBy = Automatic
+
+	column Comarca
+		dataType: string
+		lineageTag: c5e54e3b-ee02-44f6-9c29-10bf2ce86087
+		summarizeBy: none
+		sourceColumn: Comarca
+
+		annotation SummarizationSetBy = Automatic
+
+	column Vara
+		dataType: string
+		lineageTag: 7502d6c2-75c6-4ebb-939d-e301e2eddd7d
+		summarizeBy: none
+		sourceColumn: Vara
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'BASE AZURE - EMAILS' = m
+		mode: import
+		source =
+				let
+				    // ===== PARÂMETROS =====
+				    Site = "https://tjbacotec.sharepoint.com/sites/axelab-controle-elosminuta-prd",
+				    PastaAlvo = "https://tjbacotec.sharepoint.com/sites/axelab-controle-elosminuta-prd/Documentos Compartilhados/usuarios/",
+				
+				    // ===== FONTE SHAREPOINT =====
+				    Fonte = SharePoint.Files(Site, [ApiVersion = 15]),
+				
+				    // ===== FILTRA ARQUIVOS QUE CONTENHAM "BASE AZURE" =====
+				    ArquivosFiltrados =
+				        Table.SelectRows(
+				            Fonte,
+				            each
+				                [Folder Path] = PastaAlvo
+				                and Text.Contains(Text.Upper([Name]), "BASE AZURE")
+				                and (
+				                    Text.EndsWith(Text.Lower([Name]), ".xlsx")
+				                    or Text.EndsWith(Text.Lower([Name]), ".xls")
+				                )
+				        ),
+				
+				    // ===== PEGA O ARQUIVO MAIS RECENTE =====
+				    ArquivosOrdenados =
+				        Table.Sort(ArquivosFiltrados, {{"Date modified", Order.Descending}}),
+				
+				    ConteudoArquivo = ArquivosOrdenados{0}[Content],
+				
+				    // ===== IMPORTA O EXCEL =====
+				    #"Pasta de Trabalho Importada do Excel" = Excel.Workbook(ConteudoArquivo),
+				    AZURE_Sheet = #"Pasta de Trabalho Importada do Excel"{[Item="AZURE", Kind="Sheet"]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(AZURE_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos", {{"userPrincipalName", type text}, {"displayName", type text}}),
+				
+				    #"Consultas Mescladas" =
+				        Table.NestedJoin(
+				            #"Tipo Alterado",
+				            {"displayName"},
+				            #"VIEW CODES - ESTAGIÁRIOS",
+				            {"NOME"},
+				            "VIEW CODES - ESTAGIÁRIOS",
+				            JoinKind.LeftOuter
+				        ),
+				
+				    #"VIEW CODES - ESTAGIÁRIOS Expandido" =
+				        Table.ExpandTableColumn(
+				            #"Consultas Mescladas",
+				            "VIEW CODES - ESTAGIÁRIOS",
+				            {"EMAIL", "NOME", "MATRICULA", "CPF", "NIVEL_ESCOLARIDADE", "COMARCA", "LOTACAO", "DESC_CURSO", "DATA_INICIO_ESTAGIO", "DATA_FIM_ESTAGIO"},
+				            {"VIEW CODES - ESTAGIÁRIOS.EMAIL", "VIEW CODES - ESTAGIÁRIOS.NOME", "VIEW CODES - ESTAGIÁRIOS.MATRICULA", "VIEW CODES - ESTAGIÁRIOS.CPF", "VIEW CODES - ESTAGIÁRIOS.NIVEL_ESCOLARIDADE", "VIEW CODES - ESTAGIÁRIOS.COMARCA", "VIEW CODES - ESTAGIÁRIOS.LOTACAO", "VIEW CODES - ESTAGIÁRIOS.DESC_CURSO", "VIEW CODES - ESTAGIÁRIOS.DATA_INICIO_ESTAGIO", "VIEW CODES - ESTAGIÁRIOS.DATA_FIM_ESTAGIO"}
+				        ),
+				
+				    #"Consultas Mescladas1" =
+				        Table.NestedJoin(
+				            #"VIEW CODES - ESTAGIÁRIOS Expandido",
+				            {"userPrincipalName"},
+				            #"VIEW SEGESP -  SERVIDORES",
+				            {"EMAIL_INSTITUCIONAL"},
+				            "VIEW SEGESP -  SERVIDORES",
+				            JoinKind.LeftOuter
+				        ),
+				
+				    #"VIEW SEGESP -  SERVIDORES Expandido" =
+				        Table.ExpandTableColumn(
+				            #"Consultas Mescladas1",
+				            "VIEW SEGESP -  SERVIDORES",
+				            {"MATRICULA", "TIPO_MATRICULA", "CPF", "ID_UNIDADE", "EMAIL_INSTITUCIONAL", "ID_TJBASEG", "STATUS", "TIPO_SERVIDOR", "CODG_CARGO_ATUAL", "DESC_CARGO_ATUAL", "NOME", "UNIDADE", "ID_COMARCA", "COMARCA"},
+				            {"VIEW SEGESP -  SERVIDORES.MATRICULA", "VIEW SEGESP -  SERVIDORES.TIPO_MATRICULA", "VIEW SEGESP -  SERVIDORES.CPF", "VIEW SEGESP -  SERVIDORES.ID_UNIDADE", "VIEW SEGESP -  SERVIDORES.EMAIL_INSTITUCIONAL", "VIEW SEGESP -  SERVIDORES.ID_TJBASEG", "VIEW SEGESP -  SERVIDORES.STATUS", "VIEW SEGESP -  SERVIDORES.TIPO_SERVIDOR", "VIEW SEGESP -  SERVIDORES.CODG_CARGO_ATUAL", "VIEW SEGESP -  SERVIDORES.DESC_CARGO_ATUAL", "VIEW SEGESP -  SERVIDORES.NOME", "VIEW SEGESP -  SERVIDORES.UNIDADE", "VIEW SEGESP -  SERVIDORES.ID_COMARCA", "VIEW SEGESP -  SERVIDORES.COMARCA"}
+				        ),
+				
+				    #"Coluna Condicional Adicionada" =
+				        Table.AddColumn(
+				            #"VIEW SEGESP -  SERVIDORES Expandido",
+				            "Perfil",
+				            each
+				                let
+				                    MatEstagiario = [#"VIEW CODES - ESTAGIÁRIOS.MATRICULA"],
+				                    NivelEscolaridade = [#"VIEW CODES - ESTAGIÁRIOS.NIVEL_ESCOLARIDADE"],
+				                    MatServidor = [#"VIEW SEGESP -  SERVIDORES.MATRICULA"],
+				                    CargoServidor = [#"VIEW SEGESP -  SERVIDORES.DESC_CARGO_ATUAL"],
+				
+				                    NivelTexto =
+				                        if NivelEscolaridade <> null and Text.Trim(Text.From(NivelEscolaridade)) <> "" then
+				                            Text.Proper(Text.Trim(Text.From(NivelEscolaridade)))
+				                        else
+				                            null,
+				
+				                    CargoTexto =
+				                        if CargoServidor <> null and Text.Trim(Text.From(CargoServidor)) <> "" then
+				                            Text.Proper(Text.Trim(Text.From(CargoServidor)))
+				                        else
+				                            null,
+				
+				                    TextoBase =
+				                        if MatEstagiario <> null then
+				                            Text.Combine(
+				                                List.RemoveNulls({"Estagiário", NivelTexto}),
+				                                " - "
+				                            )
+				                        else if MatServidor <> null then
+				                            Text.Combine(
+				                                List.RemoveNulls({"Servidor", CargoTexto}),
+				                                " - "
+				                            )
+				                        else
+				                            "Não localizado",
+				
+				                    Substituicoes = {
+				                        {"Subescrivãƒo", "Subescrivão"},
+				                        {"Escrivãƒo", "Escrivão"},
+				                        {"Cartã“Rio", "Cartório"},
+				                        {"SubsecretãRio", "Subsecretário"},
+				                        {"Serviã‡O", "Serviço"},
+				                        {"Justiã‡A", "Justiça"},
+				                        {"JudiciãRio", "Judiciário"},
+				                        {"Tã‰Cnico", "Técnico"},
+				                        {"NãVel", "Nível"},
+				                        {"Mã‰Dio", "Médio"},
+				                        {"Recepã‡Ãƒo", "Recepção"},
+				                        {"ArtãFice", "Artífice"},
+				                        {"JurãDico", "Jurídico"},
+				                        {"SecretãRio", "Secretário"},
+				                        {"Vice-Presidãšncia", "Vice-Presidência"},
+				                        {"Eletrã”Nico", "Eletrônico"},
+				                        {"Seã‡Ãƒo", "Seção"},
+				                        {"Secao", "Seção"},
+				                        {"Extinã‡Ãƒo", "Extinção"},
+				                        {"Nâº", "Nº"},
+				                        {"2Âª", "2ª"},
+				                        {"1Âª", "1ª"},
+				                        {"Âº", "º"},
+				                        {"Âª", "ª"},
+				                        {"Ã§", "ç"},
+				                        {"Ã£", "ã"},
+				                        {"Ã¡", "á"},
+				                        {"Ã ", "à"},
+				                        {"Ã¢", "â"},
+				                        {"Ãª", "ê"},
+				                        {"Ã©", "é"},
+				                        {"Ã­", "í"},
+				                        {"Ã³", "ó"},
+				                        {"Ã´", "ô"},
+				                        {"Ãµ", "õ"},
+				                        {"Ãº", "ú"},
+				                        {"Ã‰", "É"},
+				                        {"Ã“", "Ó"},
+				                        {"Ã‡", "Ç"}
+				                    },
+				
+				                    TextoCorrigido =
+				                        List.Accumulate(
+				                            Substituicoes,
+				                            TextoBase,
+				                            (estado, atual) => Text.Replace(estado, atual{0}, atual{1})
+				                        ),
+				
+				                    Padronizacoes = {
+				                        {" De ", " de "},
+				                        {" Da ", " da "},
+				                        {" Do ", " do "},
+				                        {" Das ", " das "},
+				                        {" Dos ", " dos "},
+				                        {" E ", " e "},
+				                        {" Lei ", " Lei "},
+				                        {" -11915/2010", " - 11915/2010"},
+				                        {" -11916/10", " - 11916/10"},
+				                        {"-13967/18", " - 13967/18"},
+				                        {"-5516/89", " - 5516/89"},
+				                        {"-10845/07", " - 10845/07"},
+				                        {"-56516/89", " - 5516/89"},
+				                        {"-5772/90", " - 5772/90"},
+				                        {"-6577/94", " - 6577/94"},
+				                        {"-11916/10", " - 11916/10"},
+				                        {"-13935/18", " - 13935/18"},
+				                        {"Tecnico", "Técnico"},
+				                        {"Juridico", "Jurídico"},
+				                        {"Administrativo2ª", "Administrativo 2ª"},
+				                        {"Saj", "SAJ"},
+				                        {"2ª Vice-Presidência", "2ª Vice-Presidência"},
+				                        {"1ª Vice-Presidência", "1ª Vice-Presidência"}
+				                    },
+				
+				                    TextoPadronizado =
+				                        List.Accumulate(
+				                            Padronizacoes,
+				                            TextoCorrigido,
+				                            (estado, atual) => Text.Replace(estado, atual{0}, atual{1})
+				                        ),
+				
+				                    TextoFinal = Text.Trim(TextoPadronizado)
+				                in
+				                    TextoFinal
+				        ),
+				
+				    #"Coluna Condicional Adicionada1" =
+				        Table.AddColumn(
+				            #"Coluna Condicional Adicionada",
+				            "Comarca",
+				            each
+				                if [#"VIEW CODES - ESTAGIÁRIOS.COMARCA"] <> null then [#"VIEW CODES - ESTAGIÁRIOS.COMARCA"]
+				                else if [#"VIEW SEGESP -  SERVIDORES.COMARCA"] <> null then [#"VIEW SEGESP -  SERVIDORES.COMARCA"]
+				                else "Sem preenchimento"
+				        ),
+				
+				    #"Coluna Condicional Adicionada2" =
+				        Table.AddColumn(
+				            #"Coluna Condicional Adicionada1",
+				            "Vara",
+				            each
+				                if [#"VIEW CODES - ESTAGIÁRIOS.LOTACAO"] <> null then [#"VIEW CODES - ESTAGIÁRIOS.LOTACAO"]
+				                else if [#"VIEW SEGESP -  SERVIDORES.UNIDADE"] <> null then [#"VIEW SEGESP -  SERVIDORES.UNIDADE"]
+				                else "Não localizado"
+				        ),
+				
+				    #"Duplicatas Removidas" =
+				        Table.Distinct(#"Coluna Condicional Adicionada2", {"userPrincipalName"})
+				in
+				    #"Duplicatas Removidas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

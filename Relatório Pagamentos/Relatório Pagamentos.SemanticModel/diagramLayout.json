@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 28,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 752,
+            "y": 173
+          },
+          "nodeIndex": "Medidas",
+          "nodeLineageTag": "6abfb931-8bd2-4718-824d-906ec7b80406",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1036,
+            "y": 125
+          },
+          "nodeIndex": "Tabela Geral Precatórios",
+          "nodeLineageTag": "15c13d6a-66d2-4048-92c2-9152eb60d5d6",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Todas as tabelas",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas as tabelas",
+  "defaultDiagram": "Todas as tabelas"
+}

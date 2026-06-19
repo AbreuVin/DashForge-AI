@@ -1,0 +1,81 @@
+table vendas
+	lineageTag: a7f8a0e5-a668-42af-bc5d-0de6ea4fe135
+
+	column Data
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c54f5e65-79cd-438e-9509-2c03ff0712ad
+		summarizeBy: none
+		sourceColumn: Data
+
+		variation Variation
+			isDefault
+			relationship: 789c8f01-fca3-42ae-95f6-da9491e10731
+			defaultHierarchy: LocalDateTable_89e7840f-bbfd-4aa4-aba7-8d00e5b9569c.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Produto
+		dataType: string
+		lineageTag: 1ba8636c-d5e0-43e6-9660-927e6107adb0
+		summarizeBy: none
+		sourceColumn: Produto
+
+		annotation SummarizationSetBy = Automatic
+
+	column Regiao
+		dataType: string
+		lineageTag: 6220716d-5a78-43a6-9829-3295b0a24b85
+		summarizeBy: none
+		sourceColumn: Regiao
+
+		annotation SummarizationSetBy = Automatic
+
+	column Vendedor
+		dataType: string
+		lineageTag: 3e68707e-4905-4562-b5c3-4153e6f94cd9
+		summarizeBy: none
+		sourceColumn: Vendedor
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 522ce129-1739-4c3f-9228-41013ece053c
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Valor
+		dataType: int64
+		formatString: 0
+		lineageTag: d231a95d-580f-4154-8d31-205f00f13e9f
+		summarizeBy: sum
+		sourceColumn: Valor
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantidade
+		dataType: int64
+		formatString: 0
+		lineageTag: d6563c3a-02b4-4318-bc37-3673f857ace2
+		summarizeBy: sum
+		sourceColumn: Quantidade
+
+		annotation SummarizationSetBy = Automatic
+
+	partition vendas = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents("C:\Users\Vinícius Abreu\OneDrive\Documentos\Power BI\dados_mockup\vendas.csv"),[Delimiter=",", Columns=7, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"Data", type date}, {"Produto", type text}, {"Regiao", type text}, {"Vendedor", type text}, {"Status", type text}, {"Valor", Int64.Type}, {"Quantidade", Int64.Type}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_ResultType = Table
+

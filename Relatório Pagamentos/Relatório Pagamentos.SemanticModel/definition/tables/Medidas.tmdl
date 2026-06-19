@@ -1,0 +1,266 @@
+table Medidas
+	lineageTag: 6abfb931-8bd2-4718-824d-906ec7b80406
+
+	measure 'Valor Pago' =
+			
+			CALCULATE(
+			    SUM('Tabela Geral Precatórios'[Valor Bruto]),
+			    'Tabela Geral Precatórios'[Situação] IN {"Ofício Assinado", "Ofício ao BRB", "Ofício Pago", "Valor Reservado"},
+			    'Tabela Geral Precatórios'[Setor] <> "Reservas"
+			)
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: d6183a1a-d127-4b6b-98f8-46be3da52b41
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure 'Quantidade Alvarás' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT('Tabela Geral Precatórios'[Alvará]),
+			    'Tabela Geral Precatórios'[Situação] IN {"Ofício Assinado", "Ofício ao BRB", "Ofício Pago", "Valor Reservado"},
+			    NOT(ISBLANK('Tabela Geral Precatórios'[Alvará])),
+			    'Tabela Geral Precatórios'[Setor] <> "Reservas"
+			)
+		formatString: 0
+		lineageTag: 4acf01a0-f358-4139-874f-a4442eb8f3ac
+
+	measure 'Quantidade Precatórios' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT('Tabela Geral Precatórios'[Precatório]),
+			    'Tabela Geral Precatórios'[Situação] IN {"Ofício Assinado", "Ofício ao BRB", "Ofício Pago", "Valor Reservado"},
+			    NOT(ISBLANK('Tabela Geral Precatórios'[Precatório])),
+			    'Tabela Geral Precatórios'[Setor] <> "Reservas"
+			)
+		formatString: 0
+		lineageTag: d906e33b-4923-476c-a869-6ddf2f026bff
+
+	measure 'Assinaturas Faltando' = ```
+			
+			CALCULATE(
+			    COUNTROWS('Tabela Geral Precatórios'),
+			    'Tabela Geral Precatórios'[Situação] IN {"Ofício Assinado", "Ofício ao BRB", "Ofício Pago", "Valor Reservado"},
+			    ISBLANK('Tabela Geral Precatórios'[Data da Assinatura])
+			)
+			
+			```
+		formatString: 0
+		lineageTag: a1c73f67-1037-4965-b366-58b8b42ee204
+
+	measure 'Filtro Linhas com Problema' = ```
+			
+			VAR TemAlvaraVazio = ISBLANK(MAX('Tabela Geral Precatórios'[Alvará])) || MAX('Tabela Geral Precatórios'[Alvará]) = ""
+			VAR TemPrecatorioVazio = ISBLANK(MAX('Tabela Geral Precatórios'[Precatório])) || MAX('Tabela Geral Precatórios'[Precatório]) = ""
+			VAR TemValorErrado = ISBLANK(MAX('Tabela Geral Precatórios'[Valor Bruto])) || MAX('Tabela Geral Precatórios'[Valor Bruto]) <= 0 
+			VAR TemAssinaturaFaltando = ISBLANK(MAX('Tabela Geral Precatórios'[Data da Assinatura]))
+			//VAR TemValorOutlier = (MAX('Tabela Geral Precatórios'[Valor Bruto]) > 10000000) 
+			
+			RETURN
+			IF( TemAlvaraVazio || TemPrecatorioVazio || TemValorErrado || TemAssinaturaFaltando, 1, 0 )
+			```
+		formatString: 0
+		lineageTag: 312a9cc2-f17b-4207-8f04-2b35de41a2d6
+
+	measure 'Qtd Valor com Problema' = ```
+			
+			COUNTROWS(
+			    FILTER('Tabela Geral Precatórios', 
+			    [Valor Bruto] <= 0 && 
+			    [Situação] IN {"Ofício Assinado", "Ofício ao BRB", "Ofício Pago", "Valor Reservado"}
+			    )
+			)
+			```
+		formatString: 0
+		lineageTag: 1df79dec-894f-4715-aeb5-a91bb5be6311
+
+	measure 'Qtd Alvará Faltante' = ```
+			
+			COUNTROWS(
+			    FILTER('Tabela Geral Precatórios', 
+			    (ISBLANK([Alvará]) || [Alvará] = "") && 
+			    [Situação] IN {"Ofício Assinado", "Ofício ao BRB", "Ofício Pago", "Valor Reservado"}
+			    )
+			)
+			```
+		formatString: 0
+		lineageTag: 60ec5eff-f9fc-47a9-8539-e25252ce97f2
+
+	measure 'Qtd Precatório Faltante' = ```
+			
+			COUNTROWS(
+			    FILTER('Tabela Geral Precatórios', 
+			    (ISBLANK([Precatório]) || [Precatório] = "") && 
+			    [Situação] IN {"Ofício Assinado", "Ofício ao BRB", "Ofício Pago", "Valor Reservado"}
+			    )
+			)
+			```
+		formatString: 0
+		lineageTag: 1c7d0ad6-670e-4264-8aa7-ec6755b7274b
+
+	measure Problemas_Encontrados-reservaless =
+			
+			[Qtd_Alvará_Faltante-reservaless] + [Qtd_Precatório_Faltante-reservaless] + [Qtd_Valor_com_Problema-reservaless] + [Assinaturas_Faltando-reservaless]
+		formatString: 0
+		lineageTag: 5a795179-1943-4a95-9426-884fc2cc6890
+
+	measure Qtd_Alvará_Faltante-reservaless =
+			
+			CALCULATE(
+			    COUNTROWS('Tabela Geral Precatórios'),
+			    (ISBLANK('Tabela Geral Precatórios'[Alvará]) || 'Tabela Geral Precatórios'[Alvará] = ""),
+			    'Tabela Geral Precatórios'[Situação] IN {"Ofício Assinado", "Ofício ao BRB", "Ofício Pago", "Valor Reservado"},
+			    'Tabela Geral Precatórios'[Setor] <> "Reservas"
+			)
+		formatString: 0
+		lineageTag: fbcd5e09-2204-4186-aa62-c2d8a9c12954
+
+	measure Qtd_Precatório_Faltante-reservaless = ```
+			
+			COUNTROWS(
+			    FILTER(
+			        'Tabela Geral Precatórios', 
+			        (ISBLANK([Precatório]) || [Precatório] = "") && 
+			        [Situação] IN {"Ofício Assinado", "Ofício ao BRB", "Ofício Pago", "Valor Reservado"} &&
+			        [Setor] <> "Reservas" -- Agora dentro da lógica do FILTER
+			    )
+			)
+			```
+		formatString: 0
+		lineageTag: 7f6a41ca-5662-4210-b84c-5103ec98a767
+
+	measure Qtd_Valor_com_Problema-reservaless = ```
+			
+			COUNTROWS(
+			    FILTER(
+			        'Tabela Geral Precatórios', 
+			        [Valor Bruto] <= 0 && 
+			        [Situação] IN {"Ofício Assinado", "Ofício ao BRB", "Ofício Pago", "Valor Reservado"} &&
+			        [Setor] <> "Reservas"
+			    )
+			)
+			```
+		formatString: 0
+		lineageTag: a9d8e2d3-ee0a-4b22-8c8f-63db121ed523
+
+	measure Assinaturas_Faltando-reservaless =
+			
+			CALCULATE(
+			    COUNTROWS('Tabela Geral Precatórios'),
+			    'Tabela Geral Precatórios'[Situação] IN {"Ofício Assinado", "Ofício ao BRB", "Ofício Pago", "Valor Reservado"},
+			    'Tabela Geral Precatórios'[Setor] <> "Reservas",
+			    -- Garante brancos OU datas irreais
+			    (ISBLANK('Tabela Geral Precatórios'[Data da Assinatura]) || 'Tabela Geral Precatórios'[Data da Assinatura] < DATE(2000,1,1))
+			)
+		formatString: 0
+		lineageTag: e2f1b1d0-e754-4832-9f5c-c23b73fd7576
+
+	measure 'Problemas Encontrados' =
+			
+			[Qtd Alvará Faltante] + [Qtd Precatório Faltante] + [Qtd Valor com Problema] + [Assinaturas Faltando]
+		formatString: 0
+		lineageTag: eb64092d-38f8-44d8-aeb3-3e4470f7bff1
+
+	measure 'Contagem de linhas da tabela geral' = CONVERT(COUNTROWS('Tabela Geral Precatórios'), STRING)
+		lineageTag: 498b157c-e5c4-4593-8439-aee3b1c5ae9a
+
+	measure 'Pendente Assinatura' =
+			
+			COUNTROWS('Tabela Geral Precatórios')
+		formatString: 0
+		lineageTag: b074942f-f232-46c8-9325-f1cffd1781ed
+
+	measure 'Alvaras com Assinaturas Pendentes' =
+			
+			CALCULATE(
+			    COUNTROWS('Tabela Geral Precatórios'),
+			    'Tabela Geral Precatórios'[Situação] = "Assinar Documento"
+			)
+		formatString: 0
+		lineageTag: 58d04538-f6e6-4557-96f4-02fee58008b9
+
+	measure 'Valor Precatórios' = ```
+			
+			CALCULATE(
+			    SUM('Tabela Geral Precatórios'[Valor Bruto])
+			)
+			
+			```
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: 2f61bea2-632a-41ac-a9a9-b16c642d04a7
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure 'Ticket Médio' =
+			
+			ROUND(
+			    DIVIDE(
+			        SUM('Tabela Geral Precatórios'[Valor Bruto]),
+			        DISTINCTCOUNT('Tabela Geral Precatórios'[Precatório]),
+			        0
+			    ),
+			2
+			)
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: de1b4114-258b-4545-9dd7-876f449acb2c
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure 'Quantidade Alvarás COM reservas' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT('Tabela Geral Precatórios'[Alvará]),
+			    'Tabela Geral Precatórios'[Situação] IN {"Ofício Assinado", "Ofício ao BRB", "Ofício Pago", "Valor Reservado"},
+			    NOT(ISBLANK('Tabela Geral Precatórios'[Alvará]))
+			)
+		formatString: 0
+		lineageTag: c8896d28-1be9-4d3e-bab7-a96da0fac7ee
+
+	measure 'Valor Alvarás Assinados' =
+			
+			CALCULATE(
+			    SUM('Tabela Geral Precatórios'[Valor Bruto]),
+			    'Tabela Geral Precatórios'[Situação] IN {"Ofício Assinado", "Ofício ao BRB", "Ofício Pago", "Valor Reservado"}
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 045cf759-392a-4bb8-80a5-83a6b1603d5b
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure 'Número total de precatórios únicos' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT('Tabela Geral Precatórios'[Precatório]),
+			    NOT(ISBLANK('Tabela Geral Precatórios'[Precatório]))
+			)
+		formatString: 0
+		lineageTag: 8870b500-8ef0-42e9-8bf7-008ba12865a8
+
+	measure 'Precatorios com Assinaturas Pendentes' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT('Tabela Geral Precatórios'[Precatório]),
+			    'Tabela Geral Precatórios'[Situação] = "Assinar Documento"
+			)
+		formatString: 0
+		lineageTag: 35e43549-c470-4c9f-bb2c-fcf5ea7b1deb
+
+	column Medidas
+		dataType: string
+		lineageTag: 853793d1-6c87-4334-8794-1a808812590e
+		summarizeBy: none
+		sourceColumn: Medidas
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Medidas = m
+		mode: import
+		source =
+				let
+				    Fonte = ""
+				in
+				    Fonte
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Text
+

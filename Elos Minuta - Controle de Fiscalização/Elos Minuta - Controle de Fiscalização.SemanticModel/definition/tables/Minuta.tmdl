@@ -1,0 +1,111 @@
+table Minuta
+	lineageTag: 401a9673-f663-454b-b801-8a1a6942da9d
+
+	column Mês
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: d2bd0f0c-9c7d-4625-81b0-18f3e74280bb
+		summarizeBy: none
+		sourceColumn: Mês
+
+		variation Variation
+			isDefault
+			relationship: 6a671136-1cdc-4a89-8a3e-da782af3eddd
+			defaultHierarchy: LocalDateTable_f4c88b47-dcec-4a05-87f6-32bc5ca089e5.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Usuário
+		dataType: string
+		lineageTag: 280f4cc3-5ce6-4ea2-9655-3d7983ea12d8
+		summarizeBy: none
+		sourceColumn: Usuário
+
+		annotation SummarizationSetBy = Automatic
+
+	column Email
+		dataType: string
+		lineageTag: 0345d28f-c0eb-4281-b53b-6ecdde4096e1
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column Minutas
+		dataType: int64
+		formatString: 0
+		lineageTag: 1cbb649d-01f0-4a78-899e-c0bdf0f7cebc
+		summarizeBy: sum
+		sourceColumn: Minutas
+
+		annotation SummarizationSetBy = Automatic
+
+	column MesAno
+		dataType: string
+		lineageTag: 218bc894-64e4-402c-acc6-e3ef452256b4
+		summarizeBy: none
+		sourceColumn: MesAno
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Minuta = m
+		mode: import
+		source =
+				let
+				    // ===== PARÂMETROS =====
+				    Site = "https://tjbacotec.sharepoint.com/sites/axelab-controle-elosminuta-prd",
+				    PastaAlvo = "https://tjbacotec.sharepoint.com/sites/axelab-controle-elosminuta-prd/Documentos Compartilhados/minutas/",
+				
+				    // ===== FONTE SHAREPOINT =====
+				    Fonte = SharePoint.Files(Site, [ApiVersion = 15]),
+				
+				    // ===== FILTRA ARQUIVOS relatorio-minutas*.csv =====
+				    ArquivosFiltrados =
+				        Table.SelectRows(
+				            Fonte,
+				            each
+				                [Folder Path] = PastaAlvo
+				                and Text.Contains([Name], "relatorio-minutas")
+				                and Text.EndsWith(Text.Lower([Name]), ".csv")
+				        ),
+				
+				    // pega o primeiro arquivo encontrado
+				    ConteudoArquivo = ArquivosFiltrados{0}[Content],
+				
+				    #"CSV Importado" =
+				        Csv.Document(
+				            ConteudoArquivo,
+				            [Delimiter=";", Columns=4, Encoding=65001, QuoteStyle=QuoteStyle.None]
+				        ),
+				
+				    #"Cabeçalhos Promovidos" =
+				        Table.PromoteHeaders(#"CSV Importado", [PromoteAllScalars=true]),
+				
+				    #"Tipo Alterado" =
+				        Table.TransformColumnTypes(
+				            #"Cabeçalhos Promovidos",
+				            {
+				                {"Mês", type date},
+				                {"Usuário", type text},
+				                {"Email", type text},
+				                {"Minutas", Int64.Type}
+				            }
+				        ),
+				
+				    #"MesAno" =
+				        Table.AddColumn(
+				            #"Tipo Alterado",
+				            "MesAno",
+				            each Text.AfterDelimiter(Text.From([Mês], "pt-BR"), "/"),
+				            type text
+				        )
+				
+				in
+				    #"MesAno"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

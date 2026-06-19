@@ -1,0 +1,107 @@
+table dCalendario
+	lineageTag: de91b938-a141-41c4-a79d-d5a977e319f6
+
+	column Date
+		formatString: Short Date
+		lineageTag: 73808953-c7cf-4710-b675-f960b8b0b2fe
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: dfc24a4c-2e66-41cc-89f1-ac1a1d3c2d03
+			defaultHierarchy: LocalDateTable_7f84f193-b21e-4ca3-b4bc-3e01af596516.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Ano
+		formatString: 0
+		lineageTag: b03fdce1-820d-40ae-9220-e1471bca6766
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Ano]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mês Número'
+		formatString: 0
+		lineageTag: e7734042-5a34-4a1d-baa1-e7fb0d31e8fd
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Mês Número]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mês
+		lineageTag: 0bcf2b10-3f43-41a7-812a-ab967835b2c6
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Mês]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ano-Mês
+		lineageTag: e6d871a5-031e-481b-8b94-31bea66d0fb7
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Ano-Mês]
+		sortByColumn: AnoMes_Ordem
+
+		annotation SummarizationSetBy = Automatic
+
+	column AnoMes_Ordem
+		formatString: 0
+		lineageTag: b32df449-cdd9-4664-9481-a28803a23b9d
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [AnoMes_Ordem]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Trimestre
+		lineageTag: 0546daa6-9548-4caa-af4e-d057314858c4
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Trimestre]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dia
+		formatString: 0
+		lineageTag: 8c20d4e3-47ac-4f2b-929f-61e9607d60ba
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Dia]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dCalendario = calculated
+		mode: import
+		source = ```
+				
+				VAR DataInicial =
+				    MIN ( Medicao[PrimeiroDiaMes] )
+				
+				VAR DataFinal =
+				    MAX ( Medicao[UltimoDiaMes] )
+				
+				RETURN
+				ADDCOLUMNS (
+				    CALENDAR ( DataInicial, DataFinal ),
+				
+				    "Ano", YEAR ( [Date] ),
+				    "Mês Número", MONTH ( [Date] ),
+				    "Mês", FORMAT ( [Date], "MMMM", "pt-BR" ),
+				    "Ano-Mês", FORMAT ( [Date], "MMM/yyyy", "pt-BR" ),
+				    "AnoMes_Ordem", YEAR([Date]) * 100 + MONTH([Date]),
+				    "Trimestre", "T" & FORMAT([Date], "Q"),
+				    "Dia", DAY([Date])
+				)
+				
+				```
+
+	annotation PBI_Id = fb099ce676a341a290376f3ba9f93e04
+

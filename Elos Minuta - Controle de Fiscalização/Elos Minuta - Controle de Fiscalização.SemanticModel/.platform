@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Elos Minuta - Controle de Fiscalização"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "377360ff-2d0d-4b53-a884-a2212f2ca7ec"
+  }
+}

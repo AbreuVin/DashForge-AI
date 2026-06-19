@@ -1,0 +1,408 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
+  "displayName": "Mostrar navegação Relatório",
+  "name": "442e0b5ac29800da4ada",
+  "options": {
+    "targetVisualNames": []
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "f36f1ce661ea9875f6e0",
+    "sections": {
+      "f36f1ce661ea9875f6e0": {
+        "visualContainers": {
+          "28e0be8c6b84a76fe0ed": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "6c42b1cf9ee0e1609e38": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "b43748a215af49ffb090": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "5bc78ce56ce7122321de": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "204b063f77cacd71a1c9": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "eeb948904b47d57e880d": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "f7ad2bb444342b47db83": {
+            "singleVisual": {
+              "visualType": "pageNavigator",
+              "objects": {}
+            }
+          },
+          "1491bec0f6c7f71ee243": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "9a8e8ad244ba1215c639": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "a5aaa3c3a28b91bd9c58": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "c4228ab0e4c07b1eb91a": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "9ec28d6f07c039ad691c",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Tabela Geral Precatórios"
+                        }
+                      },
+                      "Property": "Data da Assinatura"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "a76c9c25584ca1aa0643",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas"
+                        }
+                      },
+                      "Property": "Quantidade Alvarás"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "d758967278a5be1a6c48",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas"
+                        }
+                      },
+                      "Property": "Quantidade Precatórios"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "01dddaec3973347e0061",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas"
+                        }
+                      },
+                      "Property": "Valor Pago"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "4d0c920058c58c039495",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Tabela Geral Precatórios"
+                        }
+                      },
+                      "Property": "Data da Assinatura"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "03081a0dd72e4b7c5828",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Tabela Geral Precatórios"
+                        }
+                      },
+                      "Property": "Data da Assinatura"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "pivotTable",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Tabela Geral Precatórios"
+                        }
+                      },
+                      "Property": "Data da Assinatura"
+                    }
+                  }
+                },
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Tabela Geral Precatórios"
+                        }
+                      },
+                      "Property": "Data da Assinatura"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Rows": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Tabela Geral Precatórios"
+                        }
+                      },
+                      "Property": "Data da Assinatura"
+                    }
+                  }
+                ]
+              },
+              "expansionStates": [
+                {
+                  "roles": [
+                    "Rows"
+                  ],
+                  "levels": [
+                    {
+                      "queryRefs": [
+                        "Tabela Geral Precatórios.Data da Assinatura.Variation.Hierarquia de datas.Ano"
+                      ],
+                      "isCollapsed": true,
+                      "identityKeys": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "LocalDateTable_258e6c63-78d4-4147-a204-2f4bea11e6ab"
+                              }
+                            },
+                            "Property": "Ano"
+                          }
+                        }
+                      ],
+                      "isPinned": true
+                    },
+                    {
+                      "queryRefs": [
+                        "Tabela Geral Precatórios.Data da Assinatura.Variation.Hierarquia de datas.Mês"
+                      ],
+                      "isCollapsed": true,
+                      "isPinned": true
+                    }
+                  ],
+                  "root": {
+                    "identityValues": null
+                  }
+                }
+              ]
+            }
+          },
+          "9a9677d44b240ce0abd3": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "5102635cb6009b2c60ce",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Tabela Geral Precatórios"
+                        }
+                      },
+                      "Property": "Data da Assinatura"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Between'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Tabela Geral Precatórios"
+                        }
+                      },
+                      "Property": "Data da Assinatura"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Tabela Geral Precatórios"
+                        }
+                      },
+                      "Property": "Data da Assinatura"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "ee0d5eb9000713ec4092": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "f5a969662ed434bb6256",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Tabela Geral Precatórios"
+                        }
+                      },
+                      "Property": "Situação"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "72eae098ce510c090653",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas"
+                        }
+                      },
+                      "Property": "Problemas_Encontrados-reservaless"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas"
+                        }
+                      },
+                      "Property": "Problemas_Encontrados-reservaless"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "visualContainerGroups": {
+          "c1bebd6c461fb870d922": {
+            "isHidden": false
+          },
+          "c60a75d739aaf014884a": {
+            "isHidden": false
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

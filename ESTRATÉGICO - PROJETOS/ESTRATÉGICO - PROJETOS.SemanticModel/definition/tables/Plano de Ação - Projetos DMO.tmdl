@@ -1,0 +1,549 @@
+table 'Plano de Ação - Projetos DMO'
+	lineageTag: 4af4cd28-b484-42f5-9cb6-53a2b29d28cb
+
+	measure DataMenos3Meses =
+			
+			EDATE(TODAY(), -6)
+		formatString: General Date
+		lineageTag: ddd43d08-701e-4240-93d9-579965ac9199
+
+	measure 'Total Projetos Ativos' =
+			
+			CALCULATE(
+			    COUNTROWS('Plano de Ação - Projetos DMO'),
+			    'Plano de Ação - Projetos DMO'[Situação] IN { "Desenvolvimento", "Especificação", "Homologado", "Homologação" }
+			)
+		formatString: 0
+		lineageTag: a0713798-1328-4a9c-bf46-15c462c770da
+
+	measure 'Titulo Projeto' = SELECTEDVALUE('Plano de Ação - Projetos DMO'[Nome da tarefa], "Projeto")
+		lineageTag: e7b5a90c-a380-4804-be6a-28ec081fba03
+
+	measure 'Projetos Em Dia' =
+			CALCULATE(
+			    'Plano de Ação - Projetos DMO'[Total Projetos Ativos],
+			    'Plano de Ação - Projetos DMO'[Status Geral] = "Em dia"
+			) + 0
+		formatString: 0
+		lineageTag: 463778ae-447e-4c9b-ad59-3edc52407f12
+
+	measure 'Projetos Requer Ajuda' =
+			CALCULATE(
+			    'Plano de Ação - Projetos DMO'[Total Projetos Ativos],
+			    'Plano de Ação - Projetos DMO'[Status Geral] = "Requer ajuda"
+			) + 0
+		formatString: 0
+		lineageTag: 80e7522e-4df0-48ba-9d1a-799eb7094375
+
+	measure 'Projetos Em Risco' =
+			CALCULATE(
+			    'Plano de Ação - Projetos DMO'[Total Projetos Ativos],
+			    'Plano de Ação - Projetos DMO'[Status Geral] = "Em risco"
+			) + 0
+		formatString: 0
+		lineageTag: ddb0e561-7480-4ca7-89c3-6be40c58d14c
+
+	measure ExibirHistorico = IF(ISFILTERED('Plano de Ação - Projetos DMO'[Projeto]), 1, 0)
+		formatString: 0
+		lineageTag: 5d96b6ed-47e0-476c-a1d6-fde6783e2d14
+
+	column Progresso
+		dataType: string
+		lineageTag: 170b849c-6982-435f-96fc-4f2e050e8f6d
+		summarizeBy: none
+		sourceColumn: Progresso
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gestor Técnico'
+		dataType: string
+		lineageTag: 36bcfbcd-cad8-47ba-8b2c-0512efe7e878
+		summarizeBy: none
+		sourceColumn: Gestor Técnico
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID de Ativo de Conformidade'
+		dataType: string
+		lineageTag: dc47b480-39ce-4bc2-bbfc-f226f4e27ef3
+		summarizeBy: none
+		sourceColumn: ID de Ativo de Conformidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Concluído em'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 784a6d97-f553-4e97-a2df-171e26797ea9
+		summarizeBy: none
+		sourceColumn: Concluído em
+
+		variation Variation
+			isDefault
+			relationship: c13e1d13-6d6d-4c30-a94f-d340e540f6df
+			defaultHierarchy: LocalDateTable_7a46d81f-6715-49e2-b8a8-3c027cc9ac1d.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: f39202df-5f70-481c-8ec4-2ae021ddde51
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Modificado
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 69ec2106-1839-4a03-a838-5b270104f8e4
+		summarizeBy: none
+		sourceColumn: Modificado
+
+		variation Variation
+			isDefault
+			relationship: 1d065773-d128-4bdd-b0e5-49bb65055221
+			defaultHierarchy: LocalDateTable_b8aa77b8-7c0b-45df-a3f5-feb7e490cda2.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Criado
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ed851798-779e-42ae-ba6f-e906dc271752
+		summarizeBy: none
+		sourceColumn: Criado
+
+		variation Variation
+			isDefault
+			relationship: 32be59c3-e02e-4522-96a6-c24431d5f53f
+			defaultHierarchy: LocalDateTable_48a222ef-fa07-43ec-a0e1-ff06159c8339.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Criado por'
+		dataType: string
+		lineageTag: 4e11c530-238a-4f5f-88f9-1a57609b0e74
+		summarizeBy: none
+		sourceColumn: Criado por
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Modificado por'
+		dataType: string
+		lineageTag: 2c37925f-26da-4ff0-9603-e9174c7e91ef
+		summarizeBy: none
+		sourceColumn: Modificado por
+
+		annotation SummarizationSetBy = Automatic
+
+	column SetorNovo =
+			
+			IF(
+			    'Plano de Ação - Projetos DMO'[Setor] IN {"COSIS", "CSJUD"},
+			    "DMO",
+			    "AXÉLAB"
+			)
+		lineageTag: c4001649-00e5-4dc5-943f-64beb3a83ee8
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column StatusClassificado = ```
+			
+			VAR StatusAtual = 'Plano de Ação - Projetos DMO'[Status]
+			VAR DataEntrega = 'Plano de Ação - Projetos DMO'[Entrega Prevista]
+			VAR DataEntregaReal = 'Plano de Ação - Projetos DMO'[Entrega Prevista]
+			VAR Hoje = TODAY()
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			
+			    -- Se for CANCELADO ou SUSPENSO, mantém
+			    StatusAtual IN { "CANCELADO", "SUSPENSO" },
+			        StatusAtual,
+			    
+			    -- ENTREGUE dentro ou fora do prazo
+			    StatusAtual = "ENTREGUE" && NOT(ISBLANK(DataEntregaReal)),
+			        "ENTREGUE",
+			    
+			    -- ATRASADO: ainda não entregue e a data de entrega já passou
+			    StatusAtual <> "ENTREGUE" && NOT(ISBLANK(DataEntrega)) && Hoje > DataEntrega,
+			        "ATRASADO",
+			
+			    -- Caso contrário, mantém o status original
+			    TRUE,
+			        StatusAtual
+			)
+			
+			
+			```
+		lineageTag: 9b7979f5-f76d-492d-9acd-173f5055de56
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Início Texto' = format('Plano de Ação - Projetos DMO'[Início Previsto], "dd/mm/yyyy")
+		lineageTag: eed998c7-df14-4513-bdc7-8fcf82846288
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Consluão Texto' = format('Plano de Ação - Projetos DMO'[Entrega Prevista], "dd/mm/yyyy")
+		lineageTag: e1576b19-0d5f-4e45-a83b-2fcc55aa4a84
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column porcentagem = 'Plano de Ação - Projetos DMO'[Progresso] * 100
+		formatString: 0.00
+		lineageTag: 5d68551d-dd93-44b8-ad15-52309cb28c3c
+		summarizeBy: sum
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: e19b843b-a698-4ef7-9df0-f98534c1af4b
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Setor
+		dataType: string
+		lineageTag: 7505a3c4-b05b-4059-b51b-8fcc722f8aa4
+		summarizeBy: none
+		sourceColumn: Setor
+
+		annotation SummarizationSetBy = Automatic
+
+	column porcentagemTexto =
+			
+			IF(
+			    ISBLANK('Plano de Ação - Projetos DMO'[Progresso]),
+			    BLANK(),
+			    FORMAT('Plano de Ação - Projetos DMO'[Progresso] * 100, "0.00") & "%"
+			)
+		lineageTag: e5177225-a433-49bc-acf2-fc50cc76ffa7
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Situação
+		dataType: string
+		lineageTag: 2c3f8606-7f47-4778-b5d7-d48c1cae6605
+		summarizeBy: none
+		sourceColumn: Situação
+
+		annotation SummarizationSetBy = Automatic
+
+	column Histórico
+		dataType: string
+		lineageTag: 6013981a-ddb2-482c-8c4f-bd3483a2423b
+		summarizeBy: none
+		sourceColumn: Histórico
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Início Previsto'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: ee7aeb43-24e8-42d9-864d-9032feece2b2
+		summarizeBy: none
+		sourceColumn: Início Previsto
+
+		variation Variation
+			isDefault
+			relationship: d562adda-a159-4ef8-ab87-342738d6505c
+			defaultHierarchy: LocalDateTable_6a5af4b6-49bc-4905-8958-a2d01e4b0610.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Início Real'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: eba89e1f-d961-4bd3-a519-4a822c008e08
+		summarizeBy: none
+		sourceColumn: Início Real
+
+		variation Variation
+			isDefault
+			relationship: b86f11e7-ba03-43d4-9f8a-fa751a51f86b
+			defaultHierarchy: LocalDateTable_049b17cc-cd1c-4a53-8825-615023d7dd5d.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Entrega Prevista'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 2527c6f5-8bf6-4907-8479-5b341d067341
+		summarizeBy: none
+		sourceColumn: Entrega Prevista
+
+		variation Variation
+			isDefault
+			relationship: 1e3fc394-54d5-4038-b8fb-5bfaf8e347a9
+			defaultHierarchy: LocalDateTable_f9f741d4-3b0f-4e1c-b6b0-8c1e57dcd9e8.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Entrega Real'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 6a45a32a-5468-4c5a-9f6d-d73d7ef3947d
+		summarizeBy: none
+		sourceColumn: Entrega Real
+
+		variation Variation
+			isDefault
+			relationship: dab04f2e-8c1d-4a37-83f9-31d848850c92
+			defaultHierarchy: LocalDateTable_82ff9c41-5191-4383-a4ff-7a080b83f73a.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column %conc = ```
+			
+			VAR ValorBruto = 
+			    IF(
+			        ISBLANK('Plano de Ação - Projetos DMO'[% Concluído]),
+			        'Plano de Ação - Projetos DMO'[Progresso],
+			        'Plano de Ação - Projetos DMO'[% Concluído]
+			    )
+			VAR ValorNumerico = IFERROR(VALUE(ValorBruto), 0)
+			
+			-- Se o valor for maior que 1 (ex: 87), divide por 100. 
+			-- O TRUNC garante que 0,8762 não vire 0,88
+			VAR Resultado = IF(ValorNumerico > 1, ValorNumerico / 100, ValorNumerico)
+			
+			RETURN TRUNC(Resultado, 4)
+			```
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 59b54799-2cd1-4ade-9e75-788c47c2e4d5
+		summarizeBy: sum
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Projeto Correspondente'
+		dataType: string
+		lineageTag: 24d9ecdd-f185-421f-a573-5d35d6a3d0a2
+		summarizeBy: none
+		sourceColumn: Projeto Correspondente
+
+		annotation SummarizationSetBy = Automatic
+
+	column '% Concluído'
+		dataType: double
+		lineageTag: 5f803e92-68e1-4d80-bc05-0b6e6b2692af
+		summarizeBy: sum
+		sourceColumn: % Concluído
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Fornecedor
+		dataType: string
+		lineageTag: 509e058e-a4cc-4ce6-90de-620618e5e8b9
+		summarizeBy: none
+		sourceColumn: Fornecedor
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ano Projeto' = ```
+			
+			IF(
+			    'Plano de Ação - Projetos DMO'[Projeto 2026] = "Sim",
+			    2026,
+			    IF(
+			        ISBLANK('Plano de Ação - Projetos DMO'[Entrega Real]),
+			        YEAR('Plano de Ação - Projetos DMO'[Entrega Prevista]),
+			        YEAR('Plano de Ação - Projetos DMO'[Entrega Real])
+			    )
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 14bb0f8d-38c3-4a42-a036-d73f7c40b2c0
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Projeto 2026'
+		dataType: string
+		lineageTag: e23d5db5-2a5a-40ad-bcd2-478831c1f756
+		summarizeBy: none
+		sourceColumn: Projeto 2026
+
+		annotation SummarizationSetBy = Automatic
+
+	column Início
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: e36e5d42-cf08-43ce-985e-a7bf12b7f7b6
+		summarizeBy: none
+		sourceColumn: Início
+
+		variation Variation
+			isDefault
+			relationship: a996b27e-4c25-4520-a971-cf2cd39e4992
+			defaultHierarchy: LocalDateTable_8e3416a6-8369-4cde-9adc-364d2df3f9e8.'Hierarquia de datas'
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ' Término'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 8d2b563c-a82c-4739-98bb-44c5034b282f
+		summarizeBy: none
+		sourceColumn: " Término"
+
+		variation Variation
+			isDefault
+			relationship: fc834ad7-03cd-4670-b457-bd6053220852
+			defaultHierarchy: LocalDateTable_dce8f64f-13fb-4888-904e-7c30e6b67a0a.'Hierarquia de datas'
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Recurso
+		dataType: string
+		lineageTag: c8888222-4762-429b-b10b-4fde3f5d195d
+		summarizeBy: none
+		sourceColumn: Recurso
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'inicio tabela' = IF(ISBLANK('Plano de Ação - Projetos DMO'[Início]), 'Plano de Ação - Projetos DMO'[Início Previsto], 'Plano de Ação - Projetos DMO'[Início])
+		lineageTag: 5178f2ca-804b-4a1a-b1af-cb88f1786d6c
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 838ad342-84e8-4ae9-8d32-0890dce6bf21
+			defaultHierarchy: LocalDateTable_6aa58f36-512f-4570-bbb0-72193c4bec4f.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'termino tabela' = IF(ISBLANK('Plano de Ação - Projetos DMO'[ Término]), 'Plano de Ação - Projetos DMO'[Entrega Prevista], 'Plano de Ação - Projetos DMO'[ Término])
+		lineageTag: 5fd6fdc1-52c9-4289-a972-9c3901a9dc80
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 1c2cdbff-3005-4e0e-8313-f3337c89d906
+			defaultHierarchy: LocalDateTable_41d32034-7215-4a72-af51-774c3210cb2d.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Projeto Correspondente: Status'
+		dataType: string
+		lineageTag: 06a7589c-d5bc-4931-a39a-f459c2ca6ba1
+		summarizeBy: none
+		sourceColumn: Projeto Correspondente: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Projeto Correspondente: Área Demandante'
+		dataType: string
+		lineageTag: 753b31ed-40cb-4b48-a2d0-6a0f92379701
+		summarizeBy: none
+		sourceColumn: Projeto Correspondente: Área Demandante
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Projeto Correspondente: Etapa'
+		dataType: string
+		lineageTag: 907fdc7a-6b0d-429e-ada4-432d359ff9c4
+		summarizeBy: none
+		sourceColumn: Projeto Correspondente: Etapa
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status Geral'
+		dataType: string
+		lineageTag: eb4a622f-1176-48e0-8662-b9e89b448d73
+		summarizeBy: none
+		sourceColumn: Status Geral
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'AEP III'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 6fad1436-9f63-4a09-a519-92ac69d20d47
+		summarizeBy: none
+		sourceColumn: AEP III
+
+		annotation SummarizationSetBy = Automatic
+
+	column Filtro_AEP_III = IF('Plano de Ação - Projetos DMO'[AEP III] = TRUE(), " Sim", "Não")
+		lineageTag: ab32aef3-e8f3-477c-a566-f746f6972828
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome da tarefa'
+		dataType: string
+		lineageTag: 911112a7-e26a-4d8d-b268-0c5e8fe3887e
+		summarizeBy: none
+		sourceColumn: Nome da tarefa
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Plano de Ação - Projetos DMO' = m
+		mode: import
+		source =
+				let
+				    Fonte = SharePoint.Tables("https://tjbacotec.sharepoint.com/sites/CGTIC", [Implementation="2.0", ViewMode="All"]),
+				    #"191abfdc-cc04-48d4-8e42-14ecad292366" = Fonte{[Id="191abfdc-cc04-48d4-8e42-14ecad292366"]}[Items],
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"191abfdc-cc04-48d4-8e42-14ecad292366",{{"Progresso", Percentage.Type}}),
+				    #"Valor Substituído" = Table.ReplaceValue(#"Tipo Alterado","Desenvolvimento","DESENVOLVIMENTO",Replacer.ReplaceText,{"Situação"}),
+				    #"Valor Substituído1" = Table.ReplaceValue(
+				    Table.ReplaceValue(#"Valor Substituído", "Alta", "ALTA", Replacer.ReplaceText, {"Complexidade"}),
+				    "Baixa", "BAIXA", Replacer.ReplaceText, {"Complexidade"}
+				),
+				    #"Valor Substituído2" = Table.ReplaceValue(#"Valor Substituído1","Alta","ALTA",Replacer.ReplaceText,{"Prioridade"}),
+				    #"Valor Substituído3" = Table.ReplaceValue(#"Valor Substituído2","Média","MÉDIA",Replacer.ReplaceText,{"Prioridade"}),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Valor Substituído3",{{"Início Previsto", type date}, {"Início Real", type date}, {"Entrega Prevista", type date}, {"Entrega Real", type date}}),
+				    #"Coluna Condicional Adicionada" = Table.AddColumn(#"Tipo Alterado1", "Status 1", each if [Progresso] = 100 then "Concluido " else if [Progresso] = 0 then "Não Iniciado" else if [Progresso] > 0 then "Em Andamento" else null),
+				    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Coluna Condicional Adicionada",{{"Entrega Prevista", type date}, {"Entrega Real", type date}}),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Tipo Alterado2",{"Status 1"}),
+				    #"Texto em Maiúscula" = Table.TransformColumns(#"Colunas Removidas",{{"Estratégico", Text.Upper, type text}, {"Prioridade", Text.Upper, type text}, {"Situação", Text.Upper, type text}}),
+				    #"Setor Expandido" = Table.ExpandListColumn(#"Texto em Maiúscula", "Setor"),
+				    #"Tipo Alterado3" = Table.TransformColumnTypes(#"Setor Expandido",{{"Entrega Prevista", type date}}),
+				    #"Texto em Maiúscula1" = Table.TransformColumns(#"Tipo Alterado3",{{"Setor", Text.Upper, type text}, {"Status", Text.Upper, type text}}),
+				    #"Texto em Maiúscula2" = Table.TransformColumns(#"Texto em Maiúscula1",{{"Histórico", Text.Upper, type text}}),
+				    #"Colunas Removidas1" = Table.RemoveColumns(#"Texto em Maiúscula2",{"2 - Objetivo", "1 - Justificativas (Problemas)", "3 - Benefícios ( visão de futuro)", "4 - Requisitos", "Anexos", "Aplicativo Criado por", "Aplicativo Modificado por", "Atrasados", "Atribuído a", "Beneficiários", "Clarity", "Complexidade", "Concluída por", "Configuração do rótulo", "Contagem de Elementos Filho da Pasta", "Contagem de Itens Filhos", "Descrição", "Editar", "Estratégico", "Gestão", "Gerente do Projeto", "Gestor Negocial", "MONITORAMENTO", "O item é um Registro", "Pressione Delete para excluir o ícone.", "Prioridade", "Respons_x00e1_vel2", "Respons_x00e1_vel20", "Responsável", "Responsável 3", "Rótulo aplicado por", "Rótulo de retenção", "Rótulo de retenção Aplicado", "Tipo", "Tipo de Conteúdo", "Versão"}),
+				    #"Tipo Alterado4" = Table.TransformColumnTypes(#"Colunas Removidas1",{{"% Concluído", Percentage.Type}})
+				in
+				    #"Tipo Alterado4"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

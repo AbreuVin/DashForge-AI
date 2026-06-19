@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "ESTRATÉGICO - PROJETOS"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "e93874df-447f-47fd-860c-bfc5db868d92"
+  }
+}

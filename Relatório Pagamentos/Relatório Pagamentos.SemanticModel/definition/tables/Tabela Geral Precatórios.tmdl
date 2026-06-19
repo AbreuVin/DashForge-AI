@@ -1,0 +1,182 @@
+table 'Tabela Geral Precatórios'
+	lineageTag: f7c619a4-633f-4f5c-ad88-18b2708d4685
+
+	measure 'calc Última Atualização' = "Última Atualização: " & FORMAT(NOW() - TIME(3,0,0), "dd/mm/yyyy hh:mm")
+		lineageTag: 2b7cc2b5-56eb-4836-8672-0c6773933fc1
+
+	column Alvará
+		dataType: string
+		lineageTag: 02eda4ed-c6c7-408e-8273-9126ccca3a5f
+		summarizeBy: none
+		sourceColumn: Alvará
+
+		annotation SummarizationSetBy = Automatic
+
+	column Precatório
+		dataType: string
+		lineageTag: daa02c78-b6db-4fc3-80bc-7ca71f6ac0b9
+		summarizeBy: none
+		sourceColumn: Precatório
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data da Assinatura'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: b1359e7c-4dd7-488b-8af7-24585a1d8d34
+		summarizeBy: none
+		sourceColumn: Data da Assinatura
+
+		variation Variation
+			isDefault
+			relationship: 967e6858-3ccb-4c1a-8f78-a8a2c224045b
+			defaultHierarchy: LocalDateTable_4742f8fc-dbbb-4f32-bc14-90c9301697b2.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Valor Bruto'
+		dataType: decimal
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: b723de30-1ce0-46ce-84c2-9fe3ee26518e
+		summarizeBy: sum
+		sourceColumn: Valor Bruto
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column Situação
+		dataType: string
+		lineageTag: df07320e-8a0e-4906-a7e0-34ff60e449f2
+		summarizeBy: none
+		sourceColumn: Situação
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Link Sharepoint'
+		dataType: string
+		lineageTag: 4bcc03e8-a893-4425-8c1e-624522ec45c1
+		dataCategory: WebUrl
+		summarizeBy: none
+		sourceColumn: Link Sharepoint
+
+		annotation SummarizationSetBy = Automatic
+
+	column Setor
+		dataType: string
+		lineageTag: ce96bc54-593e-4b4c-bc7b-4481dffad5ab
+		summarizeBy: none
+		sourceColumn: Setor
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Alvará'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 56d109fe-21a0-4490-9478-22fb16ea8e4d
+		summarizeBy: none
+		sourceColumn: Data Alvará
+
+		variation Variation
+			isDefault
+			relationship: 57f5f2d3-0ca7-472d-b760-4a2996fb02a5
+			defaultHierarchy: LocalDateTable_80b5c2b1-8609-4104-ac7e-2277aaf04420.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Credor
+		dataType: string
+		lineageTag: bc40134a-0e33-4223-a1e1-812c04729ffc
+		summarizeBy: none
+		sourceColumn: Credor
+
+		annotation SummarizationSetBy = Automatic
+
+	column Beneficiário
+		dataType: string
+		lineageTag: a731d1e3-bceb-426a-be78-4876842ee811
+		summarizeBy: none
+		sourceColumn: Beneficiário
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Envio p/ Assinatura'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: fde11fb9-1994-4219-9202-a0faa3dbed85
+		summarizeBy: none
+		sourceColumn: Data Envio p/ Assinatura
+
+		variation Variation
+			isDefault
+			relationship: 613d3bbd-6c60-4188-a5eb-515f78ca3fb1
+			defaultHierarchy: LocalDateTable_9548bd90-aae2-405f-95ab-ac2473aefefb.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Custas
+		dataType: decimal
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: ee53159e-1263-46f8-960d-a72d2235271c
+		summarizeBy: sum
+		sourceColumn: Custas
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: a940d6b2-15cf-428a-bd75-6cb716fc73fd
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data de Nascimento'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b0fbceed-352b-4a12-899c-70979d59cd85
+		summarizeBy: none
+		sourceColumn: Data de Nascimento
+
+		variation Variation
+			isDefault
+			relationship: c611912e-fd53-43ba-9e1b-cf3d15ea8307
+			defaultHierarchy: LocalDateTable_e981de6e-5e70-46af-b69c-857e51dfa07e.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID Custas Pagas'
+		dataType: string
+		lineageTag: 1bb3244f-e260-435b-8dbf-b736475a70d9
+		summarizeBy: none
+		sourceColumn: ID Custas Pagas
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Info Certidão'
+		dataType: string
+		lineageTag: 9f528af0-77ed-4c1e-a78a-03a6392302c4
+		summarizeBy: none
+		sourceColumn: Info Certidão
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Tabela Geral Precatórios' = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.Combine({#"[MN] Municípios", #"[PF] Superpreferência", #"[IN] INSS", #"[AC] Conferência Acordo", #"[RS] Reservas"}),
+				    #"Linhas Filtradas" = Table.SelectRows(Fonte, each true),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Linhas Filtradas",{{"Data da Assinatura", type date}, {"Situação", type text}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

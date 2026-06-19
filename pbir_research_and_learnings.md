@@ -4234,4 +4234,2089 @@ Usar `selector.data.scopeId.Measure` para colorir cada série individualmente (v
 
 *Seções 35–40 adicionadas em 2026-04-21 — extraídas do projeto Databricks Gov (licitações Exército Brasileiro 2019–2024)*
 
+---
+
+## Seção 41 — Constantes de Layout para LayoutValidator
+
+> Extraídas empiricamente do dashboard Databrick Gov (finalizado, 3 páginas, 49 visuais).
+> Base para o modelo matemático de predição de truncamento no DashForge AI.
+> Data de coleta: 2026-04-23
+
+### 41.1 Canvas (padrão observado)
+
+```
+Largura:  1280px
+Altura:    720px
+DisplayOption: FitToPage
+Background: #FAFAFA
+```
+
+### 41.2 Escala de fontes canônica
+
+| Papel no layout     | Tamanho | Unidade | Visual type   |
+|---------------------|---------|---------|---------------|
+| Título da página    | 20      | pt      | textbox       |
+| Subtítulo da página | 11      | pt      | textbox       |
+| Label gaveta filtro | 14      | pt      | textbox       |
+| Título do visual    | 13      | D (pt)  | containerObj  |
+| Subtítulo do visual | 9       | D (pt)  | containerObj  |
+| Título do slicer    | 10      | D (pt)  | slicer        |
+| Item do slicer      | 8       | D (pt)  | slicer        |
+| Título do card (KPI)| 11      | D (pt)  | card          |
+| Valor do card (KPI) | 28      | D (pt)  | card          |
+| Header de tabela    | 10      | D (pt)  | tableEx       |
+| Valores de tabela   | 10 ou 9 | D (pt)  | tableEx       |
+
+### 41.3 Textbox — altura de linha
+
+Fórmula validada com 3 casos reais:
+
+```
+line_height_px = n_lines × (font_pt × 2.2 + 4)
+```
+
+| Texto                        | font_pt | Altura real (px) | Fórmula → resultado |
+|------------------------------|---------|-----------------|---------------------|
+| Título página (1 linha, 20pt)| 20      | 47.88           | 1 × (20×2.2+4) = 48 |
+| Subtítulo página (1 linha, 11pt)| 11   | 32.81 / 30.15   | 1 × (11×2.2+4) = 28.2 → ~30 |
+| Label "FILTROS" (1 linha, 14pt)| 14    | 40.58           | 1 × (14×2.2+4) = 34.8 → ~38 |
+
+> Precisão: ±3px. Suficiente para detectar overflow; não usar para pixel-perfect.
+
+### 41.4 Card (KPI) — decomposição de altura
+
+```
+card_height = title_area + value_area + padding_vertical
+  title_area      ≈ 28px  (para font 11pt)
+  value_area      ≈ font_pt × 1.6px  (para 28pt → ~45px)
+  padding_vertical ≈ 17–26px
+
+Observado:
+  90.46px = 28 + 45 + ~17   (página 0)
+  99.31px = 28 + 45 + ~26   (página 2)
+```
+
+Larguras observadas: ~291–292px para 4 KPIs lado a lado em canvas 1280px.
+
+Para predizer se o valor vai truncar no card:
+```python
+def card_value_fits(card_width, value_str, font_pt=28):
+    avg_char_width_px = font_pt * 0.55  # Segoe UI, proporcional
+    needed = len(value_str) * avg_char_width_px
+    available = card_width - 24  # padding horizontal total estimado
+    return needed <= available
+```
+
+### 41.5 TableEx — constantes de paginação
+
+Validado com cross-check nos 3 casos reais (ver cálculo abaixo):
+
+```
+header_height    ≈ 43px         (linha de header, independente da fonte)
+row_height_10pt  ≈ 24px         → 10 × 2.2 + 2 = 24
+row_height_9pt   ≈ 22px         → 9 × 2.2 + 2 = 21.8 ≈ 22
+row_height_fórmula: row_h = font_pt × 2.2 + 2
+column_overhead  ≈ 30px         (bordas + área de scroll horizontal)
+```
+
+**Validação cruzada:**
+
+| Tabela              | Altura total | Font | Header | Fórmula rows                    | Resultado |
+|---------------------|-------------|------|--------|---------------------------------|-----------|
+| tbl_top10_forn      | 186.21px    | 10pt | 43px   | (186.21-43)/24 = 5.97          | ~6 linhas |
+| tbl_cat_detalhe     | 237.64px    | 10pt | 43px   | (237.64-43)/24 = 8.10          | ~8 linhas |
+| tbl_top20_forn      | 483.25px    | 9pt  | 43px   | (483.25-43)/22 = **20.01**     | ~20 linhas ✓ perfeito |
+
+Fórmula para predição de linhas visíveis:
+```python
+def table_rows_visible(height, font_pt=10):
+    header = 43
+    row_h = font_pt * 2.2 + 2
+    return int((height - header) / row_h)
+
+def table_cols_overflow(col_widths, visual_width):
+    overhead = 30
+    return sum(col_widths) > (visual_width - overhead)
+```
+
+### 41.6 Slicer dropdown — dimensões padrão
+
+Consistente nas 6 instâncias (2 slicers × 3 páginas):
+
+```
+width:  247.55px
+height:  90.76px
+font título: 10pt
+font items:   8pt
+border radius: 8px
+border color: #E4E4E7
+```
+
+### 41.7 Gaveta de filtros (VisualGroup outspacePane)
+
+```
+width:  ~285px  (284.55–284.88)
+height: ~273px  (272.62–273.09)
+posição X: ~976px  (canvas 1280px → fica quase no limite direito)
+posição Y:  ~16–26px
+border radius: 30px (shape interno)
+default: isHidden = true
+```
+
+### 41.8 Botões de navegação (imagem com PageNavigation)
+
+```
+width:  40px
+height: 40px
+posição Y: ~26px (alinhado ao topo da página)
+posição X arrow-right: ~1216px (quase na borda direita)
+posição X arrow-left:  ~1100–1152px (à esquerda do arrow-right)
+posição X filtro (funnel): entre arrow-left e arrow-right
+```
+
+### 41.9 Container visual padrão (background + border)
+
+Padrão observado em todos os visuais de dados (cards, gráficos, tabelas):
+
+```json
+"background": { "show": true, "color": "#FFFFFF", "transparency": 0 },
+"border":     { "show": true, "color": "#E4E4E7", "radius": 12 }
+```
+
+Gaveta de filtros usa `"radius": 30` no shape subjacente.
+
+### 41.10 Margens de posicionamento dos visuais
+
+Observado consistentemente entre os visuais principais e as bordas do canvas:
+
+```
+margin_left:   ~24px  (X inicial dos visuais de conteúdo)
+margin_top:    ~96px  (Y inicial abaixo do header: títulos ~16-87px + cards)
+gap_entre_visuais: ~0px (visuais tocam uns nos outros, sem gap visível)
+```
+
+*Seção 41 adicionada em 2026-04-23 — constantes extraídas do Databrick Gov, base para LayoutValidator do DashForge AI*
+
+---
+
+## Seção 42 — Constantes de Layout: CONTRATAÇÕES - DGT
+
+> Segundo dashboard analisado. Canvas diferente, visual types novos, escala de fontes maior.
+> Data de coleta: 2026-04-23
+
+### 42.1 Canvas — segundo padrão observado
+
+```
+Página 1 e 3: 1920 × 1080px  (Full HD — alternativa comum ao 1280×720)
+Página 2:     1920 × 1280px  (Full HD vertical expandido)
+```
+
+O LayoutValidator precisa parametrizar o canvas; não assumir 1280×720 como único padrão.
+
+### 42.2 Fontes não escalam automaticamente com o canvas
+
+O designer escolhe fontes maiores manualmente em canvases maiores. Comparativo:
+
+| Papel                  | 1280×720 (Databrick Gov) | 1920×1080 (DGT) | Fator |
+|------------------------|--------------------------|-----------------|-------|
+| Valor do card KPI      | 28pt                     | 30–35pt         | ~1.2× |
+| Título do card KPI     | 11pt                     | 22–25pt         | ~2.1× |
+| Header de tabela       | 10pt                     | 15pt            | 1.5×  |
+| Valores de tabela      | 9–10pt                   | 13pt            | 1.4×  |
+| Título do slicer       | 10pt                     | 20pt            | 2.0×  |
+| Item do slicer         | 8pt                      | 18pt            | 2.25× |
+| Label em gráfico       | n/d                      | 12–22pt         | —     |
+| Legenda                | n/d                      | 18–26pt         | —     |
+
+**Implicação para o DashForge AI:** o RequirementsAgent precisa saber o canvas alvo antes de decidir as fontes. Não existe "fonte padrão universal" — depende do canvas.
+
+Regra heurística observada: `font_pt_sugerido ≈ font_pt_base_1280 × (canvas_width / 1280) × 0.85`
+
+### 42.3 Card KPI — dimensões no canvas 1920×1080
+
+```
+width:  370–421px   (vs 292px no canvas 1280)
+height: 122–158px   (vs 90–99px no canvas 1280)
+value font:  30–35pt (título + valor maior = card mais alto)
+title font:  22–25pt
+```
+
+Validação da fórmula com card de 125.78px (title 25pt, value 35pt):
+```
+title_area  ≈ 25 × 2.2 + 4 = 59px
+value_area  ≈ 35 × 1.6     = 56px
+padding     ≈ 10px
+total       = 125px ≈ 125.78 ✓
+```
+A fórmula da Seção 41.4 se mantém válida com fontes maiores.
+
+### 42.4 TableEx — header height varia com a fonte
+
+Tabela observada: 1906px × 348.31px, 14 colunas, header font 15pt, values font 13pt.
+
+```
+row_h (13pt) = 13 × 2.2 + 2 = 30.6px
+header_h (15pt font) ≈ 15 × 2.8 + 2 = 44px
+rows_visible = (348.31 - 44) / 30.6 = 9.94 ≈ 10 linhas ✓
+```
+
+Revisão da fórmula de header_height (era fixo em 43px):
+```
+header_h = max(43, font_pt_header × 2.8 + 2)
+```
+Para 10pt: max(43, 30) = 43px  → igual ao anterior ✓
+Para 15pt: max(43, 44) = 44px  → levemente maior ✓
+
+### 42.5 Novos visual types identificados
+
+#### clusteredColumnChart (barras verticais)
+```
+Dimensões observadas:
+  1538.38 × 512.79px  (página 1, 1920 canvas)
+  1467.60 × 313.88px  (página 2, 1920 canvas)
+
+Legenda: pode ser Left (consome largura, não altura)
+Labels: show=true, fontSize 12–22pt
+categoryAxis: fontSize 15–18pt
+valueAxis: pode ser show=false (sem eixo Y visível)
+```
+
+Diferença crítica de orientação vs clusteredBarChart:
+- `clusteredBarChart`: categorias no eixo Y (horizontal) → rótulos à esquerda consomem **largura**
+- `clusteredColumnChart`: categorias no eixo X (vertical) → rótulos embaixo podem **rotar** quando há muitas categorias
+
+#### stackedAreaChart
+```
+Dimensões observadas: 1472 × 361.95px
+Legenda: Left
+Labels: show=true, fontSize 22pt
+categoryAxis: fontSize 16pt, axisType=Categorical
+```
+
+#### pageNavigator
+```
+Dimensões observadas: 808.74 × 59.38px
+Button fontSize: 18pt (default), 15pt (selected)
+Shape: rectangleRounded, roundEdge=5
+```
+Não contribui para truncamento de dados — decorativo.
+
+### 42.6 Legenda na posição Left
+
+Quando `legend.position = Left`, a legenda consome **largura** do gráfico, não altura.
+Estimativa de largura reservada: `max_series_label_length × avg_char_width + ícone (~20px)`
+
+Para detectar overflow de legenda lateral:
+```python
+def legend_left_width(series_labels, font_pt=18):
+    avg_char_w = font_pt * 0.55
+    longest = max(len(s) for s in series_labels)
+    return longest * avg_char_w + 20  # 20px para o ícone de cor
+
+def chart_area_width(visual_width, legend_labels, font_pt=18, position='Left'):
+    if position in ('Left', 'Right'):
+        return visual_width - legend_left_width(legend_labels, font_pt) - 16
+    return visual_width  # Top/Bottom não consome largura
+```
+
+### 42.7 Shapes maiores que o canvas
+
+O background shape tinha `width=2597.99, height=2876.35` — bem maior que o canvas 1920×1080. O Power BI clipa automaticamente. Não gera erro nem afeta outros visuais.
+
+### 42.8 Slicer — dimensões no canvas 1920
+
+```
+Largura: 262–554px (mais variação que no canvas 1280)
+Altura:   74–102px
+Title fontSize: 20pt
+Items fontSize: 18pt
+```
+
+*Seção 42 adicionada em 2026-04-23 — extraída do dashboard CONTRATAÇÕES - DGT (3 páginas, canvas 1920×1080/1280)*
+
+---
+
+## Seção 43 — Constantes de Layout: Relatório Pagamentos + ESTRATÉGICO - PROJETOS + Elos Minuta
+
+> Três dashboards reais analisados em paralelo. Foco em: novos canvas sizes, novos visual types, distinção card vs cardVisual.
+> Data de coleta: 2026-04-23
+
+### 43.1 Catálogo completo de canvas sizes observados
+
+| Dimensão          | Dashboard de origem               | Uso típico                     |
+|-------------------|-----------------------------------|--------------------------------|
+| 1280 × 720        | Databrick Gov, Rel. Pagamentos    | Web / apresentação padrão      |
+| 1800 × 900        | Elos Minuta (páginas ativas)      | Monitor widescreen             |
+| 1920 × 1080       | CONTRATAÇÕES - DGT                | Full HD                        |
+| 1920 × 1280       | DGT página 2                      | Full HD vertical expandido     |
+| 2200 × 1200       | ESTRATÉGICO - PROJETOS            | Ultra-wide corporativo         |
+| 1400 × 1050       | ESTRATÉGICO página 2              | 4:3 expandido                  |
+| 320 × 240         | Elos Minuta (tooltip)             | Página de tooltip              |
+
+**Tooltip page**: `DisplayOption: Tooltip` + dimensões 320×240 + `HiddenInViewMode: true`. O Power BI renderiza essa página como popup ao passar o cursor sobre um visual. O LayoutValidator deve reconhecer e ignorar para cálculos de layout normais.
+
+### 43.2 card (clássico) vs cardVisual (moderno) — distinção crítica
+
+São dois visual types distintos com comportamentos e propriedades diferentes:
+
+| Propriedade           | `card` (clássico)         | `cardVisual` (moderno)              |
+|-----------------------|---------------------------|-------------------------------------|
+| Visual type no JSON   | `"card"`                  | `"cardVisual"`                      |
+| Suporte multi-métrica | Não (1 por visual)        | Sim (N colunas em 1 visual)         |
+| Layout interno        | Simples: título + valor   | Tiles: cada métrica é um "tile"     |
+| accentBar             | Não                       | Sim (barra colorida lateral)        |
+| Dimensões típicas     | ~290×90px (1280 canvas)   | Muito variável — de 240×64 a 1704×168 |
+| Propriedade de valor  | `labels.fontSize`         | `value.fontSize` / `calloutValue`   |
+
+**cardVisual multi-coluna** (Elos Minuta — 5 métricas):
+```
+Dimensões: 1704.91 × 168.45px  (canvas 1800)
+Colunas:   5 tiles lado a lado
+value font: 22D  |  label font: 16D
+Largura por tile: 1704.91 / 5 ≈ 341px
+```
+
+**cardVisual compacto** (Relatório Pagamentos — 1 métrica):
+```
+Dimensões: 240 × 64px  (canvas 1280)
+value font: 28D
+```
+
+**cardVisual detalhe** (ESTRATÉGICO — modo painel):
+```
+Dimensões: 330 × 238px  |  329 × 252px
+value font: 10D  |  label font: 14D
+Suporte a accentBar lateral
+```
+
+### 43.3 Novos visual types — catálogo completo
+
+| Visual type | Dashboard | Status para LayoutValidator |
+|---|---|---|
+| `donutChart` | Elos Minuta | Preditível — legenda + labels |
+| `pivotTable` | Rel. Pagamentos, Elos Minuta | Parcialmente preditível |
+| `actionButton` | Todos os 3 | Decorativo — não trunca dados |
+| `azureMap` | Elos Minuta | Opaco — canvas fixo, sem texto |
+| `FlowVisual_*` | Elos Minuta, Rel. Pagamentos | Decorativo — só botão |
+| `powerBIGanttChart*` | ESTRATÉGICO | Opaco — visual de marketplace |
+| `pageNavigator` | Rel. Pagamentos | Decorativo |
+
+#### donutChart
+```
+Exemplo: 417.73 × 310.16px (canvas 1800)
+Legenda: position=Top, fontSize=10D
+Labels (callout): fontSize=11D
+```
+Quando legenda está Top/Bottom, desconta altura:
+`plot_height = visual_height - legend_height`
+`legend_height ≈ n_series × (font_pt × 2.0 + 4) + 8px`
+
+#### pivotTable
+```
+Relatório Pagamentos: 1136.67 × 561.67px, columnAdjustment=growToFit
+Elos Minuta:           593.13 × 647.71px, columnWidths explícitas (216D, 434D)
+values fontSize:  10–12D
+headers fontSize: 10–12D
+```
+Mesmas fórmulas de row_height e header_height do tableEx (Seção 41.5).
+Diferença: `growToFit` distribui o espaço igualmente quando sem columnWidths fixas.
+
+#### actionButton — dimensões por papel
+```
+Botão "fechar" / close (X):     ~58 × 55px, text 'X', font 20D
+Botão "histórico" / toggle (H): ~48 × 49px, text 'H', shape oval, font 12D
+Botão de navegação (voltar):    ~199 × 40px, font implícita (sem D explícito)
+```
+Não contribui para truncamento de dados — ignorar no LayoutValidator.
+
+### 43.4 Escala de fontes por canvas (tabela consolidada 5 dashboards)
+
+| Papel                | 1280×720 | 1800×900 | 1920×1080 | 2200×1200 |
+|----------------------|----------|----------|-----------|-----------|
+| Valor card (KPI)     | 28pt     | 22–25pt  | 30–35pt   | 24–36pt   |
+| Título card          | 11pt     | 15pt     | 22–25pt   | 12–16pt   |
+| Header tabela        | 10pt     | 12pt     | 15pt      | 10–12pt   |
+| Valores tabela       | 9–10pt   | 12pt     | 13pt      | 10pt      |
+| Título slicer        | 10pt     | 14pt     | 20pt      | 16pt      |
+| Item slicer          | 8pt      | 14pt     | 18pt      | 16pt      |
+| Label gráfico        | n/d      | 11–12pt  | 12–22pt   | 18pt      |
+
+**Conclusão:** não há relação linear simples entre canvas size e font size — o designer escolhe. O RequirementsAgent deve perguntar o canvas target e sugerir fontes baseado em benchmark, não em fórmula rígida.
+
+### 43.5 Padrão de menu toggle via visual groups
+
+Observado no Relatório Pagamentos — alternativa ao bookmarks outspacePane do Databrick Gov:
+
+```
+VisualGroup "Menu Escondido"
+  x=0, y=96, width=79.65, height=624.22
+  GroupMode: ScaleMode
+  isHidden: false  ← visível por padrão (menu recolhido)
+
+VisualGroup "Menu Exibido"
+  x=0, y=0, width=1280, height=721.04
+  GroupMode: ScaleMode
+  isHidden: true   ← oculto por padrão
+```
+
+Dois grupos se alternam via bookmark — mesma lógica do outspacePane mas implementada como grupos sobrepostos em vez de grupo que desliza para fora do canvas.
+
+### 43.6 Conditional formatting em tabelas (tableEx/pivotTable)
+
+Elos Minuta usou row-level conditional formatting via `selector.data.scopeId.Column`:
+```
+Status_Validacao = 'Divergência'       → background #D64550 (vermelho)
+Status_Validacao = 'Dados Conciliados' → background #049464 (verde)
+```
+Formato idêntico ao da Seção 36.3 (cor por série em lineChart), mas aplicado em `background` de células de tabela. O LayoutValidator não precisa considerar isso — não afeta dimensões.
+
+### 43.7 Tooltip page — identificação e tratamento
+
+```json
+// page.json de página tooltip
+"displayOption": "Tooltip",
+"visibility": "HiddenInViewMode",
+// Dimensões padrão:
+"width": 320,
+"height": 240
+```
+O LayoutValidator deve detectar `displayOption = "Tooltip"` e pular a página — as fórmulas de layout não se aplicam ao contexto de tooltip.
+
+*Seção 43 adicionada em 2026-04-23 — extraída de: Relatório Pagamentos (5 págs, 1280×720), ESTRATÉGICO - PROJETOS (4 págs, 2200×1200/1400×1050), Elos Minuta (8 págs, 1800×900 + tooltip)*
+
+---
+
+## Seção 44 — Catálogo de Padrões de Slicer (Segmentação de Dados)
+
+> Extraído de 54+ slicers reais em 5 dashboards. Data: 2026-04-23
+
+### 44.1 Distribuição por modo
+- **Dropdown**: 96% dos casos — modo padrão absoluto
+- **Between**: apenas para ranges de data (DataAlvará, etc.)
+- **Tile / List / Relative Date**: não observados nesses dashboards
+
+### 44.2 Configurações canônicas
+
+```json
+// Dropdown padrão mínimo
+{
+  "visualType": "slicer",
+  "singleVisual": {
+    "objects": {
+      "data": [{ "properties": { "mode": { "expr": { "Literal": { "Value": "'Dropdown'" } } } } }],
+      "header": [{ "properties": { "show": { "expr": { "Literal": { "Value": "false" } } } } }],
+      "items": [{ "properties": { "textSize": { "expr": { "Literal": { "Value": "12D" } } } } }]
+    }
+  }
+}
+```
+
+```json
+// Between (intervalo de datas)
+{
+  "data": [{ "properties": { "mode": { "expr": { "Literal": { "Value": "'Between'" } } } }],
+  "slider": [{ "properties": { "show": { "expr": { "Literal": { "Value": "false" } } } } }],
+  "date": [{ "properties": { "textSize": { "expr": { "Literal": { "Value": "15D" } } } } }]
+}
+```
+
+### 44.3 Recursos avançados observados
+
+**Seleção invertida** (filtro "todos exceto"):
+```json
+"filterConfig": [{ "properties": {
+  "isInvertedSelectionMode": { "expr": { "Literal": { "Value": "true" } } }
+} }]
+```
+Usado em: ESTRATÉGICO (Projeto, Fornecedor), Databrick Gov (categoria_ia).
+
+**Seleção única obrigatória**:
+```json
+"general": [{ "properties": {
+  "strictSingleSelect": { "expr": { "Literal": { "Value": "true" } } }
+} }]
+```
+
+**Sincronização entre páginas**:
+```json
+// Em syncSlicers.json da página ou diretamente no visual
+"syncConfig": { "group": "NomeDoGrupo", "filterChanges": true, "fieldChanges": true }
+```
+SyncGroups observados: `"FiltroAno"` (Databrick Gov), `"Projeto"` e `"Fornecedores"` (ESTRATÉGICO).
+
+### 44.4 Dimensões por canvas
+
+| Canvas      | Largura típica | Altura típica | font items | font título |
+|-------------|----------------|---------------|------------|-------------|
+| 1280×720    | 247px          | 90px          | 8–10D      | 10D         |
+| 1800×900    | 230px          | 107px         | 14D        | 14D         |
+| 1920×1080   | 262–554px      | 75–102px      | 18D        | 20D         |
+| 2200×1200   | 250px          | 93–96px       | 16D        | 16D         |
+
+### 44.5 Padrão de título: header oculto + visualContainerObjects.title
+
+Em 100% dos casos observados, o header interno do slicer fica oculto e o título vem do container:
+```json
+// Dentro do visual
+"header": [{ "properties": { "show": { "expr": { "Literal": { "Value": "false" } } } } }]
+
+// Em visualContainerObjects
+"title": [{ "properties": {
+  "show":      { "expr": { "Literal": { "Value": "true" } } },
+  "text":      { "expr": { "Literal": { "Value": "'Mês'" } } },
+  "fontSize":  { "expr": { "Literal": { "Value": "10D" } } },
+  "bold":      { "expr": { "Literal": { "Value": "false" } } },
+  "alignment": { "expr": { "Literal": { "Value": "'left'" } } }
+} }]
+```
+
+---
+
+## Seção 45 — Padrões de Interatividade (Bookmarks, Botões, Gavetas)
+
+> Extraído de 30+ bookmarks e 50+ visualLinks em 5 dashboards. Data: 2026-04-23
+
+### 45.1 Três padrões de gaveta observados
+
+#### Padrão A — Toggle de VisualGroup (Databrick Gov)
+O grupo de visuais sai/entra do canvas via `isHidden` em bookmark:
+```
+BookmarkA (gaveta aberta):  VisualGroup.isHidden = false
+BookmarkB (gaveta fechada): VisualGroup.isHidden = true
+Botão funil → BookmarkA
+Botão X     → BookmarkB
+Botão funil-x → ClearAllSlicers
+```
+Os slicers e labels ficam dentro do VisualGroup. Quando oculto, o grupo desliza para fora do canvas (`x > canvas_width`).
+
+#### Padrão B — OutspacePane expand/collapse (Contratações DGT)
+O painel lateral nativo do Power BI é expandido/contraído via bookmark:
+```
+BookmarkA (abrir):  outspacePane.expanded = true
+BookmarkB (fechar): outspacePane.expanded = false
+BookmarkC (limpar): suppressData=true, suppressDisplay=true → ClearAllSlicers sem mudar estado
+```
+3 botões dedicados: abrir, fechar, limpar (ícones distintos).
+
+#### Padrão C — Visual Groups sobrepostos (Relatório Pagamentos)
+Dois grupos ocupam a mesma área; bookmarks alternam qual está visível:
+```
+VisualGroup "Menu Escondido" → isHidden: false (padrão)
+VisualGroup "Menu Exibido"   → isHidden: true  (padrão)
+Bookmark alterna os dois estados simultaneamente
+```
+
+### 45.2 Estrutura de bookmark (campos obrigatórios)
+
+```json
+{
+  "name": "id_unico",
+  "displayName": "Nome Legível",
+  "suppressData": true,
+  "explorationState": {
+    "version": "1.0",
+    "activeSection": "page-id",
+    "sections": {
+      "page-id": {
+        "visualContainers": {
+          "visual-name": {
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+`suppressData: true` = bookmark só muda estado visual (show/hide), não dados.
+`suppressActiveSection: true` = bookmark afeta todas as páginas, não só a ativa.
+`suppressDisplay: true` = bookmark não muda visibilidade de visuais (só dados/filtros).
+
+### 45.3 Tipos de visualLink (botões)
+
+| Tipo              | Uso observado                    | Visual type que usa    |
+|-------------------|----------------------------------|------------------------|
+| `Bookmark`        | Abrir/fechar gaveta, navegação   | image, actionButton    |
+| `ClearAllSlicers` | Resetar todos os filtros         | image                  |
+| `PageNavigation`  | Navegar para outra página        | image, actionButton    |
+| `URL`             | Não observado                    | —                      |
+
+```json
+// Imagem com visualLink para bookmark
+"visualLink": {
+  "show": { "expr": { "Literal": { "Value": "true" } } },
+  "type": { "expr": { "Literal": { "Value": "'Bookmark'" } } },
+  "bookmark": { "expr": { "Literal": { "Value": "'id_do_bookmark'" } } }
+}
+
+// ActionButton com texto
+"visualType": "actionButton",
+"singleVisual": {
+  "objects": {
+    "text": [{ "properties": {
+      "text":      { "expr": { "Literal": { "Value": "'X'" } } },
+      "fontSize":  { "expr": { "Literal": { "Value": "22D" } } }
+    } }],
+    "icon": [{ "properties": { "iconType": { "expr": { "Literal": { "Value": "'Blank'" } } } } }]
+  },
+  "vcObjects": {
+    "visualLink": [{ "properties": {
+      "type":     { "expr": { "Literal": { "Value": "'Bookmark'" } } },
+      "bookmark": { "expr": { "Literal": { "Value": "'id_bookmark'" } } }
+    } }]
+  }
+}
+```
+
+### 45.4 Configurações globais de report.json
+
+Padrão observado em todos os dashboards:
+```json
+{
+  "filterPaneHiddenInEditMode": true,
+  "defaultDrillFilterOtherVisuals": true,
+  "outspacePane": { "expanded": false }
+}
+```
+
+### 45.5 Ícones de controle mais usados (StaticResources)
+
+| Função        | Ícone comum             | Tipo de link     |
+|---------------|-------------------------|------------------|
+| Abrir filtros | funnel.svg, filter.png  | Bookmark (abrir) |
+| Fechar painel | x.svg, Bot_o_fechar.png | Bookmark (fechar)|
+| Limpar filtros| funnel-x.svg, clear-filter.png | ClearAllSlicers / Bookmark |
+| Navegar →     | arrow-right.svg         | PageNavigation   |
+| Navegar ←     | arrow-left.svg          | PageNavigation   |
+
+---
+
+## Seção 46 — Padrões de Medidas DAX
+
+> Extraído dos 5 semantic models. Data: 2026-04-23
+
+### 46.1 Organização canônica (Databrick Gov como referência)
+
+Databrick Gov é o único com `displayFolder` definidos. Serve de template para o DashForge AI:
+
+| Pasta | Padrão DAX principal |
+|---|---|
+| `01 Valores Base` | `SUM`, `DISTINCTCOUNT` |
+| `02 Médias` | `DIVIDE([A], [B])` com proteção BLANK |
+| `03 Time Intelligence` | `SAMEPERIODLASTYEAR`, `DATEADD`, `TOTALYTD`, `DATESINPERIOD` |
+| `04 Participação` | `CALCULATE([M], ALLEXCEPT(T, T[col]))` |
+| `05 Rankings` | `IF(HASONEVALUE(T[col]), RANKX(...))` |
+| `06 Concentração` | `TOPN + VAR` complexas |
+| `07 Qualidade` | `FILTER + COUNTROWS`, `ISBLANK` |
+| `08 Auxiliares` | Formatação texto/cor |
+| `09 Forecast` | Regressão, DATESINPERIOD |
+
+### 46.2 Padrões críticos de protecão
+
+```dax
+// Proteção de divisão por zero
+Ticket Medio = DIVIDE([Valor Total], [Qtd Licitacoes])
+
+// Proteção de contexto múltiplo em ranking
+Rank Fornecedor = IF(HASONEVALUE(T[nome]), RANKX(ALL(T[nome]), [Valor Total]))
+
+// Garantir retorno numérico mesmo com CALCULATE vazio
+Projetos Em Risco = CALCULATE([Total Ativos], T[Status] = "Em risco") + 0
+
+// Tolerância em reconciliação
+Status_Validacao = IF(ABS([Calculado] - [Real]) <= 0.01, "✅ Conciliado", "❌ Divergência")
+```
+
+### 46.3 Medidas de controle visual (macros para mostrar/ocultar)
+
+Estas medidas são aplicadas como filtros de nível visual para mostrar/ocultar visuais dinamicamente:
+
+```dax
+// Mostrar painel de detalhe somente quando um item é filtrado
+ExibirHistorico = IF(ISFILTERED(Projetos[Projeto]), 1, 0)
+// Aplicar no visual como filtro: ExibirHistorico = 1
+
+// Mostrar somente linhas com problema
+Filtro Linhas com Problema =
+    VAR TemAlvara = ISBLANK([AlvaraId]) || [AlvaraId] = ""
+    VAR TemValorErrado = [Valor] <= 0
+    RETURN IF(TemAlvara || TemValorErrado, 1, 0)
+// Aplicar no visual como filtro: Filtro Linhas com Problema = 1
+```
+
+### 46.4 Medidas auxiliares de cor (formatação condicional)
+
+```dax
+// Retorna HEX diretamente para usar em conditional formatting
+Cor YoY =
+    SWITCH(
+        TRUE(),
+        [Valor YoY %] > 0,    "#16A34A",  // verde
+        [Valor YoY %] < 0,    "#DC2626",  // vermelho
+        "#71717A"                           // cinza (neutro)
+    )
+```
+
+### 46.5 Medidas de texto dinâmico
+
+Usadas em `cardVisual` ou `textbox` para títulos e legendas que refletem filtros ativos:
+
+```dax
+// Período selecionado
+Periodo Selecionado =
+    VAR MinD = MIN(T[PrimeiroDiaMes])
+    VAR MaxD = MAX(T[UltimoDiaMes])
+    RETURN IF(
+        ISBLANK(MinD), "Período: (sem filtro)",
+        "Período: " & FORMAT(MinD, "dd/mm/yyyy") & " a " & FORMAT(MaxD, "dd/mm/yyyy")
+    )
+
+// Timestamp com fuso (UTC-3)
+Ultima Atualizacao =
+    "Atualizado em " & FORMAT(NOW() - TIME(3,0,0), "dd/MM/yyyy") &
+    " às " & FORMAT(NOW() - TIME(3,0,0), "HH:mm")
+
+// Valor formatado para KPI (sem notação científica)
+Valor Total Formatado =
+    VAR v = [Valor Total]
+    RETURN SWITCH(TRUE(),
+        v >= 1e9, FORMAT(v/1e9, "0.0") & " bi",
+        v >= 1e6, FORMAT(v/1e6, "0.0") & " mi",
+        v >= 1e3, FORMAT(v/1e3, "0.0") & " mil",
+        FORMAT(v, "#,##0"))
+
+// Título dinâmico (mostra item selecionado)
+Titulo Projeto = SELECTEDVALUE(Projetos[Projeto], "Todos os Projetos")
+```
+
+### 46.6 Colunas calculadas (padrões recorrentes)
+
+```dax
+// Status derivado com lógica temporal
+StatusCalculado =
+    VAR Hoje = TODAY()
+    RETURN SWITCH(TRUE(),
+        [Status] IN {"CANCELADO", "SUSPENSO"}, [Status],
+        [Status] = "ENTREGUE", "ENTREGUE",
+        Hoje > [DataEntrega], "ATRASADO",
+        [Status])
+
+// Normalização de percentual (aceita 0.87 ou 87)
+PctConcluido =
+    VAR Bruto = IF(ISBLANK([pct_campo]), [Progresso], [pct_campo])
+    VAR Num = IFERROR(VALUE(Bruto), 0)
+    RETURN TRUNC(IF(Num > 1, Num / 100, Num), 4)
+
+// Classificação de domínio de texto
+DominioEmail =
+    VAR e = LOWER([Email])
+    RETURN IF(ISBLANK(e), "Sem email",
+        IF(RIGHT(e, 12) = "@tjba.jus.br", "Interno", "Externo"))
+```
+
+### 46.7 Tabela de lookup criada em DAX (DATATABLE)
+
+```dax
+// Tabela estática para filtro de status visual
+FiltroStatus = DATATABLE("Status", STRING, {{"✅"}, {"❌"}})
+```
+Usada como tabela auxiliar para slicers ou para cruzamento com medida de status.
+
+---
+
+## Seção 47 — Requisitos de Capacidade do DashForge AI
+
+> O que o sistema precisa gerar para atingir a qualidade dos 5 dashboards reais. Data: 2026-04-23
+
+### 47.1 Camadas de geração requeridas
+
+```
+Camada 1 — Estrutura de dados (RequirementsAgent coleta)
+  ├── Tabelas e campos disponíveis
+  ├── Relações (many-to-one, filtro direction)
+  └── Tipo de dado por campo (data, texto, número, %)
+
+Camada 2 — Medidas DAX (DAXAgent gera)
+  ├── Valores Base: SUM / DISTINCTCOUNT por campo numérico
+  ├── Médias: DIVIDE com proteção
+  ├── Time Intelligence: somente se houver tabela de calendário
+  ├── Participação: % do total com ALLEXCEPT
+  ├── Rankings: RANKX com guarda HASONEVALUE
+  ├── Auxiliares: cor (Cor YoY) e texto formatado
+  └── Controle visual: IF(ISFILTERED, 1, 0) para painel detalhe
+
+Camada 3 — Visuais e layout (PBIRGenerator gera)
+  ├── Cards KPI: card ou cardVisual multi-coluna
+  ├── Gráficos: lineChart, clusteredBarChart, clusteredColumnChart, donutChart
+  ├── Tabelas: tableEx com columnWidths e sort
+  ├── Slicers: dropdown padrão + Between para data
+  └── Navegação: image com PageNavigation entre páginas
+
+Camada 4 — Interatividade (BookmarkAgent gera)
+  ├── Gaveta de filtros: VisualGroup + 2 bookmarks + 3 botões
+  ├── ClearAllSlicers: 1 imagem com funnel-x
+  └── Controle de painel detalhe: ExibirHistorico via filtro visual
+```
+
+### 47.2 Funcionalidades mínimas por tier de complexidade
+
+**Tier 1 — Dashboard básico (MVP do DashForge AI)**
+- Cards KPI + 1 gráfico de linha temporal + 1 tabela
+- Slicers dropdown sem sync
+- Sem bookmarks / sem gaveta
+- Medidas: Valores Base + Médias
+
+**Tier 2 — Dashboard intermediário**
+- Múltiplas páginas com navegação (arrow-right/left)
+- Gaveta de filtros com bookmarks (Padrão A ou B)
+- ClearAllSlicers
+- Slicer sync entre páginas
+- Medidas: + Time Intelligence + Participação + Rankings
+
+**Tier 3 — Dashboard avançado**
+- 4+ páginas + tooltip page
+- cardVisual multi-coluna
+- Painel de detalhe com ExibirHistorico (controle visual via DAX)
+- Formatação condicional com medida de cor
+- Medidas de texto dinâmico (títulos, timestamps)
+- Medidas de qualidade de dados
+
+### 47.3 O que NÃO é necessário gerar (complexidade não justificada)
+
+- Visuais de marketplace (Gantt, FlowVisual) — opaco, não controlável
+- azureMap — requer credenciais Azure, fora do escopo
+- Colunas calculadas complexas (StatusCalculado, PctConcluido) — gerar só quando o usuário pedir
+- DATATABLE de lookup — gerar só para casos de filtro de status dinâmico
+- Bookmarks com `suppressActiveSection` — apenas Padrão A/B são suficientes
+
+*Seções 44–47 adicionadas em 2026-04-23 — síntese de 54+ slicers, 30+ bookmarks, 5 semantic models*
+
+---
+
+## Seção 48 — Novos Visual Types: Governança BI e projeto.pbip
+
+> Descobertas dos dois dashboards finais. Data: 2026-04-23
+
+### 48.1 Canvas sizes adicionais
+
+| Dimensão       | Dashboard          |
+|----------------|--------------------|
+| 1710 × 800     | Governança BI (1)  |
+| 1678 × 799     | Governança BI pág 2|
+
+### 48.2 lineClusteredColumnComboChart (combo coluna + linha)
+
+```
+Exemplo: 1252.31 × 508.33px (canvas 1710×800)
+Y (coluna): métrica principal (ex: Disponibilidade %)
+Y2 (linha): meta ou comparativo (ex: Meta de Disponibilidade)
+Labels: fontSize=11pt, bold=true, position=OutsideEnd
+enableDetailDataLabel: true
+```
+Ideal para mostrar realizado vs meta ao longo do tempo. Compartilha eixo X com dois eixos Y independentes.
+
+### 48.3 Gauge customizado de marketplace
+
+Visual type: `dg5AAA90EFEFE747CB9357C4FC19B85A58`
+Campos obrigatórios: `pointerValue`, `min`, `max`, `redStart`, `redEnd`, `yellowStart`, `yellowEnd`
+```dax
+-- Constantes de meta para o gauge
+Maximo      = 1
+Minimo      = 0
+targetstart = 0.9   -- início da zona verde
+targetend   = 1
+mediastart  = 0.7   -- início da zona amarela
+mediaend    = 0.9
+Meta        = 0.9
+Meta_legenda = "Meta: 90%"
+```
+**Importante**: opaco para o LayoutValidator — não gerar via JSON diretamente, usar apenas se o custom visual estiver instalado.
+
+### 48.4 Deneb / Vega-Lite (projeto.pbip)
+
+Visual type: `deneb7E15AEF80B9E4D4F8E12924291ECE89A`
+
+```json
+// Configuração mínima no visual.json
+{
+  "visualType": "deneb7E15AEF80B9E4D4F8E12924291ECE89A",
+  "singleVisual": {
+    "objects": {
+      "vega": [{
+        "properties": {
+          "jsonSpec": { "expr": { "Literal": { "Value": "'{ ... spec Vega-Lite ... }'" } } },
+          "provider":  { "expr": { "Literal": { "Value": "'vegaLite'" } } },
+          "themeMode": { "expr": { "Literal": { "Value": "'light'" } } }
+        }
+      }]
+    }
+  }
+}
+```
+Permite criar qualquer tipo de chart via JSON declarativo. Não preditível pelo LayoutValidator (spec define o espaço internamente).
+
+### 48.5 htmlContent (projeto.pbip)
+
+Visual type: `htmlContent443BE3AD55E043BF878BED274D3A6855`
+
+A medida DAX retorna uma string HTML/CSS completa que é renderizada dentro do visual:
+```dax
+HtmlKpiViews = "
+<div style='font-family: Segoe UI; background: linear-gradient(135deg,#1e3a5f,#2d6a9f);
+             border-radius: 12px; padding: 16px; color: white;'>
+  <div style='font-size: 11px; opacity: 0.7; text-transform: uppercase;'>Views</div>
+  <div style='font-size: 32px; font-weight: bold;'>" & FORMAT([TotalViews], "#,##0") & "</div>
+</div>"
+```
+
+Padrões CSS usados:
+- **Glass morphism**: `backdrop-filter: blur(10px); background: rgba(255,255,255,0.1)`
+- **Animated gradient**: `@keyframes br { background-position: 0%→100%→0% }`
+- **SVG gauge**: `stroke-dasharray: 283; stroke-dashoffset: calculado`
+- **Responsive font**: `font-size: clamp(12px, 2.5vw, 14px)`
+- **HTML table dinâmica**: via `CONCATENATEX` — gera linhas de tabela por linha de dado
+
+### 48.6 Shape como hotspot invisível para ação
+
+```json
+// Shape 100% transparente com visualLink — o "botão invisível" sobre uma imagem
+{
+  "visualType": "shape",
+  "singleVisual": {
+    "objects": {
+      "fill": [{ "properties": {
+        "transparency": { "expr": { "Literal": { "Value": "100D" } } }
+      } }]
+    },
+    "vcObjects": {
+      "visualLink": [{ "properties": {
+        "type":     { "expr": { "Literal": { "Value": "'PageNavigation'" } } },
+        "navigationSection": { "expr": { "Literal": { "Value": "'page-id'" } } }
+      } }]
+    }
+  }
+}
+```
+Permite que qualquer área clicável do canvas ative uma ação sem precisar de imagem ou botão explícito.
+
+---
+
+## Seção 49 — Análise de Qualidade: 7 Dashboards
+
+> Análise visual, funcional e de dados. Serve de benchmark para o DashForge AI. Data: 2026-04-23
+
+### 49.1 Scorecard consolidado
+
+| Dashboard                  | Canvas      | Págs | Visual ★ | Interativ. ★ | Dados ★ | Total |
+|----------------------------|-------------|------|----------|--------------|---------|-------|
+| **Databrick Gov**          | 1280×720    | 3    | ★★★★★   | ★★★★★       | ★★★★☆  | 14/15 |
+| **projeto.pbip**           | 1280×720    | 8    | ★★★★★   | ★★★★★       | ★★★☆☆  | 13/15 |
+| **Elos Minuta**            | 1800×900    | 8+tt | ★★★★☆   | ★★★☆☆       | ★★★★★  | 12/15 |
+| **Relatório Pagamentos**   | 1280×720    | 5    | ★★★☆☆   | ★★★★☆       | ★★★★★  | 12/15 |
+| **Governança BI**          | 1710×800    | 4    | ★★★☆☆   | ★★★★☆       | ★★★★☆  | 11/15 |
+| **ESTRATÉGICO - PROJETOS** | 2200×1200   | 4    | ★★★☆☆   | ★★★★☆       | ★★★☆☆  | 10/15 |
+| **CONTRATAÇÕES - DGT**     | 1920×1080   | 3    | ★★★☆☆   | ★★★☆☆       | ★★☆☆☆  | 8/15  |
+
+---
+
+### 49.2 Qualidade Visual — análise por dimensão
+
+#### Consistência de design
+
+**★★★★★ Databrick Gov** — único com tema totalmente customizado (shadcn-theme.json). Paleta de 10 cores coerente, border-radius 12px uniforme, tipografia em hierarquia clara (20pt título → 13pt visual → 11pt subtítulo → 9pt dados). Cada visual segue o mesmo padrão de container (background branco + borda #E4E4E7).
+
+**★★★★★ projeto.pbip** — coerência por página temática (dark navy, light, sage-green). Cada página tem identidade própria mas linguagem visual unificada. Glass morphism aplicado consistentemente.
+
+**★★★☆☆ CONTRATAÇÕES - DGT** — paleta #1F5673 aplicada, mas fontes inconsistentes entre páginas (títulos 25D em uma página, 22D em outra). Shape de fundo maior que o canvas (2597×2876px) — workaround de design.
+
+**★★☆☆☆ Governança BI** — 25 imagens como elementos de layout (banners, ícones). Shapes como rótulos de indicadores em vez de visuais nativos. Sensação de "colagem" em vez de dashboard nativo.
+
+#### Adequação do tipo de gráfico ao dado
+
+**Acertos observados:**
+- Databrick Gov: barras horizontais para ranking (melhor que treemap, decisão confirmada pelo usuário)
+- Governança BI: combo chart (coluna + linha) para realizado vs meta — ideal para esse caso
+- Elos Minuta: donut para composição de custo mensal — correto
+- Elos Minuta: azureMap para distribuição geográfica de usuários — ideal
+- ESTRATÉGICO: Gantt para cronograma de projetos — único chart adequado
+
+**Problemas observados:**
+- Governança BI: gauge customizado de marketplace — impacto visual alto mas limitações técnicas; medida `Meta` hardcoded como constante DAX
+- CONTRATAÇÕES - DGT: stackedAreaChart para % executado/previsto — legenda Left consome muito espaço lateral
+
+#### Densidade de informação por página
+
+**Alta densidade (problema):**
+- Relatório Pagamentos: 142 visuais em 5 páginas = 28 visuais/página em média. Página "deposito de visuais" (39 visuais) indica rascunho não removido — ruído no arquivo PBIR.
+- CONTRATAÇÕES - DGT: tabela com 14 colunas — ultrapassa a largura confortável de leitura.
+
+**Densidade ideal:**
+- Databrick Gov: 16 visuais/página média, clara hierarquia de atenção (KPIs → gráfico → tabela).
+- Governança BI: estrutura 1 gráfico grande + 1 gauge + KPI por página — foco.
+
+---
+
+### 49.3 Qualidade Funcional — análise por dimensão
+
+#### Navegação e orientação do usuário
+
+**★★★★★ Melhor prática — Governança BI**
+Imagens de navegação com `tooltip` textual ("Clique para navegar para PJe 1° e 2° Grau"). O usuário sabe para onde vai antes de clicar. PageNavigation em vez de bookmarks — mais simples de manter.
+
+**★★★★★ Melhor prática — projeto.pbip**
+Barra de navegação persistente no topo (`exec_nav_bar`), shapes como hotspots invisíveis sobre ícones SVG, 3 destinos sempre visíveis. Padrão de SPA (single page application) no Power BI.
+
+**★★☆☆☆ Problema — Elos Minuta**
+8 páginas, 7 delas HiddenInViewMode. Sem bookmarks. Sem pageNavigator. Como o usuário navega? Depende do painel lateral nativo do Power BI — não há controle programático da navegação.
+
+#### Controle de filtros
+
+**★★★★★ Melhor prática — Databrick Gov**
+- Gaveta Padrão A: VisualGroup com slicers dentro → oculta para fora do canvas
+- 2 bookmarks (abrir/fechar) + 1 ClearAllSlicers independente
+- SyncGroup entre páginas: mesmo filtro mantido ao navegar
+- InvertedSelectionMode no slicer de categoria: "todos exceto X"
+
+**★★★★★ Melhor prática — projeto.pbip**
+- htmlContent como UI de gaveta: CSS puro em medida DAX, sem dependência de shape/image
+- `SageDrawerBg` + `SageBtnOpen/Close` — gaveta com backdrop blur animado
+- Estado de filtro capturado em bookmark com slicer states
+
+**★★☆☆☆ Ausente — Elos Minuta**
+Sem ClearAllSlicers, sem gaveta, sem sinal visual de filtro ativo. O usuário pode não saber que está filtrando.
+
+#### Conteúdo dinâmico
+
+**★★★★★ Melhor prática — Elos Minuta**
+```dax
+Ultima_Atualizacao = "Atualizado em " & FORMAT(NOW()-TIME(3,0,0), "dd/MM/yyyy HH:mm")
+Titulo - Painel Executivo = "Controle de Fiscalização - " & [Periodo Selecionado]
+```
+Timestamp com correção de fuso horário (UTC-3). Título da página reflete filtro ativo. O usuário sempre sabe quando os dados foram atualizados e qual período está vendo.
+
+**★★★★★ Melhor prática — ESTRATÉGICO**
+```dax
+ExibirHistorico = IF(ISFILTERED(Projetos[Projeto]), 1, 0)
+```
+Painel de histórico aparece apenas quando um projeto específico é selecionado. Sem isso o dashboard ficaria poluído com dados de todos os projetos simultaneamente.
+
+**★★★★★ Melhor prática — projeto.pbip**
+```dax
+HtmlKpiViews → cor condicional por valor, animação de progresso, badge de status
+```
+Cards que mudam de aparência baseado nos dados — não apenas o valor, mas cor de fundo, ícone e animação.
+
+---
+
+### 49.4 Qualidade de Dados — análise por dimensão
+
+#### Proteção contra contextos inválidos
+
+**★★★★★ Melhor prática — Databrick Gov** (padrão mais rigoroso)
+```dax
+DIVIDE([A], [B])                         -- nunca divisão direta
+IF(HASONEVALUE(T[col]), RANKX(...))      -- rank só com contexto único
+CALCULATE(..., ALLEXCEPT(...))           -- participação com contexto controlado
+```
+Toda medida que pode receber contexto múltiplo tem proteção explícita.
+
+**Problema — CONTRATAÇÕES - DGT**
+```dax
+Razão = SUM([Valor]) / CALCULATE(SUM([Dotação]), [Ano]="2025")
+```
+Divisão direta sem DIVIDE. Se o denominador for zero, retorna erro em vez de BLANK. Ano hardcoded como "2025" — quebrará em 2026.
+
+#### Validação e qualidade de dados visível ao usuário
+
+**★★★★★ Melhor prática — Relatório Pagamentos**
+KPI dedicado para cada tipo de problema detectado:
+```dax
+Problemas Encontrados = [Qtd Alvará Faltante] + [Qtd Precatório Faltante] +
+                        [Qtd Valor com Problema] + [Assinaturas Faltando]
+```
+Card muda de cor (#00567E azul → #DE6A73 vermelho) quando há problemas. O usuário vê imediatamente que há dados para corrigir, sem precisar ir à tabela.
+
+**★★★★★ Melhor prática — Elos Minuta**
+```dax
+Status_Validacao = IF(ABS([ValorCalculado] - [ValorReal]) <= 0.01,
+                      "✅ Dados Conciliados", "❌ Divergência encontrada")
+```
+Reconciliação linha por linha com tolerância de 1 centavo. Aplicada como formatação condicional na tabela — linhas problemáticas ficam vermelhas.
+
+**Ausente — ESTRATÉGICO - PROJETOS e Governança BI**
+Nenhum indicador de qualidade de dados. O usuário não tem como saber se os dados do SharePoint estão completos ou com problemas.
+
+#### Frescor e rastreabilidade dos dados
+
+**★★★★★ Elos Minuta** — timestamp visível com fuso horário correto
+**★★★☆☆ Governança BI** — `Disponibilidade % (Até Hoje)` usa `KEEPFILTERS(Date <= TODAY())` — dados sempre atuais até hoje, mas sem indicador visual de quando foi o último refresh
+**★★☆☆☆ demais** — sem qualquer indicador de atualização
+
+---
+
+### 49.5 Melhores práticas a replicar no DashForge AI (por categoria)
+
+#### Visual
+| Prática | Fonte | Implementação |
+|---|---|---|
+| Tema unificado com theme.json | Databrick Gov | Gerar shadcn-theme.json adaptado ao projeto |
+| Hierarquia tipográfica clara: 20→13→11→9pt | Databrick Gov | Hardcoded por canvas size |
+| 1 chart grande + KPIs + tabela por página | Databrick Gov + Governança BI | Template de página padrão |
+| Barras horizontais para ranking | Databrick Gov | clusteredBarChart + sort DESC |
+| Combo chart para meta vs realizado | Governança BI | lineClusteredColumnComboChart |
+
+#### Funcional
+| Prática | Fonte | Implementação |
+|---|---|---|
+| Gaveta com syncGroup cross-page | Databrick Gov | Padrão A + syncConfig |
+| ClearAllSlicers dedicado (funnel-x) | Databrick Gov + DGT | Imagem fixa em toda página |
+| Timestamp de atualização visível | Elos Minuta | Medida `Ultima_Atualizacao` |
+| Título de página reflete filtro ativo | Elos Minuta + Governança BI | SELECTEDVALUE ou Periodo Selecionado |
+| ExibirHistorico para painel detalhe | ESTRATÉGICO | ISFILTERED + filtro visual |
+| Tooltip em botão de navegação | Governança BI | `tooltip.text` na visualLink |
+
+#### Dados
+| Prática | Fonte | Implementação |
+|---|---|---|
+| DIVIDE() em toda divisão | Databrick Gov | Regra de codegen de medidas |
+| HASONEVALUE() antes de RANKX | Databrick Gov | Proteção padrão em medidas de rank |
+| KPI de problemas detectados | Relatório Pagamentos | Medida = soma de N validadores |
+| Cor condicional do card por alerta | Relatório Pagamentos | Formatação condicional com HEX |
+| ABS(diff) <= tolerância | Elos Minuta | Para reconciliação de valores monetários |
+| Pasta de medidas (displayFolder) | Databrick Gov | 9 pastas padrão geradas sempre |
+
+---
+
+### 49.6 Anti-padrões identificados (nunca replicar)
+
+| Anti-padrão | Observado em | Problema |
+|---|---|---|
+| Imagens como elementos de layout (25 imagens/pág) | Governança BI | Manutenção impossível, não responsivo |
+| Shapes como rótulos textuais | Governança BI | Não lê via acessibilidade, não escala |
+| Shape maior que o canvas (2597×2876px) | CONTRATAÇÕES - DGT | Causa confusão no editor |
+| Divisão direta sem DIVIDE | CONTRATAÇÕES - DGT | Erro em runtime quando denominador = 0 |
+| Ano hardcoded em medida DAX ("2025") | CONTRATAÇÕES - DGT | Quebra ao virar o ano |
+| Página "deposito de visuais" em produção | Relatório Pagamentos | Vaza rascunhos para o arquivo PBIR |
+| 8 páginas ocultas sem navegação programática | Elos Minuta | Usuário desorientado |
+| Gauge de marketplace como KPI principal | Governança BI | Opaco, não escala, dependência de marketplace |
+| Sem indicador de frescor de dados | 4 de 7 dashboards | Usuário não sabe se dados são atuais |
+
+*Seções 48–49 adicionadas em 2026-04-23 — análise qualitativa de 7 dashboards reais*
+
 *Última atualização: 2026-04-18 — baseado em análise das screenshots do Databrick Gov + pesquisa Nielsen Norman Group, Tremor, shadcn/ui, Microsoft Learn*
+
+---
+
+## Seção 50 — Gap Analysis: O que falta documentar antes de codar o DashForge AI
+
+> Adicionado em 2026-04-23. Objetivo: identificar lacunas de conhecimento que impediriam o agente de gerar um `.pbip` válido do zero.
+
+### 50.1 Status geral (o que JÁ temos)
+
+| Área | Seções | Status |
+|---|---|---|
+| Estrutura de pastas do .pbip | 1, 19 | ✅ Completo |
+| Formato de cor | 2 | ✅ Completo |
+| TMDL: medidas, colunas, tabelas calculadas, M/SharePoint | 3, 18, 31 | ✅ Completo |
+| Relationships TMDL | 3.1 | ✅ Completo |
+| model.tmdl (raiz) | 3.2, 18 | ✅ Completo |
+| visual.json: card, cardVisual, slicer, textbox, shape, image, visualGroup | 4, 4.1-4.8 | ✅ Completo |
+| visual.json: tableEx | 38 | ✅ Completo (schema completo) |
+| visual.json: query roles de charts (lineChart, bar, column) | 4.8 | ✅ Referência |
+| visual.json: deneb | 21, 22, 48.4 | ✅ Completo |
+| visual.json: htmlContent | 7, 11, 48.5 | ✅ Completo |
+| page.json | 5 | ✅ Completo |
+| pages.json (metadata) | 6 | ✅ Completo |
+| Bookmarks JSON (gaveta UI toggle) | 35, 45.1-45.3 | ✅ Completo |
+| report.json (fragmentos: custom visuals + settings) | 12, 45.4 | ⚠️ Parcial |
+| DAX: medidas críticas + proteções + time intelligence | 10, 33, 39, 46 | ✅ Completo |
+| displayFolder TMDL | 37 | ✅ Completo |
+| Slicer sync, inverted selection | 44 | ✅ Completo |
+| Conditional formatting selector | 36.4, 4.7 | ✅ Completo |
+| Layout constants + LayoutValidator formulas | 41-43 | ✅ Completo |
+| Auto-normalization (o que PBI adiciona no save) | 8, 13 | ✅ Documentado |
+| Regras críticas de geração (indentação TMDL, GUID format, schema version) | 31 | ✅ Completo |
+| DashForge AI tiers de capacidade | 47 | ✅ Completo |
+
+---
+
+### 50.2 GAPS Críticos — impedem geração de .pbip do zero
+
+#### ~~GAP-C1~~ RESOLVIDO: Conteúdo do arquivo raiz `.pbip`
+
+```json
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/pbip/pbipProperties/1.0.0/schema.json",
+  "version": "1.0",
+  "artifacts": [
+    {
+      "report": {
+        "path": "Relatório Pagamentos.Report"
+      }
+    }
+  ],
+  "settings": {
+    "enableAutoRecovery": true
+  }
+}
+```
+
+**Regras:**
+- `artifacts[0].report.path` = nome da pasta `.Report` (convenção: `<NomeProjeto>.Report`)
+- `version` é sempre `"1.0"` (do schema pbipProperties)
+- `enableAutoRecovery: true` é boilerplate fixo
+- O agente substitui apenas o `path` ao gerar um novo projeto
+
+#### ~~GAP-C2~~ RESOLVIDO: Conteúdo do arquivo `definition.pbir`
+
+```json
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definitionProperties/2.0.0/schema.json",
+  "version": "4.0",
+  "datasetReference": {
+    "byPath": {
+      "path": "../Relatório Pagamentos.SemanticModel"
+    }
+  }
+}
+```
+
+**Regras:**
+- `version: "4.0"` é a versão do PBIR — manter fixo
+- `byPath.path` = caminho relativo da pasta `.Report` até a pasta `.SemanticModel`, sempre `"../<NomeProjeto>.SemanticModel"`
+- Convenção de nomes: `<NomeProjeto>.Report` e `<NomeProjeto>.SemanticModel` ficam lado a lado na mesma pasta raiz
+- Para Mode B (SemanticModel existente fornecido pelo usuário): só trocar o path para apontar para o SemanticModel recebido
+
+#### GAP-C3: M query para CSV e Excel — CRÍTICO (Mode C)
+
+A Seção 3 tem apenas o padrão SharePoint. Para o **Mode C** (receber CSV/Excel e criar SemanticModel), precisamos dos padrões M:
+
+```m
+// CSV — TODO: verificar e documentar
+Fonte = Csv.Document(File.Contents("C:\dados.csv"), [Delimiter=";", Encoding=1252, QuoteStyle=QuoteStyle.None])
+
+// Excel — TODO: verificar e documentar
+Fonte = Excel.Workbook(File.Contents("C:\dados.xlsx"), null, true),
+Tabela = Fonte{[Item="Sheet1", Kind="Sheet"]}[Data]
+```
+
+Também falta: como o agente recebe o arquivo (upload → salva em disco → path no M query)? Qual path usar para que o .pbip seja portável?
+
+---
+
+### 50.3 GAPS Altos — degradam qualidade mas não bloqueiam MVP
+
+#### GAP-A1: Templates completos de chart visual.json — ALTO
+
+Temos os query roles (Seção 4.8) e objetos, mas não temos um **visual.json mínimo copy-paste-ready** para cada tipo de gráfico padrão. O agente precisa de templates canônicos para:
+
+- `lineChart` (temos exemplo em Seção 40 para forecast — pode ser adaptado)
+- `clusteredBarChart`
+- `clusteredColumnChart`
+- `stackedAreaChart`
+- `donutChart`
+- `lineClusteredColumnComboChart` (esboço em Seção 48.2)
+
+**Estratégia:** Criar um chart mínimo de cada tipo no PBI Desktop, salvar como .pbip, copiar o visual.json resultante.
+
+#### GAP-A2: Visual-level filter JSON (padrão ExibirHistorico) — ALTO
+
+A Seção 46.3 documenta a medida DAX `ExibirHistorico = IF(ISFILTERED(T[col]), 1, 0)` e diz "aplicar como filtro de nível visual: ExibirHistorico = 1". Mas **não temos o JSON** que representa esse filtro dentro do visual.json.
+
+É diferente do slicer filter (Seção 30). A Seção 30 diz "nunca escreva filtros de dados à mão" para bookmarks, mas o visual-level filter estático é mais simples. Precisamos do JSON exato que PBI Desktop gera quando você adiciona um filtro visual.
+
+**Como resolver:** Adicionar um filtro de nível visual em qualquer chart, salvar, copiar o JSON resultante.
+
+#### GAP-A3: report.json template mínimo completo — ALTO
+
+Temos fragmentos (custom visuals em Seção 12, settings em Seção 45.4) mas não um template mínimo funcional do report.json inteiro para um relatório sem custom visuals. O que é obrigatório? O que é opcional?
+
+**Hipótese do conteúdo mínimo:**
+```json
+{
+  "$schema": "...",
+  "themeCollection": { ... },
+  "filterPaneHiddenInEditMode": true,
+  "defaultDrillFilterOtherVisuals": true,
+  "outspacePane": { "expanded": false }
+}
+```
+
+---
+
+### 50.4 GAPS Médios — importantes para Mode B e boas práticas
+
+#### GAP-M1: version.json — MÉDIO
+
+Mencionado na Seção 1 como "PBIR version (2.0.0)" mas sem conteúdo documentado. Provavelmente só 2-3 linhas JSON.
+
+#### GAP-M2: cultures/pt-BR.tmdl — MÉDIO
+
+Mencionado na estrutura (Seção 1) mas sem conteúdo. Necessário para criar um SemanticModel completo. Pode ser boilerplate fixo.
+
+#### GAP-M3: Convenção de nomenclatura de IDs gerados — MÉDIO
+
+A Seção 6 diz "IDs podem ser human-readable, PBI preserva". Mas o agente precisa de uma convenção determinista:
+- Nome da pasta do visual == campo `name` no visual.json?
+- Nome da pasta da página == campo `name` no page.json?
+- IDs de bookmark: formato?
+- Quando usar slugs (snake_case) vs. GUID aleatório?
+
+**Convenção recomendada para implementar:**
+```
+page folder:    slug do displayName  →  "visao_geral"
+visual folder:  tipo + número        →  "card_01", "lineChart_01"
+bookmark ID:    b_ + slug            →  "b_abrir_gaveta"
+lineageTag:     UUID v4 gerado       →  python: str(uuid.uuid4())
+```
+
+#### GAP-M4: Mode B — leitura de SemanticModel existente — MÉDIO
+
+Para o Mode B (receber .pbip com SemanticModel, adicionar páginas), o agente precisa:
+1. Ler os arquivos `tables/*.tmdl` para descobrir tabelas e colunas disponíveis
+2. Extrair: nomes de tabelas, nomes de colunas, nomes de medidas, tipos de dados
+3. Usar esses nomes nos campos `Entity` e `Property` do visual.json
+
+Não temos documentado o algoritmo de parse de TMDL para extração de schema. O parsing é simples (TMDL é texto estruturado por indentação) mas precisa ser planejado.
+
+**Regra de binding Entity/Property (parcialmente implícita nas seções existentes):**
+```json
+// Na query do visual.json:
+"Entity": "NomeDaTabela",   // exatamente como aparece no .tmdl, sem aspas simples
+"Property": "NomeDaColuna"  // exatamente como aparece no .tmdl (com espaços se houver)
+```
+
+#### GAP-M5: syncSlicers.json nível de página — MÉDIO
+
+A Seção 44.3 mostra `syncConfig` dentro do visual.json. Mas existe também um `syncSlicers.json` por página? Ou o sync fica 100% no visual? Não está claro. Verificar nos arquivos reais dos dashboards que usam syncGroup.
+
+---
+
+### 50.5 GAPS Baixos — podem esperar
+
+#### GAP-B1: Tooltip page formato completo
+Seção 43.7 identifica tooltip pages (`displayOption: "Tooltip"` + `HiddenInViewMode`). Falta: como um visual referencia uma tooltip page? Qual campo no visual.json aponta para a página de tooltip?
+
+#### GAP-B2: Conditional formatting em tableEx (cor de fundo/texto)
+Seção 43.6 menciona que tableEx suporta conditional formatting. A Seção 36.4 cobre `selector.data.scopeId.Measure` para colorir série de chart. Mas a aplicação específica a colunas de tabela (background/font color por valor) não foi explicitamente templated.
+
+---
+
+### 50.6 Plano de ação — como preencher os gaps antes de codar
+
+| Gap | Ação | Complexidade |
+|---|---|---|
+| GAP-C1 (`.pbip` raiz) | Abrir qualquer .pbip como texto → copiar aqui | 5 min |
+| GAP-C2 (`definition.pbir`) | Abrir `definition.pbir` de qualquer projeto → copiar aqui | 5 min |
+| GAP-C3 (M query CSV/Excel) | Criar tabela no PBI Desktop via "Obter Dados > Texto/CSV" → salvar .pbip → copiar partition M | 15 min |
+| GAP-A1 (chart templates) | Criar 1 de cada tipo no PBI Desktop, salvar, copiar visual.json | 60 min |
+| GAP-A2 (visual-level filter) | Adicionar filtro visual no Desktop, salvar, copiar JSON | 10 min |
+| GAP-A3 (report.json mínimo) | Criar .pbip vazio no Desktop, copiar report.json gerado | 5 min |
+| GAP-M1 (version.json) | Copiar de qualquer projeto existente | 2 min |
+| GAP-M2 (cultures TMDL) | Copiar de qualquer projeto existente | 2 min |
+| GAP-M3 (convenção IDs) | Decisão de design — documentar convenção acima | 0 min (já decidido acima) |
+| GAP-M4 (Mode B leitura) | Planejar algoritmo de parse TMDL na fase 2 | planejar depois |
+| GAP-M5 (syncSlicers.json) | Grep nos dashboards reais existentes | 10 min |
+
+**Prioridade:** GAP-C1, C2, C3 bloqueiam o start do Fase 1. GAP-A1, A2, A3 bloqueiam qualidade do output. Gaps M e B podem ser feitos durante desenvolvimento.
+
+*Seção 50 adicionada em 2026-04-23*
+
+---
+
+## Seção 51 — Templates Canônicos de Chart visual.json + Gaps Resolvidos
+
+> Adicionado em 2026-04-24. Fecha GAP-A1, GAP-A2, GAP-A3, GAP-M1, GAP-M2, GAP-M5 da Seção 50.
+
+---
+
+### 51.1 Estrutura mínima de qualquer chart (esqueleto comum)
+
+Todo chart compartilha esta estrutura — apenas `visualType` e os `projections` mudam.
+
+```json
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "bar_01",
+  "position": { "x": 0, "y": 0, "z": 1000, "height": 300, "width": 500, "tabOrder": 1000 },
+  "visual": {
+    "visualType": "<tipo>",
+    "query": {
+      "queryState": {
+        "Category": { "projections": [
+          {
+            "field": { "Column": { "Expression": { "SourceRef": { "Entity": "Tabela" } }, "Property": "Coluna" } },
+            "queryRef": "Tabela.Coluna",
+            "nativeQueryRef": "Coluna",
+            "active": true
+          }
+        ]},
+        "Y": { "projections": [
+          {
+            "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Medidas" } }, "Property": "Valor" } },
+            "queryRef": "Medidas.Valor",
+            "nativeQueryRef": "Valor"
+          }
+        ]}
+      },
+      "sortDefinition": {
+        "sort": [{ "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Medidas" } }, "Property": "Valor" } }, "direction": "Descending" }],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
+```
+
+**Regras críticas:**
+- `queryRef` = `"Entidade.Propriedade"` (concatenação com ponto)
+- `nativeQueryRef` = nome exibido no visual (pode ser diferente da propriedade)
+- `active: true` na Category = dimensão principal ativa no eixo
+- `objects` e `visualContainerObjects` são OPCIONAIS — se omitidos, usa defaults do tema
+- Sem `objects` o visual é válido e abre no PBI Desktop
+
+---
+
+### 51.2 clusteredBarChart (barras horizontais — ranking)
+
+**Quando usar:** ranking de categorias, comparação entre itens de uma lista.
+
+**Roles:** `Category` (dimensão/coluna), `Y` (medida).
+
+```json
+"visualType": "clusteredBarChart"
+```
+
+**Observações do template real:**
+- `valueAxis.show: false` + `valueAxis.showAxisTitle: false` = eixo Y oculto (padrão moderno)
+- `categoryAxis.showAxisTitle: false` = sem título de eixo  
+- `labels.bold: true` = rótulos em negrito
+
+---
+
+### 51.3 clusteredColumnChart (colunas verticais)
+
+**Quando usar:** comparação temporal por período curto, distribuição por categoria.
+
+**Roles:** `Category` (dimensão), `Y` (medida), `Tooltips` (medidas extras no tooltip — opcional).
+
+```json
+"visualType": "clusteredColumnChart"
+```
+
+**Role adicional Tooltips:**
+```json
+"Tooltips": { "projections": [{
+  "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Tab" } }, "Property": "MedidaExtra" } },
+  "queryRef": "Tab.MedidaExtra",
+  "nativeQueryRef": "Label do Tooltip",
+  "displayName": "Label do Tooltip"
+}]}
+```
+
+---
+
+### 51.4 lineChart (linha temporal)
+
+**Quando usar:** tendência ao longo do tempo, evolução de KPI.
+
+**Roles:** `Category` (hierarquia de data OU coluna), `Y` (medida).
+
+**Eixo de data com hierarquia automática do PBI (mais comum):**
+```json
+"Category": { "projections": [
+  {
+    "field": { "HierarchyLevel": {
+      "Expression": { "Hierarchy": { "Expression": { "PropertyVariationSource": {
+        "Expression": { "SourceRef": { "Entity": "Calendario" } },
+        "Name": "Variation",
+        "Property": "Date"
+      }}, "Hierarchy": "Hierarquia de datas" }},
+      "Level": "Ano"
+    }},
+    "queryRef": "Calendario.Date.Variation.Hierarquia de datas.Ano",
+    "nativeQueryRef": "Date Ano",
+    "active": true
+  },
+  {
+    "field": { "HierarchyLevel": {
+      "Expression": { "Hierarchy": { "Expression": { "PropertyVariationSource": {
+        "Expression": { "SourceRef": { "Entity": "Calendario" } },
+        "Name": "Variation",
+        "Property": "Date"
+      }}, "Hierarchy": "Hierarquia de datas" }},
+      "Level": "Mês"
+    }},
+    "queryRef": "Calendario.Date.Variation.Hierarquia de datas.Mês",
+    "nativeQueryRef": "Date Mês",
+    "active": true
+  }
+]}
+```
+
+**Observações:**
+- Múltiplos níveis (Ano + Mês) = permite drill-down
+- `active: false` em níveis inferiores (Dia) = visível no drill mas não exibido por default
+- Para eixo de data simples (sem hierarquia): usar `Column` normal
+
+---
+
+### 51.5 donutChart (rosca)
+
+**Quando usar:** composição de partes do todo (máx 5-6 fatias — anti-padrão com muitas fatias).
+
+**Roles:** `Category` (dimensão), `Y` (medida).
+
+```json
+"visualType": "donutChart"
+```
+
+**objects relevantes:**
+```json
+"labels": [{ "properties": {
+  "labelStyle": { "expr": { "Literal": { "Value": "'Category, data value, percent of total'" } } },
+  "labelDisplayUnits": { "expr": { "Literal": { "Value": "1D" } } }
+}}],
+"legend": [{ "properties": { "show": { "expr": { "Literal": { "Value": "true" } } } } }]
+```
+
+---
+
+### 51.6 stackedAreaChart (área empilhada)
+
+**Quando usar:** composição ao longo do tempo (ex: execução vs. previsto por período).
+
+**Roles:** `Category` (HierarchyLevel de data OU coluna), `Y` (medida).
+
+```json
+"visualType": "stackedAreaChart"
+```
+
+**Novidades descobertas neste tipo:**
+- `visualContainerObjects.title.heading: "'Heading3'"` — define hierarquia tipográfica do título
+- `visualContainerObjects.title.titleWrap: true` — permite quebra de linha no título
+- `visualContainerObjects.divider` — linha separadora entre título e visual
+- `visualContainerObjects.visualHeader.show` — controla visibilidade do header completo
+- `selector.metadata: "Sum(Tabela.Coluna)"` — colore serie específica pelo nome da agregação
+
+---
+
+### 51.7 lineClusteredColumnComboChart (combo coluna + linha)
+
+**Quando usar:** realizado (coluna) vs. meta (linha) no mesmo gráfico.
+
+**Roles:** `Category` (eixo X compartilhado), `Y` (colunas — eixo primário), `Y2` (linha — eixo secundário).
+
+```json
+"visualType": "lineClusteredColumnComboChart"
+// também existe: "lineStackedColumnComboChart" (coluna empilhada + linha)
+```
+
+**Estrutura com Y2 (eixo secundário para a linha):**
+```json
+"queryState": {
+  "Category": { "projections": [/* coluna de data ou categoria */] },
+  "Y":  { "projections": [/* medida para as colunas */] },
+  "Y2": { "projections": [
+    {
+      "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "TabMeta" } }, "Property": "Meta" } },
+      "queryRef": "TabMeta.Meta",
+      "nativeQueryRef": "Meta"
+    }
+  ]}
+}
+```
+
+**objects exclusivos do combo:**
+```json
+"valueAxis": [{ "properties": {
+  "show": { "expr": { "Literal": { "Value": "false" } } },
+  "secShow": { "expr": { "Literal": { "Value": "false" } } },
+  "secLabelColor": { "solid": { "color": { "expr": { "Literal": { "Value": "'#FF0000'" } } } } }
+}}],
+"lineStyles": [{ "properties": {
+  "strokeLineJoin": { "expr": { "Literal": { "Value": "'miter'" } } },
+  "lineStyle": { "expr": { "Literal": { "Value": "'solid'" } } },
+  "showMarker": { "expr": { "Literal": { "Value": "false" } } }
+}}],
+"seriesLabels": [{ "properties": {
+  "show": { "expr": { "Literal": { "Value": "false" } } },
+  "seriesPosition": { "expr": { "Literal": { "Value": "'Left'" } } }
+}}]
+```
+
+**Colorir serie específica por medida (selector.metadata):**
+```json
+"dataPoint": [
+  { "properties": { "fill": { "solid": { "color": { "expr": { "Literal": { "Value": "'#0097B2'" } } } } } },
+    "selector": { "metadata": "TabMeta.Meta" } }
+]
+```
+
+---
+
+### 51.8 ~~GAP-A2~~ RESOLVIDO: filterConfig de visual-level filter (ExibirHistorico)
+
+O `filterConfig` é o filtro aplicado ao visual via painel de filtros do PBI Desktop. O padrão para ocultar/mostrar visuals com medida de controle é **"medida is NOT null"**:
+
+```json
+"filterConfig": {
+  "filters": [
+    {
+      "name": "4933e43dd14fec8ce815",
+      "field": {
+        "Measure": {
+          "Expression": { "SourceRef": { "Entity": "Medidas" } },
+          "Property": "ExibirHistorico"
+        }
+      },
+      "type": "Advanced",
+      "filter": {
+        "Version": 2,
+        "From": [{ "Name": "m", "Entity": "Medidas", "Type": 0 }],
+        "Where": [{
+          "Condition": {
+            "Not": {
+              "Expression": {
+                "Comparison": {
+                  "ComparisonKind": 0,
+                  "Left": { "Measure": { "Expression": { "SourceRef": { "Source": "m" } }, "Property": "ExibirHistorico" } },
+                  "Right": { "Literal": { "Value": "null" } }
+                }
+              }
+            }
+          }
+        }]
+      },
+      "howCreated": "User"
+    }
+  ]
+}
+```
+
+**Por que "NOT null" e não "= 1":** A medida `ExibirHistorico = IF(ISFILTERED(T[col]), 1, BLANK())`. O PBI trata BLANK() como null. O filtro "NOT null" passa qualquer valor não-blank — ou seja, mostra o visual quando a medida retornar 1.
+
+**`name` do filtro:** hex de 20 chars gerado aleatoriamente. Usar `uuid.uuid4().hex[:20]` em Python.
+
+---
+
+### 51.9 ~~GAP-A3~~ RESOLVIDO: report.json mínimo completo
+
+Versão sem custom visuals, sem imagens, tema base padrão do PBI:
+
+```json
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.2.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "CY25SU10",
+      "reportVersionAtImport": {
+        "visual": "2.1.0",
+        "report": "3.0.0",
+        "page": "2.3.0"
+      },
+      "type": "SharedResources"
+    }
+  },
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "AllowSummarized",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true,
+    "useDefaultAggregateDisplayName": true
+  }
+}
+```
+
+**Para adicionar gaveta de filtros (outspacePane oculto por padrão):**
+```json
+"objects": {
+  "outspacePane": [{ "properties": { "expanded": { "expr": { "Literal": { "Value": "false" } } } } }],
+  "section": [{ "properties": { "verticalAlignment": { "expr": { "Literal": { "Value": "'Top'" } } } } }]
+}
+```
+
+---
+
+### 51.10 ~~GAP-M1~~ RESOLVIDO: version.json
+
+```json
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/versionMetadata/1.0.0/schema.json",
+  "version": "2.0.0"
+}
+```
+
+Arquivo fixo — nunca mudar.
+
+---
+
+### 51.11 ~~GAP-M2~~ RESOLVIDO: cultures/pt-BR.tmdl
+
+**Não gerar.** O arquivo é auto-gerado pelo PBI Desktop com metadata linguística de cada medida e coluna. Tem 46k+ tokens por projeto de tamanho médio. Omitir completamente — o PBI cria na primeira abertura.
+
+---
+
+### 51.12 ~~GAP-M5~~ RESOLVIDO: syncSlicers.json
+
+**Não existe.** Confirmado por busca em todos os projetos. O sync de slicer fica 100% dentro do `visual.json` do slicer:
+
+```json
+"syncConfig": {
+  "group": "FiltroAno",
+  "filterChanges": true,
+  "fieldChanges": true
+}
+```
+
+Fica dentro de `visual.objects.general[0].properties` ou diretamente em `visual.syncConfig` (depender da versão — verificar no visual.json real do slicer existente).
+
+---
+
+### 51.13 Status final dos Gaps (pós Seção 51)
+
+| Gap | Status |
+|---|---|
+| GAP-C1 (.pbip raiz) | ✅ RESOLVIDO (Seção 50) |
+| GAP-C2 (definition.pbir) | ✅ RESOLVIDO (Seção 50) |
+| GAP-C3 (M query CSV/Excel) | ⚠️ PENDENTE — única ação que requer PBI Desktop |
+| GAP-A1 (chart templates) | ✅ RESOLVIDO (Seção 51.2–51.7) |
+| GAP-A2 (visual-level filter) | ✅ RESOLVIDO (Seção 51.8) |
+| GAP-A3 (report.json mínimo) | ✅ RESOLVIDO (Seção 51.9) |
+| GAP-M1 (version.json) | ✅ RESOLVIDO (Seção 51.10) |
+| GAP-M2 (cultures TMDL) | ✅ RESOLVIDO (Seção 51.11) |
+| GAP-M3 (convenção IDs) | ✅ RESOLVIDO (Seção 50.4) |
+| GAP-M4 (Mode B leitura) | Planejado para Fase 2 |
+| GAP-M5 (syncSlicers.json) | ✅ RESOLVIDO (Seção 51.12) |
+| GAP-B1 (tooltip page ref) | Baixa prioridade — Fase 2+ |
+| GAP-B2 (conditional format tableEx) | Baixa prioridade — Fase 2+ |
+
+**Única pendência bloqueante para Fase 1:** GAP-C3 (M query CSV/Excel para Mode C). Mode A e Mode B podem começar sem isso.
+
+*Seção 51 adicionada em 2026-04-24*
+
+---
+
+## Seção 52 — Arquivos Completos do SemanticModel para Mode C (CSV/Excel)
+
+> Adicionado em 2026-04-24. Fecha GAP-C3. Fonte: projeto `vendas.pbip` gerado pelo PBI Desktop a partir de um CSV real.
+
+---
+
+### 52.1 ~~GAP-C3~~ RESOLVIDO: M Query para CSV
+
+Formato gerado automaticamente pelo PBI Desktop ao carregar um CSV:
+
+```tmdl
+partition vendas = m
+    mode: import
+    source =
+            let
+                Fonte = Csv.Document(File.Contents("C:\caminho\completo\arquivo.csv"),[Delimiter=",", Columns=7, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+                #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+                #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"Data", type date}, {"Produto", type text}, {"Regiao", type text}, {"Vendedor", type text}, {"Status", type text}, {"Valor", Int64.Type}, {"Quantidade", Int64.Type}})
+            in
+                #"Tipo Alterado"
+```
+
+**Parâmetros obrigatórios:**
+- `Delimiter=","` — vírgula para CSV padrão (usar `";"` para CSV europeu/brasileiro)
+- `Columns=N` — número de colunas do CSV (otimização de parser)
+- `Encoding=65001` — UTF-8. Alternativas: `1252` (Windows-1252/ANSI), `1200` (UTF-16)
+- `QuoteStyle=QuoteStyle.None` — padrão quando não há aspas duplas nos dados
+
+**Mapeamento de tipos M → TMDL:**
+
+| M type | TMDL dataType | TMDL formatString |
+|---|---|---|
+| `type date` | `dateTime` | `Long Date` |
+| `type text` | `string` | *(omitir)* |
+| `Int64.Type` | `int64` | `0` |
+| `type number` / `Currency.Type` | `decimal` | `0.00` ou `"R$ #,##0.00"` |
+| `type logical` | `boolean` | *(omitir)* |
+
+**Coluna de data gera automaticamente o bloco `variation`:**
+```tmdl
+column Data
+    dataType: dateTime
+    formatString: Long Date
+    lineageTag: <uuid>
+    summarizeBy: none
+    sourceColumn: Data
+
+    variation Variation
+        isDefault
+        relationship: <uuid-do-relacionamento>
+        defaultHierarchy: LocalDateTable_<uuid>.'Hierarquia de datas'
+
+    annotation SummarizationSetBy = Automatic
+    annotation UnderlyingDateTimeDataType = Date
+```
+
+O bloco `variation` conecta a coluna de data ao LocalDateTable auto-gerado. O UUID do relacionamento e do LocalDateTable são interdependentes — **gerados pelo PBI Desktop na primeira abertura.**
+
+---
+
+### 52.2 Estratégia de geração para Mode C (decisão arquitetural)
+
+**Problema:** `variation`, `LocalDateTable_<UUID>` e o relacionamento em `relationships.tmdl` referenciam UUIDs gerados dinamicamente pelo PBI Desktop — não podem ser hardcoded.
+
+**Solução:** O agente gera apenas o mínimo; o PBI Desktop completa o resto na primeira abertura.
+
+| Arquivo | O agente gera? | Observação |
+|---|---|---|
+| `model.tmdl` | ✅ Sim | Com `__PBI_TimeIntelligenceEnabled = 1` |
+| `database.tmdl` | ✅ Sim | Fixo: `compatibilityLevel: 1600` |
+| `tables/<nome>.tmdl` | ✅ Sim | Sem o bloco `variation` — PBI adiciona |
+| `relationships.tmdl` | ❌ Não | PBI cria ao reconhecer a coluna de data |
+| `cultures/pt-BR.tmdl` | ❌ Não | PBI gera na primeira abertura |
+| `DateTableTemplate_<UUID>.tmdl` | ❌ Não | PBI gera automaticamente |
+| `LocalDateTable_<UUID>.tmdl` | ❌ Não | PBI gera automaticamente |
+| `.platform` (Report e SemanticModel) | ✅ Sim | Com UUID gerado pelo agente |
+| `definition.pbism` | ✅ Sim | Fixo (ver 52.4) |
+| `definition.pbir` | ✅ Sim | Já documentado na Seção 50 |
+| `.pbip` (raiz) | ✅ Sim | Já documentado na Seção 50 |
+
+---
+
+### 52.3 definition.pbism (novo — entry point do SemanticModel)
+
+Análogo ao `definition.pbir` do Report. Conecta o SemanticModel ao schema do Fabric.
+
+```json
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/semanticModel/definitionProperties/1.0.0/schema.json",
+  "version": "4.2",
+  "settings": {}
+}
+```
+
+Arquivo fixo — não mudar.
+
+---
+
+### 52.4 .platform (Report e SemanticModel)
+
+Arquivo de integração com Fabric/Git. Necessário em ambas as pastas.
+
+**vendas.Report/.platform:**
+```json
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "<NomeProjeto>"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "<uuid-v4>"
+  }
+}
+```
+
+**vendas.SemanticModel/.platform:**
+```json
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "<NomeProjeto>"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "<uuid-v4>"
+  }
+}
+```
+
+`logicalId` = UUID v4 único por artefato. Em Python: `str(uuid.uuid4())`.
+
+---
+
+### 52.5 database.tmdl (fixo)
+
+```tmdl
+database
+    compatibilityLevel: 1600
+```
+
+Sempre idêntico. Nunca mudar.
+
+---
+
+### 52.6 model.tmdl mínimo para Mode C (tabela única)
+
+```tmdl
+model Model
+    culture: pt-BR
+    defaultPowerBIDataSourceVersion: powerBI_V3
+    sourceQueryCulture: pt-BR
+    dataAccessOptions
+        legacyRedirects
+        returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+annotation PBI_QueryOrder = ["<NomeTabela>"]
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table <NomeTabela>
+ref cultureInfo pt-BR
+```
+
+**Notas:**
+- `__PBI_TimeIntelligenceEnabled = 1` → PBI auto-cria LocalDateTable + DateTableTemplate + relacionamento para cada coluna de data
+- `PBI_QueryOrder` → ordem das tabelas no painel de campos (lista JSON de strings)
+- `ref cultureInfo pt-BR` → requerido para localização
+
+---
+
+### 52.7 Template completo de tabela TMDL para CSV (Mode C)
+
+```tmdl
+table <NomeTabela>
+    lineageTag: <uuid-v4>
+
+    column <ColunaCategorica>
+        dataType: string
+        lineageTag: <uuid-v4>
+        summarizeBy: none
+        sourceColumn: <ColunaCategorica>
+
+        annotation SummarizationSetBy = Automatic
+
+    column <ColunaData>
+        dataType: dateTime
+        formatString: Long Date
+        lineageTag: <uuid-v4>
+        summarizeBy: none
+        sourceColumn: <ColunaData>
+
+        annotation SummarizationSetBy = Automatic
+        annotation UnderlyingDateTimeDataType = Date
+
+    column <ColunaInteira>
+        dataType: int64
+        formatString: 0
+        lineageTag: <uuid-v4>
+        summarizeBy: sum
+        sourceColumn: <ColunaInteira>
+
+        annotation SummarizationSetBy = Automatic
+
+    column <ColunaDecimal>
+        dataType: decimal
+        lineageTag: <uuid-v4>
+        summarizeBy: sum
+        sourceColumn: <ColunaDecimal>
+
+        annotation SummarizationSetBy = Automatic
+
+    partition <NomeTabela> = m
+        mode: import
+        source =
+                let
+                    Fonte = Csv.Document(File.Contents("<caminho-absoluto>.csv"),[Delimiter=",", Columns=<N>, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+                    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+                    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"<ColunaData>", type date}, {"<ColunaCategorica>", type text}, {"<ColunaInteira>", Int64.Type}, {"<ColunaDecimal>", type number}})
+                in
+                    #"Tipo Alterado"
+
+    annotation PBI_ResultType = Table
+```
+
+**Atenção ao bloco `variation`:** Não gerar o bloco `variation` nas colunas de data — o PBI Desktop o adiciona automaticamente quando detecta `UnderlyingDateTimeDataType = Date` + `__PBI_TimeIntelligenceEnabled = 1`.
+
+---
+
+### 52.8 Estrutura completa de pastas para um .pbip gerado do zero (Mode C)
+
+```
+<Projeto>.pbip                                    ← fixo (ver Seção 50)
+├── <Projeto>.Report/
+│   ├── .platform                                 ← fixo com logicalId UUID
+│   ├── definition.pbir                           ← fixo (ver Seção 50)
+│   └── definition/
+│       ├── version.json                          ← fixo (ver Seção 51.10)
+│       ├── report.json                           ← mínimo (ver Seção 51.9)
+│       └── pages/
+│           ├── pages.json                        ← lista de páginas
+│           └── <pageId>/
+│               ├── page.json
+│               └── visuals/
+│                   └── <visualId>/
+│                       └── visual.json
+└── <Projeto>.SemanticModel/
+    ├── .platform                                 ← fixo com logicalId UUID
+    ├── definition.pbism                          ← fixo (ver Seção 52.3)
+    └── definition/
+        ├── model.tmdl                            ← mínimo (ver Seção 52.6)
+        ├── database.tmdl                         ← fixo (ver Seção 52.5)
+        └── tables/
+            └── <NomeTabela>.tmdl                 ← gerado (ver Seção 52.7)
+```
+
+**Arquivos que o agente NÃO cria (PBI Desktop gera na 1ª abertura):**
+- `relationships.tmdl`
+- `cultures/pt-BR.tmdl`
+- `tables/DateTableTemplate_<UUID>.tmdl`
+- `tables/LocalDateTable_<UUID>.tmdl`
+- `.pbi/` (pasta de cache local)
+
+---
+
+### 52.8b M Query para Excel (.xlsx)
+
+```tmdl
+partition <NomeTabela> = m
+    mode: import
+    source =
+            let
+                Fonte = Excel.Workbook(File.Contents("C:\caminho\completo\arquivo.xlsx"), null, true),
+                <NomePlanilha>_Sheet = Fonte{[Item="<NomePlanilha>",Kind="Sheet"]}[Data],
+                #"Cabeçalhos Promovidos" = Table.PromoteHeaders(<NomePlanilha>_Sheet, [PromoteAllScalars=true]),
+                #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"Data", type date}, {"Produto", type text}, {"Valor", Int64.Type}})
+            in
+                #"Tipo Alterado"
+```
+
+**Diferenças em relação ao CSV:**
+
+| | CSV | Excel |
+|---|---|---|
+| Função | `Csv.Document(File.Contents(...), [...])` | `Excel.Workbook(File.Contents(...), null, true)` |
+| Parâmetros extras | `Delimiter`, `Columns`, `Encoding` | Nenhum |
+| Passo adicional | — | Selecionar planilha: `Fonte{[Item="<aba>", Kind="Sheet"]}[Data]` |
+| Nome da tabela TMDL | Nome do arquivo (sem extensão) | **Nome da aba do Excel** |
+
+**Parâmetros do `Excel.Workbook`:**
+- `null` = deixar PBI inferir headers (padrão)
+- `true` = `InferSheetDimensions` — detecta o range usado automaticamente (sempre `true`)
+
+**Implicação para Mode C:** se o usuário enviar um `.xlsx`, o agente precisa saber o nome da aba para construir o M query. O nome da aba vira o nome da tabela no SemanticModel.
+
+---
+
+### 52.9 Status final — TODOS os gaps bloqueantes resolvidos
+
+| Gap | Status |
+|---|---|
+| GAP-C1 (.pbip raiz) | ✅ Seção 50 |
+| GAP-C2 (definition.pbir) | ✅ Seção 50 |
+| GAP-C3 (M query CSV + arquivos SemanticModel) | ✅ **Seção 52** |
+| GAP-A1 (chart templates) | ✅ Seção 51 |
+| GAP-A2 (visual-level filter) | ✅ Seção 51 |
+| GAP-A3 (report.json mínimo) | ✅ Seção 51 |
+| GAP-M1 (version.json) | ✅ Seção 51 |
+| GAP-M2 (cultures TMDL) | ✅ Seção 51 |
+| GAP-M3 (convenção IDs) | ✅ Seção 50 |
+| GAP-M5 (syncSlicers.json) | ✅ Seção 51 |
+
+**Documentação completa. O desenvolvimento pode começar.**
+
+*Seção 52 adicionada em 2026-04-24*

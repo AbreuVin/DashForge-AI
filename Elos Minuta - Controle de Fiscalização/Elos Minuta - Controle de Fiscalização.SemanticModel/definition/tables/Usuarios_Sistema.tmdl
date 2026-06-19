@@ -1,0 +1,406 @@
+table Usuarios_Sistema
+	lineageTag: e8c9b700-de46-4a9e-877a-bcdb900d31d6
+
+	measure 'Titulo Usuários' =
+			
+			"Usuários do Sistema "
+		lineageTag: 69a9a33b-c4f5-43e0-a0ef-e48cc2393ad4
+
+	measure Qtde_Users = COUNTROWS(Usuarios_Sistema)
+		formatString: #,0
+		lineageTag: a8d11086-16e8-4264-b8d9-dd03fc6bf6da
+
+	measure 'Titulo Mapa' =
+			
+			"Mapa "
+		lineageTag: fe8570bd-4047-4095-bb03-afe198df9aa5
+
+	measure 'Qtde_Users Ativos' =
+			
+			CALCULATE(
+			    COUNTROWS(Usuarios_Sistema),
+			    Usuarios_Sistema[Status] = "Ativo"
+			)
+		formatString: #,0
+		lineageTag: e627ebd1-fce8-4c5a-8bc3-2e57608fe3f5
+
+	measure 'Qtde_Users Pendente' =
+			
+			CALCULATE(
+			    COUNTROWS(Usuarios_Sistema),
+			    Usuarios_Sistema[Status] = "Pendente"
+			)
+		formatString: 0
+		lineageTag: 3f28f760-f5dc-47fb-ad35-b30910305a64
+
+	measure 'Qtde_Users Inativo' =
+			
+			CALCULATE(
+			    COUNTROWS(Usuarios_Sistema),
+			    Usuarios_Sistema[Status] = "INAtivo"
+			)
+		formatString: 0
+		lineageTag: 2adcdf51-1c90-4f1f-a176-c8057368064c
+
+	measure Faixa_Usuarios =
+			
+			SWITCH(
+			    TRUE(),
+			    [Qtde_Users] <= 10, "Até 10",
+			    [Qtde_Users] <= 50, "11 a 50",
+			    [Qtde_Users] <= 100, "51 a 100",
+			    [Qtde_Users] <= 200, "101 a 200",
+			    "Acima de 200"
+			)
+		lineageTag: 4dab603c-ab69-4db9-aa56-b2faa8c3f56d
+
+	measure Total_Comarcas =
+			
+			DISTINCTCOUNT(Usuarios_Sistema[BASE AZURE - EMAILS.Comarca])
+		formatString: 0
+		lineageTag: 9d18f649-cc4a-4052-bff7-b36295960e84
+
+	measure Top_Comarca =
+			
+			VAR Top1 =
+			    TOPN(
+			        1,
+			        SUMMARIZE(
+			            Usuarios_Sistema,
+			            Usuarios_Sistema[BASE AZURE - EMAILS.Comarca],
+			            "Qtd", COUNTROWS(Usuarios_Sistema)
+			        ),
+			        [Qtd], DESC,
+			        Usuarios_Sistema[BASE AZURE - EMAILS.Comarca], ASC
+			    )
+			RETURN
+			    CONCATENATEX(
+			        Top1,
+			        Usuarios_Sistema[BASE AZURE - EMAILS.Comarca],
+			        ", "
+			    )
+		lineageTag: 3fc50da6-04d8-4c29-8d39-357c5fe25a71
+
+	measure Top_Comarca_Qtd =
+			
+			VAR Top1 =
+			    TOPN(
+			        1,
+			        SUMMARIZE(
+			            Usuarios_Sistema,
+			            Usuarios_Sistema[BASE AZURE - EMAILS.Comarca],
+			            "Qtd", COUNTROWS(Usuarios_Sistema)
+			        ),
+			        [Qtd], DESC,
+			        Usuarios_Sistema[BASE AZURE - EMAILS.Comarca], ASC
+			    )
+			RETURN
+			    MAXX(Top1, [Qtd])
+		formatString: 0
+		lineageTag: 7d4c608b-3800-4016-a2e3-a5fba510e2be
+
+	measure Top_Comarca_Card =
+			
+			VAR Top1 =
+			    TOPN(
+			        1,
+			        SUMMARIZE(
+			            Usuarios_Sistema,
+			            Usuarios_Sistema[BASE AZURE - EMAILS.Comarca],
+			            "Qtd", COUNTROWS(Usuarios_Sistema)
+			        ),
+			        [Qtd], DESC,
+			        Usuarios_Sistema[BASE AZURE - EMAILS.Comarca], ASC
+			    )
+			VAR NomeComarca =
+			    CONCATENATEX(
+			        Top1,
+			        Usuarios_Sistema[BASE AZURE - EMAILS.Comarca],
+			        ", "
+			    )
+			VAR QtdComarca =
+			    MAXX(Top1, [Qtd])
+			RETURN
+			    NomeComarca & " - " & FORMAT(QtdComarca, "#,0")
+		lineageTag: 20a6bd5c-75d3-4f7e-9f7c-053178f62609
+
+	measure Ranking_Comarca =
+			
+			VAR ComarcaAtual =
+			    SELECTEDVALUE(Usuarios_Sistema[BASE AZURE - EMAILS.Comarca])
+			RETURN
+			RANKX(
+			    ALL(Usuarios_Sistema[BASE AZURE - EMAILS.Comarca]),
+			    CALCULATE([Qtde_Users]),
+			    CALCULATE(
+			        [Qtde_Users],
+			        Usuarios_Sistema[BASE AZURE - EMAILS.Comarca] = ComarcaAtual
+			    ),
+			    DESC,
+			    DENSE
+			)
+		formatString: 0
+		lineageTag: 72a11b3d-f1d1-4f2c-bf5c-8a39c6befe26
+
+	measure Ranking_Formatado =
+			
+			FORMAT([Ranking_Comarca], "0") & "º"
+		lineageTag: ab898739-352d-4fa9-b2ba-12b1478aaa9c
+
+	column Email
+		dataType: string
+		lineageTag: f46f1461-f3ab-41f2-9fc4-6335682402f4
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nome
+		dataType: string
+		lineageTag: bcf593bb-8961-47d6-8600-226ad5d3f4d2
+		summarizeBy: none
+		sourceColumn: Nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: a501e5b1-09c0-4e76-bcef-5a84ed2ba9b4
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cadastrado
+		dataType: string
+		lineageTag: 2e139222-0b80-457a-b728-346bf4ee78fa
+		summarizeBy: none
+		sourceColumn: Cadastrado
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Autorizado Em'
+		dataType: dateTime
+		formatString: dd/mm/yyyy hh:nn
+		lineageTag: 8a1d3cf8-32ba-4e4a-a455-9139c351d39a
+		summarizeBy: none
+		sourceColumn: Autorizado Em
+
+		variation Variation
+			isDefault
+			relationship: 536b7b1a-6c13-47c4-b9b9-611d850384ab
+			defaultHierarchy: LocalDateTable_635331da-7153-4270-8efc-65013f936e45.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'Registrado Em'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: c345a95d-d192-4cfb-9b24-8a2885ea3f48
+		summarizeBy: none
+		sourceColumn: Registrado Em
+
+		variation Variation
+			isDefault
+			relationship: f65f1bb4-098b-4194-85c1-123c457cf8e5
+			defaultHierarchy: LocalDateTable_c0148919-28ed-43e3-952b-216038a73864.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Domínio_Email =
+			
+			VAR Email = LOWER ( Usuarios_Sistema[Email] )
+			RETURN
+			IF(
+			    ISBLANK(Email),
+			    "Email em branco",
+			    IF(
+			        RIGHT(Email, LEN("tjba.jus.br")) = "tjba.jus.br",
+			        "Dentro do domínio TJBA",
+			        "Fora do domínio TJBA"
+			    )
+			)
+		lineageTag: 771e6223-6111-46a0-8ade-11b446e5b2f2
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'BASE AZURE - EMAILS.userPrincipalName'
+		dataType: string
+		lineageTag: 52ddcea0-e497-41de-b78d-a9fe9b259d9b
+		summarizeBy: none
+		sourceColumn: BASE AZURE - EMAILS.userPrincipalName
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'BASE AZURE - EMAILS.displayName'
+		dataType: string
+		lineageTag: 4544488b-90fe-44d4-b1d8-73758c3d0eb7
+		summarizeBy: none
+		sourceColumn: BASE AZURE - EMAILS.displayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'BASE AZURE - EMAILS.Perfil'
+		dataType: string
+		lineageTag: 4212465d-3c6d-4139-a17d-6cfd448f46c4
+		summarizeBy: none
+		sourceColumn: BASE AZURE - EMAILS.Perfil
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'BASE AZURE - EMAILS.Comarca'
+		dataType: string
+		lineageTag: c059650f-c6f7-4d4f-b06f-9ed2c2ed2eed
+		summarizeBy: none
+		sourceColumn: BASE AZURE - EMAILS.Comarca
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'BASE AZURE - EMAILS.Vara'
+		dataType: string
+		lineageTag: 417457ef-80bf-4e62-ab11-ba5c24e43626
+		summarizeBy: none
+		sourceColumn: BASE AZURE - EMAILS.Vara
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Localização Mapa_Calc' =
+			
+			VAR c =
+			    TRIM(Usuarios_Sistema[BASE AZURE - EMAILS.Comarca])
+			RETURN
+			IF(
+			    c = "" || ISBLANK(c),
+			    BLANK(),
+			    c & ", Bahia, Brasil"
+			)
+		lineageTag: b6de3241-bb3c-49c9-879b-2e7802525883
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Usuarios_Sistema = m
+		mode: import
+		source =
+				let
+				    // ===== PARÂMETROS =====
+				    Site = "https://tjbacotec.sharepoint.com/sites/axelab-controle-elosminuta-prd",
+				    PastaAlvo = "https://tjbacotec.sharepoint.com/sites/axelab-controle-elosminuta-prd/Documentos Compartilhados/usuarios/",
+				
+				    // ===== FONTE SHAREPOINT =====
+				    Fonte = SharePoint.Files(Site, [ApiVersion = 15]),
+				
+				    // ===== FILTRA ARQUIVOS usuarios_sistema*.csv =====
+				    ArquivosFiltrados =
+				        Table.SelectRows(
+				            Fonte,
+				            each
+				                [Folder Path] = PastaAlvo
+				                and Text.Contains(Text.Lower([Name]), "usuarios_sistema")
+				                and Text.EndsWith(Text.Lower([Name]), ".csv")
+				        ),
+				
+				    // ===== PEGA O PRIMEIRO ARQUIVO ENCONTRADO =====
+				    ConteudoArquivo = ArquivosFiltrados{0}[Content],
+				
+				    #"CSV Importado" =
+				        Csv.Document(
+				            ConteudoArquivo,
+				            [Delimiter=",", Columns=6, Encoding=65001, QuoteStyle=QuoteStyle.None]
+				        ),
+				
+				    #"Cabeçalhos Promovidos" =
+				        Table.PromoteHeaders(#"CSV Importado", [PromoteAllScalars=true]),
+				
+				    #"Tipo Alterado" =
+				        Table.TransformColumnTypes(
+				            #"Cabeçalhos Promovidos",
+				            {
+				                {"Email", type text},
+				                {"Nome", type text},
+				                {"Status", type text},
+				                {"Cadastrado", type text},
+				                {"Autorizado Em", type datetime},
+				                {"Registrado Em", type text}
+				            }
+				        ),
+				
+				    #"Consultas Mescladas" =
+				        Table.NestedJoin(
+				            #"Tipo Alterado",
+				            {"Email"},
+				            #"BASE AZURE - EMAILS",
+				            {"userPrincipalName"},
+				            "BASE AZURE - EMAILS",
+				            JoinKind.LeftOuter
+				        ),
+				
+				    #"BASE AZURE - EMAILS Expandido" =
+				        Table.ExpandTableColumn(
+				            #"Consultas Mescladas",
+				            "BASE AZURE - EMAILS",
+				            {"userPrincipalName", "displayName", "Perfil", "Comarca", "Vara"},
+				            {"BASE AZURE - EMAILS.userPrincipalName", "BASE AZURE - EMAILS.displayName", "BASE AZURE - EMAILS.Perfil", "BASE AZURE - EMAILS.Comarca", "BASE AZURE - EMAILS.Vara"}
+				        ),
+				
+				    #"Valor Substituído" =
+				        Table.ReplaceValue(
+				            #"BASE AZURE - EMAILS Expandido",
+				            "-",
+				            "",
+				            Replacer.ReplaceText,
+				            {"Registrado Em"}
+				        ),
+				
+				    #"Texto Extraído Antes do Delimitador" =
+				        Table.TransformColumns(
+				            #"Valor Substituído",
+				            {{"Registrado Em", each Text.BeforeDelimiter(_, ","), type text}}
+				        ),
+				
+				    #"Tipo Alterado1" =
+				        Table.TransformColumnTypes(
+				            #"Texto Extraído Antes do Delimitador",
+				            {{"Registrado Em", type date}}
+				        ),
+				
+				    #"Colocar Cada Palavra Em Maiúscula" =
+				        Table.TransformColumns(
+				            #"Tipo Alterado1",
+				            {
+				                {"BASE AZURE - EMAILS.displayName", Text.Proper, type text},
+				                {"BASE AZURE - EMAILS.Comarca", Text.Proper, type text},
+				                {"BASE AZURE - EMAILS.Vara", Text.Proper, type text}
+				            }
+				        ),
+				
+				    #"Valor Substituído1" =
+				        Table.ReplaceValue(
+				            #"Colocar Cada Palavra Em Maiúscula",
+				            "ACTIVE",
+				            "Ativo",
+				            Replacer.ReplaceText,
+				            {"Status"}
+				        ),
+				
+				    #"Valor Substituído2" =
+				        Table.ReplaceValue(
+				            #"Valor Substituído1",
+				            "PENDING",
+				            "Pendente",
+				            Replacer.ReplaceText,
+				            {"Status"}
+				        )
+				
+				in
+				    #"Valor Substituído2"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

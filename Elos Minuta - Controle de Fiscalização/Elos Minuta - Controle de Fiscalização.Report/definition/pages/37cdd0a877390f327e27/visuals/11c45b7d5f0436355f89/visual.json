@@ -1,0 +1,381 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "11c45b7d5f0436355f89",
+  "position": {
+    "x": 32.116788321167881,
+    "y": 503.64963503649631,
+    "z": 0,
+    "height": 397.08029197080288,
+    "width": 1731.3868613138684,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medicao"
+                    }
+                  },
+                  "Property": "Nome"
+                }
+              },
+              "queryRef": "Consulta1.Nome",
+              "nativeQueryRef": "Nome"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medicao"
+                    }
+                  },
+                  "Property": "Ativado em"
+                }
+              },
+              "queryRef": "Consulta1.Ativado em",
+              "nativeQueryRef": "Ativado em"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medicao"
+                    }
+                  },
+                  "Property": "Licenças-dia"
+                }
+              },
+              "queryRef": "Sum(Consulta1.Licenças-dia)",
+              "nativeQueryRef": "Licenças-dia"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medicao"
+                    }
+                  },
+                  "Property": "Licenças-dia_calculada"
+                }
+              },
+              "queryRef": "Sum(Consulta1.Licenças-dia_calculada)",
+              "nativeQueryRef": "Licenças-dia_calculada"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medicao"
+                    }
+                  },
+                  "Property": "Licenciamento (R$)"
+                }
+              },
+              "queryRef": "Sum(Consulta1.Licenciamento (R$))",
+              "nativeQueryRef": "Licenciamento (R$)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medicao"
+                    }
+                  },
+                  "Property": "Valor_Licenca"
+                }
+              },
+              "queryRef": "Consulta1.Valor_Licenciamento",
+              "nativeQueryRef": "Valor_Licenca"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medicao"
+                    }
+                  },
+                  "Property": "Pacote (R$)"
+                }
+              },
+              "queryRef": "Sum(Consulta1.Pacote (R$))",
+              "nativeQueryRef": "Pacote (R$)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medicao"
+                    }
+                  },
+                  "Property": "Total (R$)"
+                }
+              },
+              "queryRef": "Sum(Consulta1.Total (R$))",
+              "nativeQueryRef": "Total (R$)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medicao"
+                    }
+                  },
+                  "Property": "UltimoDiaMes"
+                }
+              },
+              "queryRef": "Consulta1.UltimoDiaMes",
+              "nativeQueryRef": "UltimoDiaMes"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medicao"
+                    }
+                  },
+                  "Property": "Valor_Faixa_Licenca"
+                }
+              },
+              "queryRef": "Sum(Consulta1.Valor_Faixa)",
+              "nativeQueryRef": "Valor_Faixa_Licenca"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medicao"
+                    }
+                  },
+                  "Property": "Valor_Faixa_Licenca (medida)"
+                }
+              },
+              "queryRef": "Consulta1.Valor_Faixa (medida)",
+              "nativeQueryRef": "Valor_Faixa_Licenca (medida)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medicao"
+                    }
+                  },
+                  "Property": "Dias_Mes_Selecionado"
+                }
+              },
+              "queryRef": "Consulta1.Dias_Mes_Selecionado",
+              "nativeQueryRef": "Dias_Mes_Selecionado"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medicao"
+                    }
+                  },
+                  "Property": "Valor_Faixa_Licenca_por_Dia"
+                }
+              },
+              "queryRef": "Consulta1.Valor_Faixa_por_Dia",
+              "nativeQueryRef": "Valor_Faixa_Licenca_por_Dia"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medicao"
+                    }
+                  },
+                  "Property": "Valor_Licenca"
+                }
+              },
+              "queryRef": "Consulta1.Valor_Licenciamento",
+              "nativeQueryRef": "Valor_Licenca"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medicao"
+                    }
+                  },
+                  "Property": "Índice"
+                }
+              },
+              "queryRef": "Sum(Consulta1.Índice)",
+              "nativeQueryRef": "Índice1"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medicao"
+                    }
+                  },
+                  "Property": "Valor_Faixa_Pacote (medida)"
+                }
+              },
+              "queryRef": "Consulta1.Valor_Faixa_Pacote (medida)",
+              "nativeQueryRef": "Valor_Faixa_Pacote (medida)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medicao"
+                    }
+                  },
+                  "Property": "Valor_Faixa_Pacote_por_Dia"
+                }
+              },
+              "queryRef": "Consulta1.Valor_Faixa_Pacote_por_Dia",
+              "nativeQueryRef": "Valor_Faixa_Pacote_por_Dia"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medicao"
+                    }
+                  },
+                  "Property": "Valor_Pacote"
+                }
+              },
+              "queryRef": "Consulta1.Valor_Pacote",
+              "nativeQueryRef": "Valor_Pacote"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Medicao"
+                  }
+                },
+                "Property": "Ativado em"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "76.70515763818338D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(Consulta1.Licenças-dia_calculada)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "94.5756881506969D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Consulta1.Nome"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "72.09409009012691D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(Consulta1.Valor_Faixa)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "95.91240875912409D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Consulta1.Valor_Faixa (medida)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "81.75103549850147D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Consulta1.Dias_Mes_Selecionado"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "100.25550151506869D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Consulta1.Valor_Faixa_por_Dia"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

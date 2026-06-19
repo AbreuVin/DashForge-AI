@@ -1,0 +1,164 @@
+table 'VIEW CODES - ESTAGIÁRIOS'
+	lineageTag: 2bc440ae-f676-4b52-bc7a-9cd7d6f8b02c
+
+	column EMAIL
+		dataType: string
+		lineageTag: 438ede5d-d69c-4f02-b097-c3d35ed69a23
+		summarizeBy: none
+		sourceColumn: EMAIL
+
+		annotation SummarizationSetBy = Automatic
+
+	column NOME
+		dataType: string
+		lineageTag: 50666637-c9a8-4156-a0d9-527091284702
+		summarizeBy: none
+		sourceColumn: NOME
+
+		annotation SummarizationSetBy = Automatic
+
+	column MATRICULA
+		dataType: int64
+		formatString: 0
+		lineageTag: 2fb8709a-c8ce-4dcc-9fd3-969198e7e1d5
+		summarizeBy: sum
+		sourceColumn: MATRICULA
+
+		annotation SummarizationSetBy = Automatic
+
+	column CPF
+		dataType: int64
+		formatString: 0
+		lineageTag: a4f87960-f809-44b0-b165-d7c5fd88789d
+		summarizeBy: none
+		sourceColumn: CPF
+
+		annotation SummarizationSetBy = Automatic
+
+	column NIVEL_ESCOLARIDADE
+		dataType: string
+		lineageTag: 01e3fba7-0bf5-4871-8849-15c8ac7d0b35
+		summarizeBy: none
+		sourceColumn: NIVEL_ESCOLARIDADE
+
+		annotation SummarizationSetBy = Automatic
+
+	column COMARCA
+		dataType: string
+		lineageTag: ada0251b-9eb5-4405-9aab-961da05dbcb2
+		summarizeBy: none
+		sourceColumn: COMARCA
+
+		annotation SummarizationSetBy = Automatic
+
+	column LOTACAO
+		dataType: string
+		lineageTag: e61546a3-9117-46d7-91b2-837ef1aaf7e9
+		summarizeBy: none
+		sourceColumn: LOTACAO
+
+		annotation SummarizationSetBy = Automatic
+
+	column DESC_CURSO
+		dataType: string
+		lineageTag: 7954e89b-0a3e-46d6-be13-08389c40454c
+		summarizeBy: none
+		sourceColumn: DESC_CURSO
+
+		annotation SummarizationSetBy = Automatic
+
+	column DATA_INICIO_ESTAGIO
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e910a0b6-c39a-4b3e-9004-19e13acb1217
+		summarizeBy: none
+		sourceColumn: DATA_INICIO_ESTAGIO
+
+		variation Variation
+			isDefault
+			relationship: d54c5f83-6540-4d40-92e8-31c15c37e94c
+			defaultHierarchy: LocalDateTable_0bba94de-1ac1-4f04-9813-6886e0125a6b.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column DATA_FIM_ESTAGIO
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: bf035d21-a9c5-4868-be70-1b1ba7fbbc48
+		summarizeBy: none
+		sourceColumn: DATA_FIM_ESTAGIO
+
+		variation Variation
+			isDefault
+			relationship: 8864e054-4654-45e1-bf8b-704d4c73d634
+			defaultHierarchy: LocalDateTable_48a501d1-c672-45e2-b056-239592a52c53.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition 'VIEW CODES - ESTAGIÁRIOS' = m
+		mode: import
+		source =
+				let
+				    // ===== PARÂMETROS =====
+				    Site = "https://tjbacotec.sharepoint.com/sites/axelab-controle-elosminuta-prd",
+				    PastaAlvo = "https://tjbacotec.sharepoint.com/sites/axelab-controle-elosminuta-prd/Documentos Compartilhados/usuarios/",
+				
+				    // ===== FONTE SHAREPOINT =====
+				    Fonte = SharePoint.Files(Site, [ApiVersion = 15]),
+				
+				    // ===== FILTRA ARQUIVOS QUE CONTENHAM "VIEW CODES - ESTAGIÁRIOS" =====
+				    ArquivosFiltrados =
+				        Table.SelectRows(
+				            Fonte,
+				            each
+				                [Folder Path] = PastaAlvo
+				                and Text.Contains(Text.Upper([Name]), "VIEW CODES - ESTAGIÁRIOS")
+				                and (
+				                    Text.EndsWith(Text.Lower([Name]), ".xlsx")
+				                    or Text.EndsWith(Text.Lower([Name]), ".xls")
+				                )
+				        ),
+				
+				    // ===== PEGA O ARQUIVO MAIS RECENTE =====
+				    ArquivosOrdenados =
+				        Table.Sort(ArquivosFiltrados, {{"Date modified", Order.Descending}}),
+				
+				    ConteudoArquivo = ArquivosOrdenados{0}[Content],
+				
+				    // ===== IMPORTA O EXCEL =====
+				    #"Pasta de Trabalho Importada do Excel" =
+				        Excel.Workbook(ConteudoArquivo),
+				
+				    #"VIEW CODES_Sheet" =
+				        #"Pasta de Trabalho Importada do Excel"{[Item="VIEW CODES", Kind="Sheet"]}[Data],
+				
+				    #"Cabeçalhos Promovidos" =
+				        Table.PromoteHeaders(#"VIEW CODES_Sheet", [PromoteAllScalars=true]),
+				
+				    #"Tipo Alterado" =
+				        Table.TransformColumnTypes(
+				            #"Cabeçalhos Promovidos",
+				            {
+				                {"EMAIL", type text},
+				                {"NOME", type text},
+				                {"MATRICULA", Int64.Type},
+				                {"CPF", Int64.Type},
+				                {"NIVEL_ESCOLARIDADE", type text},
+				                {"COMARCA", type text},
+				                {"LOTACAO", type text},
+				                {"DESC_CURSO", type text},
+				                {"DATA_INICIO_ESTAGIO", type date},
+				                {"DATA_FIM_ESTAGIO", type date}
+				            }
+				        )
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

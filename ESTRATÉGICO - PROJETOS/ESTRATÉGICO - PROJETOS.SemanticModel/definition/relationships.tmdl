@@ -1,0 +1,55 @@
+relationship c13e1d13-6d6d-4c30-a94f-d340e540f6df
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Plano de Ação - Projetos DMO'.'Concluído em'
+	toColumn: LocalDateTable_7a46d81f-6715-49e2-b8a8-3c027cc9ac1d.Date
+
+relationship 1d065773-d128-4bdd-b0e5-49bb65055221
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Plano de Ação - Projetos DMO'.Modificado
+	toColumn: LocalDateTable_b8aa77b8-7c0b-45df-a3f5-feb7e490cda2.Date
+
+relationship 32be59c3-e02e-4522-96a6-c24431d5f53f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Plano de Ação - Projetos DMO'.Criado
+	toColumn: LocalDateTable_48a222ef-fa07-43ec-a0e1-ff06159c8339.Date
+
+relationship d562adda-a159-4ef8-ab87-342738d6505c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Plano de Ação - Projetos DMO'.'Início Previsto'
+	toColumn: LocalDateTable_6a5af4b6-49bc-4905-8958-a2d01e4b0610.Date
+
+relationship b86f11e7-ba03-43d4-9f8a-fa751a51f86b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Plano de Ação - Projetos DMO'.'Início Real'
+	toColumn: LocalDateTable_049b17cc-cd1c-4a53-8825-615023d7dd5d.Date
+
+relationship 1e3fc394-54d5-4038-b8fb-5bfaf8e347a9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Plano de Ação - Projetos DMO'.'Entrega Prevista'
+	toColumn: LocalDateTable_f9f741d4-3b0f-4e1c-b6b0-8c1e57dcd9e8.Date
+
+relationship dab04f2e-8c1d-4a37-83f9-31d848850c92
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Plano de Ação - Projetos DMO'.'Entrega Real'
+	toColumn: LocalDateTable_82ff9c41-5191-4383-a4ff-7a080b83f73a.Date
+
+relationship a996b27e-4c25-4520-a971-cf2cd39e4992
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Plano de Ação - Projetos DMO'.Início
+	toColumn: LocalDateTable_8e3416a6-8369-4cde-9adc-364d2df3f9e8.Date
+
+relationship fc834ad7-03cd-4670-b457-bd6053220852
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Plano de Ação - Projetos DMO'.' Término'
+	toColumn: LocalDateTable_dce8f64f-13fb-4888-904e-7c30e6b67a0a.Date
+
+relationship 838ad342-84e8-4ae9-8d32-0890dce6bf21
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Plano de Ação - Projetos DMO'.'inicio tabela'
+	toColumn: LocalDateTable_6aa58f36-512f-4570-bbb0-72193c4bec4f.Date
+
+relationship 1c2cdbff-3005-4e0e-8313-f3337c89d906
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Plano de Ação - Projetos DMO'.'termino tabela'
+	toColumn: LocalDateTable_41d32034-7215-4a72-af51-774c3210cb2d.Date
+

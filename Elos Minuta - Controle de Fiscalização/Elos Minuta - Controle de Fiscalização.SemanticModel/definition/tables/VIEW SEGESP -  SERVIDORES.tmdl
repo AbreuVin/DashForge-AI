@@ -1,0 +1,195 @@
+table 'VIEW SEGESP -  SERVIDORES'
+	lineageTag: 4a7a172a-ade4-46de-b820-e0308256355a
+
+	column MATRICULA
+		dataType: int64
+		formatString: 0
+		lineageTag: d5b0d953-6cf9-460c-a853-323bab2411af
+		summarizeBy: sum
+		sourceColumn: MATRICULA
+
+		annotation SummarizationSetBy = Automatic
+
+	column TIPO_MATRICULA
+		dataType: int64
+		formatString: 0
+		lineageTag: 3ea12af9-6d91-4606-9f44-552796ebca90
+		summarizeBy: sum
+		sourceColumn: TIPO_MATRICULA
+
+		annotation SummarizationSetBy = Automatic
+
+	column CPF
+		dataType: int64
+		formatString: 0
+		lineageTag: 849cb053-4eae-4654-bff1-c27ff73d34b9
+		summarizeBy: sum
+		sourceColumn: CPF
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID_UNIDADE
+		dataType: int64
+		formatString: 0
+		lineageTag: dca93adb-a894-4972-a349-63a8f8ef69c3
+		summarizeBy: sum
+		sourceColumn: ID_UNIDADE
+
+		annotation SummarizationSetBy = Automatic
+
+	column EMAIL_INSTITUCIONAL
+		dataType: string
+		lineageTag: 6a5069c2-69b1-40d2-a790-f4e853c0cf4d
+		summarizeBy: none
+		sourceColumn: EMAIL_INSTITUCIONAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID_TJBASEG
+		dataType: int64
+		formatString: 0
+		lineageTag: a1e92888-c058-4172-a54b-175ef7e5dab6
+		summarizeBy: sum
+		sourceColumn: ID_TJBASEG
+
+		annotation SummarizationSetBy = Automatic
+
+	column STATUS
+		dataType: string
+		lineageTag: 77a9e760-9b50-46b5-ab5a-66afef922fa9
+		summarizeBy: none
+		sourceColumn: STATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	column TIPO_SERVIDOR
+		dataType: string
+		lineageTag: 1891d265-0e9f-419d-bb65-0b4e8d663c39
+		summarizeBy: none
+		sourceColumn: TIPO_SERVIDOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column CODG_CARGO_ATUAL
+		dataType: string
+		lineageTag: e463e973-c0bc-4d64-973c-90c28f42a3be
+		summarizeBy: none
+		sourceColumn: CODG_CARGO_ATUAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column DESC_CARGO_ATUAL
+		dataType: string
+		lineageTag: b900a074-9fdb-4000-8a8a-c0d3dde12e58
+		summarizeBy: none
+		sourceColumn: DESC_CARGO_ATUAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column NOME
+		dataType: string
+		lineageTag: 0ca22b62-68f8-41bc-83a9-3dac69fbe640
+		summarizeBy: none
+		sourceColumn: NOME
+
+		annotation SummarizationSetBy = Automatic
+
+	column UNIDADE
+		dataType: string
+		lineageTag: 63b55e1a-c5cc-4124-81cd-ab3b331326dc
+		summarizeBy: none
+		sourceColumn: UNIDADE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID_COMARCA
+		dataType: int64
+		formatString: 0
+		lineageTag: 84ceb67f-4b5a-4c0d-9260-7a50271c4e16
+		summarizeBy: sum
+		sourceColumn: ID_COMARCA
+
+		annotation SummarizationSetBy = Automatic
+
+	column COMARCA
+		dataType: string
+		lineageTag: ae4d0b91-4313-491c-b7f8-b7c0d1738338
+		summarizeBy: none
+		sourceColumn: COMARCA
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'VIEW SEGESP -  SERVIDORES' = m
+		mode: import
+		source =
+				let
+				    // ===== PARÂMETROS =====
+				    Site = "https://tjbacotec.sharepoint.com/sites/axelab-controle-elosminuta-prd",
+				    PastaAlvo = "https://tjbacotec.sharepoint.com/sites/axelab-controle-elosminuta-prd/Documentos Compartilhados/usuarios/",
+				
+				    // ===== FONTE SHAREPOINT =====
+				    Fonte = SharePoint.Files(Site, [ApiVersion = 15]),
+				
+				    // ===== FILTRA ARQUIVOS QUE CONTENHAM "VIEW SEGESP -  SERVIDORES" =====
+				    ArquivosFiltrados =
+				        Table.SelectRows(
+				            Fonte,
+				            each
+				                [Folder Path] = PastaAlvo and
+				                Text.Contains(Text.Upper([Name]), "VIEW SEGESP -  SERVIDORES") and
+				                (
+				                    Text.EndsWith(Text.Lower([Name]), ".xlsx") or
+				                    Text.EndsWith(Text.Lower([Name]), ".xls")
+				                )
+				        ),
+				
+				    // ===== PEGA O ARQUIVO MAIS RECENTE =====
+				    ArquivosOrdenados =
+				        Table.Sort(ArquivosFiltrados, {{"Date modified", Order.Descending}}),
+				
+				    ConteudoArquivo = ArquivosOrdenados{0}[Content],
+				
+				    // ===== IMPORTA O EXCEL =====
+				    #"Pasta de Trabalho Importada do Excel" =
+				        Excel.Workbook(ConteudoArquivo),
+				
+				    #"VIEW SEGESP_Sheet" =
+				        #"Pasta de Trabalho Importada do Excel"{[Item="VIEW SEGESP", Kind="Sheet"]}[Data],
+				
+				    #"Cabeçalhos Promovidos" =
+				        Table.PromoteHeaders(#"VIEW SEGESP_Sheet", [PromoteAllScalars=true]),
+				
+				    #"Tipo Alterado" =
+				        Table.TransformColumnTypes(
+				            #"Cabeçalhos Promovidos",
+				            {
+				                {"MATRICULA", Int64.Type},
+				                {"TIPO_MATRICULA", Int64.Type},
+				                {"CPF", Int64.Type},
+				                {"ID_UNIDADE", Int64.Type},
+				                {"EMAIL_INSTITUCIONAL", type text},
+				                {"ID_TJBASEG", Int64.Type},
+				                {"STATUS", type text},
+				                {"TIPO_SERVIDOR", type text},
+				                {"CODG_CARGO_ATUAL", type text},
+				                {"DESC_CARGO_ATUAL", type text},
+				                {"NOME", type text},
+				                {"UNIDADE", type text},
+				                {"ID_COMARCA", Int64.Type},
+				                {"COMARCA", type text}
+				            }
+				        ),
+				
+				    #"Colocar Cada Palavra Em Maiúscula" =
+				        Table.TransformColumns(
+				            #"Tipo Alterado",
+				            {{"DESC_CARGO_ATUAL", Text.Proper, type text}}
+				        )
+				
+				in
+				    #"Colocar Cada Palavra Em Maiúscula"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,399 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "cb63e3625ca6899b78c0",
+  "position": {
+    "x": 122.5067385444744,
+    "y": 226.81940700808627,
+    "z": 0,
+    "height": 647.70889487870625,
+    "width": 1017.654986522911,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Usuarios_Sistema"
+                    }
+                  },
+                  "Property": "BASE AZURE - EMAILS.displayName"
+                }
+              },
+              "queryRef": "Usuarios_Sistema.BASE AZURE - EMAILS.displayName",
+              "nativeQueryRef": "Nome",
+              "displayName": "Nome"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Usuarios_Sistema"
+                    }
+                  },
+                  "Property": "Email"
+                }
+              },
+              "queryRef": "Usuarios_Sistema.Email",
+              "nativeQueryRef": "Email"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Usuarios_Sistema"
+                    }
+                  },
+                  "Property": "BASE AZURE - EMAILS.Perfil"
+                }
+              },
+              "queryRef": "Usuarios_Sistema.BASE AZURE - EMAILS.Perfil",
+              "nativeQueryRef": "Função",
+              "displayName": "Função"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Usuarios_Sistema"
+                    }
+                  },
+                  "Property": "BASE AZURE - EMAILS.Comarca"
+                }
+              },
+              "queryRef": "Usuarios_Sistema.BASE AZURE - EMAILS.Comarca",
+              "nativeQueryRef": "Comarca",
+              "displayName": "Comarca"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Usuarios_Sistema"
+                    }
+                  },
+                  "Property": "BASE AZURE - EMAILS.Vara"
+                }
+              },
+              "queryRef": "Usuarios_Sistema.BASE AZURE - EMAILS.Vara",
+              "nativeQueryRef": "Vara",
+              "displayName": "Vara"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Usuarios_Sistema"
+                    }
+                  },
+                  "Property": "Status"
+                }
+              },
+              "queryRef": "Usuarios_Sistema.Status",
+              "nativeQueryRef": "Status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Usuarios_Sistema"
+                    }
+                  },
+                  "Property": "Registrado Em"
+                }
+              },
+              "queryRef": "Usuarios_Sistema.Registrado Em",
+              "nativeQueryRef": "Registrado Em"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Usuarios_Sistema"
+                  }
+                },
+                "Property": "Registrado Em"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "outlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0553B2'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'wf_standard-font, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'wf_standard-font, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "216.51483673154127D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Usuarios_Sistema.BASE AZURE - EMAILS.Vara"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "154.83275449175937D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Usuarios_Sistema.BASE AZURE - EMAILS.displayName"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "189.85449092440282D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Usuarios_Sistema.Email"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "123.27554607551656D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Usuarios_Sistema.BASE AZURE - EMAILS.Comarca"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "93.85449397801115D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Usuarios_Sistema.Registrado Em"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "139.8467653737128D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Usuarios_Sistema.BASE AZURE - EMAILS.Perfil"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Minimal'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#A0D1FF'"
+                    }
+                  }
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Lista Usuários'"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,30 @@
+model Model
+	culture: pt-BR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-BR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["Plano de Ação - Projetos DMO"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table DateTableTemplate_ed2fdb96-e2fe-4f57-b500-14726561c7d4
+ref table 'Plano de Ação - Projetos DMO'
+ref table LocalDateTable_7a46d81f-6715-49e2-b8a8-3c027cc9ac1d
+ref table LocalDateTable_b8aa77b8-7c0b-45df-a3f5-feb7e490cda2
+ref table LocalDateTable_48a222ef-fa07-43ec-a0e1-ff06159c8339
+ref table LocalDateTable_6a5af4b6-49bc-4905-8958-a2d01e4b0610
+ref table LocalDateTable_049b17cc-cd1c-4a53-8825-615023d7dd5d
+ref table LocalDateTable_f9f741d4-3b0f-4e1c-b6b0-8c1e57dcd9e8
+ref table LocalDateTable_82ff9c41-5191-4383-a4ff-7a080b83f73a
+ref table LocalDateTable_8e3416a6-8369-4cde-9adc-364d2df3f9e8
+ref table LocalDateTable_dce8f64f-13fb-4888-904e-7c30e6b67a0a
+ref table LocalDateTable_6aa58f36-512f-4570-bbb0-72193c4bec4f
+ref table LocalDateTable_41d32034-7215-4a72-af51-774c3210cb2d
+
+ref cultureInfo pt-BR
+

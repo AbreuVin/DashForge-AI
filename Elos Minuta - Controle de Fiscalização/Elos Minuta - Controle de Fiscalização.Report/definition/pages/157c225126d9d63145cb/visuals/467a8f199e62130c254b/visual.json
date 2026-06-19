@@ -1,0 +1,255 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "467a8f199e62130c254b",
+  "position": {
+    "x": 10.199203187250996,
+    "y": 322.54980079681275,
+    "z": 0,
+    "height": 397.76892430278883,
+    "width": 1269.800796812749,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medicao"
+                    }
+                  },
+                  "Property": "Nome"
+                }
+              },
+              "queryRef": "Consulta1.Nome",
+              "nativeQueryRef": "Nome"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medicao"
+                    }
+                  },
+                  "Property": "Ativado em"
+                }
+              },
+              "queryRef": "Consulta1.Ativado em",
+              "nativeQueryRef": "Ativado em"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medicao"
+                    }
+                  },
+                  "Property": "Licenças-dia"
+                }
+              },
+              "queryRef": "Sum(Consulta1.Licenças-dia)",
+              "nativeQueryRef": "Licenças-dia"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medicao"
+                    }
+                  },
+                  "Property": "Licenças-dia_calculada"
+                }
+              },
+              "queryRef": "Sum(Consulta1.Licenças-dia_calculada)",
+              "nativeQueryRef": "Licenças-dia_calculada"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medicao"
+                    }
+                  },
+                  "Property": "Licenciamento (R$)"
+                }
+              },
+              "queryRef": "Sum(Consulta1.Licenciamento (R$))",
+              "nativeQueryRef": "Licenciamento (R$)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medicao"
+                    }
+                  },
+                  "Property": "Valor_Licenca"
+                }
+              },
+              "queryRef": "Consulta1.Valor_Licenciamento",
+              "nativeQueryRef": "Valor_Licenca"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medicao"
+                    }
+                  },
+                  "Property": "Valor_Faixa_Licenca_por_Dia"
+                }
+              },
+              "queryRef": "Consulta1.Valor_Faixa_Licenca_por_Dia",
+              "nativeQueryRef": "Valor_Faixa_Licenca_por_Dia"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medicao"
+                    }
+                  },
+                  "Property": "Índice"
+                }
+              },
+              "queryRef": "Sum(Consulta1.Índice)",
+              "nativeQueryRef": "Índice"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medicao"
+                    }
+                  },
+                  "Property": "Valor_Faixa_Licenca (medida)"
+                }
+              },
+              "queryRef": "Consulta1.Valor_Faixa_Licenca (medida)",
+              "nativeQueryRef": "Valor_Faixa_Licenca (medida)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medicao"
+                    }
+                  },
+                  "Property": "Pacote (R$)"
+                }
+              },
+              "queryRef": "Sum(Consulta1.Pacote (R$))",
+              "nativeQueryRef": "Pacote (R$)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medicao"
+                    }
+                  },
+                  "Property": "Valor_Pacote"
+                }
+              },
+              "queryRef": "Consulta1.Valor_Pacote",
+              "nativeQueryRef": "Valor_Pacote"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medicao"
+                    }
+                  },
+                  "Property": "Total (R$)"
+                }
+              },
+              "queryRef": "Sum(Consulta1.Total (R$))",
+              "nativeQueryRef": "Total (R$)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medicao"
+                    }
+                  },
+                  "Property": "Valor_Total"
+                }
+              },
+              "queryRef": "Consulta1.Valor_Total",
+              "nativeQueryRef": "Valor_Total"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Medicao"
+                  }
+                },
+                "Property": "Índice"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "76.70515763818338D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(Consulta1.Licenças-dia_calculada)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "141.50715070090365D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Consulta1.Nome"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

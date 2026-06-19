@@ -1,0 +1,136 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.2.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "CY25SU12",
+      "reportVersionAtImport": {
+        "visual": "2.5.0",
+        "report": "3.1.0",
+        "page": "2.3.0"
+      },
+      "type": "SharedResources"
+    }
+  },
+  "objects": {
+    "section": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "true"
+              }
+            }
+          },
+          "visible": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "resourcePackages": [
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "Captura_de_tela_2026-03-11_1603047131635368242.png",
+          "path": "Captura_de_tela_2026-03-11_1603047131635368242.png",
+          "type": "Image"
+        },
+        {
+          "name": "coin998241904738069.png",
+          "path": "coin998241904738069.png",
+          "type": "Image"
+        },
+        {
+          "name": "data-compliance7601344038933169.png",
+          "path": "data-compliance7601344038933169.png",
+          "type": "Image"
+        },
+        {
+          "name": "google-docs14401056106442434.png",
+          "path": "google-docs14401056106442434.png",
+          "type": "Image"
+        },
+        {
+          "name": "graphic8792862548037306.png",
+          "path": "graphic8792862548037306.png",
+          "type": "Image"
+        },
+        {
+          "name": "home27070463651385845.png",
+          "path": "home27070463651385845.png",
+          "type": "Image"
+        },
+        {
+          "name": "key4135046696799616.png",
+          "path": "key4135046696799616.png",
+          "type": "Image"
+        },
+        {
+          "name": "map3018535007650376.png",
+          "path": "map3018535007650376.png",
+          "type": "Image"
+        },
+        {
+          "name": "time5249396082878988.png",
+          "path": "time5249396082878988.png",
+          "type": "Image"
+        },
+        {
+          "name": "TJBA_branco@4x9193688287106082.png",
+          "path": "TJBA_branco@4x9193688287106082.png",
+          "type": "Image"
+        },
+        {
+          "name": "user_(1)26046560863529333.png",
+          "path": "user_(1)26046560863529333.png",
+          "type": "Image"
+        },
+        {
+          "name": "user14826421162321746.png",
+          "path": "user14826421162321746.png",
+          "type": "Image"
+        }
+      ]
+    },
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "CY25SU12",
+          "path": "BaseThemes/CY25SU12.json",
+          "type": "BaseTheme"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "AllowSummarized",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true,
+    "useDefaultAggregateDisplayName": true
+  }
+}

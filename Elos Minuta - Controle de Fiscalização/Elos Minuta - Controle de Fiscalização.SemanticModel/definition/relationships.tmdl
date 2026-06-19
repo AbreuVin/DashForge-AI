@@ -1,0 +1,76 @@
+relationship 2b9707cd-903b-4aee-9def-a39922a234f2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Medicao.'Ativado em'
+	toColumn: LocalDateTable_1c2b1e28-9847-4048-893d-eaaa7c987db3.Date
+
+relationship 6772b84b-7975-4ccb-9784-bb3ad3304cb4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Medicao.PrimeiroDiaMes
+	toColumn: LocalDateTable_bbb8f730-2fca-4e7d-9ccc-91c3300cb0a8.Date
+
+relationship dfc24a4c-2e66-41cc-89f1-ac1a1d3c2d03
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dCalendario.Date
+	toColumn: LocalDateTable_7f84f193-b21e-4ca3-b4bc-3e01af596516.Date
+
+relationship ba15bbd4-0bb5-429d-85df-1716e9c2ca3b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Medicao.UltimoDiaMes
+	toColumn: LocalDateTable_2d6bf3d8-b588-4925-bd07-01ba7be0fc9e.Date
+
+relationship 6a671136-1cdc-4a89-8a3e-da782af3eddd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Minuta.Mês
+	toColumn: LocalDateTable_f4c88b47-dcec-4a05-87f6-32bc5ca089e5.Date
+
+relationship 536b7b1a-6c13-47c4-b9b9-611d850384ab
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Usuarios_Sistema.'Autorizado Em'
+	toColumn: LocalDateTable_635331da-7153-4270-8efc-65013f936e45.Date
+
+relationship d8849fa9-e5d9-4b85-88a5-0ef804835acc
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'BASE AZURE - EMAILS'.'VIEW CODES - ESTAGIÁRIOS.DATA_INICIO_ESTAGIO'
+	toColumn: LocalDateTable_741e96e4-53db-4e1f-a327-fc81a333c170.Date
+
+relationship 0b359e18-c7d1-4a56-827c-5724a389556c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'BASE AZURE - EMAILS'.'VIEW CODES - ESTAGIÁRIOS.DATA_FIM_ESTAGIO'
+	toColumn: LocalDateTable_d8328024-3b74-4490-9416-6c56f948038f.Date
+
+relationship d54c5f83-6540-4d40-92e8-31c15c37e94c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'VIEW CODES - ESTAGIÁRIOS'.DATA_INICIO_ESTAGIO
+	toColumn: LocalDateTable_0bba94de-1ac1-4f04-9813-6886e0125a6b.Date
+
+relationship 8864e054-4654-45e1-bf8b-704d4c73d634
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'VIEW CODES - ESTAGIÁRIOS'.DATA_FIM_ESTAGIO
+	toColumn: LocalDateTable_48a501d1-c672-45e2-b056-239592a52c53.Date
+
+relationship AutoDetected_6383a13e-e94d-4413-8420-96f24fa7692a
+	fromColumn: 'BASE AZURE - EMAILS'.'VIEW CODES - ESTAGIÁRIOS.CPF'
+	toColumn: 'VIEW CODES - ESTAGIÁRIOS'.CPF
+
+relationship 3c319166-b12d-602a-fd4a-72bf9c42204b
+	fromColumn: 'BASE AZURE - EMAILS'.userPrincipalName
+	toColumn: Usuarios_Sistema.Email
+
+relationship f65f1bb4-098b-4194-85c1-123c457cf8e5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Usuarios_Sistema.'Registrado Em'
+	toColumn: LocalDateTable_c0148919-28ed-43e3-952b-216038a73864.Date
+
+relationship 5246d9a3-7329-47cd-9f0c-8442d5aefe13
+	joinOnDateBehavior: datePartOnly
+	fromColumn: auditoria-logs-2026-02-10.Data/Hora
+	toColumn: LocalDateTable_e690d8d6-74f5-4c45-ae21-e24d0f94d36c.Date
+
+relationship AutoDetected_66d3ca36-9f3f-4880-81ab-72266aabed5f
+	fromColumn: auditoria-logs-2026-02-10.Email
+	toColumn: Usuarios_Sistema.Email
+
+relationship dab8eebe-4c6c-47f7-8560-d34ccf875cde
+	fromColumn: Medicao.Email
+	toColumn: 'BASE AZURE - EMAILS'.userPrincipalName
+

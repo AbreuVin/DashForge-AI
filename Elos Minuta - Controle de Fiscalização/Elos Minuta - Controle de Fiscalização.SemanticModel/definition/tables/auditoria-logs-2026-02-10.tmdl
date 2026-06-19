@@ -1,0 +1,188 @@
+table auditoria-logs-2026-02-10
+	lineageTag: 047bc791-0fb5-4778-9240-7b61091d827c
+
+	column Data/Hora
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 2f8dc848-7d01-419b-871b-e4456e8a74f8
+		summarizeBy: none
+		sourceColumn: Data/Hora
+
+		variation Variation
+			isDefault
+			relationship: 5246d9a3-7329-47cd-9f0c-8442d5aefe13
+			defaultHierarchy: LocalDateTable_e690d8d6-74f5-4c45-ae21-e24d0f94d36c.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Tipo
+		dataType: string
+		lineageTag: fb360fde-1160-4229-bc8d-2c98b19e5b32
+		summarizeBy: none
+		sourceColumn: Tipo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Usuário
+		dataType: string
+		lineageTag: e25422a2-0c41-4c29-a465-cb9914bc042e
+		summarizeBy: none
+		sourceColumn: Usuário
+
+		annotation SummarizationSetBy = Automatic
+
+	column Email
+		dataType: string
+		lineageTag: 91881a9b-72f0-4f49-b1d6-b73c5c4828de
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column Metadados
+		dataType: string
+		lineageTag: cc54e40a-099d-4c3d-96df-95f47c7ba176
+		summarizeBy: none
+		sourceColumn: Metadados
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Usuarios_Sistema.BASE AZURE - EMAILS.displayName'
+		dataType: string
+		lineageTag: 7a9e5926-c991-489f-b70c-a01de7f2ebdc
+		summarizeBy: none
+		sourceColumn: Usuarios_Sistema.BASE AZURE - EMAILS.displayName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition auditoria-logs-2026-02-10 = m
+		mode: import
+		source =
+				let
+				    // ===== PARÂMETROS =====
+				    Site = "https://tjbacotec.sharepoint.com/sites/axelab-controle-elosminuta-prd",
+				    PastaAlvo = "https://tjbacotec.sharepoint.com/sites/axelab-controle-elosminuta-prd/Documentos Compartilhados/auditoria-logs/",
+				
+				    // ===== FONTE SHAREPOINT =====
+				    Fonte = SharePoint.Files(Site, [ApiVersion = 15]),
+				
+				    // ===== FILTRA ARQUIVOS QUE CONTENHAM "AUDITORIA-LOGS" =====
+				    ArquivosFiltrados =
+				        Table.SelectRows(
+				            Fonte,
+				            each
+				                [Folder Path] = PastaAlvo
+				                and Text.Contains(Text.Upper([Name]), "AUDITORIA-LOGS")
+				                and Text.EndsWith(Text.Lower([Name]), ".csv")
+				        ),
+				
+				    // ===== PEGA O ARQUIVO MAIS RECENTE =====
+				    ArquivosOrdenados =
+				        Table.Sort(ArquivosFiltrados, {{"Date modified", Order.Descending}}),
+				
+				    ConteudoArquivo = ArquivosOrdenados{0}[Content],
+				
+				    #"CSV Importado" =
+				        Csv.Document(
+				            ConteudoArquivo,
+				            [Delimiter=";", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.None]
+				        ),
+				
+				    #"Cabeçalhos Promovidos" =
+				        Table.PromoteHeaders(#"CSV Importado", [PromoteAllScalars=true]),
+				
+				    #"Tipo Alterado" =
+				        Table.TransformColumnTypes(
+				            #"Cabeçalhos Promovidos",
+				            {
+				                {"Data/Hora", type datetime},
+				                {"Tipo", type text},
+				                {"Usuário", type text},
+				                {"Email", type text},
+				                {"Metadados", type text}
+				            }
+				        ),
+				
+				    #"Colocar Cada Palavra Em Maiúscula" =
+				        Table.TransformColumns(
+				            #"Tipo Alterado",
+				            {{"Usuário", Text.Proper, type text}}
+				        ),
+				
+				    #"Valor Substituído" =
+				        Table.ReplaceValue(
+				            #"Colocar Cada Palavra Em Maiúscula",
+				            "MESSAGE",
+				            "Mensagem",
+				            Replacer.ReplaceText,
+				            {"Tipo"}
+				        ),
+				
+				    #"Valor Substituído1" =
+				        Table.ReplaceValue(
+				            #"Valor Substituído",
+				            "DOCUMENT",
+				            "Documento",
+				            Replacer.ReplaceText,
+				            {"Tipo"}
+				        ),
+				
+				    #"Valor Substituído2" =
+				        Table.ReplaceValue(
+				            #"Valor Substituído1",
+				            "CHAT",
+				            "Chat",
+				            Replacer.ReplaceText,
+				            {"Tipo"}
+				        ),
+				
+				    #"Valor Substituído3" =
+				        Table.ReplaceValue(
+				            #"Valor Substituído2",
+				            "MNI",
+				            "Mini",
+				            Replacer.ReplaceText,
+				            {"Tipo"}
+				        ),
+				
+				    #"Valor Substituído4" =
+				        Table.ReplaceValue(
+				            #"Valor Substituído3",
+				            "SUMMARY",
+				            "Resumo",
+				            Replacer.ReplaceText,
+				            {"Tipo"}
+				        ),
+				
+				    #"Tipo Alterado1" =
+				        Table.TransformColumnTypes(
+				            #"Valor Substituído4",
+				            {{"Data/Hora", type date}}
+				        ),
+				
+				    #"Consultas Mescladas" =
+				        Table.NestedJoin(
+				            #"Tipo Alterado1",
+				            {"Email"},
+				            Usuarios_Sistema,
+				            {"Email"},
+				            "Usuarios_Sistema",
+				            JoinKind.LeftOuter
+				        ),
+				
+				    #"Usuarios_Sistema Expandido" =
+				        Table.ExpandTableColumn(
+				            #"Consultas Mescladas",
+				            "Usuarios_Sistema",
+				            {"BASE AZURE - EMAILS.displayName"},
+				            {"Usuarios_Sistema.BASE AZURE - EMAILS.displayName"}
+				        )
+				in
+				    #"Usuarios_Sistema Expandido"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

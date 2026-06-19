@@ -1,0 +1,706 @@
+table Medicao
+	lineageTag: 9fb226be-ad2a-491f-b435-4c65792cd898
+
+	measure 'Valor_Faixa_Licenca (medida)' =
+			
+			SUMX(
+			    Medicao,
+			    VAR Indice = Medicao[Índice]
+			    RETURN
+			        SWITCH(
+			            TRUE(),
+			            ISBLANK(Indice), BLANK(),
+			            Indice >= 0    && Indice <= 1000, 60.00,
+			            Indice >= 1001 && Indice <= 2000, 55.00,
+			            Indice >= 2001 && Indice <= 3000, 50.00,
+			            Indice >= 3001 && Indice <= 3228, 45.00,
+			            BLANK()
+			        )
+			)
+		lineageTag: 2d7a3ee6-441f-4efa-97c0-f53a5ce61995
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Dias_Mes_Selecionado =
+			
+			VAR DataRef = MAX ( Medicao[UltimoDiaMes] )
+			RETURN
+			DAY ( EOMONTH ( DataRef, 0 ) )
+		formatString: 0
+		lineageTag: e2a9d188-03ca-4e1f-b368-e063f77b35c9
+
+	measure Valor_Faixa_Licenca_por_Dia =
+			
+			DIVIDE(
+			    [Valor_Faixa_Licenca (medida)],
+			    [Dias_Mes_Selecionado]
+			)
+		lineageTag: 6445835a-ce70-4723-b3b3-8290c023c507
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Valor_Licenca =
+			
+			SUMX(
+			    Medicao,
+			    [Valor_Faixa_Licenca_por_Dia] * Medicao[Licenças-dia_calculada]
+			)
+		formatString: "R$"#,0.00;-"R$"#,0.00;"R$"#,0.00
+		lineageTag: b108994a-50d3-4931-bd8c-898feb04f9d3
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-BR"}
+
+	measure Quantidade_User_Ativo = COUNTROWS(Medicao)
+		formatString: #,0
+		lineageTag: 33cd3130-8dc2-4321-98e8-450ca318585c
+
+	measure 'Valor_Faixa_Pacote (medida)' = 40
+		formatString: 0
+		lineageTag: 04bf9284-355b-4efe-bf16-9b59eea1df4f
+
+	measure Valor_Faixa_Pacote_por_Dia =
+			
+			DIVIDE(
+			    [Valor_Faixa_Pacote (medida)],
+			    [Dias_Mes_Selecionado]
+			)
+		lineageTag: 0e0c2f5a-6f64-4382-8647-f756f938d1d0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Valor_Pacote =
+			
+			SUMX(
+			    Medicao,
+			    [Valor_Faixa_Pacote_por_Dia] * Medicao[Licenças-dia_calculada]
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 89308df4-8f4b-434c-be70-36db872617da
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure Valor_Infra = 10000
+		formatString: #,0
+		lineageTag: 86863ef6-1780-4c7f-a12e-fb006e1029a6
+
+	measure Valor_Total_Com_Infra = ```
+			
+			SUMX(
+			    {
+			        [Valor_Licenca],
+			        [Valor_Pacote],
+			        [Valor_Infra]
+			    },
+			    COALESCE ( [Value], 0 )
+			)
+			
+			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 9cdaaff4-af12-4644-a383-565ada0b891a
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure Valor_Total = ```
+			
+			COALESCE ( [Valor_Licenca], 0 )
+			+ COALESCE ( [Valor_Pacote], 0 )
+			
+			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: a8a5511c-0816-4de2-a066-3c1050c71fcb
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure 'Periodo Selecionado' =
+			
+			VAR MinD = MIN ( Medicao[PrimeiroDiaMes] )
+			VAR MaxD = MAX ( Medicao[UltimoDiaMes] )
+			RETURN
+			IF (
+			    ISBLANK ( MinD ) || ISBLANK ( MaxD ),
+			    "Período: (sem filtro)",
+			    "Período: " & FORMAT ( MinD, "dd/mm/yyyy" ) & " a " & FORMAT ( MaxD, "dd/mm/yyyy" )
+			)
+		lineageTag: cc75f416-0196-4028-a3e2-cc1345c25f9a
+
+	measure 'Titulo - Painel Executivo' =
+			
+			"Controle de Fiscalização - " & [Periodo Selecionado]
+		lineageTag: 7b98e0ef-1d0c-43a1-9451-d14b9a26d6b0
+
+	measure 'Subtitulo - dias do mes' =
+			
+			"Número de Dias do Mês Selecionado: " & [Dias_Mes_Selecionado]
+		lineageTag: fadf25ad-3c49-4071-8f0f-e0755b9eee45
+
+	measure 'Valor_Infra R$' = 10000
+		formatString: "R$"\ #,0;-"R$"\ #,0;"R$"\ #,0
+		lineageTag: 8c9a3a0e-c486-4f87-a697-540355c3ffb9
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure Ultima_Atualizacao = ```
+			
+			"Dados atualizados em "
+			& FORMAT ( NOW() - TIME(3,0,0), "dd/MM/yyyy" )
+			& " às "
+			& FORMAT ( NOW() - TIME(3,0,0), "HH:mm" )
+			
+			```
+		lineageTag: 47fe65b6-2fde-42f3-a4e8-ddedcdb34282
+
+	measure Status_Validacao = ```
+			
+			VAR Valor1 = COALESCE([Valor_Total], 0)
+			VAR Valor2 = COALESCE(SUM(Medicao[Total (R$)]), 0)
+			VAR Diferenca = ABS(Valor1 - Valor2)
+			RETURN
+			    IF(
+			        Diferenca <= 0.01,
+			        "✅ Dados Conciliados",
+			        "❌ Divergência encontrada"
+			    )
+			
+			```
+		lineageTag: 408295a6-485e-4483-8855-13e01f95c2d9
+
+	measure 'Quantidade Máxima de Minutas' = [Quantidade_User_Ativo] * 80
+		formatString: #,0
+		lineageTag: 89cfc739-f7d5-45a0-b610-a3eed8ce25ac
+
+	measure 'Quantidade Disponível' = CALCULATE([Quantidade Máxima de Minutas] - SUM(Medicao[Minutas_Ajustado]))
+		formatString: #,0
+		lineageTag: 27185ad5-210e-4489-97d2-9b2c4ee7a739
+
+	measure 'Titulo Produtividade' =
+			
+			"Produtividade"
+		lineageTag: e6fab2fd-99ac-495a-8f4d-ff2a0016a264
+
+	measure Medida
+		lineageTag: 4a24e928-e58c-4354-8afc-4686aa9f179a
+
+		annotation 43dbc3e8-3a1c-4b6f-9923-b49ff7d6691c = True
+
+	measure Filtro_Status =
+			
+			DATATABLE(
+			    "Status", STRING,
+			    {
+			        {"✅"},
+			        {"❌"}
+			    }
+			)
+		lineageTag: 0c19edb7-df20-4742-a0fe-ba54b15953a0
+
+	column Nome
+		dataType: string
+		lineageTag: af09a285-ec61-4bed-a01d-fb77445f47bb
+		summarizeBy: none
+		sourceColumn: Nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column Email
+		dataType: string
+		lineageTag: 1d8c6d2c-8d03-4abe-9907-7df97305bc19
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ativado em'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: e8bfb1d4-9533-4c5c-9877-80d90851c193
+		summarizeBy: none
+		sourceColumn: Ativado em
+
+		variation Variation
+			isDefault
+			relationship: 2b9707cd-903b-4aee-9def-a39922a234f2
+			defaultHierarchy: LocalDateTable_1c2b1e28-9847-4048-893d-eaaa7c987db3.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Licenças-dia
+		dataType: int64
+		formatString: 0
+		lineageTag: de3b0473-0b97-4cf5-8909-c7d787b3cb8a
+		summarizeBy: sum
+		sourceColumn: Licenças-dia
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Licenças médias'
+		dataType: int64
+		formatString: 0
+		lineageTag: 499533c1-d11c-4e79-b682-fb434cdf40f9
+		summarizeBy: sum
+		sourceColumn: Licenças médias
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Licenciamento (R$)'
+		dataType: decimal
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: de131d66-c0ad-49f5-ab02-47a2718bc449
+		summarizeBy: sum
+		sourceColumn: Licenciamento (R$)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column 'Pacote (R$)'
+		dataType: decimal
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: e098edb3-1275-44b3-8a25-19831e674364
+		summarizeBy: sum
+		sourceColumn: Pacote (R$)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column 'Total (R$)'
+		dataType: decimal
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 2052aaa0-3334-45f6-8967-3638ff771b17
+		summarizeBy: sum
+		sourceColumn: Total (R$)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column UltimoDiaMes
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: c3b32ba4-3898-42b8-832c-f26fc0390f62
+		summarizeBy: none
+		sourceColumn: UltimoDiaMes
+
+		variation Variation
+			isDefault
+			relationship: ba15bbd4-0bb5-429d-85df-1716e9c2ca3b
+			defaultHierarchy: LocalDateTable_2d6bf3d8-b588-4925-bd07-01ba7be0fc9e.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Licenças-dia_calculada = ```
+			
+			VAR DataAtivacao = Medicao[Ativado em]
+			VAR UltimoDiaMes = Medicao[UltimoDiaMes]
+			VAR PrimeiroDiaMes =
+			    DATE(
+			        YEAR(UltimoDiaMes),
+			        MONTH(UltimoDiaMes),
+			        1
+			    )
+			VAR TotalDiasMes =
+			    DAY(UltimoDiaMes)
+			RETURN
+			IF(
+			    ISBLANK(DataAtivacao) || ISBLANK(UltimoDiaMes),
+			    0,
+			    IF(
+			        DataAtivacao < PrimeiroDiaMes,
+			        TotalDiasMes,
+			        DATEDIFF(
+			            DataAtivacao,
+			            UltimoDiaMes,
+			            DAY
+			        ) + 1
+			    )
+			)
+			
+			```
+		formatString: 0
+		lineageTag: e51ef854-4a43-42d1-803f-1cad48814575
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Valor_Faixa_Licenca = ```
+			
+			VAR Indice = Medicao[Índice]
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(Indice), BLANK(),
+			    Indice >= 0   && Indice <= 1000, 60.00,
+			    Indice >= 1001 && Indice <= 2000, 55.00,
+			    Indice >= 2001 && Indice <= 3000, 50.00,
+			    Indice >= 3001 && Indice <= 3228, 45.00,
+			    BLANK()
+			)
+			
+			```
+		lineageTag: 6a39c7f0-12e4-4661-8d44-f1c872fbc14b
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column PrimeiroDiaMes
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 20c0f50a-8e50-4511-98e2-73a5e61e7b0b
+		summarizeBy: none
+		sourceColumn: PrimeiroDiaMes
+
+		variation Variation
+			isDefault
+			relationship: 6772b84b-7975-4ccb-9784-bb3ad3304cb4
+			defaultHierarchy: LocalDateTable_bbb8f730-2fca-4e7d-9ccc-91c3300cb0a8.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Domínio_Email = ```
+			
+			VAR Email = LOWER ( Medicao[Email] )
+			RETURN
+			IF(
+			    ISBLANK(Email),
+			    "Email em branco",
+			    IF(
+			        RIGHT(Email, LEN("@tjba.jus.br")) = "@tjba.jus.br",
+			        "Dentro do domínio TJBA",
+			        "Fora do domínio TJBA"
+			    )
+			)
+			
+			```
+		lineageTag: 9307866a-4f89-49e4-b41f-2c2bac850c65
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mes_Ano = ```
+			
+			FORMAT ( Medicao[UltimoDiaMes], "MMMM yyyy", "pt-BR" )
+			
+			```
+		lineageTag: d0f1b4dd-129d-4429-9365-bc41e451f815
+		summarizeBy: none
+		sortByColumn: UltimoDiaMes
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Valor_Faixa_Licenca R$' = ```
+			
+			VAR Indice = Medicao[Índice]
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(Indice), BLANK(),
+			    Indice >= 0   && Indice <= 1000, 60.00,
+			    Indice >= 1001 && Indice <= 2000, 55.00,
+			    Indice >= 2001 && Indice <= 3000, 50.00,
+			    Indice >= 3001 && Indice <= 3228, 45.00,
+			    BLANK()
+			)
+			
+			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: a93a3cc1-5cc9-41dc-8807-4313911a55dc
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column Arquivo_Origem
+		dataType: string
+		lineageTag: be0de4e5-27da-408f-9f8e-0edf21b31e6a
+		summarizeBy: none
+		sourceColumn: Arquivo_Origem
+
+		annotation SummarizationSetBy = Automatic
+
+	column Índice
+		dataType: int64
+		formatString: 0
+		lineageTag: 7948fff1-4b4a-43c0-b387-c629c7d641f0
+		summarizeBy: sum
+		sourceColumn: Índice
+
+		annotation SummarizationSetBy = Automatic
+
+	column MesAno
+		dataType: string
+		lineageTag: b6a98f47-898b-4f6c-9e82-edcec1d3b748
+		summarizeBy: none
+		sourceColumn: MesAno
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Minuta.Minutas'
+		dataType: int64
+		formatString: 0
+		lineageTag: c5d11aed-b482-4c26-96a4-1dece3990622
+		summarizeBy: sum
+		sourceColumn: Minuta.Minutas
+
+		annotation SummarizationSetBy = Automatic
+
+	column Minutas_Ajustado = ```
+			
+			COALESCE ( Medicao[Minuta.Minutas], 0 )
+			
+			```
+		formatString: #,0
+		lineageTag: 06eea011-123b-45a0-baf2-9e9c081c7b34
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Usuarios_Sistema.BASE AZURE - EMAILS.displayName'
+		dataType: string
+		lineageTag: 32389a55-eb44-40e0-80e0-c8bd4d3eff59
+		summarizeBy: none
+		sourceColumn: Usuarios_Sistema.BASE AZURE - EMAILS.displayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status_Validacao_Coluna =
+			
+			VAR Indice = Medicao[Índice]
+			VAR DiasMes = DAY(EOMONTH(Medicao[UltimoDiaMes], 0))
+			
+			VAR ValorFaixaLicenca =
+			    SWITCH(
+			        TRUE(),
+			        ISBLANK(Indice), BLANK(),
+			        Indice >= 0    && Indice <= 1000, 60,
+			        Indice >= 1001 && Indice <= 2000, 55,
+			        Indice >= 2001 && Indice <= 3000, 50,
+			        Indice >= 3001 && Indice <= 3228, 45,
+			        BLANK()
+			    )
+			
+			VAR ValorLicenca =
+			    DIVIDE(ValorFaixaLicenca, DiasMes) * Medicao[Licenças-dia_calculada]
+			
+			VAR ValorPacote =
+			    DIVIDE(40, DiasMes) * Medicao[Licenças-dia_calculada]
+			
+			VAR ValorTotal =
+			    ROUND(COALESCE(ValorLicenca, 0) + COALESCE(ValorPacote, 0), 2)
+			
+			VAR TotalLinha =
+			    ROUND(Medicao[Total (R$)], 2)
+			
+			RETURN
+			    IF(
+			        ABS(ValorTotal - TotalLinha) <= 0.01,
+			        "Dados Conciliados",
+			        "Divergência encontrada"
+			    )
+		lineageTag: c4cae81d-5427-40e6-b0f3-e23924b11e3c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Medicao = m
+		mode: import
+		source =
+				let
+				    // ===== PARÂMETROS =====
+				    Site = "https://tjbacotec.sharepoint.com/sites/axelab-controle-elosminuta-prd",
+				    PastaAlvo = "https://tjbacotec.sharepoint.com/sites/axelab-controle-elosminuta-prd/Documentos Compartilhados/medicao/",
+				    Prefixo = "medicao-tjba",
+				
+				    // ===== FONTE SHAREPOINT =====
+				    Fonte = SharePoint.Files(Site, [ApiVersion = 15]),
+				
+				    // ===== FILTRA TODOS OS ARQUIVOS medicao-tjba*.csv NA PASTA =====
+				    ArquivosFiltrados =
+				        Table.SelectRows(
+				            Fonte,
+				            each
+				                [Folder Path] = PastaAlvo
+				                and Text.StartsWith([Name], Prefixo)
+				                and Text.EndsWith(Text.Lower([Name]), ".csv")
+				        ),
+				
+				    // ===== FUNÇÃO PARA TRANSFORMAR CADA CSV =====
+				    TransformarArquivo = (Conteudo as binary, NomeArquivo as text) as table =>
+				        let
+				            CSVImportado =
+				                Csv.Document(
+				                    Conteudo,
+				                    [Delimiter=";", Columns=8, Encoding=65001, QuoteStyle=QuoteStyle.None]
+				                ),
+				
+				            TipoAlterado =
+				                Table.TransformColumnTypes(
+				                    CSVImportado,
+				                    {
+				                        {"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text},
+				                        {"Column5", type text}, {"Column6", type text}, {"Column7", type text}, {"Column8", type text}
+				                    }
+				                ),
+				
+				            // --- captura "Período" dentro do PRÓPRIO arquivo ---
+				            PeriodoTexto =
+				                try Table.SelectRows(TipoAlterado, each [Column1] = "Período"){0}[Column2] otherwise null,
+				
+				            UltimoDiaMes =
+				                if PeriodoTexto = null then null
+				                else
+				                    let
+				                        Partes = Text.Split(PeriodoTexto, " a "),
+				                        DataFimTexto = Text.Trim(Partes{1})
+				                    in
+				                        Date.FromText(DataFimTexto, "pt-BR"),
+				
+				            // --- remove cabeçalho fixo do arquivo ---
+				            LinhasSuperioresRemovidas = Table.Skip(TipoAlterado, 27),
+				            CabecalhosPromovidos = Table.PromoteHeaders(LinhasSuperioresRemovidas, [PromoteAllScalars=true]),
+				
+				            // --- tipagem conforme seu layout ---
+				            TipoAlterado1 =
+				                Table.TransformColumnTypes(
+				                    CabecalhosPromovidos,
+				                    {
+				                        {"Nome", type text},
+				                        {"Email", type text},
+				                        {"Ativado em", type date},
+				                        {"Licenças-dia", Int64.Type},
+				                        {"Licenças médias", Int64.Type},
+				                        {"Licenciamento (R$)", Currency.Type},
+				                        {"Pacote (R$)", Currency.Type},
+				                        {"Total (R$)", Currency.Type}
+				                    }
+				                ),
+				
+				            // --- adiciona datas de competência ---
+				            UltimoDiaMesAdicionado =
+				                Table.AddColumn(TipoAlterado1, "UltimoDiaMes", each UltimoDiaMes, type date),
+				
+				            PrimeiroDiaMesAdicionado =
+				                Table.AddColumn(
+				                    UltimoDiaMesAdicionado,
+				                    "PrimeiroDiaMes",
+				                    each Date.StartOfMonth([UltimoDiaMes]),
+				                    type date
+				                ),
+				
+				            // --- ajustes finais de tipos monetários ---
+				            TipoAlterado2 =
+				                Table.TransformColumnTypes(
+				                    PrimeiroDiaMesAdicionado,
+				                    {
+				                        {"Licenciamento (R$)", Currency.Type},
+				                        {"Pacote (R$)", Currency.Type},
+				                        {"Total (R$)", Currency.Type}
+				                    }
+				                ),
+				
+				            // --- rastreio do arquivo de origem ---
+				            ComArquivoOrigem =
+				                Table.AddColumn(TipoAlterado2, "Arquivo_Origem", each NomeArquivo, type text)
+				
+				        in
+				            ComArquivoOrigem,
+				
+				    // ===== APLICA A FUNÇÃO EM CADA ARQUIVO E CONSOLIDA =====
+				    AdicionarTabelas =
+				        Table.AddColumn(
+				            ArquivosFiltrados,
+				            "Tabela",
+				            each TransformarArquivo([Content], [Name]),
+				            type table
+				        ),
+				
+				    Consolidado = Table.Combine(AdicionarTabelas[Tabela]),
+				
+				    // ===== PADRONIZA NOME (Primeira letra maiúscula) =====
+				    NomeCapitalizado =
+				        Table.TransformColumns(
+				            Consolidado,
+				            {{"Nome", each Text.Proper(Text.Lower(_)), type text}}
+				        ),
+				
+				    // ===== ORDENA PARA O ÍNDICE FICAR CONSISTENTE (POR ATIVADO EM) =====
+				    Ordenado =
+				        Table.Sort(
+				            NomeCapitalizado,
+				            {
+				                {"Arquivo_Origem", Order.Ascending},
+				                {"Ativado em", Order.Ascending},
+				                {"Nome", Order.Ascending},
+				                {"Email", Order.Ascending}
+				            }
+				        ),
+				
+				    // ===== ÍNDICE QUE REINICIA POR ARQUIVO =====
+				    Agrupado =
+				        Table.Group(
+				            Ordenado,
+				            {"Arquivo_Origem"},
+				            {
+				                {
+				                    "Dados",
+				                    (t as table) => Table.AddIndexColumn(t, "Índice_Arquivo", 1, 1, Int64.Type),
+				                    type table
+				                }
+				            }
+				        ),
+				
+				    // pega as colunas internas (agora inclui Índice_Arquivo)
+				    ColunasDados =
+				        if Table.RowCount(Agrupado) = 0
+				        then {}
+				        else Table.ColumnNames(Agrupado{0}[Dados]),
+				
+				    // não expande Arquivo_Origem de novo (já é chave do grupo)
+				    ColunasParaExpandir = List.RemoveItems(ColunasDados, {"Arquivo_Origem"}),
+				
+				    Expandido =
+				        Table.ExpandTableColumn(
+				            Agrupado,
+				            "Dados",
+				            ColunasParaExpandir,
+				            ColunasParaExpandir
+				        ),
+				
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Expandido,{{"Índice_Arquivo", Int64.Type}}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Tipo Alterado",{{"Índice_Arquivo", "Índice"}}),
+				    #"Tipo Alterado1" =
+				        Table.TransformColumnTypes(
+				            #"Colunas Renomeadas",
+				            {
+				                {"Nome", type text},
+				                {"Email", type text},
+				                {"Ativado em", type date},
+				                {"Licenças-dia", Int64.Type},
+				                {"Licenças médias", Int64.Type},
+				                {"Licenciamento (R$)", Currency.Type},
+				                {"Pacote (R$)", Currency.Type},
+				                {"Total (R$)", Currency.Type},
+				                {"UltimoDiaMes", type date},
+				                {"PrimeiroDiaMes", type date}
+				            }
+				        ),
+				    #"Texto Inserido Após o Delimitador" = Table.AddColumn(#"Tipo Alterado1", "MesAno", each Text.AfterDelimiter(Text.From([UltimoDiaMes], "pt-BR"), "/"), type text),
+				    #"Consultas Mescladas" = Table.NestedJoin(#"Texto Inserido Após o Delimitador", {"Email", "MesAno"}, Minuta, {"Email", "MesAno"}, "Minuta", JoinKind.LeftOuter),
+				    #"Minuta Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas", "Minuta", {"Minutas"}, {"Minuta.Minutas"}),
+				    #"Consultas Mescladas1" = Table.NestedJoin(#"Minuta Expandido", {"Email"}, Usuarios_Sistema, {"Email"}, "Usuarios_Sistema", JoinKind.LeftOuter),
+				    #"Usuarios_Sistema Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas1", "Usuarios_Sistema", {"BASE AZURE - EMAILS.displayName"}, {"Usuarios_Sistema.BASE AZURE - EMAILS.displayName"})
+				in
+				    #"Usuarios_Sistema Expandido"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

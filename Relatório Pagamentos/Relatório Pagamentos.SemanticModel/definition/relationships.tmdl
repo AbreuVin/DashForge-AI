@@ -1,0 +1,20 @@
+relationship 967e6858-3ccb-4c1a-8f78-a8a2c224045b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Tabela Geral Precatórios'.'Data da Assinatura'
+	toColumn: LocalDateTable_4742f8fc-dbbb-4f32-bc14-90c9301697b2.Date
+
+relationship 57f5f2d3-0ca7-472d-b760-4a2996fb02a5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Tabela Geral Precatórios'.'Data Alvará'
+	toColumn: LocalDateTable_80b5c2b1-8609-4104-ac7e-2277aaf04420.Date
+
+relationship 613d3bbd-6c60-4188-a5eb-515f78ca3fb1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Tabela Geral Precatórios'.'Data Envio p/ Assinatura'
+	toColumn: LocalDateTable_9548bd90-aae2-405f-95ab-ac2473aefefb.Date
+
+relationship c611912e-fd53-43ba-9e1b-cf3d15ea8307
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Tabela Geral Precatórios'.'Data de Nascimento'
+	toColumn: LocalDateTable_e981de6e-5e70-46af-b69c-857e51dfa07e.Date
+

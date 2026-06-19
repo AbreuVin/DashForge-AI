@@ -1,0 +1,39 @@
+model Model
+	culture: pt-BR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-BR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["Medicao","Minuta","Usuarios_Sistema","BASE AZURE - EMAILS","VIEW CODES - ESTAGIÁRIOS","VIEW SEGESP -  SERVIDORES","auditoria-logs-2026-02-10","Legenda Mapa"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Medicao
+ref table DateTableTemplate_e0f156f7-0dd5-4785-9f61-cf400080ea23
+ref table LocalDateTable_1c2b1e28-9847-4048-893d-eaaa7c987db3
+ref table LocalDateTable_bbb8f730-2fca-4e7d-9ccc-91c3300cb0a8
+ref table dCalendario
+ref table LocalDateTable_7f84f193-b21e-4ca3-b4bc-3e01af596516
+ref table Minuta
+ref table LocalDateTable_2d6bf3d8-b588-4925-bd07-01ba7be0fc9e
+ref table LocalDateTable_f4c88b47-dcec-4a05-87f6-32bc5ca089e5
+ref table Usuarios_Sistema
+ref table LocalDateTable_635331da-7153-4270-8efc-65013f936e45
+ref table 'BASE AZURE - EMAILS'
+ref table LocalDateTable_741e96e4-53db-4e1f-a327-fc81a333c170
+ref table LocalDateTable_d8328024-3b74-4490-9416-6c56f948038f
+ref table 'VIEW CODES - ESTAGIÁRIOS'
+ref table LocalDateTable_0bba94de-1ac1-4f04-9813-6886e0125a6b
+ref table LocalDateTable_48a501d1-c672-45e2-b056-239592a52c53
+ref table 'VIEW SEGESP -  SERVIDORES'
+ref table LocalDateTable_c0148919-28ed-43e3-952b-216038a73864
+ref table auditoria-logs-2026-02-10
+ref table LocalDateTable_e690d8d6-74f5-4c45-ae21-e24d0f94d36c
+ref table 'Legenda Mapa'
+
+ref cultureInfo pt-BR
+

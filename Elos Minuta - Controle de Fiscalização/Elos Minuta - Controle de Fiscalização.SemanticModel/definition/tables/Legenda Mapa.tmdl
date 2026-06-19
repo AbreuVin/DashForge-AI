@@ -1,0 +1,39 @@
+table 'Legenda Mapa'
+	lineageTag: 86a6754d-f223-4440-aceb-6ff9569c69d0
+
+	column Ordem
+		dataType: int64
+		formatString: 0
+		lineageTag: de75a8da-a9d9-4bab-af5a-760198c82652
+		summarizeBy: sum
+		sourceColumn: Ordem
+
+		annotation SummarizationSetBy = Automatic
+
+	column Faixa
+		dataType: string
+		lineageTag: c3d07222-b84c-4169-9735-c29a71ac9f86
+		summarizeBy: none
+		sourceColumn: Faixa
+
+		annotation SummarizationSetBy = Automatic
+
+	column CorHex
+		dataType: string
+		lineageTag: 729bd69c-e7a6-4669-80bb-17f7b098c0ed
+		summarizeBy: none
+		sourceColumn: CorHex
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Legenda Mapa' = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("Nc07DoAgEATQq2zWloIF8VNCYC9BKIxaWNh5Kc/hxYQ1djN5mUzOSKjQX88NpGvq0sTEHovKaGonggWcSOA4sRGxtbsmpIVG6+c0CPVtpJuZz0waOLCYa1frcS6w7T/rYONMWMoL", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Ordem = _t, Faixa = _t, CorHex = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Ordem", Int64.Type}, {"Faixa", type text}, {"CorHex", type text}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_ResultType = Table
+

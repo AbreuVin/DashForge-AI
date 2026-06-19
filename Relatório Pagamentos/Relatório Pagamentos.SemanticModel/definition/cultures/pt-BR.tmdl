@@ -1,0 +1,5054 @@
+cultureInfo pt-BR
+
+	linguisticMetadata =
+			{
+			  "Version": "4.1.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "medida": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "medida": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "medida.valor_pago": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Valor Pago"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "valor pago": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "pago": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "Valor": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medida.quantidade_alvarás": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Quantidade Alvarás"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "quantidade alvarás": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Quantidade de Alvarás": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medida.quantidade_precatórios": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Quantidade Precatórios"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "quantidade precatórios": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Quantidade de Precatórios": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medida.assinaturas_faltando": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Assinaturas Faltando"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "assinaturas faltando": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "medida.filtro_linhas_com_problema": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Filtro Linhas com Problema"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "filtro linhas com problema": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "medida.qtd_valor_com_problema": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Qtd Valor com Problema"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "qtd valor com problema": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "medida.qtd_alvará_faltante": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Qtd Alvará Faltante"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "qtd alvará faltante": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "medida.qtd_precatório_faltante": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Qtd Precatório Faltante"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "qtd precatório faltante": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "medida.problemas_encontrados": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Problemas_Encontrados-reservaless"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "problemas encontrados": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "tabela geral precatório": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório.alvará": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "ConceptualProperty": "Alvará"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "alvará": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório.precatório": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "ConceptualProperty": "Precatório"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "precatório": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Número Precatório": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório.data_da_assinatura": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "ConceptualProperty": "Data da Assinatura"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "data da assinatura": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "date": {
+			            "State": "Generated",
+			            "Weight": 0.7
+			          }
+			        },
+			        {
+			          "information da assinatura": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "fact da assinatura": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "info da assinatura": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "statistic da assinatura": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "document da assinatura": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "figure da assinatura": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "record da assinatura": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "tabela_geral_precatório.data_da_assinatura.hierarquia_de_data": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "VariationSource": "Data da Assinatura",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hierarquia de datas"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "hierarquia de data": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "hierarquia de information": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "hierarquia de fact": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "hierarquia de info": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "hierarquia de statistic": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "hierarquia de document": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "hierarquia de figure": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "hierarquia de record": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório.data_da_assinatura.ano": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "VariationSource": "Data da Assinatura",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hierarquia de datas",
+			          "HierarchyLevel": "Ano"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "ano": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "data da assinatura ano": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "information da assinatura ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "fact da assinatura ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "info da assinatura ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "statistic da assinatura ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "document da assinatura ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        },
+			        {
+			          "figure da assinatura ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        },
+			        {
+			          "record da assinatura ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório.data_da_assinatura.trimestre": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "VariationSource": "Data da Assinatura",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hierarquia de datas",
+			          "HierarchyLevel": "Trimestre"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "trimestre": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "data da assinatura trimestre": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "information da assinatura trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "fact da assinatura trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "info da assinatura trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "statistic da assinatura trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "document da assinatura trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        },
+			        {
+			          "figure da assinatura trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        },
+			        {
+			          "record da assinatura trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório.data_da_assinatura.mê": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "VariationSource": "Data da Assinatura",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hierarquia de datas",
+			          "HierarchyLevel": "Mês"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "mê": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "data da assinatura mê": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "information da assinatura mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "fact da assinatura mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "info da assinatura mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "statistic da assinatura mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "document da assinatura mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        },
+			        {
+			          "figure da assinatura mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        },
+			        {
+			          "record da assinatura mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório.data_da_assinatura.dia": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "VariationSource": "Data da Assinatura",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hierarquia de datas",
+			          "HierarchyLevel": "Dia"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "dia": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "data da assinatura dia": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "information da assinatura dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "fact da assinatura dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "info da assinatura dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "statistic da assinatura dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "document da assinatura dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        },
+			        {
+			          "figure da assinatura dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        },
+			        {
+			          "record da assinatura dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório.valor_bruto": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "ConceptualProperty": "Valor Bruto"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "valor bruto": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Valor": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório.situação": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "ConceptualProperty": "Situação"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "situação": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório.link_sharepoint": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "ConceptualProperty": "Link Sharepoint"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "link sharepoint": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "sharepoint": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório.setor": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "ConceptualProperty": "Setor"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "setor": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório.data_alvará": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "ConceptualProperty": "Data Alvará"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "data alvará": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "date": {
+			            "State": "Generated",
+			            "Weight": 0.7
+			          }
+			        },
+			        {
+			          "information alvará": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "fact alvará": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "info alvará": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "statistic alvará": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "document alvará": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "figure alvará": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "record alvará": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "tabela_geral_precatório.data_alvará.hierarquia_de_data": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "VariationSource": "Data Alvará",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hierarquia de datas"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "hierarquia de data": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "hierarquia de information": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "hierarquia de fact": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "hierarquia de info": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "hierarquia de statistic": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "hierarquia de document": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "hierarquia de figure": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "hierarquia de record": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório.data_alvará.ano": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "VariationSource": "Data Alvará",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hierarquia de datas",
+			          "HierarchyLevel": "Ano"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "ano": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "data alvará ano": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "information alvará ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "fact alvará ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "info alvará ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "statistic alvará ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "document alvará ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "figure alvará ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "record alvará ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório.data_alvará.trimestre": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "VariationSource": "Data Alvará",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hierarquia de datas",
+			          "HierarchyLevel": "Trimestre"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "trimestre": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "data alvará trimestre": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "information alvará trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "fact alvará trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "info alvará trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "statistic alvará trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "document alvará trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "figure alvará trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "record alvará trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório.data_alvará.mê": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "VariationSource": "Data Alvará",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hierarquia de datas",
+			          "HierarchyLevel": "Mês"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "mê": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "data alvará mê": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "information alvará mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "fact alvará mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "info alvará mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "statistic alvará mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "document alvará mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "figure alvará mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "record alvará mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório.data_alvará.dia": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "VariationSource": "Data Alvará",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hierarquia de datas",
+			          "HierarchyLevel": "Dia"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "dia": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "data alvará dia": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "information alvará dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "fact alvará dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "info alvará dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "statistic alvará dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "document alvará dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "figure alvará dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "record alvará dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório.credor": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "ConceptualProperty": "Credor"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "credor": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório.beneficiário": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "ConceptualProperty": "Beneficiário"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "beneficiário": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório.data_envio_p__assinatura": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "ConceptualProperty": "Data Envio p/ Assinatura"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "data envio p/ assinatura": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "date": {
+			            "State": "Generated",
+			            "Weight": 0.7
+			          }
+			        },
+			        {
+			          "data envio p": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "data envio p assinatura": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "assinatura": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "information envio p/ assinatura": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "fact envio p/ assinatura": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "info envio p/ assinatura": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "statistic envio p/ assinatura": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "information envio p assinatura": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "fact envio p assinatura": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "info envio p assinatura": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "statistic envio p assinatura": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "information envio p": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "fact envio p": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "tabela_geral_precatório.data_envio_p__assinatura.hierarquia_de_data": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "VariationSource": "Data Envio p/ Assinatura",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hierarquia de datas"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "hierarquia de data": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "hierarquia de information": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "hierarquia de fact": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "hierarquia de info": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "hierarquia de statistic": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "hierarquia de document": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "hierarquia de figure": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "hierarquia de record": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório.data_envio_p__assinatura.ano": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "VariationSource": "Data Envio p/ Assinatura",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hierarquia de datas",
+			          "HierarchyLevel": "Ano"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "ano": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "data envio p/ assinatura ano": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "data envio p": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "data envio p assinatura ano": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "assinatura ano": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "information envio p assinatura ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "fact envio p assinatura ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "info envio p assinatura ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "statistic envio p assinatura ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "information envio p": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "fact envio p": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "info envio p": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "statistic envio p": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "document envio p assinatura ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.605
+			          }
+			        },
+			        {
+			          "figure envio p assinatura ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.605
+			          }
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório.data_envio_p__assinatura.trimestre": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "VariationSource": "Data Envio p/ Assinatura",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hierarquia de datas",
+			          "HierarchyLevel": "Trimestre"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "trimestre": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "data envio p/ assinatura trimestre": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "data envio p": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "data envio p assinatura trimestre": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "assinatura trimestre": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "information envio p assinatura trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "fact envio p assinatura trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "info envio p assinatura trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "statistic envio p assinatura trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "information envio p": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "fact envio p": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "info envio p": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "statistic envio p": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "document envio p assinatura trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.605
+			          }
+			        },
+			        {
+			          "figure envio p assinatura trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.605
+			          }
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório.data_envio_p__assinatura.mê": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "VariationSource": "Data Envio p/ Assinatura",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hierarquia de datas",
+			          "HierarchyLevel": "Mês"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "mê": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "data envio p/ assinatura mê": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "data envio p": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "data envio p assinatura mê": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "assinatura mê": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "information envio p assinatura mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "fact envio p assinatura mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "info envio p assinatura mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "statistic envio p assinatura mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "information envio p": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "fact envio p": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "info envio p": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "statistic envio p": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "document envio p assinatura mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.605
+			          }
+			        },
+			        {
+			          "figure envio p assinatura mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.605
+			          }
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório.data_envio_p__assinatura.dia": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "VariationSource": "Data Envio p/ Assinatura",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hierarquia de datas",
+			          "HierarchyLevel": "Dia"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "dia": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "data envio p/ assinatura dia": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "data envio p": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "data envio p assinatura dia": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "assinatura dia": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "information envio p assinatura dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "fact envio p assinatura dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "info envio p assinatura dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "statistic envio p assinatura dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "information envio p": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "fact envio p": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "info envio p": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "statistic envio p": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "document envio p assinatura dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.605
+			          }
+			        },
+			        {
+			          "figure envio p assinatura dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.605
+			          }
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório.custa": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "ConceptualProperty": "Custas"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "custa": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório.data_alvará.hierarquia_de_data1": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "VariationSource": "Data Alvará ",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hierarquia de datas"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "hierarquia de data": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "hierarquia de information": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "hierarquia de fact": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "hierarquia de info": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "hierarquia de statistic": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "hierarquia de document": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "hierarquia de figure": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "hierarquia de record": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório.data_alvará.ano1": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "VariationSource": "Data Alvará ",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hierarquia de datas",
+			          "HierarchyLevel": "Ano"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "ano": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "data alvará ano": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "information alvará ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "fact alvará ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "info alvará ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "statistic alvará ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "document alvará ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "figure alvará ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "record alvará ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório.data_alvará.trimestre1": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "VariationSource": "Data Alvará ",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hierarquia de datas",
+			          "HierarchyLevel": "Trimestre"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "trimestre": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "data alvará trimestre": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "information alvará trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "fact alvará trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "info alvará trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "statistic alvará trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "document alvará trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "figure alvará trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "record alvará trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório.data_alvará.mê1": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "VariationSource": "Data Alvará ",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hierarquia de datas",
+			          "HierarchyLevel": "Mês"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "mê": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "data alvará mê": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "information alvará mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "fact alvará mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "info alvará mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "statistic alvará mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "document alvará mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "figure alvará mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "record alvará mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório.data_alvará.dia1": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "VariationSource": "Data Alvará ",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hierarquia de datas",
+			          "HierarchyLevel": "Dia"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "dia": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "data alvará dia": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "information alvará dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "fact alvará dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "info alvará dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "statistic alvará dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "document alvará dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "figure alvará dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "record alvará dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório.calc_última_atualização": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Tabela Geral Precatórios",
+			          "ConceptualProperty": "calc Última Atualização"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "calc última atualização": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    }
+			  },
+			  "Relationships": {
+			    "tabela_geral_precatório_data_alvará_ano1_has_tabela_geral_precatório_data_alvará_trimestre1": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório.data_alvará.ano1": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará.ano1"
+			          }
+			        },
+			        "tabela_geral_precatório.data_alvará.trimestre1": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará.trimestre1"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_alvará.ano1"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_alvará.trimestre1"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "anos_have_trimestres"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_alvará.trimestre1"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_alvará.ano1"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "trimestres_have_anos"
+			        },
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_alvará.trimestre1"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_alvará.ano1"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "trimestres_are_in_anos3"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_data_alvará_hierarquia_de_data1_has_tabela_geral_precatório_data_alvará_dia1": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório.data_alvará.hierarquia_de_data1": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará.hierarquia_de_data1"
+			          }
+			        },
+			        "tabela_geral_precatório.data_alvará.dia1": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará.dia1"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_alvará.hierarquia_de_data1"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_alvará.dia1"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "hierarquia_de_data_have_dias"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_data_alvará_hierarquia_de_data1_has_tabela_geral_precatório_data_alvará_mê1": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório.data_alvará.hierarquia_de_data1": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará.hierarquia_de_data1"
+			          }
+			        },
+			        "tabela_geral_precatório.data_alvará.mê1": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará.mê1"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_alvará.hierarquia_de_data1"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_alvará.mê1"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "hierarquia_de_data_have_mê"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_data_alvará_hierarquia_de_data1_has_tabela_geral_precatório_data_alvará_trimestre1": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório.data_alvará.hierarquia_de_data1": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará.hierarquia_de_data1"
+			          }
+			        },
+			        "tabela_geral_precatório.data_alvará.trimestre1": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará.trimestre1"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_alvará.hierarquia_de_data1"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_alvará.trimestre1"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "hierarquia_de_data_have_trimestres"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_data_alvará_hierarquia_de_data1_has_tabela_geral_precatório_data_alvará_ano1": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório.data_alvará.hierarquia_de_data1": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará.hierarquia_de_data1"
+			          }
+			        },
+			        "tabela_geral_precatório.data_alvará.ano1": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará.ano1"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_alvará.hierarquia_de_data1"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_alvará.ano1"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "hierarquia_de_data_have_anos"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_data_alvará1_has_tabela_geral_precatório_data_alvará_hierarquia_de_data1": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório.data_alvará1": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará1"
+			          }
+			        },
+			        "tabela_geral_precatório.data_alvará.hierarquia_de_data1": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará.hierarquia_de_data1"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_alvará1"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_alvará.hierarquia_de_data1"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "data_alvará_have_hierarquia_de_data"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_data_envio_p__assinatura_mê_has_tabela_geral_precatório_data_envio_p__assinatura_dia": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório.data_envio_p__assinatura.mê": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_envio_p__assinatura.mê"
+			          }
+			        },
+			        "tabela_geral_precatório.data_envio_p__assinatura.dia": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_envio_p__assinatura.dia"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_envio_p__assinatura.mê"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_envio_p__assinatura.dia"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mê_have_dias"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_envio_p__assinatura.dia"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_envio_p__assinatura.mê"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dias_have_mê"
+			        },
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_envio_p__assinatura.dia"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_envio_p__assinatura.mê"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dias_are_in_mê2"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_data_envio_p__assinatura_trimestre_has_tabela_geral_precatório_data_envio_p__assinatura_mê": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório.data_envio_p__assinatura.trimestre": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_envio_p__assinatura.trimestre"
+			          }
+			        },
+			        "tabela_geral_precatório.data_envio_p__assinatura.mê": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_envio_p__assinatura.mê"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_envio_p__assinatura.trimestre"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_envio_p__assinatura.mê"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "trimestres_have_mê"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_envio_p__assinatura.mê"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_envio_p__assinatura.trimestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mê_have_trimestres"
+			        },
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_envio_p__assinatura.mê"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_envio_p__assinatura.trimestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mê_are_in_trimestres2"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_data_envio_p__assinatura_ano_has_tabela_geral_precatório_data_envio_p__assinatura_trimestre": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório.data_envio_p__assinatura.ano": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_envio_p__assinatura.ano"
+			          }
+			        },
+			        "tabela_geral_precatório.data_envio_p__assinatura.trimestre": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_envio_p__assinatura.trimestre"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_envio_p__assinatura.ano"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_envio_p__assinatura.trimestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "anos_have_trimestres1"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_envio_p__assinatura.trimestre"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_envio_p__assinatura.ano"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "trimestres_have_anos1"
+			        },
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_envio_p__assinatura.trimestre"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_envio_p__assinatura.ano"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "trimestres_are_in_anos2"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_data_envio_p__assinatura_hierarquia_de_data_has_tabela_geral_precatório_data_envio_p__assinatura_dia": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório.data_envio_p__assinatura.hierarquia_de_data": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_envio_p__assinatura.hierarquia_de_data"
+			          }
+			        },
+			        "tabela_geral_precatório.data_envio_p__assinatura.dia": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_envio_p__assinatura.dia"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_envio_p__assinatura.hierarquia_de_data"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_envio_p__assinatura.dia"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "hierarquia_de_data_have_dias1"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_data_envio_p__assinatura_hierarquia_de_data_has_tabela_geral_precatório_data_envio_p__assinatura_mê": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório.data_envio_p__assinatura.hierarquia_de_data": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_envio_p__assinatura.hierarquia_de_data"
+			          }
+			        },
+			        "tabela_geral_precatório.data_envio_p__assinatura.mê": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_envio_p__assinatura.mê"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_envio_p__assinatura.hierarquia_de_data"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_envio_p__assinatura.mê"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "hierarquia_de_data_have_mê1"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_data_envio_p__assinatura_hierarquia_de_data_has_tabela_geral_precatório_data_envio_p__assinatura_trimestre": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório.data_envio_p__assinatura.hierarquia_de_data": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_envio_p__assinatura.hierarquia_de_data"
+			          }
+			        },
+			        "tabela_geral_precatório.data_envio_p__assinatura.trimestre": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_envio_p__assinatura.trimestre"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_envio_p__assinatura.hierarquia_de_data"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_envio_p__assinatura.trimestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "hierarquia_de_data_have_trimestres1"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_data_envio_p__assinatura_hierarquia_de_data_has_tabela_geral_precatório_data_envio_p__assinatura_ano": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório.data_envio_p__assinatura.hierarquia_de_data": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_envio_p__assinatura.hierarquia_de_data"
+			          }
+			        },
+			        "tabela_geral_precatório.data_envio_p__assinatura.ano": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_envio_p__assinatura.ano"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_envio_p__assinatura.hierarquia_de_data"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_envio_p__assinatura.ano"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "hierarquia_de_data_have_anos1"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_data_envio_p__assinatura_has_hierarquia_de_data": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório.data_envio_p__assinatura": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_envio_p__assinatura"
+			          }
+			        },
+			        "tabela_geral_precatório.data_envio_p__assinatura.hierarquia_de_data": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_envio_p__assinatura.hierarquia_de_data"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_envio_p__assinatura"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_envio_p__assinatura.hierarquia_de_data"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "data_envio_p__assinaturas_have_hierarquia_de_data"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_data_alvará_mê_has_tabela_geral_precatório_data_alvará_dia": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório.data_alvará.mê": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará.mê"
+			          }
+			        },
+			        "tabela_geral_precatório.data_alvará.dia": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará.dia"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_alvará.mê"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_alvará.dia"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mê_have_dias1"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_alvará.dia"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_alvará.mê"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dias_have_mê1"
+			        },
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_alvará.dia"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_alvará.mê"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dias_are_in_mê1"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_data_alvará_trimestre_has_tabela_geral_precatório_data_alvará_mê": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório.data_alvará.trimestre": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará.trimestre"
+			          }
+			        },
+			        "tabela_geral_precatório.data_alvará.mê": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará.mê"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_alvará.trimestre"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_alvará.mê"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "trimestres_have_mê1"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_alvará.mê"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_alvará.trimestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mê_have_trimestres1"
+			        },
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_alvará.mê"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_alvará.trimestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mê_are_in_trimestres1"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_data_alvará_ano_has_tabela_geral_precatório_data_alvará_trimestre": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório.data_alvará.ano": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará.ano"
+			          }
+			        },
+			        "tabela_geral_precatório.data_alvará.trimestre": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará.trimestre"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_alvará.ano"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_alvará.trimestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "anos_have_trimestres2"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_alvará.trimestre"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_alvará.ano"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "trimestres_have_anos2"
+			        },
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_alvará.trimestre"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_alvará.ano"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "trimestres_are_in_anos1"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_data_alvará_hierarquia_de_data_has_tabela_geral_precatório_data_alvará_dia": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório.data_alvará.hierarquia_de_data": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará.hierarquia_de_data"
+			          }
+			        },
+			        "tabela_geral_precatório.data_alvará.dia": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará.dia"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_alvará.hierarquia_de_data"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_alvará.dia"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "hierarquia_de_data_have_dias2"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_data_alvará_hierarquia_de_data_has_tabela_geral_precatório_data_alvará_mê": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório.data_alvará.hierarquia_de_data": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará.hierarquia_de_data"
+			          }
+			        },
+			        "tabela_geral_precatório.data_alvará.mê": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará.mê"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_alvará.hierarquia_de_data"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_alvará.mê"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "hierarquia_de_data_have_mê2"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_data_alvará_hierarquia_de_data_has_tabela_geral_precatório_data_alvará_trimestre": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório.data_alvará.hierarquia_de_data": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará.hierarquia_de_data"
+			          }
+			        },
+			        "tabela_geral_precatório.data_alvará.trimestre": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará.trimestre"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_alvará.hierarquia_de_data"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_alvará.trimestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "hierarquia_de_data_have_trimestres2"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_data_alvará_hierarquia_de_data_has_tabela_geral_precatório_data_alvará_ano": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório.data_alvará.hierarquia_de_data": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará.hierarquia_de_data"
+			          }
+			        },
+			        "tabela_geral_precatório.data_alvará.ano": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará.ano"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_alvará.hierarquia_de_data"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_alvará.ano"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "hierarquia_de_data_have_anos2"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_data_alvará_has_hierarquia_de_data": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório.data_alvará": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará"
+			          }
+			        },
+			        "tabela_geral_precatório.data_alvará.hierarquia_de_data": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará.hierarquia_de_data"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_alvará"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_alvará.hierarquia_de_data"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "data_alvará_have_hierarquia_de_data1"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_data_da_assinatura_mê_has_tabela_geral_precatório_data_da_assinatura_dia": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório.data_da_assinatura.mê": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_da_assinatura.mê"
+			          }
+			        },
+			        "tabela_geral_precatório.data_da_assinatura.dia": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_da_assinatura.dia"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_da_assinatura.mê"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_da_assinatura.dia"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mê_have_dias2"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_da_assinatura.dia"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_da_assinatura.mê"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dias_have_mê2"
+			        },
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_da_assinatura.dia"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_da_assinatura.mê"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dias_are_in_mê"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_data_da_assinatura_trimestre_has_tabela_geral_precatório_data_da_assinatura_mê": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório.data_da_assinatura.trimestre": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_da_assinatura.trimestre"
+			          }
+			        },
+			        "tabela_geral_precatório.data_da_assinatura.mê": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_da_assinatura.mê"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_da_assinatura.trimestre"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_da_assinatura.mê"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "trimestres_have_mê2"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_da_assinatura.mê"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_da_assinatura.trimestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mê_have_trimestres2"
+			        },
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_da_assinatura.mê"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_da_assinatura.trimestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mê_are_in_trimestres"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_data_da_assinatura_ano_has_tabela_geral_precatório_data_da_assinatura_trimestre": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório.data_da_assinatura.ano": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_da_assinatura.ano"
+			          }
+			        },
+			        "tabela_geral_precatório.data_da_assinatura.trimestre": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_da_assinatura.trimestre"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_da_assinatura.ano"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_da_assinatura.trimestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "anos_have_trimestres3"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_da_assinatura.trimestre"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_da_assinatura.ano"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "trimestres_have_anos3"
+			        },
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_da_assinatura.trimestre"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_da_assinatura.ano"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "trimestres_are_in_anos"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_data_da_assinatura_hierarquia_de_data_has_tabela_geral_precatório_data_da_assinatura_dia": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório.data_da_assinatura.hierarquia_de_data": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_da_assinatura.hierarquia_de_data"
+			          }
+			        },
+			        "tabela_geral_precatório.data_da_assinatura.dia": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_da_assinatura.dia"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_da_assinatura.hierarquia_de_data"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_da_assinatura.dia"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "hierarquia_de_data_have_dias3"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_data_da_assinatura_hierarquia_de_data_has_tabela_geral_precatório_data_da_assinatura_mê": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório.data_da_assinatura.hierarquia_de_data": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_da_assinatura.hierarquia_de_data"
+			          }
+			        },
+			        "tabela_geral_precatório.data_da_assinatura.mê": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_da_assinatura.mê"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_da_assinatura.hierarquia_de_data"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_da_assinatura.mê"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "hierarquia_de_data_have_mê3"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_data_da_assinatura_hierarquia_de_data_has_tabela_geral_precatório_data_da_assinatura_trimestre": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório.data_da_assinatura.hierarquia_de_data": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_da_assinatura.hierarquia_de_data"
+			          }
+			        },
+			        "tabela_geral_precatório.data_da_assinatura.trimestre": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_da_assinatura.trimestre"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_da_assinatura.hierarquia_de_data"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_da_assinatura.trimestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "hierarquia_de_data_have_trimestres3"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_data_da_assinatura_hierarquia_de_data_has_tabela_geral_precatório_data_da_assinatura_ano": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório.data_da_assinatura.hierarquia_de_data": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_da_assinatura.hierarquia_de_data"
+			          }
+			        },
+			        "tabela_geral_precatório.data_da_assinatura.ano": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_da_assinatura.ano"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_da_assinatura.hierarquia_de_data"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_da_assinatura.ano"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "hierarquia_de_data_have_anos3"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_data_da_assinatura_has_hierarquia_de_data": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório.data_da_assinatura": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_da_assinatura"
+			          }
+			        },
+			        "tabela_geral_precatório.data_da_assinatura.hierarquia_de_data": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_da_assinatura.hierarquia_de_data"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_da_assinatura"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_da_assinatura.hierarquia_de_data"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "data_da_assinaturas_have_hierarquia_de_data"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_has_calc_última_atualização": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório"
+			          }
+			        },
+			        "tabela_geral_precatório.calc_última_atualização": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.calc_última_atualização"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.calc_última_atualização"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tabela_geral_precatórios_have_calc_última_atualização"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_has_data_alvará1": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório"
+			          }
+			        },
+			        "tabela_geral_precatório.data_alvará1": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará1"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_alvará1"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tabela_geral_precatórios_have_data_alvará"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_has_custa": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório"
+			          }
+			        },
+			        "tabela_geral_precatório.custa": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.custa"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.custa"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tabela_geral_precatórios_have_custas"
+			        },
+			        {
+			          "Adjective": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório"
+			            },
+			            "Adjectives": [
+			              {
+			                "expensive": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Antonyms": [
+			              {
+			                "cheap": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Measurement": {
+			              "Role": "tabela_geral_precatório.custa"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "custa_indicates_how_expensive_tabela_geral_precatórios_are"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_has_data_envio_p__assinatura": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório"
+			          }
+			        },
+			        "tabela_geral_precatório.data_envio_p__assinatura": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_envio_p__assinatura"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_envio_p__assinatura"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tabela_geral_precatórios_have_data_envio_p__assinaturas"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_has_beneficiário": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório"
+			          }
+			        },
+			        "tabela_geral_precatório.beneficiário": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.beneficiário"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.beneficiário"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tabela_geral_precatórios_have_beneficiários"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_has_credor": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório"
+			          }
+			        },
+			        "tabela_geral_precatório.credor": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.credor"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.credor"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tabela_geral_precatórios_have_credors"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_has_data_alvará": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório"
+			          }
+			        },
+			        "tabela_geral_precatório.data_alvará": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_alvará"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tabela_geral_precatórios_have_data_alvará1"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_has_setor": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório"
+			          }
+			        },
+			        "tabela_geral_precatório.setor": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.setor"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.setor"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tabela_geral_precatórios_have_setors"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_has_link_sharepoint": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório"
+			          }
+			        },
+			        "tabela_geral_precatório.link_sharepoint": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.link_sharepoint"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.link_sharepoint"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tabela_geral_precatórios_have_link_sharepoint"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_has_situação": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório"
+			          }
+			        },
+			        "tabela_geral_precatório.situação": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.situação"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.situação"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tabela_geral_precatórios_have_situaçãos"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_has_valor_bruto": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório"
+			          }
+			        },
+			        "tabela_geral_precatório.valor_bruto": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.valor_bruto"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.valor_bruto"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tabela_geral_precatórios_have_valor_brutos"
+			        },
+			        {
+			          "Adjective": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório"
+			            },
+			            "Adjectives": [
+			              {
+			                "expensive": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Antonyms": [
+			              {
+			                "cheap": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Measurement": {
+			              "Role": "tabela_geral_precatório.valor_bruto"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "valor_bruto_indicates_how_expensive_tabela_geral_precatórios_are"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_has_data_da_assinatura": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório"
+			          }
+			        },
+			        "tabela_geral_precatório.data_da_assinatura": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_da_assinatura"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_da_assinatura"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tabela_geral_precatórios_have_data_da_assinaturas"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_has_precatório": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório"
+			          }
+			        },
+			        "tabela_geral_precatório.precatório": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.precatório"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.precatório"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tabela_geral_precatórios_have_precatórios"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_has_alvará": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório"
+			          }
+			        },
+			        "tabela_geral_precatório.alvará": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.alvará"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.alvará"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tabela_geral_precatórios_have_alvará"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_has_medida_problemas_encontrados": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório"
+			          }
+			        },
+			        "medida.problemas_encontrados": {
+			          "Target": {
+			            "Entity": "medida.problemas_encontrados"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório"
+			            },
+			            "Object": {
+			              "Role": "medida.problemas_encontrados"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tabela_geral_precatórios_have_problemas_encontrados"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_has_medida_qtd_precatório_faltante": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório"
+			          }
+			        },
+			        "medida.qtd_precatório_faltante": {
+			          "Target": {
+			            "Entity": "medida.qtd_precatório_faltante"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório"
+			            },
+			            "Object": {
+			              "Role": "medida.qtd_precatório_faltante"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tabela_geral_precatórios_have_qtd_precatório_faltante"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_has_medida_qtd_alvará_faltante": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório"
+			          }
+			        },
+			        "medida.qtd_alvará_faltante": {
+			          "Target": {
+			            "Entity": "medida.qtd_alvará_faltante"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório"
+			            },
+			            "Object": {
+			              "Role": "medida.qtd_alvará_faltante"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tabela_geral_precatórios_have_qtd_alvará_faltante"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_has_medida_qtd_valor_com_problema": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório"
+			          }
+			        },
+			        "medida.qtd_valor_com_problema": {
+			          "Target": {
+			            "Entity": "medida.qtd_valor_com_problema"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório"
+			            },
+			            "Object": {
+			              "Role": "medida.qtd_valor_com_problema"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tabela_geral_precatórios_have_qtd_valor_com_problema"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_has_medida_filtro_linhas_com_problema": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório"
+			          }
+			        },
+			        "medida.filtro_linhas_com_problema": {
+			          "Target": {
+			            "Entity": "medida.filtro_linhas_com_problema"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório"
+			            },
+			            "Object": {
+			              "Role": "medida.filtro_linhas_com_problema"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tabela_geral_precatórios_have_filtro_linhas_com_problema"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_has_medida_assinaturas_faltando": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório"
+			          }
+			        },
+			        "medida.assinaturas_faltando": {
+			          "Target": {
+			            "Entity": "medida.assinaturas_faltando"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório"
+			            },
+			            "Object": {
+			              "Role": "medida.assinaturas_faltando"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tabela_geral_precatórios_have_assinaturas_faltando"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_has_medida_quantidade_precatórios": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório"
+			          }
+			        },
+			        "medida.quantidade_precatórios": {
+			          "Target": {
+			            "Entity": "medida.quantidade_precatórios"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório"
+			            },
+			            "Object": {
+			              "Role": "medida.quantidade_precatórios"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tabela_geral_precatórios_have_quantidade_precatórios"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_has_medida_quantidade_alvarás": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório"
+			          }
+			        },
+			        "medida.quantidade_alvarás": {
+			          "Target": {
+			            "Entity": "medida.quantidade_alvarás"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório"
+			            },
+			            "Object": {
+			              "Role": "medida.quantidade_alvarás"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tabela_geral_precatórios_have_quantidade_alvarás"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_has_medida_valor_pago": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório"
+			          }
+			        },
+			        "medida.valor_pago": {
+			          "Target": {
+			            "Entity": "medida.valor_pago"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório"
+			            },
+			            "Object": {
+			              "Role": "medida.valor_pago"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tabela_geral_precatórios_have_valor_pago"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_data_alvará_trimestre1_has_tabela_geral_precatório_data_alvará_mê1": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório.data_alvará.trimestre1": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará.trimestre1"
+			          }
+			        },
+			        "tabela_geral_precatório.data_alvará.mê1": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará.mê1"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_alvará.trimestre1"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_alvará.mê1"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "trimestres_have_mê3"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_alvará.mê1"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_alvará.trimestre1"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mê_have_trimestres3"
+			        },
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_alvará.mê1"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_alvará.trimestre1"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mê_are_in_trimestres3"
+			        }
+			      ]
+			    },
+			    "tabela_geral_precatório_data_alvará_mê1_has_tabela_geral_precatório_data_alvará_dia1": {
+			      "Binding": {
+			        "ConceptualEntity": "Tabela Geral Precatórios"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tabela_geral_precatório.data_alvará.mê1": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará.mê1"
+			          }
+			        },
+			        "tabela_geral_precatório.data_alvará.dia1": {
+			          "Target": {
+			            "Entity": "tabela_geral_precatório.data_alvará.dia1"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_alvará.mê1"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_alvará.dia1"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mê_have_dias3"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_alvará.dia1"
+			            },
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_alvará.mê1"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dias_have_mê3"
+			        },
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "tabela_geral_precatório.data_alvará.dia1"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "tabela_geral_precatório.data_alvará.mê1"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dias_are_in_mê3"
+			        }
+			      ]
+			    }
+			  },
+			  "Agents": {
+			    "Internal": {
+			      "Version": "1.1.0"
+			    }
+			  }
+			}
+		contentType: json
+

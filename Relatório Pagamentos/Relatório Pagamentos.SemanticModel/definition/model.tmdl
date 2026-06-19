@@ -1,0 +1,24 @@
+model Model
+	culture: pt-BR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-BR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["[MN] Municípios","[PF] Superpreferência","[IN] INSS","[RS] Reservas","[AC] Conferência Acordo","Medidas","Tabela Geral Precatórios"]
+
+annotation PBI_ProTooling = ["DaxQueryView_Desktop","DevMode"]
+
+ref table Medidas
+ref table 'Tabela Geral Precatórios'
+ref table DateTableTemplate_4c726b40-4eb6-4c2f-8816-b6a55a25ae19
+ref table LocalDateTable_4742f8fc-dbbb-4f32-bc14-90c9301697b2
+ref table LocalDateTable_80b5c2b1-8609-4104-ac7e-2277aaf04420
+ref table LocalDateTable_9548bd90-aae2-405f-95ab-ac2473aefefb
+ref table LocalDateTable_e981de6e-5e70-46af-b69c-857e51dfa07e
+
+ref cultureInfo pt-BR
+

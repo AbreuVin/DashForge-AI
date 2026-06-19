@@ -1,0 +1,139 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 1671.25,
+            "y": 121.95751404494388
+          },
+          "nodeIndex": "dCalendario",
+          "nodeLineageTag": "de91b938-a141-41c4-a79d-d5a977e319f6",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 1149.2166392092258,
+            "y": 177.55574304000154
+          },
+          "nodeIndex": "Medicao",
+          "nodeLineageTag": "9fb226be-ad2a-491f-b435-4c65792cd898",
+          "size": {
+            "height": 1000,
+            "width": 375.04818780889627
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 1716.5,
+            "y": 401.45751404494388
+          },
+          "nodeIndex": "Minuta",
+          "nodeLineageTag": "401a9673-f663-454b-b801-8a1a6942da9d",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 447.65168539325845,
+            "y": 369.90227059925104
+          },
+          "nodeIndex": "BASE AZURE - EMAILS",
+          "nodeLineageTag": "1a0db7bf-5acb-42f6-8d6c-8078f48f2d23",
+          "size": {
+            "height": 726.68419777995814,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 425.9353932584271,
+            "y": 4.64852528089898
+          },
+          "nodeIndex": "Usuarios_Sistema",
+          "nodeLineageTag": "e8c9b700-de46-4a9e-877a-bcdb900d31d6",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 279.25152153558054
+          },
+          "nodeIndex": "VIEW CODES - ESTAGIÁRIOS",
+          "nodeLineageTag": "2bc440ae-f676-4b52-bc7a-9cd7d6f8b02c",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 690.50152153558054
+          },
+          "nodeIndex": "VIEW SEGESP -  SERVIDORES",
+          "nodeLineageTag": "4a7a172a-ade4-46de-b820-e0308256355a",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 2000.5,
+            "y": 395.50901217228466
+          },
+          "nodeIndex": "auditoria-logs-2026-02-10",
+          "nodeLineageTag": "047bc791-0fb5-4778-9240-7b61091d827c",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 2284.5,
+            "y": 512.00311730651765
+          },
+          "nodeIndex": "Legenda Mapa",
+          "nodeLineageTag": "86a6754d-f223-4440-aceb-6ff9569c69d0",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Todas as tabelas",
+      "zoomValue": 56.009227220299884,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas as tabelas",
+  "defaultDiagram": "Todas as tabelas"
+}

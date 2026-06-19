@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "c1bebd6c461fb870d922",
+  "position": {
+    "x": 0,
+    "y": 95.999999999999986,
+    "z": 5000,
+    "height": 624.21508290247812,
+    "width": 79.651602189348125,
+    "tabOrder": 12000
+  },
+  "visualGroup": {
+    "displayName": "Menu Escondido",
+    "groupMode": "ScaleMode"
+  }
+}

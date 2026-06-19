@@ -1,0 +1,5 @@
+relationship 789c8f01-fca3-42ae-95f6-da9491e10731
+	joinOnDateBehavior: datePartOnly
+	fromColumn: vendas.Data
+	toColumn: LocalDateTable_89e7840f-bbfd-4aa4-aba7-8d00e5b9569c.Date
+

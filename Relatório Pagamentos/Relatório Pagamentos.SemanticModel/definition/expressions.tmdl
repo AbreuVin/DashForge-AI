@@ -1,0 +1,96 @@
+expression '[MN] Municípios' =
+		let
+		    Fonte = SharePoint.Tables("https://tjbacotec.sharepoint.com/sites/NACP", [Implementation="2.0", ViewMode="All"]),
+		    #"c076fa09-cdf8-4d59-803d-e0574375555c" = Fonte{[Id="c076fa09-cdf8-4d59-803d-e0574375555c"]}[Items],
+		    #"Personalização Adicionada" = Table.AddColumn(#"c076fa09-cdf8-4d59-803d-e0574375555c", "Link Sharepoint", each "https://tjbacotec.sharepoint.com/sites/NACP/Lists/Municpio/EditForm.aspx?ID=" & Number.ToText([ID])),
+		    #"Outras Colunas Removidas" = Table.SelectColumns(#"Personalização Adicionada",{"Alvará", "Data Alvará", "Valor", "Número Precatório", "Credor", "Beneficiário", "Data da Assinatura", "Data Envio p/ Assinatura", "Situação_", "Link Sharepoint"}),
+		    #"Colunas Renomeadas1" = Table.RenameColumns(#"Outras Colunas Removidas",{{"Valor", "Valor Bruto"}}),
+		    #"Colunas Renomeadas" = Table.RenameColumns(#"Colunas Renomeadas1",{{"Alvará", "Alvará"}, {"Número Precatório", "Precatório"}, {"Situação_", "Situação"}}),
+		    #"Personalização Adicionada1" = Table.AddColumn(#"Colunas Renomeadas", "Setor", each "Municípios"),
+		    #"Tipo Alterado" = Table.TransformColumnTypes(#"Personalização Adicionada1",{{"Situação", type text}})
+		in
+		    #"Tipo Alterado"
+	lineageTag: affd6df9-c853-426a-a2d8-7b013629c4f9
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
+expression '[PF] Superpreferência' =
+		let
+		    Fonte = SharePoint.Tables("https://tjbacotec.sharepoint.com/sites/NACP", [Implementation="2.0", ViewMode="All"]),
+		    #"ea692069-5f53-48ed-beff-0e57a15a690d" = Fonte{[Id="ea692069-5f53-48ed-beff-0e57a15a690d"]}[Items],
+		    #"Personalização Adicionada" = Table.AddColumn(#"ea692069-5f53-48ed-beff-0e57a15a690d", "Link Sharepoint", each "https://tjbacotec.sharepoint.com/sites/NACP/Lists/Preferncia/EditForm.aspx?ID=" & Number.ToText([ID])),
+		    #"Outras Colunas Removidas" = Table.SelectColumns(#"Personalização Adicionada",{"Número Precatório", "Credor", "Beneficiário", "Valor Bruto", "Custas", "Data Alvará", "Alvará", "Data Envio p/ Assinatura", "Data da Assinatura", "Situação_", "Link Sharepoint"}),
+		    #"Colunas Reordenadas" = Table.ReorderColumns(#"Outras Colunas Removidas",{"Alvará", "Número Precatório", "Valor Bruto", "Data da Assinatura"}),
+		    #"Colunas Renomeadas" = Table.RenameColumns(#"Colunas Reordenadas",{{"Número Precatório", "Precatório"},{"Situação_", "Situação"}}),
+		    #"Colunas Reordenadas1" = Table.ReorderColumns(#"Colunas Renomeadas",{"Alvará", "Precatório", "Data da Assinatura", "Valor Bruto", "Situação"}),
+		    #"Personalização Adicionada1" = Table.AddColumn(#"Colunas Reordenadas1", "Setor", each "Superpreferência"),
+		    #"Tipo Alterado" = Table.TransformColumnTypes(#"Personalização Adicionada1",{{"Situação", type text}}),
+		    #"Valor Substituído" = Table.ReplaceValue(#"Tipo Alterado","0","",Replacer.ReplaceText,{"Situação"})
+		in
+		    #"Valor Substituído"
+	lineageTag: ddadc217-fef5-44e3-9382-7c21fa76277f
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
+expression '[IN] INSS' =
+		let
+		    Fonte = SharePoint.Tables("https://tjbacotec.sharepoint.com/sites/NACP/", [Implementation="2.0", ViewMode="All"]),
+		    #"24d690e2-f333-49d9-a872-0c3e377d9108" = Fonte{[Id="24d690e2-f333-49d9-a872-0c3e377d9108"]}[Items],
+		    #"Personalização Adicionada" = Table.AddColumn(#"24d690e2-f333-49d9-a872-0c3e377d9108", "Link Sharepoint", each "https://tjbacotec.sharepoint.com/sites/NACP/Lists/INSS/EditForm.aspx?ID=" & Number.ToText([ID])),
+		    #"Colunas Renomeadas" = Table.RenameColumns(#"Personalização Adicionada",{{"Conta Judicial", "Conta Judicial.1"}}),
+		    #"Outras Colunas Removidas" = Table.SelectColumns(#"Colunas Renomeadas",{"Situação", "Data Alvará", "Número precatório", "Credor", "Beneficiário", "Valor bruto  ", "Custas", "Alvará", "Data Envio p/ Assinatura", "Data da Assinatura", "Link Sharepoint"}),
+		    #"Colunas Reordenadas" = Table.ReorderColumns(#"Outras Colunas Removidas",{"Alvará", "Número precatório", "Valor bruto  ", "Data da Assinatura"}),
+		    #"Colunas Renomeadas1" = Table.RenameColumns(#"Colunas Reordenadas",{{"Número precatório", "Precatório"}}),
+		    #"Colunas Reordenadas1" = Table.ReorderColumns(#"Colunas Renomeadas1",{"Alvará", "Precatório", "Data da Assinatura", "Valor bruto  ", "Situação"}),
+		    #"Colunas Renomeadas2" = Table.RenameColumns(#"Colunas Reordenadas1",{{"Valor bruto  ", "Valor Bruto"}}),
+		    #"Personalização Adicionada1" = Table.AddColumn(#"Colunas Renomeadas2", "Setor", each "INSS"),
+		    #"Colunas Renomeadas3" = Table.RenameColumns(#"Personalização Adicionada1",{{"Data Alvará", "Data Alvará"}})
+		in
+		    #"Colunas Renomeadas3"
+	lineageTag: 7bbdce60-895c-485e-88e5-781ff64754e6
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
+expression '[AC] Conferência Acordo' =
+		let
+		    Fonte = SharePoint.Tables("https://tjbacotec.sharepoint.com/sites/NACP/", [Implementation="2.0", ViewMode="All"]),
+		    #"21566277-0cb6-4908-9dad-4bef4f8f84bf" = Fonte{[Id="21566277-0cb6-4908-9dad-4bef4f8f84bf"]}[Items],
+		    #"Personalização Adicionada" = Table.AddColumn(#"21566277-0cb6-4908-9dad-4bef4f8f84bf", "Link Sharepoint", each "https://tjbacotec.sharepoint.com/sites/NACP/Lists/AC%20Conferncia%20Acordos/EditForm.aspx?ID=" & Number.ToText([ID])),
+		    #"Outras Colunas Removidas" = Table.SelectColumns(#"Personalização Adicionada",{"Alvará", "Data Alvará", "Custas", "Valor Bruto", "Número Precatório", "Credor", "Beneficiário", "Situação", "Data Envio p/ Assinatura", "Data da Assinatura", "Link Sharepoint"}),
+		    #"Colunas Reordenadas" = Table.ReorderColumns(#"Outras Colunas Removidas",{"Alvará", "Número Precatório", "Data da Assinatura", "Valor Bruto", "Situação", "Link Sharepoint"}),
+		    #"Colunas Renomeadas" = Table.RenameColumns(#"Colunas Reordenadas",{{"Número Precatório", "Precatório"}}),
+		    #"Tipo Alterado" = Table.TransformColumnTypes(#"Colunas Renomeadas",{{"Data da Assinatura", type date}}),
+		    #"Personalização Adicionada1" = Table.AddColumn(#"Tipo Alterado", "Setor", each "Acordo")
+		in
+		    #"Personalização Adicionada1"
+	lineageTag: 96d46bab-16f8-41aa-af4f-ebd34429924b
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
+expression '[RS] Reservas' =
+		let
+		    Fonte = SharePoint.Tables("https://tjbacotec.sharepoint.com/sites/NACP/", [Implementation="2.0", ViewMode="All"]),
+		    #"10113d48-a52b-4e60-8976-71d9df4f3168" = Fonte{[Id="10113d48-a52b-4e60-8976-71d9df4f3168"]}[Items],
+		    #"Colunas Removidas" = Table.RemoveColumns(#"10113d48-a52b-4e60-8976-71d9df4f3168",{"Aplicativo Modificado por", "Aplicativo Criado por", "O item é um Registro", "Rótulo aplicado por", "Rótulo de retenção Aplicado", "Rótulo de retenção", "Configuração do rótulo", "Contagem de Elementos Filho da Pasta", "Contagem de Itens Filhos", "Tipo", "Editar", "Anexos", "Versão", "Modificado por", "Criado por", "Criado", "Modificado", "Tipo de Conteúdo", "Forma de Envio", "Valor Líquido", "Situação IR", "Terceiros/Reservados", "Tipo de Preferência", "Tipo de Previdência", "Data do Envio ao BRB", "Data Envio Pix", "Providencia Assessorias", "ID de Ativo de Conformidade", "Pressione Delete para excluir o ícone.", "Título", "Data ao Envio PIX", "Agência", "Status C/J", "Ano Pagamento", "Mês Pagamento", "Data Pagamento", "Data Envio ao BRB", "Liberação/Devolução", "Data Pix", "EFD-REINF", "EFD-REINF Ano", "Situação Liberação", "Tipo de Controle", "Acordo Edital", "Lote", "Posição", "Ativo/Inativo ", "Código da Previdência", "Tipo de Ação", "Informações Complementares", "Prioridade", "Data Laudo", "Data da lista", "Honorário", "IR", "ITD", "ITD Doação", "Números de Meses", "Ofício de Tributo", "Observações 1 ", "Motivo na Época da Reserva", "Chave Pix", "Banco", "Tipo de Conta", "Número da Conta", "Total/Parcial", "Status da Conta", "Observações 3", "Qualidade do beneficiário", "Principal", "Juros", "Total P + J", "Valor Líquidoo", "Acréscimos", "Servidor", "Acordo/Pref/O.C.", "Edital/Data ", "Assessor", "Data envio BRB", "Número ação originária", "Conta Judicial"}),
+		    #"Colunas Reordenadas" = Table.ReorderColumns(#"Colunas Removidas",{"Beneficiário", "Valor Bruto", "Alvará", "Número precatório", "Credor", "Data Alvará", "Custas", "Situação", "CPF/CNPJ", "CPF/CNPJ do credor originário", "Previdência", "Data Envio p/ Assinatura", "Data de Nascimento"}),
+		    #"Colunas Removidas1" = Table.RemoveColumns(#"Colunas Reordenadas",{"CPF/CNPJ", "CPF/CNPJ do credor originário", "Previdência"}),
+		    #"Linhas Filtradas" = Table.SelectRows(#"Colunas Removidas1", each true),
+		    #"Personalização Adicionada" = Table.AddColumn(#"Linhas Filtradas", "Setor", each "Reservas"),
+		    #"Personalização Adicionada1" = Table.AddColumn(#"Personalização Adicionada", "Personalizar", each "https://tjbacotec.sharepoint.com/sites/NACP/Lists/Reservados/EditForm.aspx?ID=" & Number.ToText([ID])),
+		    #"Colunas Renomeadas1" = Table.RenameColumns(#"Personalização Adicionada1",{{"Personalizar", "Link Sharepoint"}, {"Número precatório", "Precatório"}})
+		in
+		    #"Colunas Renomeadas1"
+	lineageTag: 06739445-8939-4951-b43d-d4049e200851
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
